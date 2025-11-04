@@ -1,0 +1,37 @@
+{
+  "cases": [
+    {
+      "report_id": "Recording 3",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "The patient reports experiencing pain in the left knee for over a year. The pain is aggravated by cold weather and is described as consistent. There are no other joint problems or swelling reported. The patient has a family history of lymphatic disease affecting knee function and is currently taking Levothyroxine 100 mcg daily.",
+      "detailed_findings": [
+        {
+          "finding": "Persistent pain in the left knee",
+          "explanation": "The patient feels that the pain started suddenly and has been constant. It worsens in cold conditions and alleviates with warmth."
+        },
+        {
+          "finding": "No swelling or other joint issues",
+          "explanation": "The patient denies any joint swelling or issues in other joints."
+        },
+        {
+          "finding": "Morning stiffness reported in cold weather",
+          "explanation": "Morning stiffness lasts less than ten minutes when the weather is cold."
+        },
+        {
+          "finding": "No history of rheumatologic issues",
+          "explanation": "No prior joint issues or back pain reported, and no family history of rheumatoid arthritis."
+        }
+      ],
+      "impression_summary": "The patient presents with chronic pain in the left knee with no accompanying swelling or other joint involvement.",
+      "recommendations": [
+        "Consider further evaluation of knee pain through imaging studies (e.g., X-Ray or MRI) to assess for any structural abnormalities.",
+        "Advise the patient to keep the knee warm during cold weather and possibly explore physical therapy for pain management.",
+        "Follow-up appointment to monitor symptoms and response to any conservative treatment initiated."
+      ],
+      "urgency_level": "moderate",
+      "timestamp": "2025-11-03T11:53:38.904330",
+      "source_file": "Recording 3.m4a"
+    }
+  ]
+}
