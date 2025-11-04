@@ -103,7 +103,7 @@ def make_pdf_from_case(case, output_dir=OUTPUT_DIR):
     # Patient Info
     patient_info = case.get("patient_info", {})
     story.append(build_patient_table({
-        "patient_name": patient_info.get("name"),
+        "patient_name": patient_info.get("patient_name"),
         "age": patient_info.get("age"),
         "sex": patient_info.get("sex"),
         "dob": patient_info.get("dob"),

@@ -2,35 +2,45 @@
   "cases": [
     {
       "report_id": "Recording 3",
+      "patient_name": "N/A",
+      "age": "N/A",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
       "exam_date": "N/A",
       "exam_type": "N/A",
-      "clinical_history": "The patient reports experiencing pain in the left knee for over a year. The pain is aggravated by cold weather and is described as consistent. There are no other joint problems or swelling reported. The patient has a family history of lymphatic disease affecting knee function and is currently taking Levothyroxine 100 mcg daily.",
+      "clinical_history": "The patient reports left knee pain for more than a year, worsened by cold weather and exposure to cold water. The pain onset was sudden and it remains constant, without progression but exacerbated by cold exposure. No other joint complaints were reported, and the pain alleviates with warmth. Morning stiffness lasting less than ten minutes is noted, particularly in cold weather, but no locking or giving way of the knee occurs. No history of lower back pain or disc problems was mentioned. Patient has a history of thyroid insufficiency, managed with 100 mg of thyroxine. There is no chronic medication usage except for thyroxine and no cigarette smoking, though occasional waterpipe use occurs in social settings. There is a family history of lymphedema affecting the aunt, requiring radiation therapy, and a relative with rheumatoid arthritis. No family history of diabetes or hypertension was indicated.",
       "detailed_findings": [
         {
-          "finding": "Persistent pain in the left knee",
-          "explanation": "The patient feels that the pain started suddenly and has been constant. It worsens in cold conditions and alleviates with warmth."
+          "finding": "Left knee pain.",
+          "explanation": "Patient experiences chronic knee pain exacerbated by cold, suggesting possible degenerative or inflammatory condition influenced by temperature."
         },
         {
-          "finding": "No swelling or other joint issues",
-          "explanation": "The patient denies any joint swelling or issues in other joints."
+          "finding": "Sudden onset, constant pain not progressive.",
+          "explanation": "Immediate onset of consistent pain may suggest traumatic origin or early degenerative changes, but without acute exacerbation."
         },
         {
-          "finding": "Morning stiffness reported in cold weather",
-          "explanation": "Morning stiffness lasts less than ten minutes when the weather is cold."
+          "finding": "Morning stiffness less than ten minutes.",
+          "explanation": "Brief morning stiffness typically associated with mechanical joint issues rather than inflammatory arthritis."
         },
         {
-          "finding": "No history of rheumatologic issues",
-          "explanation": "No prior joint issues or back pain reported, and no family history of rheumatoid arthritis."
+          "finding": "Family history of lymphedema and rheumatoid arthritis.",
+          "explanation": "The family history provides context for potential hereditary predisposition to joint or systemic conditions."
+        },
+        {
+          "finding": "No medications relieve pain except warmth.",
+          "explanation": "Lack of pharmaceutical relief may suggest a non-pharmacological management approach is currently effective."
         }
       ],
-      "impression_summary": "The patient presents with chronic pain in the left knee with no accompanying swelling or other joint involvement.",
+      "impression_summary": "Chronic left knee pain with sudden onset and constant nature, likely exacerbated by cold, suggesting possible mechanical origin. Family history relevant for joint-related conditions.",
       "recommendations": [
-        "Consider further evaluation of knee pain through imaging studies (e.g., X-Ray or MRI) to assess for any structural abnormalities.",
-        "Advise the patient to keep the knee warm during cold weather and possibly explore physical therapy for pain management.",
-        "Follow-up appointment to monitor symptoms and response to any conservative treatment initiated."
+        "Order knee MRI to evaluate possible underlying orthopedic or degenerative changes.",
+        "Consider rheumatology referral for evaluation given the family history of rheumatoid arthritis.",
+        "Recommend physiotherapy tailored to enhance knee warmth and flexibility.",
+        "Advise protective measures against cold exposure to manage symptom exacerbation."
       ],
       "urgency_level": "moderate",
-      "timestamp": "2025-11-03T11:53:38.904330",
+      "timestamp": "2025-11-05T00:40:21.231407",
       "source_file": "Recording 3.m4a"
     }
   ]

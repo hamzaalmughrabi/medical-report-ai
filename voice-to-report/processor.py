@@ -20,21 +20,33 @@ MEMORY_FILE = "memory.json"
 
 # Define the target schema only once for clarity and use in the prompt
 TARGET_SCHEMA_JSON = """
-        {
-          "report_id": "string",
-          "exam_date": "ISO date/time or N/A",
-          "exam_type": "string (e.g., MRI Knee w/o Contrast, X-Ray Chest)",
-          "clinical_history": "string (patient's background/reason for exam, all the history of the patient ,medcal history and explain every thing tin history )",
-          "detailed_findings": [
-            {
-              "finding": "string (a specific observation from the report)",
-              "explanation": "string (brief clinical context or severity)"
-            }
-          ],
-          "impression_summary": "string (the overall conclusion or primary finding)",
-          "recommendations": ["list and explain any follow-up recommendations, tests, or plans"],
-          "urgency_level": "low | moderate | high | N/A"
-        }
+{
+  "report_id": "string (unique identifier, e.g., file name or auto-generated ID)",
+  "patient_name": "string or N/A",
+  "age": "string or N/A",
+  "sex": "string or N/A",
+  "dob": "string or N/A",
+  "referring_doctor": "string or N/A",
+  "exam_date": "ISO date/time or N/A",
+  "exam_type": "string (e.g., MRI Knee w/o Contrast, Chest X-ray, CT Brain)",
+
+  "clinical_history": "string — full description of the patient’s condition, symptoms, and relevant medical background as mentioned by the doctor. Include all time references, symptom evolution, prior treatments, and contextual information.",
+
+  "detailed_findings": [
+    {
+      "finding": "string — a single precise observation, symptom, or imaging/physical finding.",
+      "explanation": "string — short clinical explanation: why it’s relevant, its severity, or the possible physiological or anatomical implication."
+    }
+  ],
+
+  "impression_summary": "string — the overall synthesis of the findings, highlighting the likely underlying issue or the most significant clinical impression (not a diagnosis).",
+
+  "recommendations": [
+    "string — each item must represent a specific recommended next step, test, or management action, with a short reasoning when possible (e.g., 'Order lumbar MRI to evaluate possible nerve compression')."
+  ],
+
+  "urgency_level": "string — one of: 'low', 'moderate', 'high', or 'N/A'. Determined by symptom severity and progression."
+}
 """
 
 # Load or create memory
@@ -76,33 +88,86 @@ def process_audio_to_json(audio_file_path: str) -> dict:
         transcription = client.audio.transcriptions.create(
             model="whisper-1",
             file=audio_file,
-            response_format="text"
+            response_format="verbose_json"
         )
-    conversation_text = transcription.strip()
+    conversation_text = transcription.text.strip()
     print("✅ Transcription complete.")
 
     print(f"Creating new report for Case ID: {case_id}")
     # --- Prompt for CREATING a new case ---
     prompt = f"""
-        You are a specialized Medical AI Assistant acting as a ** Report Summarizer and Extractor**.
-        Your task is to analyze the provided text (which will be a raw transcript of a conversation or a raw scan of a medical document) and extract the key findings into a structured JSON format that mimics a professional medical report.
+    You are a highly specialized **Medical AI Assistant** acting as a **Doctor-Level Report Extractor and Formatter**.
 
-        **STRICTLY ADHERE** to the following instructions and JSON schema:
-        1.  **Do not include any field related to 'diagnosis' or 'possible_diagnosis'**. The output must focus only on the findings, impressions, and recommendations for further action.
-        2.  All extracted information must be in **English**, regardless of the input language.
-        3.  If a field's information is not present in the input text, use "N/A" or an empty list `[]` as appropriate.
+    Your task is to analyze a raw transcript of a **doctor’s voice recording** or **medical dictation**, and convert it into a **structured JSON report** that mirrors the clarity and structure of a professional hospital report.
 
-        Use this structured JSON format:
-        {TARGET_SCHEMA_JSON}
+    ---
 
-        Conversation:
-        {conversation_text}
+    ### ⚕️ Core Objective:
+    Produce a structured JSON that captures **every single relevant medical detail** — including symptoms, timing, tone, body part, progression, cause, related systems, and physician reasoning.  
+    Do not summarize or simplify — the report will be read by **medical professionals**.
+
+    ---
+
+    ### ⚙️ Strict Rules:
+    1. **Do not fabricate or omit** any detail.  
+       Reword only for clarity, but every medical element in the transcript must appear in the report.
+
+    2. **Follow this exact JSON schema:**
+    {TARGET_SCHEMA_JSON}
+
+    3. If any field is missing or not mentioned, use `"N/A"` or an empty list `[]`.
+
+    4. The report must be in **English**.
+
+    5. Keep the writing **professional, precise, and clinical**.  
+       No speculation, no conversational tone.
+
+    6. In `"clinical_history"`, include **everything the doctor mentioned** about:
+       - patient’s history  
+       - symptoms  
+       - previous conditions  
+       - current complaint evolution  
+       - relevant observations or context  
+       Write it in a **continuous clinical paragraph**.
+
+    7. In `"detailed_findings"`, make each `"finding"` short and medical,  
+       with an `"explanation"` that shows why it matters (e.g., possible cause, mechanism, severity).
+
+    8. `"impression_summary"` should summarize the **main takeaway** as a doctor would write it.
+
+    9. `"recommendations"` should list **specific next steps**, including tests, referrals, or management advice — explained briefly.
+
+    10. `"urgency_level"` must reflect the seriousness based on described symptoms:  
+       - “low” for mild or routine findings  
+       - “moderate” for concerning but stable conditions  
+       - “high” for severe, acute, or urgent cases
+
+    ---
+
+    ### 🩺 Style Guide:
+    - Use **formal medical report style** (e.g., “Examination revealed...”, “Patient reports...”).
+    - Keep sentences **clear, concise, and objective**.
+    - Avoid layman explanations.
+    - Each section should read like a **real internal hospital report**.
+    - No bullet points or markdown — output pure JSON.
+
+    ---
+
+    ### 🧩 Input Transcript:
+    The following text is a **raw transcript** from a doctor’s spoken notes.  
+    It may include pauses, repetition, or filler words — interpret them correctly and extract **all possible clinical information**.
+
+    Transcript:
+    {conversation_text}
+
+    Now, analyze it thoroughly and output **only** the structured JSON report following the schema above.
+    No explanations, no formatting, no comments — only valid JSON.
     """
 
     #  Analyze and build diagnostic report
     print("Sending text to LLM for analysis...")
     response = client.chat.completions.create(
-        model="gpt-4o-mini",
+        model="gpt-4o",
         messages=[{"role": "user", "content": prompt}],
         response_format={"type": "json_object"}
     )
