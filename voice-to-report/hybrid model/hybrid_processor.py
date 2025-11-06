@@ -1,4 +1,4 @@
-from faster_whisper import WhisperModel
+import whisperx
 from openai_analyzer import analyze_text
 import json
 import os
@@ -6,9 +6,10 @@ import os
 def process_audio_locally(audio_path, output_dir="outputs"):
     os.makedirs(output_dir, exist_ok=True)
 
-    # Load model (tiny for fastest speed and smallest VRAM usage)
+
     # NOTE: Device must be "cuda" for GPU usage
-    model = WhisperModel("tiny", device="cuda")
+    device = "cuda"  # or "cpu"
+    model = whisperx.load_model("large-v3", device)
     print("✅ Success! faster-whisper can see the GPU.", audio_path)
 
     # Transcription step
