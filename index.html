@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Medical UI</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f2f2f2;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            margin-bottom: 40px;
+        }
+
+        button {
+            background-color: #0078d7;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            margin: 10px;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+            button:hover {
+                background-color: #005fa3;
+            }
+
+        audio {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎧 Medical Assistant</h1>
+    <button id="recordButton">🎙️ Record Audio</button>
+    <button id="reportButton">🩺 Generate Report</button>
+
+    <audio id="audioPlayer" controls></audio>
+
+    <script>
+        let mediaRecorder;
+        let audioChunks = [];
+
+        const recordButton = document.getElementById('recordButton');
+        const reportButton = document.getElementById('reportButton');
+        const audioPlayer = document.getElementById('audioPlayer');
+        let isRecording = false;
+
+        recordButton.addEventListener('click', async () => {
+            if (!isRecording) {
+                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                mediaRecorder = new MediaRecorder(stream);
+                audioChunks = [];
+
+                mediaRecorder.ondataavailable = event => {
+                    audioChunks.push(event.data);
+                };
+
+                mediaRecorder.onstop = () => {
+                    const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+                    const audioUrl = URL.createObjectURL(audioBlob);
+                    audioPlayer.src = audioUrl;
+                };
+
+                mediaRecorder.start();
+                isRecording = true;
+                recordButton.textContent = '⏹️ Stop Recording';
+            } else {
+                mediaRecorder.stop();
+                isRecording = false;
+                recordButton.textContent = '🎙️ Record Audio';
+            }
+        });
+
+        reportButton.addEventListener('click', () => {
+            alert('✅ The report was created successfully!');
+        });
+    </script>
+   
+
+
+
+</body>
+</html>
