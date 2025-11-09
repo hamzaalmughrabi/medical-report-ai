@@ -1,6 +1,6 @@
 import gradio as gr
 import os
-from processor import process_audio_to_json
+from transcription import process_audio_to_json
 from json_to_pdf import make_pdf_from_case
 from datetime import datetime
 

@@ -1,15 +1,20 @@
 {
-    "name": "medical-ui-electron",
-    "version": "1.0.0",
-    "description": "A simple Medical UI built with Electron",
-    "main": "main.js",
-    "scripts": {
-        "start": "electron ."
-    },
-    "devDependencies": {
-        "electron": "^39.0.0"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "MIT"
+  "name": "medical-ai-app",
+  "version": "1.0.0",
+  "description": "Your Electron desktop application.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "keywords": [
+    "electron",
+    "desktop",
+    "html",
+    "javascript"
+  ],
+  "author": "Your Name",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^30.0.0"
+  }
 }

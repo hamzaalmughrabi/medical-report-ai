@@ -54,6 +54,91 @@
       "urgency_level": "moderate",
       "timestamp": "2025-11-06T10:07:07.573866",
       "source_file": "Recording 3.m4a"
+    },
+    {
+      "report_id": "RES0214",
+      "patient_name": "N/A",
+      "age": "50",
+      "sex": "Female",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "The patient reports a terrible fever for the past three days, preceded by a stuffy nose and a sore throat, which has persisted. No nausea, vomiting, other pain, neck stiffness, or headaches are reported. The patient can eat and drink without difficulty swallowing or coughing. She denies abdominal pain, joint pain, rashes, skin changes, or other symptoms. Muscle aches have been present for the past two to three days, coinciding with the fever. No recent contact with sick individuals or travel outside the province apart from a hike last weekend is noted. Her husband is experiencing similar symptoms for a week. She has not had a COVID test. The patient generally works from home, has not gotten a flu shot this year, and is pre-diabetic. Her gallbladder was removed five years ago, and she is allergic to penicillin, which causes a rash. No other significant medical history, medications, or substance use is noted.",
+      "detailed_findings": [
+        {
+          "finding": "Fever persisting for three days",
+          "explanation": "Potential indicator of infectious disease, possibly viral; concurrent fever with husband suggests potential contagious infection."
+        },
+        {
+          "finding": "Stuffy nose and sore throat",
+          "explanation": "Common symptoms in upper respiratory infections, potentially indicative of viral etiology such as COVID-19 or influenza."
+        },
+        {
+          "finding": "Muscle aches concurrent with fever",
+          "explanation": "Often associated with viral infections, notably influenza and COVID-19."
+        },
+        {
+          "finding": "History of penicillin allergy",
+          "explanation": "Important for future antibiotic prescriptions to avoid allergic reactions."
+        },
+        {
+          "finding": "Pre-diabetic status",
+          "explanation": "Relevant for monitoring due to increased risk of complications from infections."
+        }
+      ],
+      "impression_summary": "The symptoms and timing suggest a possible viral upper respiratory infection, potentially COVID-19, given the concurrent symptoms in the patient's husband and recent onset of fever, sore throat, and muscle aches.",
+      "recommendations": [
+        "Order COVID-19 test to rule out viral infection and confirm diagnosis.",
+        "Advise patient and husband to self-isolate to prevent potential spread, pending test results.",
+        "Consider Influenza test if COVID-19 test is negative, depending on symptoms and clinical course.",
+        "Monitor glucose levels due to pre-diabetic status, as infections could affect metabolic control."
+      ],
+      "urgency_level": "moderate",
+      "timestamp": "2025-11-09T10:01:01.403436",
+      "source_file": "RES0214.mp3"
+    },
+    {
+      "report_id": "MSK0040",
+      "patient_name": "N/A",
+      "age": "N/A",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "Physical Examination",
+      "clinical_history": "Patient reports right ankle pain and swelling after a fall during a rugby game. The foot turned inwards during the fall, and the pain is located at the lateral malleolus. The patient rates the pain as 7 or 8 out of 10 and has difficulty bearing weight on the affected ankle.",
+      "detailed_findings": [
+        {
+          "finding": "Swelling and bruising",
+          "explanation": "The right ankle is swollen with a bruise approximately four centimeters wide."
+        },
+        {
+          "finding": "Pain on palpation",
+          "explanation": "Significant pain is noted on the lateral malleolus upon palpation."
+        },
+        {
+          "finding": "Limited dorsiflexion",
+          "explanation": "The patient has difficulty pointing toes and foot upwards towards the face."
+        },
+        {
+          "finding": "Painful plantar flexion",
+          "explanation": "The patient experiences pain when pushing the foot down like pressing a gas pedal."
+        },
+        {
+          "finding": "Intalligate gait",
+          "explanation": "The patient has a limp and an inability to bear weight on the right ankle."
+        }
+      ],
+      "impression_summary": "The clinical features suggest a possible ankle fracture or sprain, with significant tenderness on the lateral side and difficulty bearing weight.",
+      "recommendations": [
+        "Obtain an x-ray to rule out a fracture.",
+        "Consider air boot or casting if a fracture is confirmed."
+      ],
+      "urgency_level": "moderate",
+      "timestamp": "2025-11-09T10:06:54.355611",
+      "source_file": "MSK0040.mp3",
+      "_pdf_path": "reports\\report_MSK0040.pdf"
     }
   ]
 }
