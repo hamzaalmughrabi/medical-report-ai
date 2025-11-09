@@ -139,6 +139,54 @@
       "timestamp": "2025-11-09T10:06:54.355611",
       "source_file": "MSK0040.mp3",
       "_pdf_path": "reports\\report_MSK0040.pdf"
+    },
+    {
+      "report_id": "RES0047",
+      "patient_name": "N/A",
+      "age": "N/A",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "The patient reports experiencing chest tightness, shortness of breath, and a productive cough with greenish sputum. The cough has been present for a few years but worsened over the past three days. The patient has a history of smoking and has been diagnosed with COPD and chronic bronchitis. The patient also has high blood pressure and had their gallbladder removed a few years ago.",
+      "detailed_findings": [
+        {
+          "finding": "Cough",
+          "explanation": "The patient has had a cough for a few years, which has worsened over the past three days. The cough is productive with greenish sputum and is associated with wheezing."
+        },
+        {
+          "finding": "Shortness of breath",
+          "explanation": "The patient experiences shortness of breath, which has worsened with the cough. It is triggered by physical activity."
+        },
+        {
+          "finding": "Chest tightness",
+          "explanation": "The patient reports chest tightness, which is uncomfortable but not painful."
+        },
+        {
+          "finding": "COPD",
+          "explanation": "The patient has a history of COPD and uses inhalers, including Spiriva and a short-acting beta agonist."
+        },
+        {
+          "finding": "Smoking history",
+          "explanation": "The patient smokes about a pack of cigarettes per day and has been smoking for approximately 35 years."
+        },
+        {
+          "finding": "High blood pressure",
+          "explanation": "The patient is on amlodipine for high blood pressure."
+        }
+      ],
+      "impression_summary": "The patient is experiencing a COPD exacerbation, likely triggered by an infection or environmental factors.",
+      "recommendations": [
+        "Increase use of short-acting beta agonist inhaler.",
+        "Consider antibiotics and/or steroids if symptoms indicate a moderate exacerbation.",
+        "Seek emergency care if symptoms become severe.",
+        "Perform a COVID-19 swab to rule out viral infection."
+      ],
+      "urgency_level": "moderate",
+      "timestamp": "2025-11-09T18:38:57.007453",
+      "source_file": "RES0047.mp3",
+      "_pdf_path": "reports\\report_RES0047.pdf"
     }
   ]
 }
