@@ -187,6 +187,42 @@
       "timestamp": "2025-11-09T18:38:57.007453",
       "source_file": "RES0047.mp3",
       "_pdf_path": "reports\\report_RES0047.pdf"
+    },
+    {
+      "report_id": "consultation_1762713311860",
+      "patient_name": "N/A",
+      "age": "N/A",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "N/A",
+      "detailed_findings": [],
+      "impression_summary": "N/A",
+      "recommendations": [],
+      "urgency_level": "N/A",
+      "timestamp": "2025-11-09T21:35:16.358443",
+      "source_file": "consultation_1762713311860.webm",
+      "_pdf_path": "reports\\report_consultation_1762713311860.pdf"
+    },
+    {
+      "report_id": "consultation_1762713467032",
+      "patient_name": "N/A",
+      "age": "N/A",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "Patient reports a headache that started about three days ago. No other symptoms mentioned.",
+      "detailed_findings": [],
+      "impression_summary": "N/A",
+      "recommendations": [],
+      "urgency_level": "N/A",
+      "timestamp": "2025-11-09T21:37:58.572806",
+      "source_file": "consultation_1762713467032.webm",
+      "_pdf_path": "reports\\report_consultation_1762713467032.pdf"
     }
   ]
 }

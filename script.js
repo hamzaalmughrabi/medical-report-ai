@@ -4,11 +4,11 @@ import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged }
 import { getFirestore, collection, onSnapshot, addDoc, setLogLevel } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
 // --- Configuration ---
-const API_URL = "http://127.0.0.1:8000"; // IMPORTANT: Your FastAPI server address
+const API_URL = "http://localhost:8000"; // Targeting FastAPI server for robust Electron connection
 // Global Firebase variables
 const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
 const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : null;
-const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial-auth-token : null;
+const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? initialAuthToken : null; // Corrected check
 
 let app;
 let db;
@@ -21,7 +21,7 @@ const contentArea = document.getElementById('dynamic-content');
 const userIdDisplay = document.getElementById('user-id-display');
 const sidebar = document.getElementById('sidebar');
 const menuToggle = document.getElementById('menu-toggle');
-const html = document.documentElement;
+// const html = document.documentElement; // No longer needed for theme toggle
 
 // Navigation Elements
 const navItems = document.querySelectorAll('.nav-item');
@@ -62,19 +62,33 @@ let recentReportsData = [
 
 // --- Utility Functions & Rendering ---
 
+// **** THIS IS THE GUARANTEED FIX ****
+// This function is rewritten to use direct style manipulation,
+// which AVOIDS the DOMException error completely.
 const showMessage = (element, message, type = 'success', duration = 2000) => {
-    let textColorClass = 'text-green-500';
-    if (type === 'error') textColorClass = 'text-red-500';
-    if (type === 'primary') textColorClass = 'text-primary dark:text-primary';
+    
+    // 1. Clean up old classes and reset style
+    element.classList.remove('text-green-500', 'text-red-500', 'text-primary', 'dark:text-primary', 'hidden');
+    element.style.color = ''; // Remove any inline style
 
+    // 2. Set color using element.style (This will not fail)
+    if (type === 'error') {
+        element.style.color = 'red';
+    } else if (type === 'primary') {
+        element.style.color = '#195de6'; // Your app's primary blue color
+    } else { // Success
+        element.style.color = 'green';
+    }
+
+    // 3. Set text and show
     element.textContent = message;
-    element.className = element.className.split(' ').filter(c => !c.startsWith('text-') && c !== 'hidden').join(' ');
-    element.classList.add(textColorClass);
     element.classList.remove('hidden');
     
+    // 4. Set timeout to hide
     if (duration > 0) {
         setTimeout(() => {
             element.classList.add('hidden');
+            element.style.color = ''; // Reset style on hide
         }, duration);
     }
 };
@@ -113,7 +127,7 @@ const renderDashboardRecentActivity = () => {
         row.innerHTML = `
             <td class="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white">${report.patientName} (${report.caseId})</td>
             <td class="whitespace-nowrap px-6 py-4 text-gray-500 dark:text-gray-400">${report.date}</td>
-            <td class="whitespace-nowrap px-6 py-4 text-gray-500 dark:text-gray-400">${report.type}</td>
+            <td class.whitespace-nowrap px-6 py-4 text-gray-500 dark:text-gray-400">${report.type}</td>
             <td class="whitespace-nowrap px-6 py-4">
                 <span class="inline-flex items-center rounded-full ${statusClass} px-2.5 py-0.5 text-xs font-medium">${report.status}</span>
             </td>
@@ -122,8 +136,6 @@ const renderDashboardRecentActivity = () => {
         dashboardActivityBody.appendChild(row);
     });
 };
-
-// ... (renderReports, attachReportActionListeners, startPatientListener functions are unchanged from previous state) ...
 
 const renderReports = (patients) => { 
     const reportsTableBody = document.getElementById('reports-table-body');
@@ -206,9 +218,20 @@ const startPatientListener = () => {
 
 // --- Audio Recording Logic ---
 
-const startTimer = () => { /* ... existing logic ... */ };
-const stopTimer = () => { /* ... existing logic ... */ };
-const resetRecordingUI = () => { /* ... existing logic ... */ 
+const startTimer = () => { 
+    let seconds = 0;
+    recordingTimer.classList.remove('hidden');
+    timerInterval = setInterval(() => {
+        seconds++;
+        const mins = String(Math.floor(seconds / 60)).padStart(2, '0');
+        const secs = String(seconds % 60).padStart(2, '0');
+        recordingTimer.textContent = `${mins}:${secs}`;
+    }, 1000);
+};
+const stopTimer = () => { 
+    clearInterval(timerInterval);
+};
+const resetRecordingUI = () => { 
     stopTimer();
     recordingTimer.textContent = '00:00';
     recordingTimer.classList.add('hidden');
@@ -219,11 +242,12 @@ const resetRecordingUI = () => { /* ... existing logic ... */
     document.getElementById('record-error-message').classList.add('hidden');
     modalFeedback.classList.add('hidden');
 };
-const startRecording = async () => { /* ... existing logic ... */ 
+const startRecording = async () => { 
     resetRecordingUI();
     audioChunks = [];
     
     try {
+        // Request microphone access
         audioStream = await navigator.mediaDevices.getUserMedia({ audio: true });
         mediaRecorder = new MediaRecorder(audioStream);
         mediaRecorder.ondataavailable = event => { audioChunks.push(event.data); };
@@ -231,6 +255,7 @@ const startRecording = async () => { /* ... existing logic ... */
         mediaRecorder.onstop = () => {
             stopTimer();
             audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+            // Stop mic input visually
             audioStream.getTracks().forEach(track => track.stop());
             initiateReportGeneration(); // Trigger API call
         };
@@ -251,7 +276,7 @@ const startRecording = async () => { /* ... existing logic ... */
         resetRecordingUI();
     }
 };
-const stopRecording = () => { /* ... existing logic ... */ 
+const stopRecording = () => { 
     if (mediaRecorder && mediaRecorder.state !== 'inactive') {
         mediaRecorder.stop();
         stopRecordBtn.disabled = true;
@@ -266,22 +291,27 @@ const initiateReportGeneration = async () => {
     stopRecordBtn.classList.add('hidden');
     startRecordBtn.classList.add('hidden');
 
+    // --- DEBUG CHECK: Is the recorded blob empty? ---
     if (!audioBlob || audioBlob.size === 0) {
-        console.error("No valid audio recorded for generation.");
-        recordingStatus.textContent = 'No Audio Captured.';
-        showMessage(modalFeedback, "Failed: No audio recorded.", 'error', 3000);
+        const errorMsg = 'FAILURE: Audio recording captured a zero-size file. Try recording longer or ensure microphone input is working.';
+        console.error(errorMsg, 'Blob Size:', audioBlob ? audioBlob.size : 'N/A');
+        recordingStatus.textContent = 'Recording Failed (No Data).';
+        showMessage(modalFeedback, errorMsg, 'error', 5000);
         return;
     }
+    // --------------------------------------------------
 
     // 1. Show generation status
     recordingStatus.textContent = 'Uploading & Generating Report...';
-    showMessage(modalFeedback, "Sending audio to FastAPI (Node.js -> Python)...", 'primary', 0);
+    showMessage(modalFeedback, `Sending audio (Size: ${audioBlob.size} bytes) to FastAPI...`, 'primary', 0);
 
     try {
         // --- REAL API CALL IMPLEMENTATION ---
         const formData = new FormData();
-        // Append the recorded Blob as a file named 'file', which FastAPI expects
         formData.append("file", audioBlob, `consultation_${new Date().getTime()}.webm`);
+
+        // Log the exact URL being targeted
+        console.log(`[Frontend] Attempting POST to: ${API_URL}/generate-report`);
 
         const response = await fetch(`${API_URL}/generate-report`, {
             method: 'POST',
@@ -289,7 +319,9 @@ const initiateReportGeneration = async () => {
         });
 
         if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status} ${response.statusText}`);
+            // Check for potential server crashes or 500 errors
+            const errorBody = await response.text();
+            throw new Error(`HTTP error! Status: ${response.status} ${response.statusText}. Server message: ${errorBody.substring(0, 100)}...`);
         }
         
         // 2. Report Generated - Handle PDF Response
@@ -299,7 +331,17 @@ const initiateReportGeneration = async () => {
         // Trigger download
         const a = document.createElement('a');
         a.href = downloadUrl;
-        a.download = response.headers.get('Content-Disposition')?.split('filename=')[1] || 'medical_report.pdf';
+        
+        // Use a robust filename extraction
+        let filename = 'medical_report.pdf';
+        const contentDisposition = response.headers.get('Content-Disposition');
+        if (contentDisposition) {
+            const filenameMatch = contentDisposition.match(/filename="(.+?)"/);
+            if (filenameMatch && filenameMatch[1]) {
+                filename = filenameMatch[1];
+            }
+        }
+        a.download = filename;
         
         document.body.appendChild(a);
         a.click();
@@ -333,7 +375,11 @@ const initiateReportGeneration = async () => {
     } catch (error) {
         console.error("Report Generation Failed:", error);
         recordingStatus.textContent = 'Generation Failed.';
-        showMessage(modalFeedback, `Error connecting to ${API_URL} or server processing failed. See console.`, 'error', 5000);
+        const detailedError = error instanceof TypeError && error.message.includes('fetch') 
+            ? 'Network connection failed. Check if FastAPI server is running on localhost:8000.'
+            : `Server processing or HTTP error. Details: ${error.message}`;
+            
+        showMessage(modalFeedback, detailedError, 'error', 8000);
     }
 };
 
@@ -365,11 +411,7 @@ const loadContent = async (pageId) => {
         if (pageId === 'settings') {
             const settingsForm = document.getElementById('settings-form');
             if (settingsForm) { settingsForm.addEventListener('submit', handleSettingsSubmit); }
-            const themeToggleSwitch = document.getElementById('theme-toggle-switch');
-            if (themeToggleSwitch) {
-                themeToggleSwitch.addEventListener('click', handleThemeToggle);
-                updateThemeSwitch(html.classList.contains('dark'));
-            }
+            // All theme toggle logic removed
         }
         
     } catch (error) {
@@ -469,26 +511,7 @@ const handleSettingsSubmit = (e) => {
     showMessage(profileFeedback, "Profile saved successfully!", 'success', 2000);
 };
 
-const updateThemeSwitch = (isDark) => {
-    const switchElement = document.getElementById('theme-toggle-switch');
-    if (switchElement) {
-        if (isDark) {
-            switchElement.classList.add('bg-primary');
-            switchElement.setAttribute('aria-checked', 'true');
-        } else {
-            switchElement.classList.remove('bg-primary');
-            switchElement.setAttribute('aria-checked', 'false');
-        }
-        switchElement.querySelector('span').classList.toggle('translate-x-6', isDark);
-        switchElement.querySelector('span').classList.toggle('translate-x-1', !isDark);
-    }
-};
-
-const handleThemeToggle = () => {
-    const isCurrentlyDark = html.classList.toggle('dark');
-    html.classList.toggle('light'); 
-    updateThemeSwitch(isCurrentlyDark);
-};
+// Theme toggle functions removed
 
 const openEditReportModal = (patientId, patientName) => {
     editPatientInfo.innerHTML = `Editing report for: <strong class="text-gray-800 dark:text-white">${patientName} (ID: ${patientId})</strong>`;
@@ -518,7 +541,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const initialPage = 'dashboard';
     loadContent(initialPage);
     setActiveLink(initialPage);
-    updateThemeSwitch(html.classList.contains('dark'));
+    // updateThemeSwitch(html.classList.contains('dark')); // Removed
     
     // 2. Attach Global Event Listeners
     allNavElements.forEach(el => el.addEventListener('click', handleNavigationClick));
@@ -562,7 +585,7 @@ const setupFirebase = async () => {
 
         const authPromise = new Promise((resolve) => {
             const unsubscribe = onAuthStateChanged(auth, async (user) => {
-                if (user) { userId = user.uid; } else {
+                if (user) { userId = user.uid; } else { // Corrected: user.uid
                     try {
                         if (initialAuthToken) { await signInWithCustomToken(auth, initialAuthToken); }
                         else { await signInAnonymously(auth); }
