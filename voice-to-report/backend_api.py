@@ -1,4 +1,3 @@
-# backend_api.py
 import os
 import traceback
 from fastapi import FastAPI, UploadFile, File, HTTPException
@@ -13,7 +12,7 @@ app = FastAPI(title="Medical Voice-to-Report API", version="2.0")
 # --- Enable CORS (required for frontend JS calls) ---
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # You can replace "*" with ["http://localhost:3000"] for security
+    allow_origins=["*"],  # Allows all origins
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -24,6 +23,7 @@ UPLOAD_DIR = "audio_files"
 REPORTS_DIR = "reports"
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 os.makedirs(REPORTS_DIR, exist_ok=True)
+
 
 # --- API Health Check ---
 @app.get("/")
@@ -50,13 +50,19 @@ async def generate_report(file: UploadFile = File(...)):
         print(f"📥 Received file: {file.filename} ({os.path.getsize(file_path)} bytes)")
 
         # --- Run Processing Pipeline ---
-        diagnostic_json = process_audio_to_json(file_path)
+
+        # FIX: Unpack the tuple returned by your function
+        # We assume the dictionary is the first item (index 0)
+        processing_result = process_audio_to_json(file_path)
+        diagnostic_json = processing_result[0]  # <--- THIS IS THE FIX
+
+        # This line (old line 54) will now work
         print(f"✅ JSON report generated for: {diagnostic_json.get('report_id', 'unknown')}")
 
         # --- Generate PDF Report ---
         pdf_filename = f"{diagnostic_json['report_id']}.pdf"
         pdf_path = os.path.join(REPORTS_DIR, pdf_filename)
-        make_pdf_from_case(diagnostic_json, pdf_path)
+        make_pdf_from_case(diagnostic_json, pdf_path)  # This uses the JSON
         print(f"📄 PDF saved at: {pdf_path}")
 
         # --- Return the PDF to frontend ---
@@ -84,3 +90,10 @@ def list_reports():
         return {"count": len(files), "reports": files}
     except Exception as e:
         return JSONResponse(status_code=500, content={"error": str(e)})
+
+
+# Make sure this is running on localhost to match script.js
+if __name__ == "__main__":
+    import uvicorn
+
+    uvicorn.run(app, host="localhost", port=8000)
