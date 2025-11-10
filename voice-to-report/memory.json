@@ -328,6 +328,107 @@
       "urgency_level": "N/A",
       "timestamp": "2025-11-10T13:02:44.016706",
       "source_file": "consultation_1762768958876.webm"
+    },
+    {
+      "report_id": "consultation_1762771126062",
+      "patient_name": "N/A",
+      "age": "N/A",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "N/A",
+      "detailed_findings": [],
+      "impression_summary": "N/A",
+      "recommendations": [],
+      "urgency_level": "N/A",
+      "timestamp": "2025-11-10T13:38:52.784403",
+      "source_file": "consultation_1762771126062.webm"
+    },
+    {
+      "report_id": "consultation_1762771494601",
+      "patient_name": "N/A",
+      "age": "N/A",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "N/A",
+      "detailed_findings": [],
+      "impression_summary": "N/A",
+      "recommendations": [],
+      "urgency_level": "N/A",
+      "timestamp": "2025-11-10T13:45:13.276842",
+      "source_file": "consultation_1762771494601.webm"
+    },
+    {
+      "report_id": "consultation_1762771706550",
+      "patient_name": "N/A",
+      "age": "N/A",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "The patient reports having pain in the lungs, specifically in the right lung, and experiences pain when lying on their back.",
+      "detailed_findings": [],
+      "impression_summary": "N/A",
+      "recommendations": [],
+      "urgency_level": "N/A",
+      "timestamp": "2025-11-10T13:48:31.519637",
+      "source_file": "consultation_1762771706550.webm"
+    },
+    {
+      "report_id": "consultation_1762771932449",
+      "patient_name": "حمز المغرم",
+      "age": "N/A",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "الدكتور أسعد",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "The patient reports neck pain when turning the head to the right or left, persisting for approximately two weeks. The patient has used topical medications.",
+      "detailed_findings": [
+        {
+          "finding": "Neck pain with head movement",
+          "explanation": "Suggests possible musculoskeletal strain or cervical spine issue."
+        }
+      ],
+      "impression_summary": "The patient presents with neck pain associated with head movement, likely due to musculoskeletal strain.",
+      "recommendations": [
+        "Consider further imaging if symptoms persist.",
+        "Advise on neck exercises and posture correction."
+      ],
+      "urgency_level": "low",
+      "timestamp": "2025-11-10T13:52:19.232185",
+      "source_file": "consultation_1762771932449.webm"
+    },
+    {
+      "report_id": "consultation_1762772074892",
+      "patient_name": "Hamza",
+      "age": "N/A",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "Dr. Asaad",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "The patient, Hamza, reports experiencing neck pain on the left side when turning the head to the left. The pain has been present for approximately three weeks. The patient has used topical medications for relief. There is no reported pain in the lower back.",
+      "detailed_findings": [
+        {
+          "finding": "Left-sided neck pain",
+          "explanation": "Pain occurs when turning the head to the left, indicating possible muscular or cervical spine involvement."
+        }
+      ],
+      "impression_summary": "The patient presents with left-sided neck pain exacerbated by movement, likely musculoskeletal in origin.",
+      "recommendations": [
+        "Consider physical therapy for neck pain management.",
+        "Evaluate for potential cervical spine issues if symptoms persist."
+      ],
+      "urgency_level": "low",
+      "timestamp": "2025-11-10T13:54:43.517404",
+      "source_file": "consultation_1762772074892.webm"
     }
   ]
 }
