@@ -53,11 +53,7 @@ let audioBlob;
 let audioStream;
 let timerInterval;
 
-// Initialize mock data for the dashboard
-let recentReportsData = [
-    { caseId: 'RPT-1004', patientName: 'Johnathan Doe', date: '2024-07-28', type: 'Consultation', status: 'Complete' },
-    { caseId: 'RPT-1005', patientName: 'Eleanor Pena', date: '2024-07-27', type: 'Follow-up', status: 'Processing' },
-];
+// --- REMOVED hard-coded recentReportsData array ---
 
 // --- Utility Functions & Rendering ---
 
@@ -96,39 +92,73 @@ const getCollectionPath = (collectionName) => {
     return `/artifacts/${appId}/users/${userId}/${collectionName}`;
 };
 
-const renderDashboardRecentActivity = () => {
+/**
+ * Renders the small 'Recent Activity' table on the Dashboard by fetching REAL data from the /reports endpoint.
+ */
+const renderDashboardRecentActivity = async () => {
     if (!dashboardActivityBody) return;
-    dashboardActivityBody.innerHTML = '';
+    dashboardActivityBody.innerHTML = `<tr><td colspan="5" class="px-6 py-4 text-center text-gray-500 dark:text-gray-400">Loading activity...</td></tr>`;
+
+    let reportFiles = [];
+    try {
+        const response = await fetch(`${API_URL}/reports`);
+        if (!response.ok) throw new Error('Failed to fetch reports list');
+        const data = await response.json();
+        reportFiles = data.reports || [];
+    } catch (err) {
+        console.error("Failed to load reports for dashboard:", err);
+        dashboardActivityBody.innerHTML = `<tr><td colspan="5" class="px-6 py-4 text-center text-red-500">Failed to load activity. Is backend running?</td></tr>`;
+        return;
+    }
+
+    dashboardActivityBody.innerHTML = ''; // Clear "Loading..."
     
-    const recentActivity = [...recentReportsData]
-        .sort((a, b) => new Date(b.date) - new Date(a.date))
-        .slice(0, 5);
+    // Slice to get only the top 5 most recent
+    const recentActivity = reportFiles.slice(0, 5);
 
     if (recentActivity.length === 0) {
         dashboardActivityBody.innerHTML = `<tr><td colspan="5" class="px-6 py-4 text-center text-gray-500 dark:text-gray-400">No recent activity recorded.</td></tr>`;
         return;
     }
     
-    recentActivity.forEach(report => {
-        let statusClass = report.status === 'Complete' 
-            ? 'bg-green-100 dark:bg-green-900/50 text-green-800 dark:text-green-300' 
-            : 'bg-yellow-100 dark:bg-yellow-900/50 text-yellow-800 dark:text-yellow-300';
-            
+    recentActivity.forEach(filename => {
+        // We parse the filename to get the display data (e.g., "report_John_Doe_2025-10-10.pdf")
+        // This is a basic guess; you can customize this logic
+        const parts = filename.replace('.pdf', '').split('_');
+        const patientName = parts[1] || "Report";
+        const caseId = parts[0] || filename;
+        const date = parts[2] || "N/A";
+
         const row = document.createElement('tr');
         row.innerHTML = `
-            <td class="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white">${report.patientName} (${report.caseId})</td>
-            <td class="whitespace-nowrap px-6 py-4 text-gray-500 dark:text-gray-400">${report.date}</td>
-            <td class="whitespace-nowrap px-6 py-4 text-gray-500 dark:text-gray-400">${report.type}</td>
+            <td class="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white">${patientName} (${caseId})</td>
+            <td class="whitespace-nowrap px-6 py-4 text-gray-500 dark:text-gray-400">${date}</td>
+            <td class="whitespace-nowrap px-6 py-4 text-gray-500 dark:text-gray-400">Consultation</td>
             <td class="whitespace-nowrap px-6 py-4">
-                <span class="inline-flex items-center rounded-full ${statusClass} px-2.5 py-0.5 text-xs font-medium">${report.status}</span>
+                <span class="inline-flex items-center rounded-full bg-green-100 dark:bg-green-900/50 text-green-800 dark:text-green-300 px-2.5 py-0.5 text-xs font-medium">Complete</span>
             </td>
-            <td class="whitespace-nowrap px-6 py-4 text-right font-medium"><a class="text-primary hover:underline" href="#">View</a></td>
+            <td class="whitespace-nowrap px-6 py-4 text-right font-medium">
+                <!-- THIS IS THE FIX: Changed <a> to <button> with class and data attribute -->
+                <button data-filename="${filename}" class="dashboard-download-btn text-primary hover:underline text-sm font-semibold inline-flex items-center">
+                    <span class="material-symbols-outlined text-base align-middle mr-1">download</span>
+                    View/Download
+                </button>
+            </td>
         `;
         dashboardActivityBody.appendChild(row);
     });
+
+    // --- NEW: Attach listeners to the buttons we just created ---
+    dashboardActivityBody.querySelectorAll('.dashboard-download-btn').forEach(button => {
+        button.addEventListener('click', (e) => {
+            const filename = e.currentTarget.getAttribute('data-filename');
+            // Reuse the existing downloadReport function
+            downloadReport(filename, e.currentTarget); 
+        });
+    });
 };
 
-// --- NEW: History Page Rendering Functions ---
+// --- History Page Rendering Functions ---
 
 /**
  * Renders the table on the History page with data from the /reports endpoint.
@@ -139,7 +169,7 @@ const renderHistoryPage = (reportFiles) => {
 
     tableBody.innerHTML = ''; // Clear "Loading..."
 
-    if (reportFiles.length === 0) {
+    if (!reportFiles || reportFiles.length === 0) {
         tableBody.innerHTML = `<tr><td colspan="3" class="px-6 py-4 text-center text-gray-500 dark:text-gray-400">No reports found in the 'reports/' directory.</td></tr>`;
         return;
     }
@@ -196,7 +226,8 @@ const downloadReport = async (filename, button) => {
 
     } catch (error) {
         console.error("Error downloading file:", error);
-        alert(`Failed to download ${filename}. See console for details.`);
+        // Do not use alert()
+        console.error(`Failed to download ${filename}. See console for details.`);
     } finally {
         button.innerHTML = originalText;
         button.disabled = false;
@@ -423,16 +454,12 @@ const handleEditFormSubmit = async (e) => {
         // 4. Show success and close modal
         showMessage(editFeedback, `✅ PDF Generated and Downloaded!`, 'success', 3000);
         
-        // Add to recent activity
-        recentReportsData.unshift({
-            caseId: jsonData.report_id || 'N/A',
-            patientName: "New Consultation Report", 
-            date: new Date().toISOString().split('T')[0],
-            type: 'Consultation',
-            status: 'Complete'
-        });
-        renderDashboardRecentActivity();
+        // --- THIS IS THE FIX ---
+        // 4. Update the dashboard recent activity table by re-fetching the list
+        await renderDashboardRecentActivity();
+        // --- END OF FIX ---
 
+        // 5. Close the modal after a short delay
         setTimeout(() => {
             editReportModal.classList.add('hidden');
         }, 3500);
@@ -528,7 +555,36 @@ const setActiveLink = (pageId) => {
 // --- Handlers for Modals/Forms (Unchanged) ---
 const handleNewPatientSubmit = async (e) => {
     e.preventDefault();
-    // ... (This function remains unchanged, though it's not currently used)
+    const saveButton = e.submitter;
+    if (!db || !userId || !isAuthReady) {
+        console.error("Database not ready. Please wait for authentication.");
+        showMessage(document.getElementById('profile-feedback'), "System busy. Please try again in a moment.", 'error');
+        return;
+    }
+    const originalText = saveButton.textContent;
+    saveButton.textContent = 'Saving...';
+    saveButton.disabled = true;
+    const formData = new FormData(patientForm);
+    const newPatient = {
+        name: formData.get('name') || 'Unnamed Patient',
+        patientId: formData.get('patientId').toUpperCase(),
+        latestReport: new Date().toISOString().split('T')[0],
+        status: 'Active',
+        createdAt: new Date(),
+    };
+    try {
+        const patientsColRef = collection(db, getCollectionPath('patients'));
+        await addDoc(patientsColRef, newPatient);
+        showMessage(document.getElementById('profile-feedback'), "Patient added successfully!", 'success', 1500);
+        patientForm.reset();
+        setTimeout(() => patientModal.classList.add('hidden'), 500); 
+    } catch (error) {
+        console.error("Error adding patient:", error);
+        showMessage(document.getElementById('profile-feedback'), "Failed to add patient. See console.", 'error', 3000);
+    } finally {
+        saveButton.textContent = originalText;
+        saveButton.disabled = false;
+    }
 };
 const handleSettingsSubmit = (e) => {
     e.preventDefault();
@@ -550,6 +606,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (menuToggle) menuToggle.addEventListener('click', () => sidebar.classList.toggle('-translate-x-full'));
 
     // 3. Attach Modal/Dashboard Listeners
+    // Note: 'add-patient-btn' no longer exists on the main UI, so we check for it.
     const addPatientBtn = document.getElementById('add-patient-btn');
     if (addPatientBtn) {
         addPatientBtn.addEventListener('click', () => patientModal.classList.remove('hidden'));
@@ -579,7 +636,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 4. Initialize Firebase & Initial Dashboard Render
     setupFirebase();
-    renderDashboardRecentActivity(); // Initial render of mock data
+    renderDashboardRecentActivity(); // Initial render of LIVE data
 });
 
 const setupFirebase = async () => {
@@ -601,12 +658,18 @@ const setupFirebase = async () => {
                 }
                 isAuthReady = true;
                 if(userIdDisplay) userIdDisplay.textContent = `User ID: ${userId}`;
-                resolve();
+                resolve(); // Resolve promise on first auth state check
+            }, (error) => { // Handle auth errors
+                console.error("Auth state error:", error);
+                userId = crypto.randomUUID();
+                isAuthReady = true;
+                if(userIdDisplay) userIdDisplay.textContent = `Error connecting. ID: ${userId}`;
+                resolve(); // Resolve even on error to not block app
             });
         });
         await authPromise;
         
-        startPatientListener(); // This listener is for Firestore (not used by reports page)
+        startPatientListener(); // This listener is for Firestore
 
     } catch (error) {
         console.error("Error during Firebase initialization:", error);
