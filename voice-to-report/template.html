@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Medical Report</title>
+    <!-- This styling will be embedded in the PDF -->
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            font-size: 11pt;
+            margin: 2cm;
+        }
+        h1 {
+            font-size: 18pt;
+            color: #333;
+            border-bottom: 2px solid #333;
+            padding-bottom: 5px;
+        }
+        h2 {
+            font-size: 14pt;
+            color: #444;
+            border-bottom: 1px solid #eee;
+            margin-top: 25px;
+            padding-bottom: 3px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+            vertical-align: top;
+        }
+        th {
+            background-color: #f9f9f9;
+            width: 25%;
+            font-weight: 600;
+        }
+        ul, ol {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+        .report-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .report-header h1 {
+            margin: 0;
+            border-bottom: none;
+        }
+        .report-header p {
+            font-size: 10pt;
+            color: #555;
+            margin: 2px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="report-header">
+        <h1>Medical Report</h1>
+        <p>CONFIDENTIAL</p>
+        <p>Report ID: {{ report_id | default('N/A') }}</p>
+    </div>
+
+    <h2>Patient & Exam Details</h2>
+    <table>
+        <tr>
+            <th>Patient Name</th>
+            <td>{{ patient_name | default('N/A') }}</td>
+        </tr>
+        <tr>
+            <th>Age / Sex / DOB</th>
+            <td>{{ age | default('N/A') }} / {{ sex | default('N/A') }} (DOB: {{ dob | default('N/A') }})</td>
+        </tr>
+        <tr>
+            <th>Referring Doctor</th>
+            <td>{{ referring_doctor | default('N/A') }}</td>
+        </tr>
+        <tr>
+            <th>Exam Date</th>
+            <td>{{ exam_date | default('N/A') }}</td>
+        </tr>
+        <tr>
+            <th>Exam Type</th>
+            <td>{{ exam_type | default('N/A') }}</td>
+        </tr>
+    </table>
+
+    <h2>Clinical History</h2>
+    <p>{{ clinical_history | default('N/A') }}</p>
+
+    <h2>Detailed Findings</h2>
+    <!-- Check if findings is a list or a single string -->
+    {% if detailed_findings is iterable and detailed_findings is not string %}
+        <ul>
+        {% for item in detailed_findings %}
+            <li>{{ item }}</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>{{ detailed_findings | default('No findings reported.') }}</p>
+    {% endif %}
+
+
+    <h2>Impression / Summary</h2>
+    <p>{{ impression_summary | default('N/A') }}</p>
+
+    <h2>Recommendations</h2>
+    {% if recommendations is iterable and recommendations is not string %}
+        <ol>
+        {% for item in recommendations %}
+            <li>{{ item }}</li>
+        {% endfor %}
+        </ol>
+    {% else %}
+        <p>{{ recommendations | default('No recommendations provided.') }}</p>
+    {% endif %}
+
+</body>
+</html>

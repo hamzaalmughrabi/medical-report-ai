@@ -4,7 +4,7 @@ import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged }
 import { getFirestore, collection, onSnapshot, addDoc, setLogLevel } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
 // --- Configuration ---
-const API_URL = "http://localhost:8001"; // Targeting FastAPI server
+const API_URL = "http://localhost:8001"; // FIX: Reverted to port 8000 to match backend_api.py
 // Global Firebase variables
 const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
 const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : null;
@@ -35,7 +35,7 @@ const recordingModal = document.getElementById('recording-modal');
 const editReportModal = document.getElementById('edit-report-modal');
 const editReportForm = document.getElementById('edit-report-form');
 const editPatientInfo = document.getElementById('edit-report-patient-info');
-const reportContentArea = document.getElementById('report-content');
+// const reportContentArea = document.getElementById('report-content'); // No longer a simple textarea
 const editFeedback = document.getElementById('edit-feedback');
 
 // Audio Recording Elements
@@ -53,33 +53,25 @@ let audioBlob;
 let audioStream;
 let timerInterval;
 
-// --- REMOVED hard-coded recentReportsData array ---
-
 // --- Utility Functions & Rendering ---
 
 const showMessage = (element, message, type = 'success', duration = 2000) => {
-    // 1. Clean up old classes and reset style
     element.classList.remove('text-green-500', 'text-red-500', 'text-primary', 'dark:text-primary', 'hidden');
-    element.style.color = ''; // Remove any inline style
-
-    // 2. Set color using element.style (This will not fail)
+    element.style.color = ''; 
     if (type === 'error') {
         element.style.color = 'red';
     } else if (type === 'primary') {
-        element.style.color = '#195de6'; // Your app's primary blue color
-    } else { // Success
+        element.style.color = '#195de6';
+    } else { 
         element.style.color = 'green';
     }
-
-    // 3. Set text and show
     element.textContent = message;
     element.classList.remove('hidden');
     
-    // 4. Set timeout to hide
     if (duration > 0) {
         setTimeout(() => {
             element.classList.add('hidden');
-            element.style.color = ''; // Reset style on hide
+            element.style.color = ''; 
         }, duration);
     }
 };
@@ -105,6 +97,11 @@ const renderDashboardRecentActivity = async () => {
         if (!response.ok) throw new Error('Failed to fetch reports list');
         const data = await response.json();
         reportFiles = data.reports || [];
+        
+        // NEW: Sort files by name (assuming filename contains a timestamp or date)
+        // This is a basic sort, a better sort would be by file metadata/date
+        reportFiles.sort().reverse(); 
+
     } catch (err) {
         console.error("Failed to load reports for dashboard:", err);
         dashboardActivityBody.innerHTML = `<tr><td colspan="5" class="px-6 py-4 text-center text-red-500">Failed to load activity. Is backend running?</td></tr>`;
@@ -113,8 +110,7 @@ const renderDashboardRecentActivity = async () => {
 
     dashboardActivityBody.innerHTML = ''; // Clear "Loading..."
     
-    // Slice to get only the top 5 most recent
-    const recentActivity = reportFiles.slice(0, 5);
+    const recentActivity = reportFiles.slice(0, 5); // Get top 5
 
     if (recentActivity.length === 0) {
         dashboardActivityBody.innerHTML = `<tr><td colspan="5" class="px-6 py-4 text-center text-gray-500 dark:text-gray-400">No recent activity recorded.</td></tr>`;
@@ -122,12 +118,10 @@ const renderDashboardRecentActivity = async () => {
     }
     
     recentActivity.forEach(filename => {
-        // We parse the filename to get the display data (e.g., "report_John_Doe_2025-10-10.pdf")
-        // This is a basic guess; you can customize this logic
         const parts = filename.replace('.pdf', '').split('_');
-        const patientName = parts[1] || "Report";
+        const patientName = parts.length > 1 ? parts[1] : "Report";
         const caseId = parts[0] || filename;
-        const date = parts[2] || "N/A";
+        const date = parts.length > 2 ? parts[2] : "N/A";
 
         const row = document.createElement('tr');
         row.innerHTML = `
@@ -138,7 +132,6 @@ const renderDashboardRecentActivity = async () => {
                 <span class="inline-flex items-center rounded-full bg-green-100 dark:bg-green-900/50 text-green-800 dark:text-green-300 px-2.5 py-0.5 text-xs font-medium">Complete</span>
             </td>
             <td class="whitespace-nowrap px-6 py-4 text-right font-medium">
-                <!-- THIS IS THE FIX: Changed <a> to <button> with class and data attribute -->
                 <button data-filename="${filename}" class="dashboard-download-btn text-primary hover:underline text-sm font-semibold inline-flex items-center">
                     <span class="material-symbols-outlined text-base align-middle mr-1">download</span>
                     View/Download
@@ -148,11 +141,9 @@ const renderDashboardRecentActivity = async () => {
         dashboardActivityBody.appendChild(row);
     });
 
-    // --- NEW: Attach listeners to the buttons we just created ---
     dashboardActivityBody.querySelectorAll('.dashboard-download-btn').forEach(button => {
         button.addEventListener('click', (e) => {
             const filename = e.currentTarget.getAttribute('data-filename');
-            // Reuse the existing downloadReport function
             downloadReport(filename, e.currentTarget); 
         });
     });
@@ -160,19 +151,19 @@ const renderDashboardRecentActivity = async () => {
 
 // --- History Page Rendering Functions ---
 
-/**
- * Renders the table on the History page with data from the /reports endpoint.
- */
 const renderHistoryPage = (reportFiles) => {
     const tableBody = document.getElementById('history-table-body');
-    if (!tableBody) return; // Failsafe if element isn't loaded
+    if (!tableBody) return; 
 
-    tableBody.innerHTML = ''; // Clear "Loading..."
+    tableBody.innerHTML = ''; 
 
     if (!reportFiles || reportFiles.length === 0) {
         tableBody.innerHTML = `<tr><td colspan="3" class="px-6 py-4 text-center text-gray-500 dark:text-gray-400">No reports found in the 'reports/' directory.</td></tr>`;
         return;
     }
+    
+    // Sort files by name (newest first, assuming timestamp in name)
+    reportFiles.sort().reverse();
 
     reportFiles.forEach(filename => {
         const row = document.createElement('tr');
@@ -191,7 +182,6 @@ const renderHistoryPage = (reportFiles) => {
         tableBody.appendChild(row);
     });
 
-    // Add event listeners to all new download buttons
     document.querySelectorAll('.download-report-btn').forEach(button => {
         button.addEventListener('click', (e) => {
             const filename = e.currentTarget.getAttribute('data-filename');
@@ -200,9 +190,6 @@ const renderHistoryPage = (reportFiles) => {
     });
 };
 
-/**
- * Calls the backend to download a specific report file.
- */
 const downloadReport = async (filename, button) => {
     const originalText = button.innerHTML;
     button.innerHTML = `<span class="material-symbols-outlined text-base align-middle mr-1 animate-spin">sync</span> Downloading...`;
@@ -226,15 +213,13 @@ const downloadReport = async (filename, button) => {
 
     } catch (error) {
         console.error("Error downloading file:", error);
-        // Do not use alert()
-        console.error(`Failed to download ${filename}. See console for details.`);
     } finally {
         button.innerHTML = originalText;
         button.disabled = false;
     }
 };
 
-// --- Firestore patient listener (can be removed if no longer using Add Patient) ---
+// --- Firestore patient listener (No longer used, but harmless) ---
 const startPatientListener = () => {
     if (!db || !userId || !isAuthReady) {
         console.error("Firestore not ready or user not authenticated.");
@@ -315,9 +300,9 @@ const stopRecording = () => {
 };
 
 /**
- * NEW WORKFLOW STEP 1:
+ * WORKFLOW STEP 1:
  * Handles the completion of recording and sends audio to the /transcribe-audio endpoint.
- * On success, it opens the Edit Modal with the returned JSON.
+ * On success, it calls the new /convert-json-to-html endpoint.
  */
 const initiateReportGeneration = async () => {
     stopRecordBtn.classList.add('hidden');
@@ -338,8 +323,7 @@ const initiateReportGeneration = async () => {
         const formData = new FormData();
         formData.append("file", audioBlob, `consultation_${new Date().getTime()}.webm`);
 
-        console.log(`[Frontend] Attempting POST to: ${API_URL}/transcribe-audio`);
-
+        console.log(`[Frontend] Step 1: POST to: ${API_URL}/transcribe-audio`);
         const response = await fetch(`${API_URL}/transcribe-audio`, {
             method: 'POST',
             body: formData,
@@ -350,17 +334,14 @@ const initiateReportGeneration = async () => {
             throw new Error(`HTTP error! Status: ${response.status}. Server message: ${errorBody.substring(0, 100)}...`);
         }
         
-        // --- Success! We have JSON data ---
         const jsonData = await response.json();
+        console.log("[Frontend] Step 1 Success: Received JSON data from backend:", jsonData);
         
-        console.log("[Frontend] Received JSON data from backend:", jsonData);
+        // --- NEW STEP 2: Fetch HTML version for editing ---
+        recordingStatus.textContent = 'Generating Editable Report...';
+        showMessage(modalFeedback, `Received JSON, generating HTML draft...`, 'primary', 0);
         
-        // Close recording modal
-        recordingModal.classList.add('hidden');
-        resetRecordingUI();
-        
-        // Open the edit modal with the data
-        openEditModalWithData(jsonData);
+        fetchHtmlDraft(jsonData);
 
     } catch (error) {
         console.error("Transcription Failed:", error);
@@ -368,62 +349,109 @@ const initiateReportGeneration = async () => {
         const detailedError = error instanceof TypeError && error.message.includes('fetch') 
             ? 'Network connection failed. Check if FastAPI server is running.'
             : `Server processing or HTTP error. Details: ${error.message}`;
-            
         showMessage(modalFeedback, detailedError, 'error', 8000);
     }
 };
 
 /**
- * NEW: Opens the Edit Modal and populates it with the JSON data from the backend.
+ * WORKFLOW STEP 2:
+ * Takes the JSON from Step 1, sends it to the /convert-json-to-html endpoint.
+ * On success, it opens the Edit Modal with the returned HTML.
  */
-const openEditModalWithData = (jsonData) => {
-    // Format the JSON to be human-readable in the textarea
-    const formattedJson = JSON.stringify(jsonData, null, 2); 
+const fetchHtmlDraft = async (jsonData) => {
+    try {
+        console.log(`[Frontend] Step 2: POST to: ${API_URL}/convert-json-to-html`);
+        const response = await fetch(`${API_URL}/convert-json-to-html`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(jsonData),
+        });
+
+        if (!response.ok) {
+            const errorBody = await response.text();
+            throw new Error(`HTTP error! Status: ${response.status}. Server message: ${errorBody.substring(0, 100)}...`);
+        }
+
+        const data = await response.json();
+        const htmlContent = data.html_content;
+        console.log("[Frontend] Step 2 Success: Received HTML draft.");
+
+        // Close recording modal
+        recordingModal.classList.add('hidden');
+        resetRecordingUI();
+        
+        // Open the edit modal with the HTML data
+        openEditModalWithHtml(htmlContent);
+
+    } catch (error) {
+        console.error("HTML Draft Generation Failed:", error);
+        showMessage(modalFeedback, `Error generating HTML draft: ${error.message}`, 'error', 8000);
+    }
+};
+
+
+/**
+ * NEW: Opens the Edit Modal and initializes the TinyMCE Rich Text Editor.
+ */
+const openEditModalWithHtml = (htmlContent) => {
+    // Make sure no old editor instances exist
+    tinymce.remove('#html-editor');
     
-    reportContentArea.value = formattedJson; // Set textarea value
-    
-    // Set info text (optional, but helpful)
-    const reportId = jsonData.report_id || 'N/A';
-    editPatientInfo.textContent = `Review and edit the transcribed JSON data for Report ID: ${reportId}`;
+    tinymce.init({
+        selector: '#html-editor',
+        // --- THIS IS THE FIX ---
+        // Removed 'autoresize' from the plugins list
+        plugins: 'lists link autolink', 
+        // -----------------------
+        toolbar: 'undo redo | blocks | bold italic | bullist numlist | link',
+        menubar: false,
+        statusbar: false,
+        height: '100%', // Let flexbox control the height
+        setup: (editor) => {
+            // This runs after the editor is initialized
+            editor.on('init', () => {
+                editor.setContent(htmlContent);
+                console.log("[Frontend] TinyMCE initialized and content set.");
+                // Show the modal *after* the editor is ready
+                editReportModal.classList.remove('hidden');
+            });
+        }
+    });
     
     editFeedback.classList.add('hidden'); // Hide any old feedback
-    editReportModal.classList.remove('hidden'); // Show the modal
 };
 
 /**
- * NEW WORKFLOW STEP 2:
- * Handles the "Save & Download PDF" button press from the Edit Modal.
- * Sends the edited JSON to the /generate-pdf endpoint.
+ * WORKFLOW STEP 3:
+ * Handles the "Save Final PDF" button press.
+ * Sends the *edited HTML* from TinyMCE to the /convert-html-to-pdf endpoint.
  */
 const handleEditFormSubmit = async (e) => {
     e.preventDefault();
     const saveButton = e.submitter;
     const originalText = saveButton.textContent;
-    saveButton.textContent = 'Generating PDF...';
+    saveButton.textContent = 'Generating Final PDF...';
     saveButton.disabled = true;
 
-    let jsonData;
-    try {
-        // 1. Parse the edited text from the textarea back into a JSON object
-        jsonData = JSON.parse(reportContentArea.value);
-    } catch (parseError) {
-        console.error("JSON Parse Error:", parseError);
-        showMessage(editFeedback, "Error: The text in the editor is not valid JSON.", 'error', 4000);
+    // 1. Get edited HTML content from TinyMCE
+    const editedHtml = tinymce.get('html-editor').getContent();
+    if (!editedHtml) {
+        showMessage(editFeedback, "Error: Cannot save empty report.", 'error', 4000);
         saveButton.textContent = originalText;
         saveButton.disabled = false;
         return;
     }
 
     try {
-        console.log(`[Frontend] Attempting POST to: ${API_URL}/generate-pdf`);
+        console.log(`[Frontend] Step 3: POST to: ${API_URL}/convert-html-to-pdf`);
 
-        // 2. Send the *edited JSON data* to the backend
-        const response = await fetch(`${API_URL}/generate-pdf`, {
+        // 2. Send the *edited HTML* to the backend
+        const response = await fetch(`${API_URL}/convert-html-to-pdf`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(jsonData), // Send the JSON object as a string
+            body: JSON.stringify({ html_content: editedHtml }),
         });
 
         if (!response.ok) {
@@ -436,7 +464,8 @@ const handleEditFormSubmit = async (e) => {
         const downloadUrl = window.URL.createObjectURL(blob);
         const a = document.createElement('a');
         
-        let filename = `${jsonData.report_id || 'medical_report'}.pdf`;
+        // Try to get filename from header
+        let filename = 'medical_report.pdf';
         const contentDisposition = response.headers.get('Content-Disposition');
         if (contentDisposition) {
             const filenameMatch = contentDisposition.match(/filename="(.+?)"/);
@@ -454,14 +483,13 @@ const handleEditFormSubmit = async (e) => {
         // 4. Show success and close modal
         showMessage(editFeedback, `✅ PDF Generated and Downloaded!`, 'success', 3000);
         
-        // --- THIS IS THE FIX ---
-        // 4. Update the dashboard recent activity table by re-fetching the list
+        // 5. Update the dashboard recent activity table by re-fetching the list
         await renderDashboardRecentActivity();
-        // --- END OF FIX ---
 
-        // 5. Close the modal after a short delay
+        // 6. Close and destroy the editor
         setTimeout(() => {
             editReportModal.classList.add('hidden');
+            tinymce.remove('#html-editor');
         }, 3500);
 
     } catch (error) {
@@ -486,14 +514,13 @@ const loadContent = async (pageId) => {
         return;
     }
     dashboardSection.classList.add('hidden');
-    const fileName = `${pageId}.html`; // Will be 'settings.html' or 'history.html'
+    const fileName = `${pageId}.html`; // Will be 'history.html'
     try {
         const response = await fetch(fileName);
         if (!response.ok) throw new Error(`Could not load ${fileName}`);
         const htmlContent = await response.text();
         contentArea.innerHTML = htmlContent;
         
-        // --- NEW: Load history page data ---
         if (pageId === 'history') {
             try {
                 const reportResponse = await fetch(`${API_URL}/reports`);
@@ -505,12 +532,6 @@ const loadContent = async (pageId) => {
                 const tableBody = document.getElementById('history-table-body');
                 if(tableBody) tableBody.innerHTML = `<tr><td colspan="3" class="px-6 py-4 text-center text-red-500">Failed to load reports from backend. Is it running?</td></tr>`;
             }
-        }
-        // ---------------------------------
-        
-        if (pageId === 'settings') {
-            const settingsForm = document.getElementById('settings-form');
-            if (settingsForm) { settingsForm.addEventListener('submit', handleSettingsSubmit); }
         }
         
     } catch (error) {
@@ -552,47 +573,11 @@ const setActiveLink = (pageId) => {
 };
 
 
-// --- Handlers for Modals/Forms (Unchanged) ---
+// --- Handlers for Modals/Forms ---
 const handleNewPatientSubmit = async (e) => {
     e.preventDefault();
-    const saveButton = e.submitter;
-    if (!db || !userId || !isAuthReady) {
-        console.error("Database not ready. Please wait for authentication.");
-        showMessage(document.getElementById('profile-feedback'), "System busy. Please try again in a moment.", 'error');
-        return;
-    }
-    const originalText = saveButton.textContent;
-    saveButton.textContent = 'Saving...';
-    saveButton.disabled = true;
-    const formData = new FormData(patientForm);
-    const newPatient = {
-        name: formData.get('name') || 'Unnamed Patient',
-        patientId: formData.get('patientId').toUpperCase(),
-        latestReport: new Date().toISOString().split('T')[0],
-        status: 'Active',
-        createdAt: new Date(),
-    };
-    try {
-        const patientsColRef = collection(db, getCollectionPath('patients'));
-        await addDoc(patientsColRef, newPatient);
-        showMessage(document.getElementById('profile-feedback'), "Patient added successfully!", 'success', 1500);
-        patientForm.reset();
-        setTimeout(() => patientModal.classList.add('hidden'), 500); 
-    } catch (error) {
-        console.error("Error adding patient:", error);
-        showMessage(document.getElementById('profile-feedback'), "Failed to add patient. See console.", 'error', 3000);
-    } finally {
-        saveButton.textContent = originalText;
-        saveButton.disabled = false;
-    }
+    // This function is no longer attached to any active button
 };
-const handleSettingsSubmit = (e) => {
-    e.preventDefault();
-    const profileFeedback = document.getElementById('profile-feedback');
-    showMessage(profileFeedback, "Profile saved successfully!", 'success', 2000);
-};
-
-// --- (openEditReportModal and simulatePdfExport removed, replaced by new workflow) ---
 
 // --- Initialization ---
 document.addEventListener('DOMContentLoaded', () => {
@@ -606,14 +591,17 @@ document.addEventListener('DOMContentLoaded', () => {
     if (menuToggle) menuToggle.addEventListener('click', () => sidebar.classList.toggle('-translate-x-full'));
 
     // 3. Attach Modal/Dashboard Listeners
-    // Note: 'add-patient-btn' no longer exists on the main UI, so we check for it.
     const addPatientBtn = document.getElementById('add-patient-btn');
     if (addPatientBtn) {
         addPatientBtn.addEventListener('click', () => patientModal.classList.remove('hidden'));
     }
-    document.getElementById('close-modal').addEventListener('click', () => patientModal.classList.add('hidden'));
-    document.getElementById('cancel-modal').addEventListener('click', () => patientModal.classList.add('hidden'));
-    patientForm.addEventListener('submit', handleNewPatientSubmit);
+    const closeModalBtn = document.getElementById('close-modal');
+    if (closeModalBtn) closeModalBtn.addEventListener('click', () => patientModal.classList.add('hidden'));
+    
+    const cancelModalBtn = document.getElementById('cancel-modal');
+    if(cancelModalBtn) cancelModalBtn.addEventListener('click', () => patientModal.classList.add('hidden'));
+
+    if(patientForm) patientForm.addEventListener('submit', handleNewPatientSubmit);
     
     document.getElementById('record-session-btn').addEventListener('click', () => { 
         recordingModal.classList.remove('hidden');
@@ -630,8 +618,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- MODIFIED: Edit modal now calls the new PDF generation function ---
-    document.getElementById('close-edit-modal').addEventListener('click', () => editReportModal.classList.add('hidden'));
-    document.getElementById('cancel-edit-modal').addEventListener('click', () => editReportModal.classList.add('hidden'));
+    document.getElementById('close-edit-modal').addEventListener('click', () => {
+        editReportModal.classList.add('hidden');
+        tinymce.remove('#html-editor'); // Destroy editor instance
+    });
+    document.getElementById('cancel-edit-modal').addEventListener('click', () => {
+        editReportModal.classList.add('hidden');
+        tinymce.remove('#html-editor'); // Destroy editor instance
+    });
     editReportForm.addEventListener('submit', handleEditFormSubmit); // Changed to new function
 
     // 4. Initialize Firebase & Initial Dashboard Render
@@ -658,13 +652,13 @@ const setupFirebase = async () => {
                 }
                 isAuthReady = true;
                 if(userIdDisplay) userIdDisplay.textContent = `User ID: ${userId}`;
-                resolve(); // Resolve promise on first auth state check
-            }, (error) => { // Handle auth errors
+                resolve(); 
+            }, (error) => { 
                 console.error("Auth state error:", error);
                 userId = crypto.randomUUID();
                 isAuthReady = true;
                 if(userIdDisplay) userIdDisplay.textContent = `Error connecting. ID: ${userId}`;
-                resolve(); // Resolve even on error to not block app
+                resolve(); 
             });
         });
         await authPromise;

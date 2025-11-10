@@ -187,6 +187,7 @@ You are a highly specialized Medical AI Assistant acting as a Doctor-Level Repor
     - Avoid layman explanations.
     - Each section should read like a real internal hospital report.
     - No bullet points or markdown — output pure JSON.
+    -only use only english 
 
     ---
 
@@ -198,7 +199,7 @@ You are a highly specialized Medical AI Assistant acting as a Doctor-Level Repor
     {conversation_text}
 
     Now, analyze it thoroughly and output only the structured JSON report following the schema above.
-    No explanations, no formatting, no comments — only valid JSON, and only use only english in the json.
+    No explanations, no formatting, no comments — only valid JSON.
     """
     print("Sending text to LLM for analysis...")
     response = client.chat.completions.create(
