@@ -1,10 +1,13 @@
 import json
-
+from lkl.category_matcher import CategoryMatcher
 class LKLManager:
+
     def __init__(self, lkl_path="lkl/lkl.json"):
         self.lkl_path = lkl_path
         self.lkl = {}
         self.load_lkl()
+        self.matcher = CategoryMatcher(self.lkl)
+
 
     def load_lkl(self):
         with open(self.lkl_path, "r", encoding="utf-8") as f:
@@ -36,7 +39,7 @@ class LKLManager:
 
     # placeholders
     def match_category(self, text):
-        pass
+        return self.matcher.match(text)
 
     def extract_missing_info(self, extracted_data, category_name):
         pass
