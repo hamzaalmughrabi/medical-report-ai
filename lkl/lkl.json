@@ -1,0 +1,116 @@
+{
+  "categories": {
+    "chief_complaint": {
+      "metadata": {
+        "keywords": [
+          "chief complaint", "main issue", "primary concern",
+          "symptoms", "presenting complaint", "reports", "complains of",
+          "onset", "problem", "pain", "discomfort"
+        ]
+      }
+    },
+
+    "past_history": {
+      "metadata": {
+        "keywords": [
+          "past medical history", "pmh", "chronic", "disease",
+          "hypertension", "diabetes", "asthma", "heart disease",
+          "previous diagnosis", "previous illnesses", "medical history"
+        ]
+      }
+    },
+
+    "medications": {
+      "metadata": {
+        "keywords": [
+          "medications", "drugs", "medicine", "dose", "mg",
+          "tablet", "pill", "treatment", "prescription",
+          "current medication"
+        ]
+      }
+    },
+
+    "allergies": {
+      "metadata": {
+        "keywords": [
+          "allergy", "allergies", "allergic reaction", "rash",
+          "itching", "swelling", "shortness of breath",
+          "hypersensitivity", "reaction"
+        ]
+      }
+    },
+
+    "family_history": {
+      "metadata": {
+        "keywords": [
+          "family history", "genetic", "hereditary",
+          "runs in family", "mother", "father", "siblings",
+          "family disease"
+        ]
+      }
+    },
+
+    "back_pain": {
+      "metadata": {
+        "keywords": [
+          "back pain", "lower back pain", "upper back pain",
+          "lumbago", "lumbar pain", "dorsal pain",
+          "sciatica", "radiating pain", "muscle spasm",
+          "stiff back"
+        ]
+      }
+    },
+
+    "shoulder_pain": {
+      "metadata": {
+        "keywords": [
+          "shoulder pain", "shoulder discomfort",
+          "rotator cuff", "tendonitis", "shoulder stiffness",
+          "pain when lifting arm", "shoulder joint pain",
+          "restricted movement"
+        ]
+      }
+    },
+
+    "neck_pain": {
+      "metadata": {
+        "keywords": [
+          "neck pain", "cervical pain", "stiff neck",
+          "neck stiffness", "radiating to shoulder",
+          "difficulty turning neck", "cervical spasm"
+        ]
+      }
+    },
+
+    "chest_pain": {
+      "metadata": {
+        "keywords": [
+          "chest pain", "chest pressure", "tightness",
+          "palpitations", "shortness of breath",
+          "pain with exertion", "radiating to arm",
+          "sternal pain", "chest discomfort"
+        ]
+      }
+    },
+
+    "abdominal_pain": {
+      "metadata": {
+        "keywords": [
+          "abdominal pain", "stomach pain", "cramps",
+          "nausea", "vomiting", "bloating", "diarrhea",
+          "constipation", "upper abdomen", "lower abdomen"
+        ]
+      }
+    },
+
+    "knee_pain": {
+      "metadata": {
+        "keywords": [
+          "knee pain", "knee swelling", "joint pain",
+          "difficulty walking", "meniscus", "ligament injury",
+          "instability", "knee stiffness"
+        ]
+      }
+    }
+  }
+}
