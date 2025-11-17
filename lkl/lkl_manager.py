@@ -1,3 +1,25 @@
+
+def get_category_knowledge(self, category: str):
+    """
+    Returns all knowledge related to this category
+    so it can be injected into the GPT prompt.
+    """
+
+    cat = self.data["categories"].get(category)
+    if not cat:
+        return None
+
+    return {
+        "keywords": cat["metadata"]["keywords"],
+        "symptoms": cat["patterns"]["symptoms"],
+        "history_questions": cat["patterns"]["history_questions"],
+        "finding_templates": cat["patterns"]["findings_templates"],
+        "impression_templates": cat["patterns"]["impression_templates"],
+        "investigations": cat["investigations"],
+        "differentials": cat["differential_diagnoses"],
+        "management": cat["management_options"],
+        "previous_cases": cat["cases"],
+    }
 def auto_learn_from_report(self, category, diagnostic_report):
     """
     Learns new findings, symptoms, impressions, or management options

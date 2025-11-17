@@ -81,6 +81,11 @@ def _safe_parse_llm_response(resp):
     # fallback: return as plain text in a field so nothing is lost
     return {"raw_output": str(content)}
 
+# 1) LKL Category Matching
+category = lkl.match_category(conversation_text)
+
+# 2) Retrieve Knowledge Package
+knowledge = lkl.get_category_knowledge(category) if category else None
 
 def process_audio_to_json(audio_file_path: str):
     """
