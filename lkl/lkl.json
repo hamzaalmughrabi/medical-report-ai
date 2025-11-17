@@ -1,0 +1,87 @@
+{
+  "version": "2.0",
+  "categories": {
+    "knee_pain": {
+      "metadata": {
+        "body_part": "knee",
+        "keywords": ["knee", "pain", "injury", "swelling", "meniscus", "ligament", "arthritis"],
+        "description": "Comprehensive templates for documenting knee pain presentations."
+      },
+
+      "patterns": {
+        "symptoms": [
+          "pain during movement",
+          "swelling (effusion)",
+          "limited range of motion",
+          "recent trauma",
+          "instability or locking",
+          "popping or clicking sound",
+          "giving way sensation",
+          "pain is worse at night"
+        ],
+
+        "history_questions": [
+          "duration of pain",
+          "trauma history (mechanism of injury)",
+          "location of pain (anterior, medial, lateral, posterior)",
+          "swelling present?",
+          "movement limitations?",
+          "weight-bearing status?",
+          "medications used?",
+          "history of previous knee injuries or surgery?"
+        ],
+
+        "findings_templates": [
+          "Mild tenderness over the joint line",
+          "No visible deformity or ecchymosis",
+          "Swelling/Effusion present (Grade 1/2/3)",
+          "Normal distal pulses and sensation",
+          "Positive Lachman test",
+          "Negative McMurray test",
+          "Patellar tracking is normal"
+        ],
+
+        "impression_templates": [
+          "Clinical findings suggest mild soft tissue injury (sprain).",
+          "Features are consistent with inflammatory knee pain (e.g., Arthritis).",
+          "Possibility of internal derangement (e.g., Meniscal tear) cannot be excluded.",
+          "Probable ligamentous injury (ACL/MCL/LCL)."
+        ]
+      },
+
+      "anatomical_specificity": {
+        "pain_locations": ["Medial joint line", "Lateral joint line", "Patellofemoral region", "Popliteal fossa (behind the knee)"],
+        "ligaments_tendons": ["ACL", "PCL", "MCL", "LCL", "Patellar tendon"]
+      },
+
+      "differential_diagnoses": {
+        "acute": ["ACL tear", "Meniscal tear", "Fracture", "Tendon rupture"],
+        "chronic": ["Osteoarthritis", "Patellofemoral Pain Syndrome", "Bursitis", "Gout/Pseudogout"]
+      },
+
+      "investigations": {
+        "initial_imaging": ["X-ray (AP/Lateral/Sunrise views)", "Ultrasound"],
+        "advanced_imaging": ["MRI (for soft tissue evaluation)", "CT scan (for complex fractures)"],
+        "lab_tests": ["CRP/ESR (for inflammation)", "Aspiration analysis (for infection/crystals)"]
+      },
+
+      "management_options": {
+        "acute_treatment": ["R.I.C.E. (Rest, Ice, Compression, Elevation)", "NSAIDs for pain management", "Crutches/Non-weight-bearing"],
+        "rehabilitation": ["Physiotherapy referral", "Strengthening exercises (Quadriceps/Hamstrings)"],
+        "surgical_referral": ["Orthopedic consultation for confirmed tear/fracture"],
+        "follow_up": ["Follow up in 1-2 weeks for reassessment."]
+      },
+
+      "cases": [
+        {
+          "id": "case_001_meniscus",
+          "symptoms": ["sudden knee pain after twisting", "locking", "medial joint line swelling"],
+          "examination": ["mild tenderness over medial joint line", "positive McMurray test", "limited extension"],
+          "impression": "Suspected Medial Meniscal Tear (Internal Derangement)",
+          "investigation_plan": "Order MRI for confirmation and surgical planning.",
+          "report_text": "Patient presents with knee pain and swelling after a twisting injury. Physical exam shows signs consistent with a meniscal tear."
+        }
+      ]
+    }
+  }
+}
