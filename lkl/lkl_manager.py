@@ -1,48 +1,37 @@
-import json
-from lkl.category_matcher import CategoryMatcher
-class LKLManager:
+def auto_learn_from_report(self, category, diagnostic_report):
+    """
+    Learns new findings, symptoms, impressions, or management options
+    from a finished doctor-generated report.
+    """
 
-    def __init__(self, lkl_path="lkl/lkl.json"):
-        self.lkl_path = lkl_path
-        self.lkl = {}
-        self.load_lkl()
-        self.matcher = CategoryMatcher(self.lkl)
+    cat_data = self.data["categories"].get(category)
+    if not cat_data:
+        return
 
+    # Extract knowledge from the report
+    # 1) findings
+    if "detailed_findings" in diagnostic_report:
+        for f in diagnostic_report["detailed_findings"]:
+            finding = f.get("finding", "").strip().lower()
+            if finding and finding not in cat_data["patterns"]["findings_templates"]:
+                print(f"📘 LKL Learning new finding: {finding}")
+                cat_data["patterns"]["findings_templates"].append(finding)
 
-    def load_lkl(self):
-        with open(self.lkl_path, "r", encoding="utf-8") as f:
-            self.lkl = json.load(f)
+    # 2) impression patterns
+    if "impression_summary" in diagnostic_report:
+        imp = diagnostic_report["impression_summary"].strip()
+        if imp and imp not in cat_data["patterns"]["impression_templates"]:
+            print(f"📘 LKL Learning new impression pattern.")
+            cat_data["patterns"]["impression_templates"].append(imp)
 
-    def list_categories(self):
-        return list(self.lkl["categories"].keys())
+    # 3) symptoms
+    if "clinical_history" in diagnostic_report:
+        history_text = diagnostic_report["clinical_history"].lower()
 
-    def get_category(self, category_name):
-        return self.lkl["categories"].get(category_name)
+        for symptom in ["pain", "swelling", "instability", "locking", "weakness"]:
+            if symptom in history_text and symptom not in cat_data["patterns"]["symptoms"]:
+                print(f"📘 LKL Learning new symptom: {symptom}")
+                cat_data["patterns"]["symptoms"].append(symptom)
 
-    def get_patterns(self, category_name):
-        return self.get_category(category_name).get("patterns", {})
-
-    def get_metadata(self, category_name):
-        return self.get_category(category_name).get("metadata", {})
-
-    def get_cases(self, category_name):
-        return self.get_category(category_name).get("cases", [])
-
-    def get_differentials(self, category_name):
-        return self.get_category(category_name).get("differential_diagnoses", {})
-
-    def get_investigations(self, category_name):
-        return self.get_category(category_name).get("investigations", {})
-
-    def get_management(self, category_name):
-        return self.get_category(category_name).get("management_options", {})
-
-    # placeholders
-    def match_category(self, text):
-        return self.matcher.match(text)
-
-    def extract_missing_info(self, extracted_data, category_name):
-        pass
-
-    def suggest_templates(self, category_name):
-        pass
+    # save LKL after updating
+    self._save()

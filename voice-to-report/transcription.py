@@ -84,164 +84,85 @@ def _safe_parse_llm_response(resp):
 
 def process_audio_to_json(audio_file_path: str):
     """
-    Process audio -> transcription -> LLM -> JSON report -> PDF.
-    Returns: (diagnostic_report_dict, pdf_path)
-    If a case already in memory and has pdf stored, returns that immediately.
+    Process audio -> transcription -> LKL -> LLM -> JSON report -> PDF.
     """
+
+    # Initialize LKL
+    lkl = LKLManager()
 
     filename = os.path.basename(audio_file_path)
     case_id = filename.split(".")[0]
 
-    # check existing case
-    existing_case = next((c for c in memory.get("cases", []) if c.get("report_id") == case_id), None)
-
-
-    # No existing case -> proceed
     print(f"\n🎙️ Processing file: {filename}")
 
-    # 1) Transcribe using Whisper API (verbose_json gives more metadata but we just need text)
+    # STEP 1 — TRANSCRIBE
     with open(audio_file_path, "rb") as audio_file:
         transcription = client.audio.transcriptions.create(
             model="whisper-1",
             file=audio_file,
             response_format="verbose_json"
         )
-    # Different client shapes: safer access
+
     conversation_text = ""
     if isinstance(transcription, dict) and transcription.get("text"):
         conversation_text = transcription.get("text", "").strip()
     else:
-        # try attribute
         conversation_text = getattr(transcription, "text", "") or ""
         conversation_text = str(conversation_text).strip()
 
     print("✅ Transcription complete.")
 
-    # Build prompt
-    prompt = f"""
-You are a highly specialized Medical AI Assistant acting as a Doctor-Level Report Extractor and Formatter.
+    # STEP 2 — LKL CATEGORY MATCHING
+    category = lkl.detect_category(conversation_text)
+    print(f"📌 Detected Category: {category}")
 
-    Your task is to analyze a raw transcript of a doctor’s voice recording or medical dictation, and convert it into a structured JSON report that mirrors the clarity and structure of a professional hospital report.
+    # STEP 3 — DETECT MISSING INFO
+    missing_info = []
+    if category:
+        missing_info = lkl.detect_missing_info(category, conversation_text)
+    print(f"❓ Missing Info Questions: {missing_info}")
 
-    ---
+    # STEP 4 — TEMPLATE SUGGESTION
+    templates = {}
+    if category:
+        templates = lkl.suggest_templates(category)
+    print("📄 Suggested Templates Loaded.")
 
-    ### Core Objective:
-    Produce a structured JSON that captures every single relevant medical detail — including symptoms, timing, tone, body part, progression, cause, related systems, and physician reasoning.  
-    Do not summarize or simplify — the report will be read by medical professionals.
+    # STEP 5 — BUILD GPT PROMPT WITH LKL CONTEXT
+    lkl_context = f"""
+    ### LKL Context (Local Knowledge Layer)
+    Detected Category: {category}
 
-    ---
+    Missing Clinical Questions:
+    {missing_info}
 
-    ### Strict Rules:
-    1. Do not fabricate or omit any detail.  
-       Reword only for clarity, but every medical element in the transcript must appear in the report.
+    Suggested Findings Templates:
+    {templates.get("findings_templates", [])}
 
-    2. Follow this exact JSON schema:
-    {TARGET_SCHEMA_JSON}
-
-    3. If any field is missing or not mentioned, use `"N/A"` or an empty list `[]`.
-
-    4. The report must be in English.
-
-    5. Keep the writing professional, precise, and clinical.  
-       No speculation, no conversational tone.
-
-    6. In "clinical_history", extract and structure the patient’s history following the complete clinical history framework used in hospital documentation and OSCE standards:
-
-    The history must be comprehensive and cover the following components whenever available:
-
-    Patient Profile: name, age, sex, occupation, marital status, and any demographic identifiers.
-    
-    Chief Complaint (CC): the patient’s main concern or symptom, written in their words and with duration (e.g., “low back pain for 2 months”). Avoid medical jargon if transcript uses patient phrasing.
-
-    History of Present Illness (HPI): detailed evolution and analysis of the complaint using the SOCRATES framework (Site, Onset, Character, Radiation, Associated symptoms, Timing, Exacerbating/relieving factors, Severity).
-
-    Systemic Enquiry / Review of Systems (ROS): capture any other symptoms mentioned that belong to cardiovascular, respiratory, gastrointestinal, genitourinary, musculoskeletal, neurological, endocrine, or general systems.
-
-    Past Medical and Surgical History: chronic diseases, prior hospitalizations, operations, and relevant medical conditions.
-
-    Drug History: prescribed medications, dosage, adherence, allergies, and adverse reactions.
-
-    Family History: hereditary or familial illnesses, consanguinity, and similar conditions in relatives.   
-
-    Social History: lifestyle, occupation, smoking/alcohol/drug use, living situation, travel, and physical activity.
-
-    Functional/Physiotherapy Relevance: mobility limitations, daily living impact, assistive device use, or physical restriction patterns.
-
-    7. In "detailed_findings", extract every distinct clinical observation, measurement, or physician remark mentioned in the transcript — do not limit the number of findings.
-
-Your goal is to capture all explicit or implicit medical findings the doctor states or implies, even if they seem minor or repetitive.
-
-Rules:
-
-Include all findings.
-
-Every symptom, observation, exam result, test interpretation, or relevant measurement must appear as a separate "finding".
-
-Even subtle or secondary details (e.g., “mild wheeze,” “tenderness on palpation,” “normal reflexes,” “no cyanosis”) must be captured — normal and abnormal alike.
-
-Do not merge or summarize.
-Each statement in the audio that describes a distinct feature should produce a distinct JSON object.
-
-Use precise medical language.
-Keep all entries clinical and standardized — no conversational tone.
-
-Use system labeling.
-Assign each finding to the appropriate system (e.g., “musculoskeletal,” “respiratory,” “neurological,” “cardiovascular,” “gastrointestinal,” “endocrine,” “general”).
-
-Explain significance.
-"explanation" should state the possible cause, mechanism, or clinical relevance of the finding — as a clinician would interpret it.
-
-Severity & timing.
-Include "severity" and "temporal_relation" when available (e.g., “moderate,” “acute,” “chronic,” “progressive”). Use "N/A" if not mentioned.
-
-Order findings logically.
-Present them grouped by system, in the same sequence as the transcript whenever possible.
-    8. "impression_summary" must deliver a professional-level clinical synthesis — a concise diagnostic reasoning paragraph similar to what a senior physician or physiotherapist would write in a hospital note.
-
-It should:
-
-Integrate key information from the "clinical_history" and "detailed_findings".
-
-Identify the most likely diagnosis or clinical impression, supported by reasoning.
-
-Mention relevant differential diagnoses when uncertainty exists.
-
-Comment on disease stage, chronicity, or functional impact if described.
-
-Use formal hospital language — e.g., “Findings are consistent with…”, “The overall picture suggests…”, “Differential considerations include…”
-
-The tone must be concise, authoritative, and objective, written as if for inclusion in a real patient chart.
-
-    9. `"recommendations"` should list specific next steps, including tests, referrals, or management advice — explained briefly.
-
-    10. `"urgency_level"` must reflect the seriousness based on described symptoms:  
-       - “low” for mild or routine findings  
-       - “moderate” for concerning but stable conditions  
-       - “high” for severe, acute, or urgent cases
-
-    ---
-
-    Style Guide:
-    - Use formal medical report style (e.g., “Examination revealed...”, “Patient reports...”).
-    - Keep sentences clear, concise, and objective.
-    - Avoid layman explanations.
-    - Each section should read like a real internal hospital report.
-    - No bullet points or markdown — output pure JSON.
-    -only use only english 
-
-    ---
-
-    Input Transcript:
-    The following text is a raw transcript from a doctor’s spoken notes.  
-    It may include pauses, repetition, or filler words — interpret them correctly and extract all possible clinical information.
-
-    Transcript:
-    {conversation_text}
-
-    Now, analyze it thoroughly and output only the structured JSON report following the schema above.
-    No explanations, no formatting, no comments — only valid JSON.
+    Suggested Impression Templates:
+    {templates.get("impression_templates", [])}
     """
-    print("Sending text to LLM for analysis...")
+
+    prompt = f"""
+You are a highly specialized Medical AI Assistant acting as a Doctor-Level Report Generator.
+
+Your job: Convert the transcript into a structured JSON using strict medical reporting rules.
+
+Use the Local Knowledge Layer information below to enhance accuracy and deepen the analysis.
+
+{lkl_context}
+
+The JSON schema you MUST follow:
+{TARGET_SCHEMA_JSON}
+
+Transcript:
+{conversation_text}
+
+Output ONLY valid JSON. No prose. No markdown.
+"""
+
+    # STEP 6 — CALL GPT
+    print("🚀 Sending enhanced prompt to GPT...")
     response = client.chat.completions.create(
         model="gpt-4o",
         messages=[{"role": "user", "content": prompt}],
@@ -249,26 +170,28 @@ The tone must be concise, authoritative, and objective, written as if for inclus
         temperature=0.0,
         max_tokens=3500
     )
-    print("✅ Analysis received.")
 
     diagnostic_report = _safe_parse_llm_response(response)
 
-    # ensure minimum structure & metadata
+    # STEP 7 — ENRICH REPORT WITH METADATA
     diagnostic_report["report_id"] = case_id
     diagnostic_report["timestamp"] = datetime.now().isoformat()
     diagnostic_report["source_file"] = filename
+    diagnostic_report["_category"] = category
+    diagnostic_report["_missing_info"] = missing_info
 
-    # generate PDF and attach path
+    # STEP 8 — GENERATE PDF
     try:
-        pdf_path = make_pdf_from_case(diagnostic_report,)
+        pdf_path = make_pdf_from_case(diagnostic_report)
         diagnostic_report["_pdf_path"] = pdf_path
     except Exception as e:
         print("⚠️ PDF generation failed:", e)
         pdf_path = None
 
-    # save to memory
+    # STEP 9 — SAVE CASE
     memory.setdefault("cases", []).append(diagnostic_report)
     _save_memory()
-    print(f"Memory file updated with Case ID: {case_id}")
+    print(f"💾 Case saved: {case_id}")
 
     return diagnostic_report, pdf_path
+
