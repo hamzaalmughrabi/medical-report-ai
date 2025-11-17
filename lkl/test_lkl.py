@@ -1,6 +1,5 @@
 from lkl.lkl_manager import LKLManager
-lkl = LKLManager("lkl/lkl.json")
-
+lkl = LKLManager("lkl.json")
 
 # Fake doctor transcript (instead of real audio)
 text = """
@@ -11,18 +10,16 @@ Pain is mostly medial and worsens at night.
 """
 
 print("\n=== TEST 1: Category Matching ===")
-category = lkl.match_category(text)
+category = lkl.detect_category(text)
 print("Detected Category:", category)
 
-
 print("\n=== TEST 2: Missing Info Detection ===")
-missing = lkl.find_missing_info(category, text)
+missing = lkl.detect_missing_info(category, text)
 print("Missing Info:", missing)
 
-
-print("\n=== TEST 3: Template Suggestions ===")
-suggestions = lkl.suggest_templates(category, text)
-print("Suggestions:", suggestions)
+print("\n=== TEST 3: Template Suggestion ===")
+templates = lkl.suggest_templates(category)
+print("Templates:", templates)
 
 
 print("\n=== TEST 4: Auto Learning ===")

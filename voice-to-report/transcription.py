@@ -76,7 +76,7 @@ def process_audio_to_json(audio_file_path: str):
     """
 
     # Initialize Local Knowledge Layer
-    lkl = LKLManager("lkl/lkl.json")
+    lkl = LKLManager("C:/Users/hamza/PycharmProjects/medical-ai-/lkl/lkl.json")
 
     filename = os.path.basename(audio_file_path)
     case_id = filename.split(".")[0]
@@ -106,7 +106,7 @@ def process_audio_to_json(audio_file_path: str):
     # --------------------------------------------------
     # STEP 2 — LKL CATEGORY MATCHING
     # --------------------------------------------------
-    matched_category = lkl.match_category(conversation_text)
+    matched_category = lkl.detect_category(conversation_text)
     print("📌 Detected Category:", matched_category)
 
     # Retrieve category knowledge
