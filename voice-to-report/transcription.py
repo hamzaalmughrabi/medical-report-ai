@@ -2,7 +2,7 @@ import os
 import json
 from datetime import datetime
 from openai import OpenAI
-
+OUTPUT_DIR = "outputs"
 # ensure this import matches your project file
 from json_to_pdf import make_pdf_from_case
 
@@ -93,22 +93,6 @@ def process_audio_to_json(audio_file_path: str):
     # check existing case
     existing_case = next((c for c in memory.get("cases", []) if c.get("report_id") == case_id), None)
 
-    if existing_case:
-        print(f"♻️ Report found in memory for Case ID: {case_id}. Returning existing report (if PDF exists, reuse).")
-        pdf_path = existing_case.get("_pdf_path")
-        # if pdf exists on disk, return both
-        if pdf_path and os.path.exists(pdf_path):
-            return existing_case, pdf_path
-        # otherwise regenerate PDF from the stored JSON
-        try:
-            pdf_path = make_pdf_from_case(existing_case)
-            existing_case["_pdf_path"] = pdf_path
-            _save_memory()
-            return existing_case, pdf_path
-        except Exception as e:
-            # if PDF generation fails, still return the JSON and let caller decide
-            print("⚠️ Failed to regenerate PDF from memory:", e)
-            return existing_case, None
 
     # No existing case -> proceed
     print(f"\n🎙️ Processing file: {filename}")
@@ -159,18 +143,72 @@ You are a highly specialized Medical AI Assistant acting as a Doctor-Level Repor
     5. Keep the writing professional, precise, and clinical.  
        No speculation, no conversational tone.
 
-    6. In `"clinical_history"`, include everything the doctor mentioned about:
-       - patient’s history  
-       - symptoms  
-       - previous conditions  
-       - current complaint evolution  
-       - relevant observations or context  
-       Write it in a continuous clinical paragraph.
+    6. In "clinical_history", extract and structure the patient’s history following the complete clinical history framework used in hospital documentation and OSCE standards:
 
-    7. In `"detailed_findings"`, make each `"finding"` short and medical,  
-       with an `"explanation"` that shows why it matters (e.g., possible cause, mechanism, severity).
+    The history must be comprehensive and cover the following components whenever available:
 
-    8. `"impression_summary"` should summarize the main takeaway as a doctor would write it.
+    Patient Profile: name, age, sex, occupation, marital status, and any demographic identifiers.
+    
+    Chief Complaint (CC): the patient’s main concern or symptom, written in their words and with duration (e.g., “low back pain for 2 months”). Avoid medical jargon if transcript uses patient phrasing.
+
+    History of Present Illness (HPI): detailed evolution and analysis of the complaint using the SOCRATES framework (Site, Onset, Character, Radiation, Associated symptoms, Timing, Exacerbating/relieving factors, Severity).
+
+    Systemic Enquiry / Review of Systems (ROS): capture any other symptoms mentioned that belong to cardiovascular, respiratory, gastrointestinal, genitourinary, musculoskeletal, neurological, endocrine, or general systems.
+
+    Past Medical and Surgical History: chronic diseases, prior hospitalizations, operations, and relevant medical conditions.
+
+    Drug History: prescribed medications, dosage, adherence, allergies, and adverse reactions.
+
+    Family History: hereditary or familial illnesses, consanguinity, and similar conditions in relatives.   
+
+    Social History: lifestyle, occupation, smoking/alcohol/drug use, living situation, travel, and physical activity.
+
+    Functional/Physiotherapy Relevance: mobility limitations, daily living impact, assistive device use, or physical restriction patterns.
+
+    7. In "detailed_findings", extract every distinct clinical observation, measurement, or physician remark mentioned in the transcript — do not limit the number of findings.
+
+Your goal is to capture all explicit or implicit medical findings the doctor states or implies, even if they seem minor or repetitive.
+
+Rules:
+
+Include all findings.
+
+Every symptom, observation, exam result, test interpretation, or relevant measurement must appear as a separate "finding".
+
+Even subtle or secondary details (e.g., “mild wheeze,” “tenderness on palpation,” “normal reflexes,” “no cyanosis”) must be captured — normal and abnormal alike.
+
+Do not merge or summarize.
+Each statement in the audio that describes a distinct feature should produce a distinct JSON object.
+
+Use precise medical language.
+Keep all entries clinical and standardized — no conversational tone.
+
+Use system labeling.
+Assign each finding to the appropriate system (e.g., “musculoskeletal,” “respiratory,” “neurological,” “cardiovascular,” “gastrointestinal,” “endocrine,” “general”).
+
+Explain significance.
+"explanation" should state the possible cause, mechanism, or clinical relevance of the finding — as a clinician would interpret it.
+
+Severity & timing.
+Include "severity" and "temporal_relation" when available (e.g., “moderate,” “acute,” “chronic,” “progressive”). Use "N/A" if not mentioned.
+
+Order findings logically.
+Present them grouped by system, in the same sequence as the transcript whenever possible.
+    8. "impression_summary" must deliver a professional-level clinical synthesis — a concise diagnostic reasoning paragraph similar to what a senior physician or physiotherapist would write in a hospital note.
+
+It should:
+
+Integrate key information from the "clinical_history" and "detailed_findings".
+
+Identify the most likely diagnosis or clinical impression, supported by reasoning.
+
+Mention relevant differential diagnoses when uncertainty exists.
+
+Comment on disease stage, chronicity, or functional impact if described.
+
+Use formal hospital language — e.g., “Findings are consistent with…”, “The overall picture suggests…”, “Differential considerations include…”
+
+The tone must be concise, authoritative, and objective, written as if for inclusion in a real patient chart.
 
     9. `"recommendations"` should list specific next steps, including tests, referrals, or management advice — explained briefly.
 
@@ -220,7 +258,7 @@ You are a highly specialized Medical AI Assistant acting as a Doctor-Level Repor
 
     # generate PDF and attach path
     try:
-        pdf_path = make_pdf_from_case(diagnostic_report)
+        pdf_path = make_pdf_from_case(diagnostic_report,)
         diagnostic_report["_pdf_path"] = pdf_path
     except Exception as e:
         print("⚠️ PDF generation failed:", e)
