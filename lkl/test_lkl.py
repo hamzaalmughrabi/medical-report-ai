@@ -1,7 +1,6 @@
-from lkl.lkl_manager import lkl_manager
-
-# Load LKL
+from lkl.lkl_manager import LKLManager
 lkl = LKLManager("lkl/lkl.json")
+
 
 # Fake doctor transcript (instead of real audio)
 text = """
