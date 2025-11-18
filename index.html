@@ -3,18 +3,20 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>MedReport AI Dashboard</title>
-    <!-- Load Tailwind CSS -->
+    <title>Artimes Dashboard</title>
+
+    <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    
-    <!-- NEW: Load TinyMCE Rich Text Editor -->
+
+    <!-- TinyMCE Editor -->
     <script src="https://cdn.tiny.cloud/1/bt5i6vumk847ktblo6p9tikafnn5krvisamy3rdmcr5kqvna/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
-    
-    <link href="https://fonts.googleapis.com" rel="preconnect"/>
-    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
-    <link href="styles.css" rel="stylesheet"/>
+
+    <link rel="stylesheet" href="styles.css"/>
+
     <script>
         tailwind.config = {
             darkMode: "class",
@@ -24,213 +26,176 @@
                         "primary": "#195de6",
                         "background-light": "#f6f6f8",
                         "background-dark": "#111621",
-                    },
-                    fontFamily: {
-                        "display": ["Inter", "sans-serif"]
-                    },
-                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
-                },
-            },
+                    }
+                }
+            }
         }
     </script>
 </head>
-<body class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
+
+<body class="bg-background-light dark:bg-background-dark font-display">
+
 <div class="relative flex min-h-screen w-full">
-    <!-- Sidebar Navigation -->
-    <aside id="sidebar" class="w-64 flex-shrink-0 flex-col gap-4 bg-white dark:bg-gray-900/50 p-4 transition-transform duration-300 md:translate-x-0 md:flex fixed md:static inset-y-0 left-0 z-30 border-r border-gray-200 dark:border-gray-800 -translate-x-full">
-        <!-- Logo -->
-        <div class="flex items-center gap-2 p-2 mb-4">
+
+    <!-- Sidebar -->
+    <aside id="sidebar" class="w-64 flex-shrink-0 bg-white dark:bg-gray-900 p-4 border-r border-gray-200 dark:border-gray-800">
+        <div class="flex items-center gap-2 mb-6">
             <span class="material-symbols-outlined text-primary text-3xl">biotech</span>
-            <h2 class="text-xl font-bold leading-tight tracking-tight text-gray-900 dark:text-white">MedReport AI</h2>
+            <h2 class="text-xl font-bold">Artimes</h2>
         </div>
-        <!-- Sidebar Links -->
+
         <ul class="flex flex-col gap-2">
-            <li id="nav-dashboard" data-page="dashboard" class="nav-item flex h-12 cursor-pointer items-center gap-4 rounded-lg px-4 bg-primary/10 dark:bg-primary/20 text-primary">
-                <span class="material-symbols-outlined">dashboard</span>
-                <p class="text-base font-bold leading-tight truncate">Dashboard</p>
+
+            <li data-page="dashboard" class="nav-item px-4 py-3 rounded-lg bg-primary/10 text-primary cursor-pointer">
+                <span class="material-symbols-outlined">dashboard</span> Dashboard
             </li>
-            <li id="nav-history" data-page="history" class="nav-item flex h-12 cursor-pointer items-center gap-4 rounded-lg px-4 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-                <span class="material-symbols-outlined">history</span>
-                <p class="text-base font-bold leading-tight truncate">History</p>
+
+            <li data-page="history" class="nav-item px-4 py-3 rounded-lg cursor-pointer text-gray-700 dark:text-gray-300">
+                <span class="material-symbols-outlined">history</span> History
             </li>
+
+            <li data-page="phase1" class="nav-item px-4 py-3 rounded-lg cursor-pointer text-gray-700 dark:text-gray-300">
+                <span class="material-symbols-outlined">receipt_long</span> Clinical Intake (Phase 1)
+            </li>
+
+            <li data-page="phase2" class="nav-item px-4 py-3 rounded-lg cursor-pointer text-gray-700 dark:text-gray-300">
+                <span class="material-symbols-outlined">check_circle</span> Final Assessment (Phase 2)
+            </li>
+
         </ul>
-        <div class="mt-auto p-2 text-xs text-gray-400 dark:text-gray-500">
+
+        <div class="mt-auto text-xs text-gray-400 p-2">
             <span id="user-id-display">Connecting...</span>
         </div>
     </aside>
 
+
+
+    <!-- MAIN CONTENT -->
     <main class="flex-1 flex flex-col">
-        <!-- Header/Top Bar -->
-        <header class="flex h-20 shrink-0 items-center justify-between border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-background-dark px-4 md:px-8">
-            <div class="flex items-center gap-2">
-                <!-- Mobile Menu Toggle Button -->
-                <button id="menu-toggle" class="md:hidden flex h-10 w-10 cursor-pointer items-center justify-center rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800">
-                    <span class="material-symbols-outlined">menu</span>
-                </button>
-                <div class="md:hidden flex items-center gap-2">
-                    <span class="material-symbols-outlined text-primary text-3xl">biotech</span>
-                    <h2 class="text-xl font-bold leading-tight tracking-tight text-gray-900 dark:text-white">MedReport AI</h2>
-                </div>
-            </div>
-            <!-- User Profile Section Removed -->
+
+        <!-- Top Header -->
+        <header class="h-16 flex items-center justify-between bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 px-6">
+            <h1 class="text-xl font-semibold text-gray-800 dark:text-gray-200">Dashboard</h1>
+
+            <!-- Mobile sidebar toggle -->
+            <button id="menu-toggle" class="md:hidden text-gray-600 dark:text-gray-300">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
         </header>
 
-        <!-- Horizontal Tab Navigation -->
-        <nav id="horizontal-nav" class="bg-white dark:bg-gray-900/50 border-b border-gray-200 dark:border-gray-800 px-4 md:px-8">
-            <div class="mx-auto max-w-7xl">
-                <div class="flex -mb-px overflow-x-auto">
-                    <a data-page="dashboard" class="tab-item border-b-2 border-primary text-primary whitespace-nowrap py-4 px-4 text-sm font-semibold" href="#">Dashboard</a>
-                    <a data-page="history" class="tab-item border-b-2 border-transparent text-gray-500 dark:text-gray-400 hover:border-gray-300 dark:hover:border-gray-600 hover:text-gray-700 dark:hover:text-gray-300 whitespace-nowrap py-4 px-4 text-sm font-medium" href="#">History</a>
-                </div>
+        <!-- Horizontal Tabs -->
+        <nav class="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 px-6">
+            <div class="flex gap-6 py-3 text-sm font-medium">
+                <a data-page="dashboard" class="tab-item text-primary border-b-2 border-primary cursor-pointer">Dashboard</a>
+                <a data-page="history" class="tab-item text-gray-500 cursor-pointer">History</a>
+                <a data-page="phase1" class="tab-item text-gray-500 cursor-pointer">Clinical Intake</a>
+                <a data-page="phase2" class="tab-item text-gray-500 cursor-pointer">Final Assessment</a>
             </div>
         </nav>
 
-        <!-- Main Content Area -->
-        <div id="content-area" class="flex-1 overflow-y-auto custom-scrollbar">
-            <div class="p-4 md:p-8">
-                <div class="mx-auto max-w-7xl">
-                    <!-- Default Content: Dashboard -->
-                    <section id="content-dashboard" class="page-content">
-                        <h1 class="text-[#111318] dark:text-gray-100 tracking-light text-[32px] font-bold leading-tight text-left">Welcome</h1>
-                        <p class="text-gray-500 dark:text-gray-400 mt-1 mb-8">Start your workflow by recording a new session.</p>
-                        
-                        <!-- RECORD NEW SESSION BUTTON -->
-                        <div class="grid grid-cols-1 gap-6">
-                            <div id="record-session-btn" class="flex flex-col flex-1 gap-4 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/50 p-6 hover:border-primary dark:hover:border-primary transition-colors cursor-pointer">
-                                <div class="text-primary text-4xl">
-                                    <span class="material-symbols-outlined" style="font-size: 40px;">mic</span>
-                                </div>
-                                <div class="flex flex-col gap-1">
-                                    <h2 class="text-[#111318] dark:text-white text-lg font-bold leading-tight">Record New Session</h2>
-                                    <p class="text-gray-500 dark:text-gray-400 text-sm font-normal leading-normal">Start a new patient consultation recording to automatically generate a report.</p>
-                                </div>
-                            </div>
-                        </div>
+        <!-- Dynamic Content -->
+        <div id="content-area" class="flex-1 overflow-y-auto p-6">
 
-                        <div class="mt-12">
-                            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
-                                <h2 class="text-[#111318] dark:text-gray-100 text-[22px] font-bold leading-tight tracking-[-0.015em]">Recent Activity</h2>
-                                <div class="flex items-center gap-2 mt-3 sm:mt-0">
-                                    <div class="relative flex-1 md:flex-0">
-                                        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/e text-gray-400 text-base">filter_list</span>
-                                        <select class="w-full rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900/50 py-2 pl-9 pr-8 text-sm text-gray-600 dark:text-gray-300 focus:border-primary focus:ring-primary focus:ring-1 focus:outline-none appearance-none">
-                                            <option>All Types</option>
-                                            <option>Consultation</option>
-                                            <option>Follow-up</option>
-                                        </select>
-                                    </div>
-                                    <button class="flex h-10 cursor-pointer items-center justify-center overflow-hidden rounded-md bg-primary px-4 text-white text-sm font-bold leading-normal tracking-wide shadow-sm hover:bg-primary/90">View All</button>
-                                </div>
-                            </div>
-                            <!-- Recent Activity Table - Note the ID change -->
-                            <div class="overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/50">
-                                <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-800 text-sm">
-                                    <thead class="bg-gray-50 dark:bg-white/5">
-                                        <tr>
-                                            <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400" scope="col">Patient Name (Case ID)</th>
-                                            <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400" scope="col">Date</th>
-                                            <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400" scope="col">Type</th>
-                                            <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400" scope="col">Status</th>
-                                            <th class="relative px-6 py-3" scope="col"><span class="sr-only">Actions</span></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="dashboard-activity-body" class="divide-y divide-gray-200 dark:divide-gray-800">
-                                        <tr><td colspan="5" class="px-6 py-4 text-center text-gray-500 dark:text-gray-400">Loading activity...</td></tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </section>
-                    <!-- Other page content will be injected here via JavaScript -->
-                    <section id="dynamic-content" class="min-h-full"></section>
+            <!-- DASHBOARD PAGE -->
+            <div id="content-dashboard">
 
+                <h1 class="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">Welcome</h1>
+                <p class="text-gray-500 dark:text-gray-400 mb-6">Start your workflow by recording a new patient session.</p>
+
+                <!-- RECORD BUTTON HERE -->
+                <div class="grid grid-cols-1 gap-6">
+                    <div id="record-session-btn"
+                         class="flex flex-col gap-4 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/50 p-6 cursor-pointer hover:border-primary transition">
+                        <div class="text-primary text-4xl">
+                            <span class="material-symbols-outlined" style="font-size:40px;">mic</span>
+                        </div>
+                        <div>
+                            <h2 class="text-lg font-bold dark:text-white">Record New Session</h2>
+                            <p class="text-gray-500 dark:text-gray-400 text-sm">Click to begin recording and automatically generate a clinical report.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <h2 class="text-xl font-semibold mt-10 mb-4">Recent Activity</h2>
+
+                <div class="border border-gray-200 dark:border-gray-800 rounded-lg overflow-hidden bg-white dark:bg-gray-900/50">
+                    <table class="min-w-full text-sm">
+                        <thead>
+                        <tr class="bg-gray-100 dark:bg-gray-800">
+                            <th class="px-6 py-3 text-left text-gray-600 dark:text-gray-300">Patient</th>
+                            <th class="px-6 py-3 text-left text-gray-600 dark:text-gray-300">Date</th>
+                            <th class="px-6 py-3 text-left text-gray-600 dark:text-gray-300">Status</th>
+                            <th class="px-6 py-3"></th>
+                        </tr>
+                        </thead>
+
+                        <tbody id="dashboard-activity-body">
+                            <tr><td colspan="4" class="px-6 py-4 text-center">Loading...</td></tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
+
+            <!-- OTHER PAGES -->
+            <section id="dynamic-content" class="min-h-full"></section>
+
         </div>
     </main>
 </div>
 
-<!-- Add Patient Modal (Still available, but no button shows it) -->
-<div id="add-patient-modal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-75 z-40 flex items-center justify-center">
-    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-2xl w-full max-w-md p-6 m-4 transform transition-all">
-        <div class="flex justify-between items-center border-b border-gray-200 dark:border-gray-700 pb-3 mb-4">
-            <h3 class="text-xl font-bold text-gray-900 dark:text-white">Add New Patient</h3>
-            <button type="button" id="close-modal" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">
-                <span class="material-symbols-outlined">close</span>
-            </button>
+
+
+
+<!-- RECORDING MODAL -->
+<div id="recording-modal" class="hidden fixed inset-0 bg-black/60 z-50 flex items-center justify-center">
+    <div class="bg-white dark:bg-gray-900 p-6 rounded-xl w-full max-w-lg shadow-xl">
+
+        <h2 class="text-xl font-bold text-gray-800 dark:text-white mb-4">Recording Session</h2>
+
+        <p id="recording-status" class="text-gray-700 dark:text-gray-300">Ready to Record</p>
+        <p id="recording-timer" class="hidden text-2xl text-center mt-2 font-mono">00:00</p>
+
+        <div class="flex gap-4 mt-6">
+            <button id="start-record-btn" class="bg-red-600 text-white px-4 py-2 rounded-lg">Start</button>
+            <button id="stop-record-btn" class="hidden bg-gray-600 text-white px-4 py-2 rounded-lg" disabled>Stop</button>
         </div>
-        <form id="new-patient-form" class="space-y-4">
-            <div>
-                <label for="patient-name" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Full Name</label>
-                <input type="text" id="patient-name" name="name" required class="mt-1 block w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-background-light dark:bg-gray-900/50 p-2 text-gray-900 dark:text-gray-100">
-            </div>
-            <div>
-                <label for="patient-id" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Patient ID (e.g., AB1234)</label>
-                <input type="text" id="patient-id" name="patientId" required class="mt-1 block w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-background-light dark:bg-gray-900/50 p-2 text-gray-900 dark:text-gray-100">
-            </div>
-            <div class="flex justify-end space-x-3 pt-2">
-                <button type="button" id="cancel-modal" class="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600">Cancel</button>
-                <button type="submit" class="px-4 py-2 text-sm font-bold text-white bg-primary rounded-lg hover:bg-primary/90">Save Patient</button>
-            </div>
+
+        <p id="modal-feedback" class="hidden text-center mt-4 text-sm text-primary"></p>
+
+        <button id="close-recording-modal"
+                class="mt-6 px-4 py-2 rounded bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white">
+            Close
+        </button>
+    </div>
+</div>
+
+
+
+<!-- EDITOR MODAL -->
+<div id="edit-report-modal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
+    <div class="bg-white dark:bg-gray-900 rounded-xl shadow-xl w-full max-w-4xl h-[90vh] p-6 flex flex-col">
+
+        <h2 class="text-xl font-bold text-gray-800 dark:text-white mb-3">Review & Edit Report</h2>
+
+        <div class="flex-1 min-h-0">
+            <div id="html-editor" class="w-full h-full"></div>
+        </div>
+
+        <form id="edit-report-form" class="mt-4 flex justify-end gap-3">
+            <button id="cancel-edit-modal" type="button" class="px-4 py-2 bg-gray-200 dark:bg-gray-700 rounded-lg">Cancel</button>
+            <button type="submit" class="px-4 py-2 bg-primary text-white rounded-lg">Save Final PDF</button>
         </form>
+
+        <p id="edit-feedback" class="hidden text-center mt-3 text-green-600"></p>
     </div>
 </div>
 
-<!-- Audio Recording Modal (Unchanged) -->
-<div id="recording-modal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-75 z-40 flex items-center justify-center">
-    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-2xl w-full max-w-lg p-6 m-4 transform transition-all space-y-4">
-        <div class="flex justify-between items-center border-b border-gray-200 dark:border-gray-700 pb-3 mb-4">
-            <h3 class="text-xl font-bold text-gray-900 dark:text-white">Record New Session</h3>
-            <button type="button" id="close-recording-modal" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">
-                <span class="material-symbols-outlined">close</span>
-            </button>
-        </div>
-        <div class="flex flex-col items-center justify-center p-6 rounded-lg border border-dashed border-gray-300 dark:border-gray-700">
-            <div id="recording-status" class="text-lg font-medium text-gray-500 dark:text-gray-400">Ready to Record</div>
-            <div id="recording-timer" class="text-2xl font-mono mt-2 text-gray-800 dark:text-white hidden">00:00</div>
-            <div class="flex space-x-4 mt-6">
-                <button id="start-record-btn" class="flex items-center justify-center h-12 w-32 rounded-full bg-red-500 text-white font-bold hover:bg-red-600 transition-colors shadow-lg">
-                    <span class="material-symbols-outlined mr-2">mic</span> Start
-                </button>
-                <button id="stop-record-btn" class="hidden flex items-center justify-center h-12 w-32 rounded-full bg-gray-500 text-white font-bold hover:bg-gray-600 transition-colors shadow-lg" disabled>
-                    <span class="material-symbols-outlined mr-2">stop</span> Stop
-                </button>
-            </div>
-        </div>
-        <div id="record-error-message" class="hidden text-center text-sm text-red-500 font-medium"></div>
-        <div id="modal-feedback" class="text-center text-sm mt-3 font-semibold text-primary dark:text-primary hidden"></div>
-    </div>
-</div>
 
-<!-- Edit Report Modal (Now for editing HTML) -->
-<div id="edit-report-modal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-75 z-40 flex items-center justify-center">
-    <!-- Make modal larger for the editor -->
-    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-2xl w-full max-w-4xl h-[90vh] p-6 m-4 transform transition-all flex flex-col">
-        <div class="flex justify-between items-center border-b border-gray-200 dark:border-gray-700 pb-3 mb-4">
-            <h3 class="text-xl font-bold text-gray-900 dark:text-white">Review & Edit Report</h3>
-            <button type="button" id="close-edit-modal" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">
-                <span class="material-symbols-outlined">close</span>
-            </button>
-        </div>
-        
-        <form id="edit-report-form" class="space-y-4 flex-1 flex flex-col">
-            <p id="edit-report-patient-info" class="text-sm text-gray-600 dark:text-gray-400 font-medium">Review and edit the report. Fix typos or add notes before finalizing.</p>
-            
-            <!-- NEW: This div will be replaced by the TinyMCE editor -->
-            <div class="flex-1 min-h-0">
-                 <div id="html-editor" class="w-full h-full"></div>
-            </div>
-            
-            <div class="flex justify-end space-x-3 pt-2">
-                <button type="button" id="cancel-edit-modal" class="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600">Cancel</button>
-                <button type="submit" class="px-4 py-2 text-sm font-bold text-white bg-primary rounded-lg hover:bg-primary/90">Save Final PDF</button>
-            </div>
-            <div id="edit-feedback" class="text-center text-sm mt-3 font-semibold text-green-500 hidden"></div>
-        </form>
-    </div>
-</div>
 
-<!-- Load external script as module -->
+
 <script type="module" src="script.js"></script>
+
 </body>
 </html>

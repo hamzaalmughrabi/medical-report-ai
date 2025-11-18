@@ -1,0 +1,50 @@
+<div class="p-6 space-y-6">
+
+    <!-- Page Header -->
+    <div class="pb-4">
+        <h1 class="text-3xl font-bold text-gray-900 dark:text-white">
+            Final Assessment – Doctor Review (Phase 2)
+        </h1>
+        <p class="text-gray-500 dark:text-gray-400 text-sm mt-1">
+            Complete the final clinical interpretation and generate the official medical report.
+        </p>
+    </div>
+
+    <!-- Case Info Banner -->
+    <div id="phase2-case-info"
+         class="bg-blue-50 dark:bg-blue-900/40 border border-blue-200 dark:border-blue-700 
+                text-blue-700 dark:text-blue-300 px-4 py-3 rounded-xl font-medium shadow-sm">
+        Case ID: <span id="phase2-case-id">No Case Selected</span>
+    </div>
+
+    <!-- Phase 2 Record Button -->
+    <div class="mt-4">
+        <button id="p2-record-btn"
+                class="bg-gray-900 text-white px-4 py-2 rounded-md">
+            🎙️ Record Audio (Phase 2)
+        </button>
+    </div>
+
+    <!-- Phase 2 Output (JSON / status) -->
+    <div id="phase2-output" class="mt-4 text-sm text-gray-900 dark:text-gray-200"></div>
+
+    <!-- Final Notes Card -->
+    <div class="bg-white dark:bg-gray-800 shadow-md rounded-2xl p-6 space-y-4 border border-gray-200 dark:border-gray-700 mt-6">
+
+        <h2 class="text-xl font-semibold text-gray-900 dark:text-white">
+            Doctor Final Notes
+        </h2>
+
+        <textarea id="phase2-notes"
+            class="w-full h-40 p-4 rounded-xl border border-gray-300 dark:border-gray-700 
+                   bg-gray-50 dark:bg-gray-900/60 text-gray-900 dark:text-gray-200
+                   focus:ring-2 focus:ring-primary focus:border-primary resize-none"
+            placeholder="Write your final diagnosis, interpretation, or additional clinical notes here..."></textarea>
+
+        <button id="phase2-finalize"
+                class="bg-primary text-white px-5 py-3 rounded-xl shadow-md">
+            Save Final PDF
+        </button>
+    </div>
+
+</div>

@@ -1,0 +1,35 @@
+<div class="p-6">
+    <h1 class="text-2xl font-bold mb-4">Clinical Intake – Phase 1</h1>
+
+    <div class="bg-white shadow rounded p-5">
+        <h2 class="font-semibold mb-3">Upload Audio File</h2>
+
+        <div class="flex gap-3 items-center">
+            <input type="file" id="audioInput" accept="audio/*">
+
+            <button id="upload-btn"
+                    class="bg-blue-600 text-white px-4 py-2 rounded-md">
+                Upload & Process
+            </button>
+
+            <button id="start-phase1-record"
+                    class="bg-gray-900 text-white px-4 py-2 rounded-md">
+                🎙️ Record Instead
+            </button>
+        </div>
+    </div>
+
+    <div id="phase1-output" class="mt-6"></div>
+
+    <h2 class="text-xl font-bold mt-10 mb-3">Reports Waiting for Phase 2</h2>
+    <table id="phase1-table" class="w-full border">
+        <thead class="bg-gray-100">
+            <tr>
+                <th class="p-2">Case ID</th>
+                <th class="p-2">Patient</th>
+                <th class="p-2">Open</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>

@@ -1,0 +1,32 @@
+{
+  "report_id": "recording_1763445693230",
+  "patient_name": "John Doe",
+  "age": "45",
+  "sex": "Male",
+  "dob": "1978-05-15",
+  "referring_doctor": "Dr. Smith",
+  "exam_date": "2023-10-01",
+  "exam_type": "MRI",
+  "clinical_history": "Patient presents with persistent headaches and dizziness.",
+  "detailed_findings": [
+    {
+      "finding": "Lesion in the left temporal lobe",
+      "explanation": "The lesion is approximately 2 cm in diameter and appears to be benign."
+    },
+    {
+      "finding": "Mild sinusitis",
+      "explanation": "Inflammation observed in the sinus cavities, likely contributing to headaches."
+    }
+  ],
+  "impression_summary": "The MRI reveals a benign lesion in the left temporal lobe and mild sinusitis.",
+  "recommendations": [
+    "Follow-up MRI in 6 months to monitor the lesion.",
+    "Consultation with an ENT specialist for sinusitis management."
+  ],
+  "urgency_level": "moderate",
+  "timestamp": "2025-11-18T09:01:42.556802",
+  "source_file": "recording_1763445693230.webm",
+  "_category": null,
+  "_missing_info": [],
+  "phase2_needed": true
+}

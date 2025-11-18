@@ -1141,6 +1141,319 @@
       "_category": null,
       "_missing_info": [],
       "source_file": "Recording 3.m4a"
+    },
+    {
+      "report_id": "recording_1763444212277",
+      "patient_name": "غير متوفر",
+      "age": "غير متوفر",
+      "sex": "غير متوفر",
+      "dob": "غير متوفر",
+      "referring_doctor": "غير متوفر",
+      "exam_date": "غير متوفر",
+      "exam_type": "Clinical Interview",
+      "clinical_history": "The patient has been experiencing left knee pain for over a year, which worsens with cold weather. The pain started suddenly and is constant, increasing with exposure to cold or cold water and decreasing with warmth. No medications are currently being used for relief.",
+      "detailed_findings": [
+        {
+          "finding": "Left knee pain",
+          "explanation": "The pain has been present for over a year, worsens with cold exposure, and improves with warmth. There is no swelling or stiffness lasting more than ten minutes in the morning."
+        },
+        {
+          "finding": "Family history",
+          "explanation": "There is a family history of lymphatic disease affecting the knees and rheumatoid arthritis."
+        },
+        {
+          "finding": "Thyroid condition",
+          "explanation": "The patient is on 100 mg of thyroxine for hypothyroidism."
+        }
+      ],
+      "impression_summary": "Chronic left knee pain likely exacerbated by cold exposure, with a possible familial predisposition to joint issues.",
+      "recommendations": [
+        "Consider further evaluation by a rheumatologist.",
+        "Implement strategies to keep the knee warm, especially in cold weather.",
+        "Monitor for any changes in symptoms or new joint involvement."
+      ],
+      "urgency_level": "moderate",
+      "timestamp": "2025-11-18T08:37:24.492300",
+      "source_file": "recording_1763444212277.webm",
+      "_category": null,
+      "_missing_info": [],
+      "phase2_needed": true
+    },
+    {
+      "report_id": "recording_1763445693230",
+      "patient_name": "John Doe",
+      "age": "45",
+      "sex": "Male",
+      "dob": "1978-05-15",
+      "referring_doctor": "Dr. Smith",
+      "exam_date": "2023-10-01",
+      "exam_type": "MRI",
+      "clinical_history": "Patient presents with persistent headaches and dizziness.",
+      "detailed_findings": [
+        {
+          "finding": "Lesion in the left temporal lobe",
+          "explanation": "The lesion is approximately 2 cm in diameter and appears to be benign."
+        },
+        {
+          "finding": "Mild sinusitis",
+          "explanation": "Inflammation observed in the sinus cavities, likely contributing to headaches."
+        }
+      ],
+      "impression_summary": "The MRI reveals a benign lesion in the left temporal lobe and mild sinusitis.",
+      "recommendations": [
+        "Follow-up MRI in 6 months to monitor the lesion.",
+        "Consultation with an ENT specialist for sinusitis management."
+      ],
+      "urgency_level": "moderate",
+      "timestamp": "2025-11-18T09:01:42.556802",
+      "source_file": "recording_1763445693230.webm",
+      "_category": null,
+      "_missing_info": [],
+      "phase2_needed": true
+    },
+    {
+      "report_id": "recording_1763452812417",
+      "phase": "intake",
+      "patient_name": "",
+      "age": "",
+      "sex": "",
+      "dob": "",
+      "referring_doctor": "",
+      "exam_date": "",
+      "exam_type": "",
+      "clinical_history": "",
+      "detailed_findings": [],
+      "impression_summary": "",
+      "recommendations": [],
+      "urgency_level": "N/A",
+      "timestamp": "2025-11-18T11:00:18.484022",
+      "_category": null,
+      "_missing_info": []
+    },
+    {
+      "report_id": "recording_1763452833370",
+      "phase": "intake",
+      "patient_name": "غير متوفر",
+      "age": "غير متوفر",
+      "sex": "غير متوفر",
+      "dob": "غير متوفر",
+      "referring_doctor": "غير متوفر",
+      "exam_date": "غير متوفر",
+      "exam_type": "Initial Clinical Encounter",
+      "clinical_history": "The patient reports left knee pain persisting for over a year, exacerbated by cold weather. The pain began suddenly and is constant, worsening with exposure to cold or cold water and alleviated by warmth.",
+      "detailed_findings": [
+        {
+          "finding": "Left knee pain",
+          "explanation": "Persistent for over a year, worsens with cold exposure, alleviated by warmth."
+        },
+        {
+          "finding": "No swelling or stiffness",
+          "explanation": "No reported swelling or significant morning stiffness, except for less than 10 minutes in cold weather."
+        },
+        {
+          "finding": "No joint instability",
+          "explanation": "No giving way or locking of the knee reported."
+        },
+        {
+          "finding": "Family history",
+          "explanation": "Family history of lymphatic disease affecting knees and rheumatoid arthritis."
+        },
+        {
+          "finding": "Hypothyroidism",
+          "explanation": "Patient is on 100 mg of thyroxine."
+        }
+      ],
+      "impression_summary": "Chronic left knee pain likely exacerbated by cold exposure, with no signs of joint instability or significant swelling. Family history suggests possible underlying rheumatologic condition.",
+      "recommendations": [
+        "Consider further rheumatologic evaluation.",
+        "Advise on protective measures against cold exposure.",
+        "Monitor for any changes in symptoms or new symptoms."
+      ],
+      "urgency_level": "moderate",
+      "timestamp": "2025-11-18T11:01:23.444044",
+      "_category": null,
+      "_missing_info": []
+    },
+    {
+      "report_id": "recording_1763458609076",
+      "phase": "intake",
+      "patient_name": "غير متوفر",
+      "age": "غير متوفر",
+      "sex": "غير متوفر",
+      "dob": "غير متوفر",
+      "referring_doctor": "غير متوفر",
+      "exam_date": "غير متوفر",
+      "exam_type": "Initial Consultation",
+      "clinical_history": "The patient reports left knee pain persisting for over a year, exacerbated by cold weather. The pain began suddenly and is constant, worsening with exposure to cold or cold water and alleviated by warmth. No swelling or locking of the knee is reported. Morning stiffness lasts less than ten minutes if the weather is cold. No other joint issues or back pain are reported. Family history includes lymphatic disease affecting the knees and rheumatoid arthritis. The patient has hypothyroidism, managed with 100 mg of thyroxine, and lives on the third floor with elevator access.",
+      "detailed_findings": [
+        {
+          "finding": "Left knee pain",
+          "explanation": "Persistent for over a year, worsens with cold exposure, alleviated by warmth."
+        },
+        {
+          "finding": "Sudden onset",
+          "explanation": "Pain began suddenly and remains constant."
+        },
+        {
+          "finding": "Morning stiffness",
+          "explanation": "Stiffness lasting less than ten minutes in cold weather."
+        },
+        {
+          "finding": "Family history",
+          "explanation": "Includes lymphatic disease affecting knees and rheumatoid arthritis."
+        },
+        {
+          "finding": "Hypothyroidism",
+          "explanation": "Managed with 100 mg of thyroxine."
+        }
+      ],
+      "impression_summary": "Chronic left knee pain likely exacerbated by cold exposure, with a family history of joint-related conditions.",
+      "recommendations": [
+        "Consider further evaluation for potential underlying joint conditions.",
+        "Monitor symptoms and consider imaging if pain persists or worsens.",
+        "Advise on protective measures against cold exposure."
+      ],
+      "urgency_level": "moderate",
+      "timestamp": "2025-11-18T12:37:35.290597",
+      "_category": null,
+      "_missing_info": []
+    },
+    {
+      "report_id": "recording_1763458966787",
+      "phase": "intake",
+      "patient_name": "غير متوفر",
+      "age": "غير متوفر",
+      "sex": "غير متوفر",
+      "dob": "غير متوفر",
+      "referring_doctor": "غير متوفر",
+      "exam_date": "غير متوفر",
+      "exam_type": "Initial Consultation",
+      "clinical_history": "The patient reports left knee pain persisting for over a year, exacerbated by cold weather. The pain began suddenly and is constant, worsening with exposure to cold or cold water and alleviated by warmth. No medications are currently used for relief. No swelling or locking of the knee is reported. Morning stiffness lasts less than ten minutes in cold weather. No other joint issues or back pain are reported. Family history includes lymphatic disease affecting the knees and rheumatoid arthritis.",
+      "detailed_findings": [
+        {
+          "finding": "Left knee pain",
+          "explanation": "Persistent for over a year, worsens with cold exposure, alleviated by warmth."
+        },
+        {
+          "finding": "No swelling or locking",
+          "explanation": "Patient reports no swelling or locking of the knee."
+        },
+        {
+          "finding": "Morning stiffness",
+          "explanation": "Stiffness in the morning lasting less than ten minutes in cold weather."
+        },
+        {
+          "finding": "Family history",
+          "explanation": "Includes lymphatic disease affecting knees and rheumatoid arthritis."
+        },
+        {
+          "finding": "Thyroid medication",
+          "explanation": "Patient is on 100 mg of thyroxine for hypothyroidism."
+        }
+      ],
+      "impression_summary": "Chronic left knee pain likely exacerbated by cold exposure, with a family history suggestive of possible underlying rheumatologic condition.",
+      "recommendations": [
+        "Consider rheumatologic evaluation.",
+        "Evaluate for possible osteoarthritis or other degenerative joint conditions.",
+        "Consider imaging studies such as X-ray or MRI of the left knee.",
+        "Advise on lifestyle modifications to manage symptoms, such as keeping the knee warm."
+      ],
+      "urgency_level": "moderate",
+      "timestamp": "2025-11-18T12:43:40.527308",
+      "_category": null,
+      "_missing_info": []
+    },
+    {
+      "report_id": "recording_1763459243552",
+      "phase": "intake",
+      "patient_name": "غير متوفر",
+      "age": "غير متوفر",
+      "sex": "غير متوفر",
+      "dob": "غير متوفر",
+      "referring_doctor": "غير متوفر",
+      "exam_date": "غير متوفر",
+      "exam_type": "غير متوفر",
+      "clinical_history": "المريضة تعاني من ألم في الركبة اليسرى منذ أكثر من سنة، يزداد مع البرد والشتاء. الألم ثابت ويخف عند تدفئة الركبة. لا توجد مشاكل في مفاصل أخرى أو انتفاخ أو تورم في الركبة. لا توجد مشاكل في أسفل الظهر أو تاريخ مرضي عائلي لأمراض الروماتيزم أو المفاصل. المريضة تتناول الثيروكسين بجرعة 100 ميلي جرام يومياً.",
+      "detailed_findings": [
+        {
+          "finding": "ألم في الركبة اليسرى",
+          "explanation": "الألم مستمر منذ أكثر من سنة ويزداد مع البرد ويخف مع التدفئة."
+        },
+        {
+          "finding": "لا يوجد انتفاخ أو تورم",
+          "explanation": "المريضة لم تلاحظ أي انتفاخ أو تورم في الركبة."
+        },
+        {
+          "finding": "تيبس صباحي أقل من عشر دقائق",
+          "explanation": "المريضة تشعر بتيبس في الركبة عند البرد لمدة أقل من عشر دقائق."
+        },
+        {
+          "finding": "لا يوجد تاريخ عائلي لأمراض الروماتيزم",
+          "explanation": "لا توجد أمراض روماتيزم في العائلة."
+        },
+        {
+          "finding": "تناول الثيروكسين",
+          "explanation": "المريضة تتناول الثيروكسين بجرعة 100 ميلي جرام يومياً بسبب كسل الغدة."
+        }
+      ],
+      "impression_summary": "المريضة تعاني من ألم مزمن في الركبة اليسرى يزداد مع البرد ويخف مع التدفئة، بدون وجود علامات التهاب أو تورم. لا توجد مشاكل في مفاصل أخرى أو تاريخ عائلي لأمراض المفاصل.",
+      "recommendations": [
+        "تجنب التعرض للبرد",
+        "استخدام وسائل تدفئة للركبة",
+        "متابعة مع طبيب مختص في حال استمرار الأعراض"
+      ],
+      "urgency_level": "low",
+      "timestamp": "2025-11-18T12:51:01.715327",
+      "_category": null,
+      "_missing_info": []
+    },
+    {
+      "report_id": "recording_1763459323516",
+      "phase": "intake",
+      "patient_name": "غير متوفر",
+      "age": "غير متوفر",
+      "sex": "غير متوفر",
+      "dob": "غير متوفر",
+      "referring_doctor": "غير متوفر",
+      "exam_date": "غير متوفر",
+      "exam_type": "غير متوفر",
+      "clinical_history": "المريضة تعاني من ألم في الركبة اليسرى منذ أكثر من سنة، يزداد مع البرد والشتاء. لا توجد مشاكل في مفاصل أخرى أو تاريخ مرضي مشابه في العائلة باستثناء عمة تعاني من مشكلة ليمفاوية تؤثر على الركبة. المريضة تأخذ ثيروكسين بجرعة 100 ميلي جرام يومياً.",
+      "detailed_findings": [
+        {
+          "finding": "ألم في الركبة اليسرى",
+          "explanation": "الألم مستمر منذ أكثر من سنة ويزداد مع التعرض للبرد أو الماء البارد ويخف مع التدفئة."
+        },
+        {
+          "finding": "لا يوجد تورم أو انتفاخ في الركبة",
+          "explanation": "المريضة لم تلاحظ أي تورم أو انتفاخ في الركبة."
+        },
+        {
+          "finding": "تيبس صباحي أقل من عشر دقائق",
+          "explanation": "المريضة تشعر بتيبس في الركبة عند الصباح إذا كان الجو بارداً، ويستمر لأقل من عشر دقائق."
+        },
+        {
+          "finding": "لا يوجد ضعف أو تعليقة في الركبة",
+          "explanation": "المريضة لم تلاحظ أي ضعف أو تعليقة في الركبة أثناء المشي."
+        },
+        {
+          "finding": "تاريخ عائلي لأمراض المفاصل",
+          "explanation": "عمة المريضة تعاني من مشكلة ليمفاوية تؤثر على الركبة."
+        },
+        {
+          "finding": "تناول ثيروكسين بجرعة 100 ميلي جرام",
+          "explanation": "المريضة تأخذ ثيروكسين بجرعة 100 ميلي جرام يومياً بسبب كسل في الغدة."
+        }
+      ],
+      "impression_summary": "المريضة تعاني من ألم مزمن في الركبة اليسرى يزداد مع البرد، بدون وجود تورم أو ضعف في الركبة. التاريخ العائلي يشير إلى وجود مشاكل ليمفاوية تؤثر على الركبة لدى أحد الأقارب.",
+      "recommendations": [
+        "تجنب التعرض للبرد والماء البارد.",
+        "استخدام وسائل التدفئة لتخفيف الألم.",
+        "متابعة مع طبيب مختص في أمراض المفاصل لمزيد من التقييم."
+      ],
+      "urgency_level": "low",
+      "timestamp": "2025-11-18T12:51:53.446969",
+      "_category": null,
+      "_missing_info": []
     }
   ]
 }

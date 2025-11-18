@@ -3,29 +3,35 @@ import json
 from datetime import datetime
 from openai import OpenAI
 
-# Local Knowledge Layer
 from lkl.lkl_manager import LKLManager
-
-# PDF generator
 from json_to_pdf import make_pdf_from_case
 
-OUTPUT_DIR = "outputs"
-AUDIO_FOLDER = "audio_files"
-MEMORY_FILE = "memory.json"
-
-# -------------------
-#   OpenAI Key
-# -------------------
+# Init OpenAI client
 api_key = os.environ.get("OPENAI_API_KEY")
 if not api_key:
-    raise ValueError("❌ ERROR: OPENAI_API_KEY not set")
-
+    raise ValueError("OPENAI_API_KEY is missing.")
 client = OpenAI(api_key=api_key)
 
+MEMORY_FILE = "memory.json"
 
-# -------------------
-# MEMORY LOADING
-# -------------------
+TARGET_SCHEMA_JSON = """{
+  "report_id": "string",
+  "phase": "intake | final_assessment",
+  "patient_name": "string",
+  "age": "string",
+  "sex": "string",
+  "dob": "string",
+  "referring_doctor": "string",
+  "exam_date": "string",
+  "exam_type": "string",
+  "clinical_history": "string",
+  "detailed_findings": [{"finding":"string","explanation":"string"}],
+  "impression_summary": "string",
+  "recommendations": ["string"],
+  "urgency_level": "low | moderate | high | N/A"
+}"""
+
+# Load memory
 if os.path.exists(MEMORY_FILE):
     with open(MEMORY_FILE, "r", encoding="utf-8") as f:
         memory = json.load(f)
@@ -38,54 +44,38 @@ def _save_memory():
         json.dump(memory, f, indent=2, ensure_ascii=False)
 
 
-# --------------------------------------------------
-# SAFELY PARSE GPT OUTPUT
-# --------------------------------------------------
 def _safe_parse_llm_response(resp):
     try:
         content = resp.choices[0].message.content
-    except:
-        content = None
-
-    if content is None:
-        return {}
+    except Exception:
+        return {"error": "LLM returned no content"}
 
     if isinstance(content, dict):
         return content
 
     try:
         return json.loads(content)
-    except:
-        import re
-        m = re.search(r"\{.*\}", content, flags=re.S)
-        if m:
-            try:
-                return json.loads(m.group(0))
-            except:
-                pass
-
-    return {"raw_output": str(content)}
+    except Exception:
+        return {"raw_output": str(content)}
 
 
-# --------------------------------------------------
-# MAIN PIPELINE FUNCTION
-# --------------------------------------------------
-def process_audio_to_json(audio_file_path: str):
+# =====================================================================
+# FULL PIPELINE: Used for PHASE 1 + PHASE 2
+# =====================================================================
+def process_full_medical_report(audio_file_path: str, phase: str):
     """
-    Audio > Whisper > LKL > GPT > JSON > PDF
+    PHASE:
+      - "intake"            → doctor ↔ patient
+      - "final_assessment"  → doctor only
     """
 
-    # Initialize Local Knowledge Layer
-    lkl = LKLManager("C:/Users/hamza/PycharmProjects/medical-ai-/lkl/lkl.json")
-
+    lkl = LKLManager()
     filename = os.path.basename(audio_file_path)
     case_id = filename.split(".")[0]
 
-    print(f"\n🎙️ Processing file: {filename}")
+    print(f"\n🎙️ Processing PHASE={phase} → file={filename}")
 
-    # --------------------------------------------------
-    # STEP 1 — TRANSCRIBE
-    # --------------------------------------------------
+    # STEP 1 — Whisper
     with open(audio_file_path, "rb") as audio_file:
         transcription = client.audio.transcriptions.create(
             model="whisper-1",
@@ -93,142 +83,93 @@ def process_audio_to_json(audio_file_path: str):
             response_format="verbose_json"
         )
 
-    conversation_text = ""
-    if isinstance(transcription, dict) and transcription.get("text"):
-        conversation_text = transcription.get("text", "").strip()
-    else:
-        conversation_text = getattr(transcription, "text", "") or ""
-        conversation_text = str(conversation_text).strip()
+    conversation_text = getattr(transcription, "text", "").strip()
+    print("✅ Whisper transcription complete.")
 
-    print("✅ Transcription complete.")
+    # STEP 2 — LKL
+    category = lkl.detect_category(conversation_text)
+    missing_info = lkl.detect_missing_info(category, conversation_text) if category else []
+    templates = lkl.suggest_templates(category) if category else []
+    knowledge = lkl.get_category_knowledge(category)
 
-
-    # --------------------------------------------------
-    # STEP 2 — LKL CATEGORY MATCHING
-    # --------------------------------------------------
-    matched_category = lkl.detect_category(conversation_text)
-    print("📌 Detected Category:", matched_category)
-
-    # Retrieve category knowledge
-    lkl_knowledge = lkl.get_category_knowledge(matched_category) if matched_category else None
-
-
-    # --------------------------------------------------
-    # STEP 3 — DETECT MISSING INFORMATION
-    # --------------------------------------------------
-    missing_info = []
-    if matched_category:
-        missing_info = lkl.detect_missing_info(matched_category, conversation_text)
-    print("❓ Missing Info:", missing_info)
-
-
-    # --------------------------------------------------
-    # STEP 4 — TEMPLATE SUGGESTION
-    # --------------------------------------------------
-    templates = {}
-    if matched_category:
-        templates = lkl.suggest_templates(matched_category)
-
-    print("📄 Templates Loaded.")
-
-
-    # --------------------------------------------------
-    # STEP 5 — BUILD GPT PROMPT WITH LKL CONTEXT
-    # --------------------------------------------------
-    TARGET_SCHEMA_JSON = """{
-      "report_id": "",
-      "patient_name": "",
-      "age": "",
-      "sex": "",
-      "dob": "",
-      "referring_doctor": "",
-      "exam_date": "",
-      "exam_type": "",
-      "clinical_history": "",
-      "detailed_findings": [{"finding":"","explanation":""}],
-      "impression_summary": "",
-      "recommendations": [],
-      "urgency_level": ""
-    }"""
-
+    # STEP 3 — GPT
     prompt = f"""
-You are a Medical Report Generator AI.  
-Your PRIMARY KNOWLEDGE SOURCE = Local Knowledge Layer (LKL).  
-Use LKL FIRST before model reasoning.
+You are a highly specialized Medical Report Generator.
 
----
+PHASE: {phase}
 
-### LKL CATEGORY:
-{matched_category}
+CATEGORY: {category}
 
-### LKL KNOWLEDGE:
-{json.dumps(lkl_knowledge, indent=2)}
+Use ONLY the LKL knowledge below:
+{json.dumps(knowledge, indent=2)}
 
-### Missing Information (Ask Doctor These If Needed):
-{missing_info}
-
-### Template Suggestions:
-{json.dumps(templates, indent=2)}
-
----
-
-### TRANSCRIPT:
+FULL TRANSCRIPT:
 {conversation_text}
 
----
-
-### TASK:
-Generate a structured JSON following EXACTLY this schema:
-
+Generate a JSON MEDICAL REPORT using this schema:
 {TARGET_SCHEMA_JSON}
 
-Rules:
-- Use LKL knowledge first.
-- Extract ALL clinical details.
-- Findings must be atomic and detailed.
-- Add explanations to each finding.
-- Use clinical professional language.
-- OUTPUT JSON ONLY.
+RULES:
+- Fill ALL fields using the transcript.
+- detailed_findings MUST include every finding + explanation.
+- impression_summary must be doctor-style.
+- recommendations must be a list.
+- DO NOT hallucinate.
+- Output ONLY JSON.
 """
 
-    # --------------------------------------------------
-    # STEP 6 — GPT CALL
-    # --------------------------------------------------
-    print("🚀 Sending prompt to GPT...")
     response = client.chat.completions.create(
         model="gpt-4o",
         messages=[{"role": "user", "content": prompt}],
         response_format={"type": "json_object"},
         temperature=0.0,
-        max_tokens=3500
+        max_tokens=4000,
     )
 
-    diagnostic_report = _safe_parse_llm_response(response)
+    report = _safe_parse_llm_response(response)
 
-    # Add metadata
-    diagnostic_report["report_id"] = case_id
-    diagnostic_report["timestamp"] = datetime.now().isoformat()
-    diagnostic_report["_category"] = matched_category
-    diagnostic_report["_missing_info"] = missing_info
-    diagnostic_report["source_file"] = filename
+    # STEP 4 — Metadata
+    report["report_id"] = case_id
+    report["phase"] = phase
+    report["timestamp"] = datetime.now().isoformat()
+    report["_category"] = category
+    report["_missing_info"] = missing_info
+
+    # Save only Phase 1 for the Phase 2 list
+    if phase == "intake":
+        memory["cases"].append(report)
+        _save_memory()
+
+    print(f"💾 Saved {phase} report: {case_id}")
+
+    return report
 
 
-    # --------------------------------------------------
-    # STEP 7 — PDF GENERATION
-    # --------------------------------------------------
+# =====================================================================
+# FIXED PDF GENERATOR — RETURNS PATH (IMPORTANT!!)
+# =====================================================================
+def make_pdf_from_report(report_json):
+    """
+    Converts JSON → PDF and RETURNS the path.
+    """
+
+    os.makedirs("reports", exist_ok=True)
+
+    report_id = report_json.get("report_id", f"report_{int(datetime.now().timestamp())}")
+    output_path = os.path.join("reports", f"{report_id}_final.pdf")
+
     try:
-        pdf_path = make_pdf_from_case(diagnostic_report)
-        diagnostic_report["_pdf_path"] = pdf_path
+        # Generate PDF
+        make_pdf_from_case(report_json, output_path)
+
+        if not os.path.isfile(output_path):
+            raise RuntimeError("PDF was not created.")
+
+        print(f"✅ PDF successfully created at {output_path}")
+
+        # 🔥 CRITICAL FIX — return the path
+        return output_path
+
     except Exception as e:
-        print("⚠️ PDF Failed:", e)
-        pdf_path = None
-
-
-    # --------------------------------------------------
-    # STEP 8 — SAVE REPORT TO MEMORY
-    # --------------------------------------------------
-    memory["cases"].append(diagnostic_report)
-    _save_memory()
-    print("💾 Saved Case:", case_id)
-
-    return diagnostic_report, pdf_path
+        print(f"❌ Failed generating PDF: {e}")
+        return None

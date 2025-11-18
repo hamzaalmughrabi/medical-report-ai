@@ -1,0 +1,37 @@
+{
+  "report_id": "recording_1763444212277",
+  "patient_name": "غير متوفر",
+  "age": "غير متوفر",
+  "sex": "غير متوفر",
+  "dob": "غير متوفر",
+  "referring_doctor": "غير متوفر",
+  "exam_date": "غير متوفر",
+  "exam_type": "Clinical Interview",
+  "clinical_history": "The patient has been experiencing left knee pain for over a year, which worsens with cold weather. The pain started suddenly and is constant, increasing with exposure to cold or cold water and decreasing with warmth. No medications are currently being used for relief.",
+  "detailed_findings": [
+    {
+      "finding": "Left knee pain",
+      "explanation": "The pain has been present for over a year, worsens with cold exposure, and improves with warmth. There is no swelling or stiffness lasting more than ten minutes in the morning."
+    },
+    {
+      "finding": "Family history",
+      "explanation": "There is a family history of lymphatic disease affecting the knees and rheumatoid arthritis."
+    },
+    {
+      "finding": "Thyroid condition",
+      "explanation": "The patient is on 100 mg of thyroxine for hypothyroidism."
+    }
+  ],
+  "impression_summary": "Chronic left knee pain likely exacerbated by cold exposure, with a possible familial predisposition to joint issues.",
+  "recommendations": [
+    "Consider further evaluation by a rheumatologist.",
+    "Implement strategies to keep the knee warm, especially in cold weather.",
+    "Monitor for any changes in symptoms or new joint involvement."
+  ],
+  "urgency_level": "moderate",
+  "timestamp": "2025-11-18T08:37:24.492300",
+  "source_file": "recording_1763444212277.webm",
+  "_category": null,
+  "_missing_info": [],
+  "phase2_needed": true
+}

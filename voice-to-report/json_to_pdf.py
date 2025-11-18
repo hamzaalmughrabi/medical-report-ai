@@ -6,6 +6,8 @@ from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
 from reportlab.lib.units import inch
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfbase import pdfmetrics
+from datetime import datetime
+
 
 
 def make_pdf_from_case(data: dict, output_path: str):
@@ -88,3 +90,26 @@ def make_pdf_from_case(data: dict, output_path: str):
     except Exception as e:
         print(f"❌ PDF generation failed: {e}")
         raise
+def make_pdf_from_report(report_json):
+    """
+    Wrapper used by backend_api.py
+    Automatically generates PDF path and calls make_pdf_from_case()
+    """
+
+    try:
+        # Create reports directory
+        output_dir = "reports"
+        os.makedirs(output_dir, exist_ok=True)
+
+        # Build filename
+        report_id = report_json.get("report_id", f"report_{int(datetime.now().timestamp())}")
+        output_path = os.path.join(output_dir, f"{report_id}_final.pdf")
+
+        # Call the real PDF generator
+        make_pdf_from_case(report_json, output_path)
+
+        return output_path
+
+    except Exception as e:
+        print("❌ make_pdf_from_report failed:", e)
+        return None
