@@ -1,25 +1,31 @@
 <div class="p-6">
-    <h1 class="text-2xl font-bold mb-4">Clinical Intake – Phase 1</h1>
+    <h1 class="text-2xl font-bold mb-4">Clinical Intake </h1>
 
     <div class="bg-white shadow rounded p-5">
-        <h2 class="font-semibold mb-3">Upload Audio File</h2>
 
-        <div class="flex gap-3 items-center">
-            <input type="file" id="audioInput" accept="audio/*">
+    <div class="grid grid-cols-1 gap-6">
+        <div id="start-phase1-record"
+             class="flex flex-col gap-4 rounded-xl border border-gray-200 
+                    dark:border-gray-800 bg-white dark:bg-gray-900/50 
+                    p-6 cursor-pointer hover:border-primary transition">
 
-            <button id="upload-btn"
-                    class="bg-blue-600 text-white px-4 py-2 rounded-md">
-                Upload & Process
-            </button>
+            <div class="text-primary text-4xl">
+                <span class="material-symbols-outlined" style="font-size:40px;">mic</span>
+            </div>
 
-            <button id="start-phase1-record"
-                    class="bg-gray-900 text-white px-4 py-2 rounded-md">
-                🎙️ Record Instead
-            </button>
+            <div>
+                <h2 class="text-lg font-bold dark:text-white">Record New Session</h2>
+                <p class="text-gray-500 dark:text-gray-400 text-sm">
+                    Click to begin recording and automatically generate a clinical report.
+                </p>
+            </div>
+
         </div>
     </div>
 
-    <div id="phase1-output" class="mt-6"></div>
+</div>
+
+    <div id="phase1-output" class="mt-6 text-sm"></div>
 
     <h2 class="text-xl font-bold mt-10 mb-3">Reports Waiting for Phase 2</h2>
     <table id="phase1-table" class="w-full border">
@@ -27,7 +33,7 @@
             <tr>
                 <th class="p-2">Case ID</th>
                 <th class="p-2">Patient</th>
-                <th class="p-2">Open</th>
+                <th class="p-2"></th>
             </tr>
         </thead>
         <tbody></tbody>

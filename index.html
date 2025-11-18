@@ -55,11 +55,12 @@
             </li>
 
             <li data-page="phase1" class="nav-item px-4 py-3 rounded-lg cursor-pointer text-gray-700 dark:text-gray-300">
-                <span class="material-symbols-outlined">receipt_long</span> Clinical Intake (Phase 1)
+                <span class="material-symbols-outlined">receipt_long</span> Clinical Intake 
             </li>
 
             <li data-page="phase2" class="nav-item px-4 py-3 rounded-lg cursor-pointer text-gray-700 dark:text-gray-300">
-                <span class="material-symbols-outlined">check_circle</span> Final Assessment (Phase 2)
+                <span class="material-symbols-outlined">check_circle</span> Final Assessment 
+
             </li>
 
         </ul>
@@ -147,27 +148,52 @@
 
 
 
+<!-- RECORDING MODAL (NEW PROFESSIONAL VERSION) -->
+<div id="recording-modal" class="hidden fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl w-full max-w-md p-6 flex flex-col items-center text-center">
 
-<!-- RECORDING MODAL -->
-<div id="recording-modal" class="hidden fixed inset-0 bg-black/60 z-50 flex items-center justify-center">
-    <div class="bg-white dark:bg-gray-900 p-6 rounded-xl w-full max-w-lg shadow-xl">
-
-        <h2 class="text-xl font-bold text-gray-800 dark:text-white mb-4">Recording Session</h2>
-
-        <p id="recording-status" class="text-gray-700 dark:text-gray-300">Ready to Record</p>
-        <p id="recording-timer" class="hidden text-2xl text-center mt-2 font-mono">00:00</p>
-
-        <div class="flex gap-4 mt-6">
-            <button id="start-record-btn" class="bg-red-600 text-white px-4 py-2 rounded-lg">Start</button>
-            <button id="stop-record-btn" class="hidden bg-gray-600 text-white px-4 py-2 rounded-lg" disabled>Stop</button>
+        <!-- Icon -->
+        <div class="mb-4">
+            <span class="material-symbols-outlined text-primary text-5xl">mic</span>
         </div>
 
-        <p id="modal-feedback" class="hidden text-center mt-4 text-sm text-primary"></p>
+        <!-- Title -->
+        <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-2">Recording Session</h2>
 
+        <!-- Status -->
+        <p id="recording-status" class="text-gray-600 dark:text-gray-300 text-sm">
+            Ready to Record
+        </p>
+
+        <!-- Timer -->
+        <p id="recording-timer" class="hidden text-4xl font-mono mt-3 text-primary">00:00</p>
+
+        <!-- Buttons -->
+        <div class="mt-6 flex flex-col w-full gap-3">
+
+            <!-- Start -->
+            <button id="start-record-btn"
+                class="w-full bg-red-600 hover:bg-red-700 text-white py-3 text-lg rounded-lg transition">
+                Start Recording
+            </button>
+
+            <!-- Stop -->
+            <button id="stop-record-btn"
+                class="w-full hidden bg-gray-700 hover:bg-gray-800 text-white py-3 text-lg rounded-lg transition"
+                disabled>
+                Stop Recording
+            </button>
+        </div>
+
+        <!-- Feedback -->
+        <p id="modal-feedback" class="hidden mt-4 text-primary text-sm"></p>
+
+        <!-- Close -->
         <button id="close-recording-modal"
-                class="mt-6 px-4 py-2 rounded bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white">
+                class="mt-6 w-full py-2 rounded-lg bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white hover:bg-gray-300 dark:hover:bg-gray-600 transition">
             Close
         </button>
+
     </div>
 </div>
 

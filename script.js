@@ -16,15 +16,16 @@ let recordedChunks = [];
 let recordingTimer = null;
 let recordingSeconds = 0;
 
-// Which phase this recording is for: "intake" or "final_assessment"
+// phase: "intake" | "final_assessment"
 let currentRecordingPhase = "intake";
 let currentRecordingOutputId = null;
 
-// Last report JSON from backend (for editor + PDF)
+// Last JSON report from backend (Phase1 or Phase2)
 let lastReportJson = null;
 
-// TinyMCE state
+// TinyMCE
 let tinyEditorInitialized = false;
+
 
 // ---------------------------------------------------------
 // UTILS
@@ -35,8 +36,9 @@ function formatTime(sec) {
     return `${m}:${s}`;
 }
 
+
 // ---------------------------------------------------------
-// RECORDING MODAL
+// RECORDING MODAL UI
 // ---------------------------------------------------------
 function resetRecordingUI() {
     const status = document.getElementById("recording-status");
@@ -45,7 +47,7 @@ function resetRecordingUI() {
     const stopBtn = document.getElementById("stop-record-btn");
     const feedback = document.getElementById("modal-feedback");
 
-    if (!status || !timerEl || !startBtn || !stopBtn || !feedback) return;
+    if (!status || !timerEl || !startBtn || !stopBtn) return;
 
     status.textContent = "Ready to Record";
     timerEl.classList.add("hidden");
@@ -55,8 +57,10 @@ function resetRecordingUI() {
     stopBtn.classList.add("hidden");
     stopBtn.disabled = true;
 
-    feedback.classList.add("hidden");
-    feedback.textContent = "";
+    if (feedback) {
+        feedback.classList.add("hidden");
+        feedback.textContent = "";
+    }
 
     recordedChunks = [];
     recordingSeconds = 0;
@@ -73,7 +77,7 @@ function openRecordingModal(phase = "intake", outputId = null) {
 
     const modal = document.getElementById("recording-modal");
     if (!modal) {
-        console.error("recording-modal not found in DOM");
+        console.error("recording-modal not found");
         return;
     }
     resetRecordingUI();
@@ -82,16 +86,9 @@ function openRecordingModal(phase = "intake", outputId = null) {
 
 function closeRecordingModal() {
     const modal = document.getElementById("recording-modal");
-    if (modal) {
-        modal.classList.add("hidden");
-    }
-
-    // stop mic if still active
-    if (recordingStream) {
-        recordingStream.getTracks().forEach(t => t.stop());
-        recordingStream = null;
-    }
+    if (modal) modal.classList.add("hidden");
 }
+
 
 // ---------------------------------------------------------
 // RECORDING LOGIC
@@ -103,10 +100,7 @@ async function startRecording() {
     const stopBtn = document.getElementById("stop-record-btn");
     const feedback = document.getElementById("modal-feedback");
 
-    if (!status || !timerEl || !startBtn || !stopBtn || !feedback) {
-        console.error("Recording UI elements missing");
-        return;
-    }
+    if (!status || !timerEl || !startBtn || !stopBtn) return;
 
     try {
         recordingStream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -151,16 +145,19 @@ async function startRecording() {
                 recordingStream = null;
             }
 
-            document.dispatchEvent(
-                new CustomEvent("recording-complete", { detail: blob })
-            );
+            document.dispatchEvent(new CustomEvent("recording-complete", {
+                detail: blob
+            }));
         };
 
         mediaRecorder.start();
+
     } catch (err) {
         console.error("Error starting recording:", err);
-        feedback.textContent = `Error: ${err.message}`;
-        feedback.classList.remove("hidden");
+        if (feedback) {
+            feedback.textContent = `Error: ${err.message}`;
+            feedback.classList.remove("hidden");
+        }
     }
 }
 
@@ -168,32 +165,32 @@ function stopRecording() {
     const status = document.getElementById("recording-status");
     const stopBtn = document.getElementById("stop-record-btn");
 
-    if (!status || !stopBtn) return;
-
     if (!mediaRecorder || mediaRecorder.state !== "recording") {
-        status.textContent = "Not recording.";
+        if (status) status.textContent = "Not recording.";
         return;
     }
 
-    stopBtn.disabled = true;
-    status.textContent = "Stopping…";
+    if (stopBtn) stopBtn.disabled = true;
+    if (status) status.textContent = "Stopping…";
     mediaRecorder.stop();
 }
 
+
 // ---------------------------------------------------------
-// WHEN RECORDING FINISHES → SEND TO BACKEND
+// WHEN RECORDING FINISHES
 // ---------------------------------------------------------
 document.addEventListener("recording-complete", (e) => {
-    console.log("[script.js] recording-complete event received");
-    const audioBlob = e.detail;
+    console.log("[script.js] recording-complete received");
 
+    const audioBlob = e.detail;
     let outputEl = null;
+
     if (currentRecordingOutputId) {
         outputEl = document.getElementById(currentRecordingOutputId);
     }
 
     if (!outputEl) {
-        // fallback hidden element
+        // Fallback hidden div (for dashboard recording)
         outputEl = document.createElement("div");
         outputEl.style.display = "none";
         document.body.appendChild(outputEl);
@@ -202,25 +199,25 @@ document.addEventListener("recording-complete", (e) => {
     uploadRecordedAudioForPhase(currentRecordingPhase, audioBlob, outputEl);
 });
 
+
 // ---------------------------------------------------------
-// UPLOAD HANDLER
+// UPLOAD AUDIO → BACKEND
 // ---------------------------------------------------------
 async function uploadRecordedAudioForPhase(phase, audioBlob, outputEl) {
     const kb = (audioBlob.size / 1024).toFixed(1);
-    outputEl.innerHTML = `<p class="text-primary text-sm">Uploading ${kb} KB for phase: <strong>${phase}</strong>…</p>`;
+    outputEl.innerHTML = `<p class="text-primary">Uploading ${kb} KB for phase: ${phase}…</p>`;
 
     const fd = new FormData();
     fd.append("file", audioBlob, `recording_${Date.now()}.webm`);
 
-    const endpoint =
-        phase === "final_assessment"
-            ? `${API_URL}/phase2-transcribe`
-            : `${API_URL}/phase1-transcribe`;
+    const endpoint = phase === "final_assessment"
+        ? `${API_URL}/phase2-transcribe`
+        : `${API_URL}/phase1-transcribe`;
 
     try {
         const res = await fetch(endpoint, {
             method: "POST",
-            body: fd,
+            body: fd
         });
 
         if (!res.ok) {
@@ -232,26 +229,21 @@ async function uploadRecordedAudioForPhase(phase, audioBlob, outputEl) {
         lastReportJson = json;
 
         outputEl.innerHTML = `
-            <p class="text-green-600 text-sm mb-1">✔️ Transcription + Report ready.</p>
-            <pre class="text-xs bg-gray-900 text-green-200 p-3 rounded overflow-auto max-h-64">${JSON.stringify(
-                json,
-                null,
-                2
-            )}</pre>
+            <pre class="text-xs bg-gray-900 text-green-200 p-3 rounded overflow-auto max-h-80">
+${JSON.stringify(json, null, 2)}
+            </pre>
         `;
 
         closeRecordingModal();
         openEditorWithJson(json);
 
-        // Try refresh dashboard activity + Phase1 table
-        loadDashboardActivity();
-        loadPhase1Table().catch(() => {});
     } catch (err) {
         console.error("Upload failed:", err);
-        outputEl.innerHTML = `<p class="text-red-600 text-sm">Upload failed: ${err.message}</p>`;
+        outputEl.innerHTML = `<p class="text-red-600">Upload failed: ${err.message}</p>`;
         closeRecordingModal();
     }
 }
+
 
 // ---------------------------------------------------------
 // TINYMCE EDITOR
@@ -261,60 +253,44 @@ function buildHtmlFromJson(report) {
         return "<p>No report data.</p>";
     }
 
-    const safe = (k, fallback = "") =>
-        report[k] !== undefined && report[k] !== null ? report[k] : fallback;
+    const safe = (k, fallback = "") => (report && report[k]) || fallback;
 
     let findingsHtml = "";
-    if (Array.isArray(report.detailed_findings) && report.detailed_findings.length) {
+    if (Array.isArray(report.detailed_findings) && report.detailed_findings.length > 0) {
         findingsHtml = `
             <h2>Findings</h2>
             <ul>
-                ${report.detailed_findings
-                    .map(
-                        (f) => `
-                    <li><strong>${f.finding || ""}</strong>: ${
-                            f.explanation || ""
-                        }</li>
-                `
-                    )
-                    .join("")}
+                ${report.detailed_findings.map(f => `
+                    <li><strong>${f.finding || ""}</strong>: ${f.explanation || ""}</li>
+                `).join("")}
             </ul>
         `;
     }
 
     let recHtml = "";
-    if (Array.isArray(report.recommendations) && report.recommendations.length) {
+    if (Array.isArray(report.recommendations) && report.recommendations.length > 0) {
         recHtml = `
             <h2>Recommendations</h2>
             <ul>
-                ${report.recommendations.map((r) => `<li>${r}</li>`).join("")}
+                ${report.recommendations.map(r => `<li>${r}</li>`).join("")}
             </ul>
         `;
     }
 
-    const clinicalHistory =
-        (safe("clinical_history", "") + "").replace(/\n/g, "<br>");
-
-    const impression =
-        (safe("impression_summary", "") + "").replace(/\n/g, "<br>");
-
     return `
-        <h1>Medical Report (${String(safe("phase", "")).toUpperCase()})</h1>
+        <h1>Medical Report (${(safe("phase", "") || "").toUpperCase()})</h1>
         <p><strong>Patient:</strong> ${safe("patient_name", "N/A")}</p>
-        <p><strong>Age:</strong> ${safe("age", "N/A")} | <strong>Sex:</strong> ${safe(
-            "sex",
-            "N/A"
-        )}</p>
+        <p><strong>Age:</strong> ${safe("age", "N/A")} | <strong>Sex:</strong> ${safe("sex", "N/A")}</p>
         <p><strong>Exam Type:</strong> ${safe("exam_type", "N/A")}</p>
         <p><strong>Exam Date:</strong> ${safe("exam_date", "N/A")}</p>
 
         <h2>Clinical History</h2>
-        <p>${clinicalHistory}</p>
+        <p>${(safe("clinical_history", "") || "").replace(/\n/g, "<br>")}</p>
 
         ${findingsHtml}
 
         <h2>Impression</h2>
-        <p>${impression}</p>
+        <p>${(safe("impression_summary", "") || "").replace(/\n/g, "<br>")}</p>
 
         ${recHtml}
     `;
@@ -327,7 +303,7 @@ function ensureTinyMCEInitialized(callback) {
     }
 
     if (!window.tinymce) {
-        console.error("TinyMCE not loaded. Check script tag in index.html.");
+        console.error("TinyMCE not loaded.");
         return;
     }
 
@@ -342,16 +318,15 @@ function ensureTinyMCEInitialized(callback) {
                 tinyEditorInitialized = true;
                 callback(editor);
             });
-        },
+        }
     });
 }
 
 function openEditorWithJson(reportJson) {
     const modal = document.getElementById("edit-report-modal");
     const feedback = document.getElementById("edit-feedback");
-
     if (!modal) {
-        console.error("edit-report-modal not found in DOM");
+        console.error("edit-report-modal not found");
         return;
     }
 
@@ -368,6 +343,7 @@ function openEditorWithJson(reportJson) {
     });
 }
 
+
 // ---------------------------------------------------------
 // PAGE LOADER & NAV
 // ---------------------------------------------------------
@@ -377,7 +353,6 @@ async function loadPage(pageId) {
     if (pageId === "dashboard") {
         dashboardSection.classList.remove("hidden");
         contentArea.innerHTML = "";
-        loadDashboardActivity();
         return;
     }
 
@@ -396,6 +371,7 @@ async function loadPage(pageId) {
             if (pageId === "phase2") initPhase2Page();
             if (pageId === "history") initHistoryPage();
         }, 0);
+
     } catch (err) {
         contentArea.innerHTML = `<p class="text-red-600">Failed to load ${pageId}. ${err.message}</p>`;
         console.error(err);
@@ -403,7 +379,7 @@ async function loadPage(pageId) {
 }
 
 function setActiveLink(pageId) {
-    allNavElements.forEach((el) => {
+    allNavElements.forEach(el => {
         const parentLi = el.closest("li");
         el.classList.remove("text-primary", "font-semibold");
         if (parentLi) parentLi.classList.remove("bg-primary/10");
@@ -415,8 +391,8 @@ function setActiveLink(pageId) {
     });
 
     allNavElements
-        .filter((el) => el.dataset.page === pageId)
-        .forEach((el) => {
+        .filter(el => el.dataset.page === pageId)
+        .forEach(el => {
             el.classList.add("text-primary", "font-semibold");
             const parentLi = el.closest("li");
             if (parentLi) parentLi.classList.add("bg-primary/10");
@@ -435,11 +411,12 @@ function handleNavigationClick(e) {
     setActiveLink(pageId);
 }
 
+
 // ---------------------------------------------------------
-// PHASE 1 INIT + TABLE
+// PHASE 1 INIT
 // ---------------------------------------------------------
 async function initPhase1Page() {
-    console.log("Phase 1 page init");
+    console.log("Phase 1 ready");
 
     const recordBtn = document.getElementById("start-phase1-record");
     const uploadBtn = document.getElementById("upload-btn");
@@ -466,152 +443,206 @@ async function initPhase1Page() {
     await loadPhase1Table();
 }
 
+
+// ---------------------------------------------------------
+// LOAD PHASE 1 TABLE
+// ---------------------------------------------------------
+// ---------------------------------------------------------
+// LOAD PHASE 1 TABLE
+// ---------------------------------------------------------
+let selectedCaseIdForPhase2 = null;   // ✅ global to share with phase2
+
 async function loadPhase1Table() {
     const tbody = document.querySelector("#phase1-table tbody");
     if (!tbody) return;
 
-    tbody.innerHTML = `<tr><td colspan="3" class="p-2 text-center text-sm">Loading cases...</td></tr>`;
-
-    try {
-        const res = await fetch(`${API_URL}/phase1-cases`);
-        if (!res.ok) throw new Error(await res.text());
-        const data = await res.json();
-
-        if (!data || !data.length) {
-            tbody.innerHTML = `<tr><td colspan="3" class="p-2 text-center text-sm">No cases found.</td></tr>`;
-            return;
-        }
-
-        tbody.innerHTML = "";
-        data.forEach((row) => {
-            const tr = document.createElement("tr");
-            tr.innerHTML = `
-                <td class="p-2 border-b">${row.case_id}</td>
-                <td class="p-2 border-b">${row.patient || "Unknown"}</td>
-                <td class="p-2 border-b text-sm text-gray-600">
-                    Intake ready
-                </td>
-            `;
-            tbody.appendChild(tr);
-        });
-    } catch (err) {
-        console.error("Failed to load Phase1 cases:", err);
-        tbody.innerHTML = `<tr><td colspan="3" class="p-2 text-center text-red-600 text-sm">Failed to load cases: ${err.message}</td></tr>`;
-    }
-}
-
-// ---------------------------------------------------------
-// PHASE 2 INIT
-// ---------------------------------------------------------
-function initPhase2Page() {
-    console.log("Phase 2 page init");
-
-    const p2RecordBtn = document.getElementById("p2-record-btn");
-    const feedbackEl = document.getElementById("phase2-feedback");
-
-    if (feedbackEl) {
-        feedbackEl.classList.add("hidden");
-        feedbackEl.textContent = "";
-    }
-
-    if (p2RecordBtn) {
-        p2RecordBtn.onclick = () => {
-            openRecordingModal("final_assessment", "phase2-feedback");
-        };
-    }
-}
-
-// ---------------------------------------------------------
-// HISTORY PAGE INIT (optional simple list of PDFs)
-// ---------------------------------------------------------
-async function initHistoryPage() {
-    console.log("History page init");
-    // يمكنك لاحقاً إضافة استدعاء لـ /reports إن عملته في الباك إند
-}
-
-// ---------------------------------------------------------
-// DASHBOARD RECENT ACTIVITY
-// ---------------------------------------------------------
-async function loadDashboardActivity() {
-    const tbody = document.getElementById("dashboard-activity-body");
-    if (!tbody) return;
-
     tbody.innerHTML = `
         <tr>
-            <td colspan="4" class="px-6 py-4 text-center text-sm text-gray-500">
-                Loading…
+            <td colspan="3" class="p-2 text-center">
+                Loading cases...
             </td>
         </tr>
     `;
 
     try {
         const res = await fetch(`${API_URL}/phase1-cases`);
-        if (!res.ok) throw new Error(await res.text());
         const data = await res.json();
 
-        if (!data || !data.length) {
+        if (!data || data.length === 0) {
             tbody.innerHTML = `
                 <tr>
-                    <td colspan="4" class="px-6 py-4 text-center text-sm text-gray-500">
-                        No recent activity.
+                    <td colspan="3" class="p-2 text-center">
+                        No cases found.
                     </td>
                 </tr>
             `;
             return;
         }
 
-        tbody.innerHTML = "";
-        data.slice(-5).reverse().forEach((row) => {
+        tbody.innerHTML = ""; // clear loading
+
+        data.forEach(row => {
             const tr = document.createElement("tr");
             tr.innerHTML = `
-                <td class="px-6 py-3 border-b">${row.patient || "Unknown"}</td>
-                <td class="px-6 py-3 border-b text-sm">${row.case_id}</td>
-                <td class="px-6 py-3 border-b text-sm">Intake Completed</td>
-                <td class="px-6 py-3 border-b text-sm text-right text-gray-500">Phase 1</td>
+                <td class="p-2 border-b">${row.case_id}</td>
+                <td class="p-2 border-b">${row.patient || "N/A"}</td>
+                <td class="p-2 border-b">
+                    <button
+                        class="text-blue-600 underline open-phase2-btn"
+                        data-case="${row.case_id}">
+                        Intake ready
+                    </button>
+                </td>
             `;
             tbody.appendChild(tr);
         });
+
+        // 🔗 أربط كل زر “Intake ready”
+        document.querySelectorAll(".open-phase2-btn").forEach(btn => {
+            btn.addEventListener("click", () => {
+                const caseId = btn.dataset.case;
+                console.log("Opening Phase 2 for case:", caseId);
+
+                // خزّن الـ case_id في global
+                selectedCaseIdForPhase2 = caseId;
+
+                // انتقل لصفحة Phase 2
+                loadPage("phase2");
+                setActiveLink("phase2");
+            });
+        });
+
     } catch (err) {
-        console.error("Failed to load dashboard activity:", err);
+        console.error("Failed to load cases:", err);
         tbody.innerHTML = `
             <tr>
-                <td colspan="4" class="px-6 py-4 text-center text-sm text-red-600">
-                    Failed to load activity: ${err.message}
+                <td colspan="3" class="p-2 text-center text-red-600">
+                    Failed to load cases: ${err.message}
                 </td>
             </tr>
         `;
     }
 }
 
+
+
 // ---------------------------------------------------------
-// EDITOR MODAL LOGIC (Save Final PDF)
+// PHASE 2 INIT
 // ---------------------------------------------------------
-function initEditorModalLogic() {
+// ---------------------------------------------------------
+// PHASE 2 INITIALIZER
+// ---------------------------------------------------------
+function initPhase2Page() {
+    console.log("Phase 2 ready");
+
+    const infoBanner = document.getElementById("phase2-case-info");
+
+    // لو ما تم اختيار Case من المرحلة الأولى
+    if (!selectedCaseIdForPhase2) {
+        if (infoBanner) {
+            infoBanner.textContent =
+                "No intake case selected. Please go to Phase 1 and click 'Intake ready' for a case.";
+        }
+        return;
+    }
+
+    // عرض رقم الحالة في البانر
+    if (infoBanner) {
+        infoBanner.textContent =
+            `Loaded intake case: ${selectedCaseIdForPhase2}. ` +
+            `Now record the final assessment (doctor-only).`;
+    }
+
+    // لو حاب، تقدر تضيف هنا call للباك إند تجيب فيه تفاصيل الـ intake
+    // ثم تعرضها في Phase 2 (اختياري حالياً)
+}
+
+
+// ---------------------------------------------------------
+// HISTORY PAGE
+// ---------------------------------------------------------
+async function initHistoryPage() {
+    console.log("History ready.");
+    const list = document.getElementById("history-list");
+    if (!list) return;
+
+    list.innerHTML = `<p class="p-2">Loading history...</p>`;
+
+    try {
+        const res = await fetch(`${API_URL}/reports`);
+        const data = await res.json();
+
+        if (!data.reports || data.reports.length === 0) {
+            list.innerHTML = `<p class="p-2">No reports found.</p>`;
+            return;
+        }
+
+        list.innerHTML = data.reports.map(r => `
+            <li class="p-2 border-b">
+                <a href="${API_URL}/reports/${r}" target="_blank" class="text-blue-600 underline">
+                    ${r}
+                </a>
+            </li>
+        `).join("");
+    } catch (err) {
+        list.innerHTML = `<p class="p-2 text-red-600">Failed to load history: ${err.message}</p>`;
+    }
+}
+
+
+// ---------------------------------------------------------
+// MAIN INIT
+// ---------------------------------------------------------
+document.addEventListener("DOMContentLoaded", () => {
+    // Nav
+    allNavElements.forEach(el =>
+        el.addEventListener("click", handleNavigationClick)
+    );
+
+    // Dashboard record button
+    const dashboardRecord = document.getElementById("record-session-btn");
+    if (dashboardRecord) {
+        dashboardRecord.onclick = () => {
+            openRecordingModal("intake", null);
+        };
+    }
+
+    // Recording modal buttons
+    const startBtn = document.getElementById("start-record-btn");
+    const stopBtn = document.getElementById("stop-record-btn");
+    const closeModalBtn = document.getElementById("close-recording-modal");
+
+    if (startBtn) startBtn.onclick = startRecording;
+    if (stopBtn) stopBtn.onclick = stopRecording;
+    if (closeModalBtn) closeModalBtn.onclick = closeRecordingModal;
+
+    // Editor modal buttons / form
     const editForm = document.getElementById("edit-report-form");
-    const cancelBtn = document.getElementById("cancel-edit-modal");
-    const modal = document.getElementById("edit-report-modal");
-    const feedback = document.getElementById("edit-feedback");
+    const cancelEdit = document.getElementById("cancel-edit-modal");
+    const editModal = document.getElementById("edit-report-modal");
+    const editFeedback = document.getElementById("edit-feedback");
+
+    if (cancelEdit && editModal) {
+        cancelEdit.onclick = () => {
+            editModal.classList.add("hidden");
+        };
+    }
 
     if (editForm) {
-        editForm.addEventListener("submit", async (e) => {
+        editForm.onsubmit = async (e) => {
             e.preventDefault();
 
-            if (!window.tinymce || !tinymce.get("html-editor")) {
-                console.error("TinyMCE editor not found");
-                return;
-            }
-
             if (!lastReportJson) {
-                console.error("No report JSON available to export");
+                if (editFeedback) {
+                    editFeedback.textContent = "No report data to save.";
+                    editFeedback.classList.remove("hidden");
+                }
                 return;
             }
 
-            const editor = tinymce.get("html-editor");
-            const editedHtml = editor.getContent();
-
-            if (feedback) {
-                feedback.textContent = "Generating PDF…";
-                feedback.classList.remove("hidden");
+            let htmlContent = "";
+            if (window.tinymce && tinymce.get("html-editor")) {
+                htmlContent = tinymce.get("html-editor").getContent();
             }
 
             try {
@@ -620,8 +651,8 @@ function initEditorModalLogic() {
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
                         report_json: lastReportJson,
-                        edited_html: editedHtml,
-                    }),
+                        edited_html: htmlContent
+                    })
                 });
 
                 if (!res.ok) {
@@ -633,68 +664,27 @@ function initEditorModalLogic() {
                 const url = window.URL.createObjectURL(blob);
                 const a = document.createElement("a");
                 a.href = url;
-                a.download = `${lastReportJson.report_id || "report"}_final.pdf`;
-                document.body.appendChild(a);
+                const fileName = (lastReportJson.report_id || "report") + "_final.pdf";
+                a.download = fileName;
                 a.click();
-                a.remove();
                 window.URL.revokeObjectURL(url);
 
-                if (feedback) {
-                    feedback.textContent = "✅ PDF generated and downloaded.";
+                if (editFeedback) {
+                    editFeedback.textContent = "✅ PDF generated and downloaded.";
+                    editFeedback.classList.remove("hidden");
                 }
 
-                setTimeout(() => {
-                    if (feedback) feedback.classList.add("hidden");
-                    if (modal) modal.classList.add("hidden");
-                }, 1500);
             } catch (err) {
-                console.error("Failed to generate PDF:", err);
-                if (feedback) {
-                    feedback.textContent = `Error: ${err.message}`;
-                    feedback.classList.remove("hidden");
+                console.error("PDF generation error:", err);
+                if (editFeedback) {
+                    editFeedback.textContent = `Error: ${err.message}`;
+                    editFeedback.classList.remove("hidden");
                 }
             }
-        });
+        };
     }
 
-    if (cancelBtn && modal) {
-        cancelBtn.addEventListener("click", () => {
-            modal.classList.add("hidden");
-        });
-    }
-}
-
-// ---------------------------------------------------------
-// MAIN INIT
-// ---------------------------------------------------------
-document.addEventListener("DOMContentLoaded", () => {
-    // NAV LINKS
-    allNavElements.forEach((el) =>
-        el.addEventListener("click", handleNavigationClick)
-    );
-
-    // DASHBOARD RECORD CARD
-    const recordCard = document.getElementById("record-session-btn");
-    if (recordCard) {
-        recordCard.addEventListener("click", () => {
-            // Dashboard acts as Phase 1 intake recorder
-            openRecordingModal("intake", null);
-        });
-    }
-
-    // RECORDING MODAL BUTTONS
-    const startBtn = document.getElementById("start-record-btn");
-    const stopBtn = document.getElementById("stop-record-btn");
-    const closeModalBtn = document.getElementById("close-recording-modal");
-
-    if (startBtn) startBtn.addEventListener("click", startRecording);
-    if (stopBtn) stopBtn.addEventListener("click", stopRecording);
-    if (closeModalBtn) closeModalBtn.addEventListener("click", closeRecordingModal);
-
-    // EDITOR MODAL LOGIC
-    initEditorModalLogic();
-
-    // LOAD DEFAULT PAGE
+    // Default page
     loadPage("dashboard");
     setActiveLink("dashboard");
 });

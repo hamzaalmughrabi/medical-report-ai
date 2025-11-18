@@ -1480,6 +1480,51 @@
       "timestamp": "2025-11-18T20:52:39.679584",
       "_category": null,
       "_missing_info": []
+    },
+    {
+      "report_id": "recording_1763494711788",
+      "phase": "intake",
+      "patient_name": "null",
+      "age": "null",
+      "sex": "null",
+      "dob": "null",
+      "referring_doctor": "null",
+      "exam_date": "null",
+      "exam_type": "null",
+      "clinical_history": "null",
+      "detailed_findings": [
+        {
+          "finding": "null",
+          "explanation": "null"
+        }
+      ],
+      "impression_summary": "null",
+      "recommendations": [
+        "null"
+      ],
+      "urgency_level": "N/A",
+      "timestamp": "2025-11-18T22:38:37.464652",
+      "_category": null,
+      "_missing_info": []
+    },
+    {
+      "report_id": "recording_1763495529286",
+      "phase": "intake",
+      "patient_name": "",
+      "age": "",
+      "sex": "",
+      "dob": "",
+      "referring_doctor": "",
+      "exam_date": "",
+      "exam_type": "",
+      "clinical_history": "",
+      "detailed_findings": [],
+      "impression_summary": "",
+      "recommendations": [],
+      "urgency_level": "N/A",
+      "timestamp": "2025-11-18T22:52:13.663760",
+      "_category": null,
+      "_missing_info": []
     }
   ]
 }
