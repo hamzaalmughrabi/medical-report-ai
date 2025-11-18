@@ -1454,6 +1454,32 @@
       "timestamp": "2025-11-18T12:51:53.446969",
       "_category": null,
       "_missing_info": []
+    },
+    {
+      "report_id": "recording_1763488352229",
+      "phase": "intake",
+      "patient_name": "null",
+      "age": "null",
+      "sex": "null",
+      "dob": "null",
+      "referring_doctor": "null",
+      "exam_date": "null",
+      "exam_type": "null",
+      "clinical_history": "null",
+      "detailed_findings": [
+        {
+          "finding": "null",
+          "explanation": "null"
+        }
+      ],
+      "impression_summary": "null",
+      "recommendations": [
+        "null"
+      ],
+      "urgency_level": "N/A",
+      "timestamp": "2025-11-18T20:52:39.679584",
+      "_category": null,
+      "_missing_info": []
     }
   ]
 }
