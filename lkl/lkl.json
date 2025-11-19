@@ -40,13 +40,17 @@
           "Swelling present",
           "Normal distal pulses",
           "valgus stress pain positive",
-          "mild lateral tracking abnormality"
+          "mild lateral tracking abnormality",
+          "Dry eyes",
+          "Sore throat",
+          "Headache"
         ],
         "impression_templates": [
           "Clinical findings suggest mild soft tissue injury.",
           "Features are consistent with inflammatory knee pain.",
           "Possibility of internal derangement cannot be excluded.",
-          "Findings suggest MCL strain with patellofemoral dysfunction."
+          "Findings suggest MCL strain with patellofemoral dysfunction.",
+          "Patient presents with dry eyes, sore throat, and headache, all of which have been addressed with appropriate treatments."
         ]
       },
       "anatomical_location": {

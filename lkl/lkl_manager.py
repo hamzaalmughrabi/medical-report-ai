@@ -17,7 +17,7 @@ class LKLManager:
             self.data = json.load(f)
 
     # ============================================================
-    #  STEP 1 — CATEGORY DETECTION
+    # CATEGORY DETECTION
     # ============================================================
     def detect_category(self, transcript: str):
         transcript_lower = transcript.lower()
@@ -38,7 +38,7 @@ class LKLManager:
         return best_category
 
     # ============================================================
-    #  STEP 2 — KNOWLEDGE RETRIEVAL
+    # KNOWLEDGE RETRIEVAL (FIXED!)
     # ============================================================
     def get_category_knowledge(self, category: str):
         cat = self.data["categories"].get(category)
@@ -49,38 +49,35 @@ class LKLManager:
             "keywords": cat["metadata"]["keywords"],
             "symptoms": cat["patterns"]["symptoms"],
             "history_questions": cat["patterns"]["history_questions"],
-            "finding_templates": cat["patterns"]["findings_templates"],
+            "findings_templates": cat["patterns"]["findings_templates"],
             "impression_templates": cat["patterns"]["impression_templates"],
-            "investigations": cat["investigations"],
-            "differentials": cat["differential_diagnoses"],
-            "management": cat["management_options"],
-            "previous_cases": cat["cases"],
+            "investigations": cat.get("investigations", {}),
+            "anatomical_location": cat.get("anatomical_location", {}),
+            "differentials": cat.get("differential_diagnoses", {}),
+            "severity_scales": cat.get("severity_scales", {}),
+            "previous_cases": cat.get("cases", []),
         }
 
     # ============================================================
-    #  STEP 3 — DETECT MISSING INFO
+    # MISSING INFO DETECTION
     # ============================================================
     def detect_missing_info(self, category: str, transcript: str):
-        """Returns a list of missing clinical questions (not found in transcript)."""
-
         if not category:
             return []
 
         transcript = transcript.lower()
-
         questions = self.data["categories"][category]["patterns"]["history_questions"]
 
         missing = []
         for q in questions:
-            # If key part of question is not mentioned → missing
-            key_word = q.split()[0]  # simple heuristic
-            if key_word.lower() not in transcript:
+            key = q.split()[0].lower()
+            if key not in transcript:
                 missing.append(q)
 
         return missing
 
     # ============================================================
-    #  STEP 4 — TEMPLATE SUGGESTION
+    # TEMPLATE SUGGESTION
     # ============================================================
     def suggest_templates(self, category: str):
         if not category:
@@ -94,35 +91,35 @@ class LKLManager:
         }
 
     # ============================================================
-    #  STEP 5 — AUTO LEARNING FROM REPORT
+    # AUTO LEARNING (PHASE 1 + PHASE 2)
     # ============================================================
     def auto_learn_from_report(self, category, diagnostic_report):
         cat_data = self.data["categories"].get(category)
         if not cat_data:
             return
 
-        # Learn Findings
+        # Learn new findings
         if "detailed_findings" in diagnostic_report:
             for f in diagnostic_report["detailed_findings"]:
-                finding = f.get("finding", "").strip().lower()
+                finding = f.get("finding", "").strip()
                 if finding and finding not in cat_data["patterns"]["findings_templates"]:
-                    print(f"📘 LKL Learning new finding: {finding}")
+                    print(f"📘 Learning new finding: {finding}")
                     cat_data["patterns"]["findings_templates"].append(finding)
 
-        # Learn Impression
+        # Learn impressions
         if "impression_summary" in diagnostic_report:
             imp = diagnostic_report["impression_summary"].strip()
             if imp and imp not in cat_data["patterns"]["impression_templates"]:
-                print("📘 LKL Learning new impression template.")
+                print("📘 Learning new impression.")
                 cat_data["patterns"]["impression_templates"].append(imp)
 
-        # Learn Symptoms
+        # Learn symptoms
         if "clinical_history" in diagnostic_report:
             history_text = diagnostic_report["clinical_history"].lower()
-            for symptom in ["pain", "swelling", "instability", "locking", "weakness"]:
-                if symptom in history_text and symptom not in cat_data["patterns"]["symptoms"]:
-                    print(f"📘 LKL Learning new symptom: {symptom}")
-                    cat_data["patterns"]["symptoms"].append(symptom)
+            for word in ["pain", "swelling", "instability", "locking", "weakness"]:
+                if word in history_text and word not in cat_data["patterns"]["symptoms"]:
+                    print(f"📘 Learning new symptom: {word}")
+                    cat_data["patterns"]["symptoms"].append(word)
 
         self._save()
 
@@ -132,4 +129,4 @@ class LKLManager:
     def _save(self):
         with open(self.lkl_path, "w", encoding="utf-8") as f:
             json.dump(self.data, f, indent=2, ensure_ascii=False)
-        print("💾 LKL updated and saved.")
+        print("💾 LKL updated.")

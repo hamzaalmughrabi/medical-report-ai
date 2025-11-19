@@ -16,15 +16,18 @@ let recordedChunks = [];
 let recordingTimer = null;
 let recordingSeconds = 0;
 
-// phase: "intake" | "final_assessment"
+// "intake" | "final_assessment"
 let currentRecordingPhase = "intake";
 let currentRecordingOutputId = null;
 
-// Last JSON report from backend (Phase1 or Phase2)
+// Last JSON report returned from backend (used in editor/PDF)
 let lastReportJson = null;
 
-// TinyMCE
+// TinyMCE state
 let tinyEditorInitialized = false;
+
+// Selected case for Phase 2
+let selectedCaseIdForPhase2 = null;
 
 
 // ---------------------------------------------------------
@@ -210,14 +213,21 @@ async function uploadRecordedAudioForPhase(phase, audioBlob, outputEl) {
     const fd = new FormData();
     fd.append("file", audioBlob, `recording_${Date.now()}.webm`);
 
+    // 👇 مهم جداً: نرسل case_id عند Phase 2
+   if (phase === "final_assessment" && window.selectedCaseIdForPhase2) {
+    fd.append("intake_id", window.selectedCaseIdForPhase2);  // <-- FIX
+}
+
+
     const endpoint = phase === "final_assessment"
-        ? `${API_URL}/phase2-transcribe`
-        : `${API_URL}/phase1-transcribe`;
+    ? `${API_URL}/phase2-transcribe?intake_id=${selectedCaseIdForPhase2}`
+    : `${API_URL}/phase1-transcribe`;
+
 
     try {
         const res = await fetch(endpoint, {
             method: "POST",
-            body: fd
+            body: fd,
         });
 
         if (!res.ok) {
@@ -236,13 +246,13 @@ ${JSON.stringify(json, null, 2)}
 
         closeRecordingModal();
         openEditorWithJson(json);
-
     } catch (err) {
         console.error("Upload failed:", err);
         outputEl.innerHTML = `<p class="text-red-600">Upload failed: ${err.message}</p>`;
         closeRecordingModal();
     }
 }
+
 
 
 // ---------------------------------------------------------
@@ -418,7 +428,12 @@ function handleNavigationClick(e) {
 async function initPhase1Page() {
     console.log("Phase 1 ready");
 
-    const recordBtn = document.getElementById("start-phase1-record");
+    // نحاول نلاقي زر التسجيل داخل الـ dynamic-content فقط
+    const recordBtn =
+        document.querySelector("#dynamic-content #start-phase1-record") ||
+        document.querySelector("#dynamic-content #record-session-btn-phase1") ||
+        document.querySelector("#dynamic-content #record-session-btn");
+
     const uploadBtn = document.getElementById("upload-btn");
     const audioInput = document.getElementById("audioInput");
     const outputEl = document.getElementById("phase1-output");
@@ -447,11 +462,6 @@ async function initPhase1Page() {
 // ---------------------------------------------------------
 // LOAD PHASE 1 TABLE
 // ---------------------------------------------------------
-// ---------------------------------------------------------
-// LOAD PHASE 1 TABLE
-// ---------------------------------------------------------
-let selectedCaseIdForPhase2 = null;   // ✅ global to share with phase2
-
 async function loadPhase1Table() {
     const tbody = document.querySelector("#phase1-table tbody");
     if (!tbody) return;
@@ -497,16 +507,13 @@ async function loadPhase1Table() {
             tbody.appendChild(tr);
         });
 
-        // 🔗 أربط كل زر “Intake ready”
         document.querySelectorAll(".open-phase2-btn").forEach(btn => {
             btn.addEventListener("click", () => {
                 const caseId = btn.dataset.case;
                 console.log("Opening Phase 2 for case:", caseId);
 
-                // خزّن الـ case_id في global
                 selectedCaseIdForPhase2 = caseId;
 
-                // انتقل لصفحة Phase 2
                 loadPage("phase2");
                 setActiveLink("phase2");
             });
@@ -524,37 +531,45 @@ async function loadPhase1Table() {
     }
 }
 
-
-
-// ---------------------------------------------------------
-// PHASE 2 INIT
-// ---------------------------------------------------------
-// ---------------------------------------------------------
-// PHASE 2 INITIALIZER
-// ---------------------------------------------------------
+// =====================================================
+// INIT PHASE 2 PAGE (Dynamic)
+// =====================================================
 function initPhase2Page() {
     console.log("Phase 2 ready");
 
     const infoBanner = document.getElementById("phase2-case-info");
 
-    // لو ما تم اختيار Case من المرحلة الأولى
+    // Check case from Phase 1
     if (!selectedCaseIdForPhase2) {
-        if (infoBanner) {
-            infoBanner.textContent =
-                "No intake case selected. Please go to Phase 1 and click 'Intake ready' for a case.";
-        }
+        infoBanner.textContent =
+            "No intake case selected. Please go to Phase 1 and click 'Intake ready' for a case.";
         return;
     }
 
-    // عرض رقم الحالة في البانر
-    if (infoBanner) {
-        infoBanner.textContent =
-            `Loaded intake case: ${selectedCaseIdForPhase2}. ` +
-            `Now record the final assessment (doctor-only).`;
+    infoBanner.textContent =
+        `Loaded intake case: ${selectedCaseIdForPhase2}. Now record the final doctor assessment.`;
+
+    // Bind the record button AFTER the HTML is loaded
+    attachPhase2RecordButton();
+}
+
+// =====================================================
+// PHASE 2 RECORD BUTTON BINDER
+// =====================================================
+function attachPhase2RecordButton() {
+    const btn = document.getElementById("start-phase2-record");
+
+    if (!btn) {
+        console.error("❌ Phase 2 record button NOT FOUND! (HTML didn't load)");
+        return;
     }
 
-    // لو حاب، تقدر تضيف هنا call للباك إند تجيب فيه تفاصيل الـ intake
-    // ثم تعرضها في Phase 2 (اختياري حالياً)
+    btn.addEventListener("click", () => {
+        console.log("🎤 Phase 2 recording started");
+        openRecordingModal("final_assessment", "phase2-output");
+    });
+
+    console.log("✅ Phase 2 record button attached.");
 }
 
 
@@ -562,33 +577,56 @@ function initPhase2Page() {
 // HISTORY PAGE
 // ---------------------------------------------------------
 async function initHistoryPage() {
-    console.log("History ready.");
-    const list = document.getElementById("history-list");
-    if (!list) return;
+    console.log("History page loaded.");
 
-    list.innerHTML = `<p class="p-2">Loading history...</p>`;
+    const tableBody = document.getElementById("history-table-body");
+    if (!tableBody) {
+        console.error("History table body not found!");
+        return;
+    }
+
+    tableBody.innerHTML = `
+        <tr><td class="px-6 py-4">Loading...</td></tr>
+    `;
 
     try {
-        const res = await fetch(`${API_URL}/reports`);
+        const res = await fetch(`${API_URL}/list-reports`);
         const data = await res.json();
 
-        if (!data.reports || data.reports.length === 0) {
-            list.innerHTML = `<p class="p-2">No reports found.</p>`;
+        tableBody.innerHTML = "";
+
+        if (!data.length) {
+            tableBody.innerHTML = `
+                <tr><td class="px-6 py-4 text-gray-500">No reports found.</td></tr>
+            `;
             return;
         }
 
-        list.innerHTML = data.reports.map(r => `
-            <li class="p-2 border-b">
-                <a href="${API_URL}/reports/${r}" target="_blank" class="text-blue-600 underline">
-                    ${r}
-                </a>
-            </li>
-        `).join("");
+        data.forEach(item => {
+            const row = `
+                <tr>
+                    <td class="px-6 py-4">${item.patient}</td>
+                    <td class="px-6 py-4">${item.reportId}</td>
+                    <td class="px-6 py-4">${new Date(item.date).toLocaleString()}</td>
+                    <td class="px-6 py-4">${item.phase}</td>
+                    <td class="px-6 py-4 text-right">
+                        <a href="${item.downloadUrl}"
+                           class="text-primary hover:underline"
+                           target="_blank">Download</a>
+                    </td>
+                </tr>
+            `;
+            tableBody.insertAdjacentHTML("beforeend", row);
+        });
+
     } catch (err) {
-        list.innerHTML = `<p class="p-2 text-red-600">Failed to load history: ${err.message}</p>`;
+        tableBody.innerHTML = `
+            <tr><td class="px-6 py-4 text-red-600">
+                Failed to load history: ${err.message}
+            </td></tr>
+        `;
     }
 }
-
 
 // ---------------------------------------------------------
 // MAIN INIT
@@ -599,11 +637,11 @@ document.addEventListener("DOMContentLoaded", () => {
         el.addEventListener("click", handleNavigationClick)
     );
 
-    // Dashboard record button
+    // Dashboard record button (الكرت الأزرق في الـ Dashboard)
     const dashboardRecord = document.getElementById("record-session-btn");
     if (dashboardRecord) {
         dashboardRecord.onclick = () => {
-            openRecordingModal("intake", null);
+            openRecordingModal("intake", null); // no direct output element
         };
     }
 
