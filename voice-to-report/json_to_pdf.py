@@ -3,7 +3,7 @@ import json
 import os
 from copy import deepcopy
 from datetime import datetime
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Sequence
 
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import getSampleStyleSheet
@@ -58,10 +58,105 @@ def _normalize_findings(findings: Any) -> List[Dict[str, str]]:
 
 def _ensure_meaningful_content(report: Dict[str, Any]):
     """Raise if we only have placeholder/raw output to avoid N/A-only PDFs."""
+    display = _prepare_display_report(report)
+
     if report.get("raw_output") and not any(
-        report.get(field) for field in ["patient_name", "clinical_history", "impression_summary"]
+        display.get(field)
+        and display.get(field) not in ("N/A", [])
+        for field in ["patient_name", "clinical_history", "impression_summary"]
     ):
         raise ValueError("Report data missing required fields; received raw LLM output only.")
+
+    return display
+
+
+def _extract_first(report: Dict[str, Any], keys: Sequence[str], container_keys: Sequence[str] | None = None):
+    """
+    Pull the first non-empty value from the provided keys, checking optional nested dicts
+    such as {"patient_info": {...}}. This keeps PDF rendering resilient to slightly
+    different LLM outputs or upstream schema variations.
+    """
+
+    for key in keys:
+        val = report.get(key)
+        if val not in (None, ""):
+            return val
+
+    for container in container_keys or []:
+        nested = report.get(container)
+        if isinstance(nested, dict):
+            for key in keys:
+                val = nested.get(key)
+                if val not in (None, ""):
+                    return val
+    return None
+
+
+def _as_text(value: Any) -> str:
+    """Convert dicts/lists into human-readable text for PDF paragraphs."""
+    if value is None:
+        return "N/A"
+    if isinstance(value, str):
+        return value
+    if isinstance(value, dict):
+        parts = [f"{k}: {v}" for k, v in value.items() if v not in (None, "")]
+        return "; ".join(parts) if parts else "N/A"
+    if isinstance(value, (list, tuple, set)):
+        parts = [str(v) for v in value if v not in (None, "")]
+        return "; ".join(parts) if parts else "N/A"
+    return str(value)
+
+
+def _prepare_display_report(report: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    Build a normalized view of the report with fallback key names so the PDF always shows
+    the most informative available values.
+    """
+
+    display: Dict[str, Any] = {}
+
+    display["phase"] = _extract_first(report, ["phase"])
+    display["report_id"] = _extract_first(report, ["report_id", "case_id"])
+    display["patient_name"] = _extract_first(
+        report,
+        ["patient_name", "patient", "name"],
+        container_keys=["patient_info", "demographics"],
+    )
+    display["age"] = _extract_first(report, ["age"], container_keys=["patient_info", "demographics"])
+    display["sex"] = _extract_first(
+        report,
+        ["sex", "gender"],
+        container_keys=["patient_info", "demographics"],
+    )
+    display["exam_type"] = _extract_first(report, ["exam_type", "exam", "visit_type"])
+    display["exam_date"] = _extract_first(
+        report,
+        ["exam_date", "date", "visit_date", "report_date"],
+    )
+
+    display["clinical_history"] = _as_text(
+        _extract_first(
+            report,
+            ["clinical_history", "history", "history_text", "chief_complaint", "presenting_history"],
+            container_keys=["osce_history", "intake_history"],
+        )
+    )
+
+    display["detailed_findings"] = _normalize_findings(
+        _extract_first(report, ["detailed_findings", "findings", "findings_list"])
+    )
+
+    display["impression_summary"] = _as_text(
+        _extract_first(report, ["impression_summary", "impression", "diagnosis", "assessment"])
+    )
+
+    display["recommendations"] = _normalize_iterable(
+        _extract_first(report, ["recommendations", "plan", "plans", "action_items"])
+    )
+
+    display["urgency_level"] = _extract_first(report, ["urgency_level", "urgency", "priority"]) or "N/A"
+
+    return display
 
 
 def make_pdf_from_case(data: Any, output_path: str):
@@ -72,7 +167,7 @@ def make_pdf_from_case(data: Any, output_path: str):
     """
     try:
         report = _coerce_report_dict(data)
-        _ensure_meaningful_content(report)
+        display = _ensure_meaningful_content(report)
 
         os.makedirs(os.path.dirname(output_path), exist_ok=True)
 
@@ -81,17 +176,20 @@ def make_pdf_from_case(data: Any, output_path: str):
         story: List[Any] = []
 
         # Title
-        story.append(Paragraph("<b>Medical Report</b>", styles["Title"]))
+        title = "Medical Report"
+        if display.get("phase"):
+            title = f"Medical Report ({display['phase']})"
+        story.append(Paragraph(f"<b>{title}</b>", styles["Title"]))
         story.append(Spacer(1, 0.25 * inch))
 
         # Patient Info Section
         info_lines = [
-            f"<b>Report ID:</b> {report.get('report_id', 'N/A')}",
-            f"<b>Patient Name:</b> {report.get('patient_name', 'N/A')}",
-            f"<b>Age:</b> {report.get('age', 'N/A')}",
-            f"<b>Sex:</b> {report.get('sex', 'N/A')}",
-            f"<b>Exam Type:</b> {report.get('exam_type', 'N/A')}",
-            f"<b>Date:</b> {report.get('exam_date', 'N/A')}",
+            f"<b>Report ID:</b> {display.get('report_id', 'N/A')}",
+            f"<b>Patient Name:</b> {display.get('patient_name', 'N/A')}",
+            f"<b>Age:</b> {display.get('age', 'N/A')}",
+            f"<b>Sex:</b> {display.get('sex', 'N/A')}",
+            f"<b>Exam Type:</b> {display.get('exam_type', 'N/A')}",
+            f"<b>Date:</b> {display.get('exam_date', 'N/A')}",
         ]
         for line in info_lines:
             story.append(Paragraph(line, styles["Normal"]))
@@ -99,12 +197,12 @@ def make_pdf_from_case(data: Any, output_path: str):
 
         # Clinical History
         story.append(Paragraph("<b>Clinical History</b>", styles["Heading2"]))
-        story.append(Paragraph(report.get("clinical_history", "N/A"), styles["Normal"]))
+        story.append(Paragraph(display.get("clinical_history", "N/A"), styles["Normal"]))
         story.append(Spacer(1, 0.25 * inch))
 
         # Findings
         story.append(Paragraph("<b>Detailed Findings</b>", styles["Heading2"]))
-        findings = _normalize_findings(report.get("detailed_findings", []))
+        findings = display.get("detailed_findings", [])
         if findings:
             for f in findings:
                 story.append(
@@ -119,12 +217,12 @@ def make_pdf_from_case(data: Any, output_path: str):
 
         # Impression
         story.append(Paragraph("<b>Impression Summary</b>", styles["Heading2"]))
-        story.append(Paragraph(report.get("impression_summary", "N/A"), styles["Normal"]))
+        story.append(Paragraph(display.get("impression_summary", "N/A"), styles["Normal"]))
         story.append(Spacer(1, 0.25 * inch))
 
         # Recommendations
         story.append(Paragraph("<b>Recommendations</b>", styles["Heading2"]))
-        recs = _normalize_iterable(report.get("recommendations", []))
+        recs = display.get("recommendations", [])
         if recs:
             for r in recs:
                 story.append(Paragraph(f"• {r}", styles["Normal"]))
@@ -134,7 +232,7 @@ def make_pdf_from_case(data: Any, output_path: str):
 
         # Urgency
         story.append(
-            Paragraph("<b>Urgency Level:</b> " + report.get("urgency_level", "N/A"), styles["Normal"])
+            Paragraph("<b>Urgency Level:</b> " + display.get("urgency_level", "N/A"), styles["Normal"])
         )
 
         # Build the PDF
