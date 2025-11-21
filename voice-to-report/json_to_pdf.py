@@ -70,23 +70,36 @@ def _ensure_meaningful_content(report: Dict[str, Any]):
     return display
 
 
+def _get_value_case_insensitive(mapping: Dict[str, Any], key: str):
+    """Fetch a value from a mapping, matching keys case-insensitively."""
+
+    if key in mapping:
+        return mapping[key]
+
+    key_lower = key.lower()
+    for k, v in mapping.items():
+        if isinstance(k, str) and k.lower() == key_lower:
+            return v
+    return None
+
+
 def _extract_first(report: Dict[str, Any], keys: Sequence[str], container_keys: Sequence[str] | None = None):
     """
     Pull the first non-empty value from the provided keys, checking optional nested dicts
     such as {"patient_info": {...}}. This keeps PDF rendering resilient to slightly
-    different LLM outputs or upstream schema variations.
+    different LLM outputs or upstream schema variations, including casing differences.
     """
 
     for key in keys:
-        val = report.get(key)
+        val = _get_value_case_insensitive(report, key)
         if val not in (None, ""):
             return val
 
     for container in container_keys or []:
-        nested = report.get(container)
+        nested = _get_value_case_insensitive(report, container)
         if isinstance(nested, dict):
             for key in keys:
-                val = nested.get(key)
+                val = _get_value_case_insensitive(nested, key)
                 if val not in (None, ""):
                     return val
     return None
