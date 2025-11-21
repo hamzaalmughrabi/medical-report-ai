@@ -1,6 +1,7 @@
 # json_to_pdf.py
 import json
 import os
+import re
 from copy import deepcopy
 from datetime import datetime
 from typing import Any, Dict, List, Sequence
@@ -58,9 +59,10 @@ def _normalize_findings(findings: Any) -> List[Dict[str, str]]:
 
 def _ensure_meaningful_content(report: Dict[str, Any]):
     """Raise if we only have placeholder/raw output to avoid N/A-only PDFs."""
-    display = _prepare_display_report(report)
+    hydrated = _hydrate_from_raw(report)
+    display = _prepare_display_report(hydrated)
 
-    if report.get("raw_output") and not any(
+    if hydrated.get("raw_output") and not any(
         display.get(field)
         and display.get(field) not in ("N/A", [])
         for field in ["patient_name", "clinical_history", "impression_summary"]
@@ -118,6 +120,88 @@ def _as_text(value: Any) -> str:
         parts = [str(v) for v in value if v not in (None, "")]
         return "; ".join(parts) if parts else "N/A"
     return str(value)
+
+
+def _hydrate_from_raw(report: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    When only a free-text report is available in `raw_output`, parse common labels
+    (Patient, Age, Sex, Exam Date/Type, Clinical History, Findings, Impression,
+    Recommendations) so the PDF can render meaningful content instead of "N/A".
+    """
+
+    raw = report.get("raw_output")
+    if not isinstance(raw, str) or not raw.strip():
+        return report
+
+    hydrated = deepcopy(report)
+
+    def _empty(val: Any) -> bool:
+        return val in (None, "", "N/A")
+
+    def _capture(patterns: Sequence[str]):
+        for pat in patterns:
+            match = re.search(pat, raw, flags=re.IGNORECASE | re.MULTILINE)
+            if match:
+                return match.group(1).strip()
+        return None
+
+    if _empty(hydrated.get("patient_name")):
+        hydrated["patient_name"] = _capture([r"Patient\s*[:\-]?\s*([^\n\r\|]+)"])
+
+    if _empty(hydrated.get("age")):
+        hydrated["age"] = _capture([r"Age\s*[:\-]?\s*([0-9]{1,3})"])
+
+    if _empty(hydrated.get("sex")):
+        hydrated["sex"] = _capture([r"Sex\s*[:\-]?\s*([A-Za-z]+)"])
+
+    if _empty(hydrated.get("exam_type")):
+        hydrated["exam_type"] = _capture([
+            r"Exam\s*Type\s*[:\-]?\s*([^\n\r]+)",
+            r"Visit\s*Type\s*[:\-]?\s*([^\n\r]+)",
+        ])
+
+    if _empty(hydrated.get("exam_date")):
+        hydrated["exam_date"] = _capture([
+            r"Exam\s*Date\s*[:\-]?\s*([0-9]{4}-[0-9]{2}-[0-9]{2})",
+            r"Date\s*[:\-]?\s*([0-9]{4}-[0-9]{2}-[0-9]{2})",
+        ])
+
+    if _empty(hydrated.get("clinical_history")):
+        match = re.search(
+            r"Clinical\s*History\s*\n+(.+?)(?:\n\s*Findings|\n\s*Impression|\Z)",
+            raw,
+            flags=re.IGNORECASE | re.DOTALL,
+        )
+        if match:
+            hydrated["clinical_history"] = match.group(1).strip()
+
+    if _empty(hydrated.get("detailed_findings")):
+        match = re.search(
+            r"Findings\s*\n+(.+?)(?:\n\s*Impression|\n\s*Recommendations|\Z)",
+            raw,
+            flags=re.IGNORECASE | re.DOTALL,
+        )
+        if match:
+            lines = [ln.strip() for ln in match.group(1).splitlines() if ln.strip()]
+            hydrated["detailed_findings"] = [{"finding": ln, "explanation": "N/A"} for ln in lines]
+
+    if _empty(hydrated.get("impression_summary")):
+        hydrated["impression_summary"] = _capture([
+            r"Impression\s*\n+([^\n\r]+)",
+            r"Impression\s*[:\-]?\s*([^\n\r]+)",
+        ])
+
+    if _empty(hydrated.get("recommendations")):
+        match = re.search(
+            r"Recommendations\s*\n+(.+?)(?:\n\s*$|\Z)",
+            raw,
+            flags=re.IGNORECASE | re.DOTALL,
+        )
+        if match:
+            lines = [ln.strip("-• ") for ln in match.group(1).splitlines() if ln.strip()]
+            hydrated["recommendations"] = lines
+
+    return hydrated
 
 
 def _prepare_display_report(report: Dict[str, Any]) -> Dict[str, Any]:
