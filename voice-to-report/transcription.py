@@ -6,7 +6,7 @@ from typing import Any, Dict, Tuple
 from openai import OpenAI
 
 from lkl.lkl_manager import LKLManager
-from json_to_pdf import make_pdf_from_case
+from json_to_pdf import make_pdf_from_case, make_pdf_from_report as _make_pdf_from_report
 
 # -----------------------------
 # OpenAI client initialization
@@ -315,6 +315,4 @@ def make_pdf_from_report(report_json):
     """
     Wrapper used by backend_api to generate a PDF from a report JSON.
     """
-    output_path = f"reports/{report_json['report_id']}_final.pdf"
-    make_pdf_from_case(report_json, output_path)
-    return output_path
+    return _make_pdf_from_report(report_json)

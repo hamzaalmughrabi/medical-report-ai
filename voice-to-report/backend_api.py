@@ -97,6 +97,9 @@ async def generate_pdf(report: dict = Body(...)):
         return JSONResponse({"error": "report_json missing"}, status_code=400)
 
     pdf_path = make_pdf_from_report(report_json)
+    if not pdf_path or not os.path.exists(pdf_path):
+        raise HTTPException(status_code=500, detail="Failed to generate PDF from report_json")
+
     filename = os.path.basename(pdf_path)
 
     return FileResponse(
