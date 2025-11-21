@@ -65,6 +65,64 @@ def _safe_parse_llm_response(resp):
         return {"raw_output": str(content)}
 
 
+def _normalize_report_fields(report: dict):
+    """
+    Normalize common alternate field names from the LLM so the frontend
+    receives consistent keys. Only fills missing canonical fields when
+    a sensible alternate is present to avoid overwriting valid values.
+    """
+    if not isinstance(report, dict):
+        return {}
+
+    def _assign_if_missing(target, *alternates):
+        if report.get(target):
+            return
+        for alt in alternates:
+            val = report.get(alt)
+            if val:
+                report[target] = val
+                return
+
+    _assign_if_missing("patient_name", "patient", "name")
+    _assign_if_missing("age", "patient_age")
+    _assign_if_missing("sex", "gender")
+    _assign_if_missing("exam_type", "exam", "study_type")
+    _assign_if_missing("exam_date", "date", "exam_time", "study_date")
+    _assign_if_missing(
+        "clinical_history",
+        "history",
+        "patient_history",
+        "clinical_history_summary",
+    )
+    _assign_if_missing("impression_summary", "impression", "impression_text")
+
+    # Recommendations can arrive as a string or alternate key.
+    rec_value = report.get("recommendations", report.get("recommendation"))
+    if isinstance(rec_value, list):
+        report["recommendations"] = rec_value
+    elif isinstance(rec_value, str) and rec_value.strip():
+        report["recommendations"] = [rec_value.strip()]
+    else:
+        report.setdefault("recommendations", [])
+
+    # Findings may arrive as a list of strings; normalize to list of dicts.
+    findings_value = report.get("detailed_findings", report.get("findings"))
+    if isinstance(findings_value, list):
+        normalized_findings = []
+        for item in findings_value:
+            if isinstance(item, dict):
+                normalized_findings.append(item)
+            else:
+                normalized_findings.append(
+                    {"finding": str(item), "explanation": ""}
+                )
+        report["detailed_findings"] = normalized_findings
+    else:
+        report.setdefault("detailed_findings", [])
+
+    return report
+
+
 def _get_intake_case(case_id: str):
     """
     Look up an intake case by report_id from memory["cases"].
@@ -173,7 +231,7 @@ RULES:
             max_tokens=4000,
         )
 
-        report = _safe_parse_llm_response(response)
+        report = _normalize_report_fields(_safe_parse_llm_response(response))
 
         # Metadata
         report["report_id"] = case_id_from_file
@@ -268,7 +326,7 @@ RULES:
             max_tokens=4000,
         )
 
-        report = _safe_parse_llm_response(response)
+        report = _normalize_report_fields(_safe_parse_llm_response(response))
 
         # Metadata
         report["report_id"] = intake_case_id or case_id_from_file
