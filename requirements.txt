@@ -1,0 +1,25 @@
+fastapi==0.110.0
+uvicorn[standard]==0.30.0
+python-multipart==0.0.9
+pydantic==2.7.1
+openai==1.30.1
+requests==2.31.0
+
+# PDF generation
+reportlab==4.1.0
+
+# Template engine (if needed)
+Jinja2==3.1.3
+
+# Async file handling
+aiofiles==23.2.1
+
+# FastAPI internal dependency
+starlette==0.37.2
+
+# Audio utilities (optional but lightweight)
+soundfile==0.12.1
+
+# To avoid Whisper local installation
+# whisper  <-- تم حذفه
+# ffmpeg   <-- لا تحتاجه بالمشروع

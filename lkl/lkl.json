@@ -43,14 +43,19 @@
           "mild lateral tracking abnormality",
           "Dry eyes",
           "Sore throat",
-          "Headache"
+          "Headache",
+          "Chronic conditions",
+          "Left knee pain",
+          "Family history of hypertension"
         ],
         "impression_templates": [
           "Clinical findings suggest mild soft tissue injury.",
           "Features are consistent with inflammatory knee pain.",
           "Possibility of internal derangement cannot be excluded.",
           "Findings suggest MCL strain with patellofemoral dysfunction.",
-          "Patient presents with dry eyes, sore throat, and headache, all of which have been addressed with appropriate treatments."
+          "Patient presents with dry eyes, sore throat, and headache, all of which have been addressed with appropriate treatments.",
+          "The patient presents with headaches likely due to lack of sleep or fatigue from studying. The condition is stable with no significant underlying medical issues identified.",
+          "The patient presents with left knee pain potentially due to an inflammatory process or infection, as indicated by MRI findings of white blood cell issues. Further evaluation and treatment with Vitamin C and antibiotics are recommended."
         ]
       },
       "anatomical_location": {

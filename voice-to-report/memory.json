@@ -1646,6 +1646,124 @@
       "timestamp": "2025-11-20T00:12:44.625892",
       "_category": null,
       "_missing_info": []
+    },
+    {
+      "report_id": "recording_1763626649974",
+      "phase": "intake",
+      "patient_name": "شايب مارف",
+      "age": "N/A",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "The patient reports experiencing pain in the middle area. The pain has been present since returning from the clinic. The patient mentions having chronic conditions such as high blood pressure and diabetes. The patient also reports recurrent headaches.",
+      "detailed_findings": [
+        {
+          "finding": "Pain in the middle area",
+          "explanation": "The patient reports experiencing pain in the middle area since returning from the clinic."
+        },
+        {
+          "finding": "Chronic conditions",
+          "explanation": "The patient has a history of chronic conditions including high blood pressure and diabetes."
+        },
+        {
+          "finding": "Recurrent headaches",
+          "explanation": "The patient reports having recurrent headaches for a long time."
+        }
+      ],
+      "impression_summary": "The patient presents with pain in the middle area, chronic conditions such as high blood pressure and diabetes, and recurrent headaches.",
+      "recommendations": [
+        "Further evaluation of the pain in the middle area.",
+        "Management of chronic conditions including high blood pressure and diabetes.",
+        "Assessment and treatment of recurrent headaches."
+      ],
+      "urgency_level": "moderate",
+      "timestamp": "2025-11-20T11:17:56.724362",
+      "_category": null,
+      "_missing_info": []
+    },
+    {
+      "report_id": "recording_1763627670983",
+      "phase": "intake",
+      "patient_name": "N/A",
+      "age": "N/A",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "N/A",
+      "detailed_findings": [],
+      "impression_summary": "N/A",
+      "recommendations": [],
+      "urgency_level": "N/A",
+      "timestamp": "2025-11-20T11:34:44.619090",
+      "_category": null,
+      "_missing_info": []
+    },
+    {
+      "report_id": "recording_1763634830449",
+      "phase": "intake",
+      "patient_name": "عبد الله ماروشيط",
+      "age": "20",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "The patient reports having a headache and stomach ache for the past three days, possibly due to a virus.",
+      "detailed_findings": [
+        {
+          "finding": "Headache",
+          "explanation": "The patient reports experiencing a headache for the past three days."
+        },
+        {
+          "finding": "Stomach ache",
+          "explanation": "The patient reports experiencing a stomach ache for the past three days."
+        }
+      ],
+      "impression_summary": "The symptoms suggest a viral infection, given the duration and nature of the symptoms.",
+      "recommendations": [
+        "Monitor symptoms and seek medical attention if they worsen.",
+        "Stay hydrated and rest."
+      ],
+      "urgency_level": "low",
+      "timestamp": "2025-11-20T13:34:49.750451",
+      "_category": null,
+      "_missing_info": []
+    },
+    {
+      "report_id": "recording_1763663672523",
+      "phase": "intake",
+      "patient_name": "N/A",
+      "age": "N/A",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "Patient reports pain in the left knee, especially during physical activity without proper warm-up. No pain is felt in cold weather. The right knee is asymptomatic. Family history includes maternal hypertension.",
+      "detailed_findings": [
+        {
+          "finding": "Left knee pain",
+          "explanation": "Pain increases with physical activity without warm-up, suggesting possible strain or overuse."
+        },
+        {
+          "finding": "Family history of hypertension",
+          "explanation": "Mother has hypertension, which may be relevant for future cardiovascular risk assessment."
+        }
+      ],
+      "impression_summary": "The patient experiences left knee pain associated with physical activity, potentially due to strain or overuse. No other significant medical history reported.",
+      "recommendations": [
+        "Consider physical therapy to strengthen the knee and improve flexibility.",
+        "Advise proper warm-up before engaging in physical activities.",
+        "Monitor for any changes in symptoms or new symptoms."
+      ],
+      "urgency_level": "low",
+      "timestamp": "2025-11-20T21:34:57.210819",
+      "_category": null,
+      "_missing_info": []
     }
   ],
   "final_reports": [
@@ -1816,6 +1934,118 @@
         "medications used?"
       ],
       "_intake_report_id": "recording_1763586755006"
+    },
+    {
+      "report_id": "recording_1763626649974",
+      "phase": "final_assessment",
+      "patient_name": "شايب مارف",
+      "age": "25",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "The patient reports experiencing headaches for the past two days. The patient has a history of chronic conditions including high blood pressure and diabetes. The patient also reports recurrent headaches.",
+      "detailed_findings": [
+        {
+          "finding": "Headache",
+          "explanation": "The patient has been experiencing headaches for the past two days. The condition is stable with no family history of similar symptoms."
+        },
+        {
+          "finding": "Chronic conditions",
+          "explanation": "The patient has a history of chronic conditions including high blood pressure and diabetes."
+        }
+      ],
+      "impression_summary": "The patient presents with headaches likely due to lack of sleep or fatigue from studying. The condition is stable with no significant underlying medical issues identified.",
+      "recommendations": [
+        "Ensure adequate rest and sleep.",
+        "Monitor and manage chronic conditions including high blood pressure and diabetes.",
+        "Follow up if headaches persist or worsen."
+      ],
+      "urgency_level": "low",
+      "timestamp": "2025-11-20T11:20:56.741308",
+      "_category": "knee_pain",
+      "_missing_info": [
+        "duration of pain",
+        "trauma history",
+        "swelling present?",
+        "movement limitations?",
+        "medications used?"
+      ],
+      "_intake_report_id": "recording_1763626649974"
+    },
+    {
+      "report_id": "recording_1763634830449",
+      "phase": "final_assessment",
+      "patient_name": "عبد الله ماروشيط",
+      "age": "20",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "The patient reports having a headache and stomach ache for the past three days, possibly due to a virus.",
+      "detailed_findings": [
+        {
+          "finding": "Headache",
+          "explanation": "The patient reports experiencing a headache for the past three days."
+        },
+        {
+          "finding": "Stomach ache",
+          "explanation": "The patient reports experiencing a stomach ache for the past three days."
+        }
+      ],
+      "impression_summary": "The symptoms suggest a viral infection, given the duration and nature of the symptoms.",
+      "recommendations": [
+        "Monitor symptoms and seek medical attention if they worsen.",
+        "Stay hydrated and rest."
+      ],
+      "urgency_level": "low",
+      "timestamp": "2025-11-20T13:36:03.329936",
+      "_category": null,
+      "_missing_info": [],
+      "_intake_report_id": "recording_1763634830449"
+    },
+    {
+      "report_id": "recording_1763663672523",
+      "phase": "final_assessment",
+      "patient_name": "N/A",
+      "age": "N/A",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "MRI",
+      "clinical_history": "Patient reports pain in the left knee, especially during physical activity without proper warm-up. No pain is felt in cold weather. The right knee is asymptomatic. Family history includes maternal hypertension.",
+      "detailed_findings": [
+        {
+          "finding": "Left knee pain",
+          "explanation": "MRI indicates an issue with white blood cells and a need for Vitamin C and antibiotics, suggesting possible infection or inflammation."
+        },
+        {
+          "finding": "Family history of hypertension",
+          "explanation": "Mother has hypertension, which may be relevant for future cardiovascular risk assessment."
+        }
+      ],
+      "impression_summary": "The patient presents with left knee pain potentially due to an inflammatory process or infection, as indicated by MRI findings of white blood cell issues. Further evaluation and treatment with Vitamin C and antibiotics are recommended.",
+      "recommendations": [
+        "Initiate treatment with Vitamin C and antibiotics as per MRI findings.",
+        "Follow up with a specialist to evaluate the need for further intervention.",
+        "Consider physical therapy to strengthen the knee and improve flexibility.",
+        "Advise proper warm-up before engaging in physical activities.",
+        "Monitor for any changes in symptoms or new symptoms."
+      ],
+      "urgency_level": "moderate",
+      "timestamp": "2025-11-20T21:37:11.099428",
+      "_category": "knee_pain",
+      "_missing_info": [
+        "duration of pain",
+        "trauma history",
+        "swelling present?",
+        "movement limitations?",
+        "medications used?"
+      ],
+      "_intake_report_id": "recording_1763663672523"
     }
   ]
 }
