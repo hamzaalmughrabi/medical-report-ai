@@ -4,7 +4,7 @@ import os
 import re
 from copy import deepcopy
 from datetime import datetime
-from typing import Any, Dict, List, Sequence
+from typing import Any, Dict, Iterable, List, Sequence
 
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import getSampleStyleSheet
@@ -72,38 +72,63 @@ def _ensure_meaningful_content(report: Dict[str, Any]):
     return display
 
 
+def _normalize_key(raw_key: str) -> str:
+    """Lower-case and strip spaces/underscores/hyphens for fuzzy matching."""
+
+    return re.sub(r"[^a-z0-9]", "", raw_key.lower())
+
+
 def _get_value_case_insensitive(mapping: Dict[str, Any], key: str):
-    """Fetch a value from a mapping, matching keys case-insensitively."""
+    """Fetch a value from a mapping, matching keys with relaxed normalization."""
 
     if key in mapping:
         return mapping[key]
 
-    key_lower = key.lower()
+    target = _normalize_key(key)
+
     for k, v in mapping.items():
-        if isinstance(k, str) and k.lower() == key_lower:
+        if not isinstance(k, str):
+            continue
+        if _normalize_key(k) == target:
             return v
     return None
 
 
-def _extract_first(report: Dict[str, Any], keys: Sequence[str], container_keys: Sequence[str] | None = None):
+def _extract_first(
+    report: Dict[str, Any],
+    keys: Sequence[str],
+    container_keys: Sequence[str] | None = None,
+):
     """
     Pull the first non-empty value from the provided keys, checking optional nested dicts
-    such as {"patient_info": {...}}. This keeps PDF rendering resilient to slightly
-    different LLM outputs or upstream schema variations, including casing differences.
+    such as {"patient_info": {...}}. Also searches inside lists of dicts to handle
+    variants like {"patient": [{"name": "..."}]}. This keeps PDF rendering resilient
+    to upstream schema variations, spacing, and casing differences.
     """
 
-    for key in keys:
-        val = _get_value_case_insensitive(report, key)
-        if val not in (None, ""):
-            return val
+    def _search_mapping(mapping: Dict[str, Any]) -> Any:
+        for key in keys:
+            val = _get_value_case_insensitive(mapping, key)
+            if val not in (None, ""):
+                return val
+        return None
+
+    direct = _search_mapping(report)
+    if direct not in (None, ""):
+        return direct
 
     for container in container_keys or []:
         nested = _get_value_case_insensitive(report, container)
         if isinstance(nested, dict):
-            for key in keys:
-                val = _get_value_case_insensitive(nested, key)
-                if val not in (None, ""):
-                    return val
+            nested_val = _search_mapping(nested)
+            if nested_val not in (None, ""):
+                return nested_val
+        elif isinstance(nested, Iterable):
+            for item in nested:
+                if isinstance(item, dict):
+                    nested_val = _search_mapping(item)
+                    if nested_val not in (None, ""):
+                        return nested_val
     return None
 
 
@@ -216,14 +241,18 @@ def _prepare_display_report(report: Dict[str, Any]) -> Dict[str, Any]:
     display["report_id"] = _extract_first(report, ["report_id", "case_id"])
     display["patient_name"] = _extract_first(
         report,
-        ["patient_name", "patient", "name"],
-        container_keys=["patient_info", "demographics"],
+        ["patient_name", "patient", "name", "patientname", "patient_name"],
+        container_keys=["patient_info", "demographics", "patient_details", "patientdata", "patient"],
     )
-    display["age"] = _extract_first(report, ["age"], container_keys=["patient_info", "demographics"])
+    display["age"] = _extract_first(
+        report,
+        ["age", "patient_age", "years"],
+        container_keys=["patient_info", "demographics", "patient_details", "patientdata", "patient"],
+    )
     display["sex"] = _extract_first(
         report,
-        ["sex", "gender"],
-        container_keys=["patient_info", "demographics"],
+        ["sex", "gender", "patient_sex"],
+        container_keys=["patient_info", "demographics", "patient_details", "patientdata", "patient"],
     )
     display["exam_type"] = _extract_first(report, ["exam_type", "exam", "visit_type"])
     display["exam_date"] = _extract_first(
