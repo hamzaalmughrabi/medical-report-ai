@@ -128,9 +128,13 @@ def process_full_medical_report(
         knowledge = lkl.get_category_knowledge(category)
 
         prompt = f"""
-You are a medical report generator for the INITIAL CLINICAL INTAKE (Phase 1).
+You are an OSCE-style medical intake report generator (Phase 1).
+You must always respond in English only.
+If the transcript contains Arabic or any other language, translate the content into English.
+Patient name MUST always be converted into English characters only.
+No Arabic, no transliteration, no mixed language.
 
-TRANSCRIPT:
+TRANSCRIPT (translate to English if needed):
 {transcript_text}
 
 LKL CATEGORY: {category}
@@ -141,14 +145,24 @@ LKL MISSING INFO HINTS:
 {json.dumps(missing_info, indent=2)}
 
 TASK:
-- Build a structured JSON intake report using this schema:
+Use the embedded OSCE question set below to extract and organize history. Produce a structured JSON intake report using this schema:
 {TARGET_SCHEMA_JSON}
 
+OSCE CATEGORIES TO COVER:
+1) PATIENT PROFILE: Patient name (convert to English only), Age, Sex, Marital status, Job, Address, Place of admission, Referral source & time, Source of history, Who took the history (date/time).
+2) CHIEF COMPLAINT: Main problem in patient's own words, Duration, No medical jargon.
+3) HISTORY OF PRESENTING ILLNESS (SOCRATES): Site, Onset (what they were doing at onset), Character, Radiation, Associated symptoms, Timing (duration, episodic/continuous), Exacerbating factors, Relieving factors, Severity (0–10), Previous similar episodes, Relevant investigations or medications already tried.
+4) SYSTEMATIC REVIEW / ROS: General/Wellbeing/Appetite/Weight change/Energy/Sleep/Mood; Cardiovascular (chest pain, orthopnea, PND, palpitations, claudication, ankle swelling); Respiratory (shortness of breath, cough dry/productive, sputum, hemoptysis, wheeze); Gastrointestinal (oral ulcers, dysphagia, odynophagia, nausea/vomiting, hematemesis, indigestion, abdominal pain, bowel habit change, stool color/consistency); Urinary (dysuria, frequency/urgency, nocturia, hematuria, incontinence); Genital (menstrual history, vaginal discharge, dyspareunia, prostatic symptoms when relevant); Endocrine (heat/cold intolerance, excessive sweating, polydipsia); Musculoskeletal (joint pain, stiffness, swelling, falls); Neurological (headache, dizziness, fainting, seizures, numbness, weakness, vision/hearing changes, memory issues); Bleeding diathesis (easy bruising, rash).
+5) PAST MEDICAL HISTORY: Chronic diseases, Previous hospitalizations, Previous surgeries + complications, Obstetric history (if applicable), Blood transfusion history.
+6) DRUG HISTORY: Current medications (name, dose, duration, indication), OTC/herbal remedies, Compliance, Allergies (clarify severity).
+7) FAMILY HISTORY: Hereditary illnesses, Illnesses in first-degree relatives, Any similar complaints, Pedigree if needed.
+8) SOCIAL HISTORY: Smoking (pack years), Alcohol use, Drug use, Occupation & hazards, Travel history, Sexual history (only if relevant), Lifestyle, Home/support system, Vaccination, Insurance.
+
 RULES:
-- Focus on history, symptoms, context, risk factors.
+- Focus on history, symptoms, context, and risk factors using the OSCE categories above.
 - Use LKL knowledge only as medical guidance, not to invent facts.
-- If something is missing, leave it neutral (e.g., "N/A") instead of hallucinating.
-- Output ONLY valid JSON.
+- If something is missing, set the value to "N/A" without hallucinating.
+- Final output must be strict valid JSON matching the schema.
 """
 
         response = client.chat.completions.create(
