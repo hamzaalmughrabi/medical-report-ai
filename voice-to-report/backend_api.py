@@ -1,13 +1,13 @@
-import os
 import json
-from fastapi import FastAPI, UploadFile, File, Body, HTTPException
+import os
+from fastapi import Body, FastAPI, File, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, JSONResponse
 
 from transcription import (
     process_full_medical_report,
     make_pdf_from_report,
-    MEMORY_FILE
+    MEMORY_FILE,
 )
 
 app = FastAPI()
@@ -46,7 +46,7 @@ async def phase1_transcribe(file: UploadFile = File(...)):
 @app.post("/phase2-transcribe")
 async def phase2_transcribe(
     file: UploadFile = File(...),
-    intake_id: str = None
+    intake_id: str | None = None,
 ):
     filepath = os.path.join(UPLOAD_DIR, file.filename)
     with open(filepath, "wb") as f:
@@ -55,9 +55,10 @@ async def phase2_transcribe(
     report = process_full_medical_report(
         filepath,
         phase="final_assessment",
-        intake_case_id=intake_id
+        intake_case_id=intake_id,
     )
     return JSONResponse(report)
+
 
 # =========================================
 # PHASE 1 CASE LIST FOR PHASE 2 TABLE
@@ -74,11 +75,13 @@ async def phase1_cases():
     result = []
 
     for c in cases:
-        result.append({
-            "case_id": c.get("report_id"),
-            "patient": c.get("patient_name", "Unknown"),
-            "phase": c.get("phase", "intake")
-        })
+        result.append(
+            {
+                "case_id": c.get("report_id"),
+                "patient": c.get("patient_name", "Unknown"),
+                "phase": c.get("phase", "intake"),
+            }
+        )
 
     return result
 
@@ -99,7 +102,7 @@ async def generate_pdf(report: dict = Body(...)):
     return FileResponse(
         pdf_path,
         filename=filename,
-        media_type="application/pdf"
+        media_type="application/pdf",
     )
 
 
@@ -126,13 +129,15 @@ def list_reports():
             pdf_path = os.path.join(REPORTS_DIR, pdf_name)
 
             if os.path.exists(pdf_path):
-                report_list.append({
-                    "reportId": report_id,
-                    "patient": r.get("patient_name", "Unknown"),
-                    "phase": r.get("phase", "N/A"),
-                    "date": r.get("timestamp", "N/A"),
-                    "downloadUrl": f"http://localhost:8001/reports/{pdf_name}"
-                })
+                report_list.append(
+                    {
+                        "reportId": report_id,
+                        "patient": r.get("patient_name", "Unknown"),
+                        "phase": r.get("phase", "N/A"),
+                        "date": r.get("timestamp", "N/A"),
+                        "downloadUrl": f"http://localhost:8001/reports/{pdf_name}",
+                    }
+                )
 
         return JSONResponse(report_list)
 
@@ -140,9 +145,7 @@ def list_reports():
         print("❌ ERROR listing reports:", e)
         raise HTTPException(status_code=500, detail="Failed to read report history.")
 
-    except Exception as e:
-        print("❌ ERROR listing reports:", e)
-        raise HTTPException(status_code=500, detail="Failed to read reports directory.")
+
 # =========================================
 # DOWNLOAD REPORT
 # =========================================
@@ -156,17 +159,19 @@ def download_report(filename: str):
     return FileResponse(
         file_path,
         media_type="application/pdf",
-        filename=filename
+        filename=filename,
     )
+
 
 # =========================================
 # RUN SERVER
 # =========================================
 if __name__ == "__main__":
     import uvicorn
+
     uvicorn.run(
         "backend_api:app",
         host="0.0.0.0",
         port=8001,
-        reload=True
+        reload=True,
     )

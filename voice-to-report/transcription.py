@@ -2,6 +2,7 @@
 import os
 import json
 from datetime import datetime
+from typing import Any, Dict, Tuple
 from openai import OpenAI
 
 from lkl.lkl_manager import LKLManager
@@ -18,20 +19,20 @@ client = OpenAI(api_key=api_key)
 MEMORY_FILE = "memory.json"
 
 TARGET_SCHEMA_JSON = """{
-  "report_id": "string",
-  "phase": "intake | final_assessment",
-  "patient_name": "string",
-  "age": "string",
-  "sex": "string",
-  "dob": "string",
-  "referring_doctor": "string",
-  "exam_date": "string",
-  "exam_type": "string",
-  "clinical_history": "string",
-  "detailed_findings": [{"finding":"string","explanation":"string"}],
-  "impression_summary": "string",
-  "recommendations": ["string"],
-  "urgency_level": "low | moderate | high | N/A"
+  \"report_id\": \"string\",
+  \"phase\": \"intake | final_assessment\",
+  \"patient_name\": \"string\",
+  \"age\": \"string\",
+  \"sex\": \"string\",
+  \"dob\": \"string\",
+  \"referring_doctor\": \"string\",
+  \"exam_date\": \"string\",
+  \"exam_type\": \"string\",
+  \"clinical_history\": \"string\",
+  \"detailed_findings\": [{\"finding\":\"string\",\"explanation\":\"string\"}],
+  \"impression_summary\": \"string\",
+  \"recommendations\": [\"string\"],
+  \"urgency_level\": \"low | moderate | high | N/A\"
 }"""
 
 # -----------------------------
@@ -49,7 +50,7 @@ def _save_memory():
         json.dump(memory, f, indent=2, ensure_ascii=False)
 
 
-def _safe_parse_llm_response(resp):
+def _safe_parse_llm_response(resp: Any) -> Dict[str, Any]:
     """Return dict from OpenAI response, even if it’s a raw string."""
     try:
         content = resp.choices[0].message.content
@@ -125,7 +126,7 @@ def process_full_medical_report(
         missing_info = (
             lkl.detect_missing_info(category, transcript_text) if category else []
         )
-        knowledge = lkl.get_category_knowledge(category)
+        knowledge = lkl.get_category_knowledge(category) if category else {}
 
         prompt = f"""
 You are an OSCE-style medical intake report generator (Phase 1).
@@ -161,7 +162,7 @@ OSCE CATEGORIES TO COVER:
 RULES:
 - Focus on history, symptoms, context, and risk factors using the OSCE categories above.
 - Use LKL knowledge only as medical guidance, not to invent facts.
-- If something is missing, set the value to "N/A" without hallucinating.
+- If something is missing, set the value to \"N/A\" without hallucinating.
 - Final output must be strict valid JSON matching the schema.
 """
 
@@ -188,7 +189,7 @@ RULES:
             lkl.auto_learn_from_report(category, report)
 
         # Save for Phase 2
-        memory["cases"].append(report)
+        memory.setdefault("cases", []).append(report)
         _save_memory()
 
         print(f"💾 Saved intake report: {case_id_from_file}")
@@ -218,12 +219,13 @@ RULES:
         missing_info = (
             lkl.detect_missing_info(category, combined_for_category) if category else []
         )
-        knowledge = lkl.get_category_knowledge(category)
+        knowledge = lkl.get_category_knowledge(category) if category else {}
 
         # 3) Prompt: synthesize intake JSON + final dictation
         prompt = f"""
 You are an expert clinical report writer specializing in synthesizing complex medical data.
-Your job is to generate a comprehensive, structured FINAL ASSESSMENT (Phase 2) report.
+Your job is to generate a comprehensive, structured FINAL ASSESSMENT (Phase 2) report in English only.
+Always provide English output even if the dictation includes other languages, and ensure patient names stay in English characters.
 
 You must combine the two primary inputs:
 1) The structured INTAKE report from Phase 1 (Initial History & Symptoms).
@@ -292,6 +294,18 @@ RULES:
 
     else:
         raise ValueError(f"Unknown phase: {phase}")
+
+
+# =====================================================================
+# Legacy wrapper
+# =====================================================================
+def process_audio_to_json(audio_file_path: str) -> Tuple[Dict[str, Any], str]:
+    """
+    Legacy compatibility wrapper used by older scripts (app.py/main_pipeline.py).
+    It simply runs the intake pipeline and returns the JSON report and file path.
+    """
+    report = process_full_medical_report(audio_file_path, phase="intake")
+    return report, audio_file_path
 
 
 # =====================================================================

@@ -1,456 +1,227 @@
 {
-  "version": "1.1",
+  "version": "2.0",
   "categories": {
     "knee_pain": {
       "metadata": {
         "body_part": "knee",
-        "keywords": [
-          "knee",
-          "pain",
-          "injury",
-          "swelling",
-          "diagnosis",
-          "investigations",
-          "ACL",
-          "Meniscus",
-          "Arthritis",
-          "Tendonitis"
-        ]
+        "keywords": ["knee", "patella", "meniscus", "ligament", "swelling", "instability", "locking", "ACL", "MCL", "arthritis"],
+        "red_flags": ["fever", "inability to bear weight", "traumatic deformity", "night pain", "neurovascular compromise"],
+        "common_causes": ["degenerative osteoarthritis", "meniscal tear", "ligament sprain", "patellofemoral pain"]
       },
       "patterns": {
-        "symptoms": [
-          "pain during movement",
-          "swelling",
-          "limited range of motion",
-          "recent trauma",
-          "instability or locking",
-          "pain",
-          "instability"
-        ],
-        "history_questions": [
-          "duration of pain",
-          "trauma history",
-          "swelling present?",
-          "movement limitations?",
-          "medications used?"
-        ],
+        "symptoms": ["pain during movement", "swelling", "limited range of motion", "instability or locking", "clicking", "giving way"],
+        "history_questions": ["duration of pain", "mechanism of injury or trauma", "swelling present?", "movement limitations?", "locking or catching?", "medications used?", "previous similar episodes?"],
         "findings_templates": [
           "Mild tenderness over the joint line",
-          "No visible deformity",
           "Swelling present",
+          "No visible deformity",
           "Normal distal pulses",
-          "valgus stress pain positive",
-          "mild lateral tracking abnormality",
-          "Dry eyes",
-          "Sore throat",
-          "Headache",
-          "Chronic conditions",
-          "Left knee pain",
-          "Family history of hypertension"
+          "Positive McMurray test",
+          "Pain with valgus stress"
         ],
         "impression_templates": [
-          "Clinical findings suggest mild soft tissue injury.",
           "Features are consistent with inflammatory knee pain.",
-          "Possibility of internal derangement cannot be excluded.",
           "Findings suggest MCL strain with patellofemoral dysfunction.",
-          "Patient presents with dry eyes, sore throat, and headache, all of which have been addressed with appropriate treatments.",
-          "The patient presents with headaches likely due to lack of sleep or fatigue from studying. The condition is stable with no significant underlying medical issues identified.",
-          "The patient presents with left knee pain potentially due to an inflammatory process or infection, as indicated by MRI findings of white blood cell issues. Further evaluation and treatment with Vitamin C and antibiotics are recommended."
-        ]
+          "Possibility of internal derangement cannot be excluded."
+        ],
+        "ros_clues": [
+          "fevers or chills suggesting infection",
+          "weight loss",
+          "weakness or numbness radiating below the knee",
+          "mechanical symptoms such as locking"
+        ],
+        "risk_factors": ["recent trauma", "sports pivoting injury", "obesity", "repetitive kneeling", "inflammatory arthritis history"],
+        "supporting_tests": ["positive McMurray test", "valgus stress pain", "joint effusion"]
       },
-      "anatomical_location": {
-        "pain_locations": [
-          "Anterior (Patellofemoral)",
-          "Medial Joint Line",
-          "Lateral Joint Line",
-          "Posterior (Popliteal Fossa)"
+      "osce_history": {
+        "socrates": ["site of pain", "onset circumstances", "character of pain", "radiation", "associated symptoms", "timing/duration", "exacerbating factors", "relieving factors", "severity scale"],
+        "ros": [
+          "general health, appetite, weight change",
+          "cardiovascular symptoms",
+          "respiratory symptoms",
+          "gastrointestinal bleeding or abdominal pain",
+          "urinary symptoms",
+          "neurological weakness or numbness",
+          "bleeding or bruising"
         ],
-        "tenderness_sites": [
-          "Medial Collateral Ligament (MCL)",
-          "Patellar Tendon",
-          "Tibial Tuberosity"
-        ]
-      },
-      "differential_diagnoses": {
-        "common": [
-          "Osteoarthritis",
-          "Meniscal Tear",
-          "Ligament Sprain (MCL/LCL)"
-        ],
-        "less_common": [
-          "Septic Arthritis",
-          "Gout",
-          "Patellar Tendinitis"
-        ]
-      },
-      "severity_scales": {
-        "pain_scale": [
-          "Mild (1-3)",
-          "Moderate (4-6)",
-          "Severe (7-10)"
-        ],
-        "effusion_grading": [
-          "Grade 1 (Minor)",
-          "Grade 2 (Moderate)",
-          "Grade 3 (Severe)"
-        ],
-        "ligament_instability": [
-          "Grade I Sprain",
-          "Grade II Sprain",
-          "Grade III Tear"
-        ]
+        "past_history": ["prior knee surgeries", "previous fractures or ligament tears", "chronic joint disease"],
+        "drug_history": ["analgesics used", "anti-inflammatory medication", "anticoagulants", "allergies"],
+        "family_history": ["arthritis in first-degree relatives", "connective tissue disease"],
+        "social_history": ["sports participation", "occupation with kneeling or lifting", "smoking", "alcohol"]
       },
       "investigations": {
-        "initial_imaging": [
-          "X-ray (AP, Lateral, Sunrise views)"
-        ],
-        "advanced_imaging": [
-          "MRI (Magnetic Resonance Imaging)",
-          "Ultrasound"
-        ],
-        "laboratory_tests": [
-          "CRP/ESR (Inflammatory Markers)",
-          "Joint Aspiration"
-        ]
+        "initial_imaging": ["X-ray (AP, Lateral, Sunrise views)"],
+        "advanced_imaging": ["MRI knee", "Ultrasound"],
+        "laboratory_tests": ["CRP/ESR", "Joint aspiration if infection suspected"]
       },
-      "cases": [
-        {
-          "id": "case_001",
-          "symptoms": [
-            "knee pain",
-            "swelling"
-          ],
-          "examination": [
-            "mild tenderness",
-            "normal range of motion"
-          ],
-          "impression": "Soft tissue injury",
-          "report_text": "Patient presents with knee pain and swelling…"
-        }
-      ]
+      "anatomical_location": {
+        "pain_locations": ["Anterior (patellofemoral)", "Medial joint line", "Lateral joint line", "Posterior (popliteal fossa)"],
+        "tenderness_sites": ["Medial collateral ligament", "Patellar tendon", "Tibial tuberosity"]
+      },
+      "differential_diagnoses": {
+        "common": ["Osteoarthritis", "Meniscal tear", "Ligament sprain (MCL/LCL)"],
+        "less_common": ["Septic arthritis", "Gout", "Patellar tendinitis"]
+      },
+      "severity_scales": {
+        "pain_scale": ["Mild (1-3)", "Moderate (4-6)", "Severe (7-10)"],
+        "effusion_grading": ["Grade 1 (minor)", "Grade 2 (moderate)", "Grade 3 (severe)"]
+      },
+      "missing_info": {
+        "required_fields": ["onset", "duration", "severity", "red flag symptoms", "functional limitation", "drug allergies"],
+        "red_flag_prompts": ["fever or systemic illness", "night pain", "recent trauma", "neurovascular symptoms"]
+      },
+      "learning": {
+        "intake_reports": [],
+        "final_reports": []
+      }
     },
     "back_pain": {
       "metadata": {
         "body_part": "back/spine",
-        "keywords": [
-          "back",
-          "pain",
-          "spine",
-          "sciatica",
-          "disc",
-          "herniation",
-          "lumbago",
-          "radiculopathy"
-        ]
+        "keywords": ["back", "lumbar", "spine", "radiculopathy", "sciatica", "disc", "herniation", "lumbago"],
+        "red_flags": ["saddle anesthesia", "incontinence", "progressive weakness", "fever", "unintentional weight loss"],
+        "common_causes": ["lumbar strain", "disc herniation", "degenerative changes"]
       },
       "patterns": {
-        "symptoms": [
-          "lumbar pain",
-          "pain radiating down leg",
-          "numbness or tingling",
-          "difficulty standing or sitting",
-          "muscle spasms"
-        ],
-        "history_questions": [
-          "onset of pain (sudden/gradual)",
-          "does pain worsen with coughing or sneezing?",
-          "any weakness in legs or feet?",
-          "recent heavy lifting?",
-          "bowel/bladder changes (Red Flag)?"
-        ],
-        "findings_templates": [
-          "Tenderness over paraspinal muscles",
-          "Positive Straight Leg Raise (SLR) test",
-          "Normal deep tendon reflexes (DTRs)",
-          "Gait is antalgic (painful)"
-        ],
-        "impression_templates": [
-          "Clinical findings suggest acute lumbar strain.",
-          "Features are consistent with Lumbar Radiculopathy.",
-          "Possibility of disc herniation cannot be excluded."
-        ]
+        "symptoms": ["lumbar pain", "pain radiating down leg", "numbness or tingling", "muscle spasms", "difficulty standing or sitting"],
+        "history_questions": ["onset of pain (sudden/gradual)?", "does pain worsen with coughing or sneezing?", "any weakness in legs or feet?", "recent heavy lifting?", "bowel/bladder changes?"],
+        "findings_templates": ["Tenderness over paraspinal muscles", "Positive Straight Leg Raise test", "Normal deep tendon reflexes", "Antalgic gait"],
+        "impression_templates": ["Clinical findings suggest acute lumbar strain.", "Features are consistent with lumbar radiculopathy.", "Possibility of disc herniation cannot be excluded."],
+        "ros_clues": ["neurological deficits", "constitutional symptoms", "urinary retention or incontinence"],
+        "risk_factors": ["heavy lifting", "sedentary lifestyle", "prior spine injury"],
+        "supporting_tests": ["positive straight leg raise", "reduced power in myotomes"]
       },
-      "anatomical_location": {
-        "pain_locations": [
-          "Cervical (Neck)",
-          "Thoracic (Mid-back)",
-          "Lumbar (Lower back)",
-          "Sacral/Coccyx"
-        ],
-        "tenderness_sites": [
-          "L4-L5 intervertebral space",
-          "Sacroiliac joint (SIJ)",
-          "Piriformis muscle"
-        ]
-      },
-      "differential_diagnoses": {
-        "common": [
-          "Muscle Strain",
-          "Sciatica",
-          "Degenerative Disc Disease"
-        ],
-        "less_common": [
-          "Spinal Stenosis",
-          "Spondylolisthesis",
-          "Cauda Equina Syndrome (Red Flag)"
-        ]
-      },
-      "severity_scales": {
-        "pain_scale": [
-          "Mild (1-3)",
-          "Moderate (4-6)",
-          "Severe (7-10)"
-        ],
-        "functional_limitation": [
-          "Minimal interference",
-          "Moderate interference with ADLs",
-          "Severe disability"
-        ]
+      "osce_history": {
+        "socrates": ["site of pain", "onset and precipitating event", "character of pain", "radiation down leg", "associated weakness or numbness", "timing and pattern", "exacerbating factors like bending", "relieving factors like rest", "severity scale"],
+        "ros": ["weight loss", "fever", "night pain", "bowel or bladder changes", "gait disturbance"],
+        "past_history": ["previous spinal surgery", "osteoporosis", "trauma"],
+        "drug_history": ["analgesics", "NSAIDs", "steroids", "anticoagulants"],
+        "family_history": ["degenerative disc disease", "ankylosing spondylitis"],
+        "social_history": ["occupation with lifting", "smoking", "physical activity level"]
       },
       "investigations": {
-        "initial_imaging": [
-          "X-ray (AP/Lateral of affected spine region)"
-        ],
-        "advanced_imaging": [
-          "MRI (for soft tissue/disc evaluation)",
-          "CT Myelogram"
-        ],
-        "laboratory_tests": [
-          "No specific lab tests usually indicated"
-        ]
+        "initial_imaging": ["X-ray (AP/Lateral of affected spine region)"],
+        "advanced_imaging": ["MRI spine", "CT myelogram"],
+        "laboratory_tests": ["none routinely", "ESR/CRP if infection or malignancy suspected"]
       },
-      "cases": [
-        {
-          "id": "case_002",
-          "symptoms": [
-            "low back pain",
-            "radiating pain in right leg"
-          ],
-          "examination": [
-            "positive SLR on right",
-            "reduced power in EHL"
-          ],
-          "impression": "L5 Radiculopathy",
-          "report_text": "Patient presents with lower back pain and leg symptoms consistent with nerve root irritation."
-        }
-      ]
+      "anatomical_location": {
+        "pain_locations": ["cervical", "thoracic", "lumbar", "sacral"],
+        "tenderness_sites": ["paraspinal muscles", "spinous processes", "sacroiliac joint"]
+      },
+      "differential_diagnoses": {
+        "common": ["muscle strain", "sciatica", "degenerative disc disease"],
+        "less_common": ["spinal stenosis", "spondylolisthesis", "cauda equina syndrome"]
+      },
+      "severity_scales": {
+        "pain_scale": ["Mild (1-3)", "Moderate (4-6)", "Severe (7-10)"],
+        "functional_limitation": ["minimal interference", "moderate interference", "severe disability"]
+      },
+      "missing_info": {
+        "required_fields": ["onset and trigger", "neurological symptoms", "red flag bowel/bladder questions", "analgesia use", "functional impact"],
+        "red_flag_prompts": ["saddle anesthesia", "urinary retention", "night sweats", "recent infection or malignancy history"]
+      },
+      "learning": {
+        "intake_reports": [],
+        "final_reports": []
+      }
     },
     "shoulder_pain": {
       "metadata": {
         "body_part": "shoulder",
-        "keywords": [
-          "shoulder",
-          "pain",
-          "rotator cuff",
-          "impingement",
-          "frozen shoulder",
-          "dislocation",
-          "tendinopathy"
-        ]
+        "keywords": ["shoulder", "rotator cuff", "impingement", "frozen shoulder", "dislocation", "tendinopathy"],
+        "red_flags": ["acute trauma with deformity", "neurovascular compromise", "systemic symptoms"],
+        "common_causes": ["rotator cuff tendinopathy", "impingement", "adhesive capsulitis"]
       },
       "patterns": {
-        "symptoms": [
-          "pain with overhead movement",
-          "weakness in lifting arm",
-          "clicking or popping sound",
-          "stiffness/reduced flexibility",
-          "pain at night"
-        ],
-        "history_questions": [
-          "history of repetitive activity?",
-          "mechanism of injury (fall/direct blow)?",
-          "can you reach behind your back?",
-          "any sensation of instability/looseness?",
-          "location of pain (anterior/lateral/posterior)?"
-        ],
-        "findings_templates": [
-          "Tenderness over greater tuberosity",
-          "Positive Impingement (Neer's/Hawkins) test",
-          "Painful Arc sign",
-          "Passive Range of Motion is greater than Active Range of Motion"
-        ],
-        "impression_templates": [
-          "Clinical findings suggest Rotator Cuff Tendinopathy.",
-          "Features are consistent with Shoulder Impingement Syndrome.",
-          "Possibility of glenohumeral instability cannot be excluded."
-        ]
+        "symptoms": ["pain with overhead movement", "weakness in lifting arm", "clicking or popping sound", "night pain", "stiffness"],
+        "history_questions": ["history of repetitive activity?", "mechanism of injury?", "can you reach behind your back?", "instability or dislocation?", "location of pain (anterior/lateral/posterior)?"],
+        "findings_templates": ["Tenderness over greater tuberosity", "Positive impingement tests", "Painful arc sign", "Passive ROM greater than active"],
+        "impression_templates": ["Clinical findings suggest rotator cuff tendinopathy.", "Features are consistent with shoulder impingement.", "Possibility of glenohumeral instability cannot be excluded."],
+        "ros_clues": ["neck pain or radicular symptoms", "systemic inflammatory features"],
+        "risk_factors": ["repetitive overhead work", "throwing sports", "diabetes (adhesive capsulitis)"]
       },
-      "anatomical_location": {
-        "pain_locations": [
-          "Anterior shoulder (Biceps)",
-          "Lateral shoulder (Deltoid insertion)",
-          "Acromioclavicular (AC) joint"
-        ],
-        "tenderness_sites": [
-          "Supraspinatus insertion",
-          "Bicipital groove",
-          "AC joint"
-        ]
-      },
-      "differential_diagnoses": {
-        "common": [
-          "Rotator Cuff Tendinitis",
-          "Impingement Syndrome",
-          "AC Joint Sprain"
-        ],
-        "less_common": [
-          "Adhesive Capsulitis (Frozen Shoulder)",
-          "Glenohumeral Arthritis",
-          "Labral Tear"
-        ]
-      },
-      "severity_scales": {
-        "pain_scale": [
-          "Mild (1-3)",
-          "Moderate (4-6)",
-          "Severe (7-10)"
-        ],
-        "range_of_motion_loss": [
-          "Minimal (0-10%)",
-          "Moderate (10-50%)",
-          "Severe (>50%)"
-        ],
-        "strength_grading": [
-          "Grade 0/5",
-          "Grade 3/5 (against gravity)",
-          "Grade 5/5 (normal)"
-        ]
+      "osce_history": {
+        "socrates": ["site of pain", "onset with activity or trauma", "character", "radiation to arm", "associated weakness or stiffness", "timing and night pain", "exacerbating overhead movements", "relieving factors", "severity"],
+        "ros": ["neck symptoms", "neurological numbness or tingling", "constitutional symptoms"],
+        "past_history": ["prior dislocations", "previous shoulder surgery", "diabetes"],
+        "drug_history": ["analgesics", "NSAIDs", "steroid injections"],
+        "family_history": ["connective tissue disorders"],
+        "social_history": ["occupation involving lifting", "sports participation", "smoking"]
       },
       "investigations": {
-        "initial_imaging": [
-          "X-ray (AP, Scapular Y views)"
-        ],
-        "advanced_imaging": [
-          "Ultrasound (for tendons)",
-          "MRI (for soft tissue/labrum)"
-        ],
-        "laboratory_tests": [
-          "No specific lab tests usually indicated"
-        ]
+        "initial_imaging": ["X-ray (AP, Scapular Y views)"],
+        "advanced_imaging": ["Ultrasound for tendons", "MRI for labrum/rotator cuff"],
+        "laboratory_tests": ["none routinely"]
       },
-      "cases": [
-        {
-          "id": "case_003",
-          "symptoms": [
-            "pain lifting arm overhead",
-            "lateral shoulder pain"
-          ],
-          "examination": [
-            "positive Neer's test",
-            "weakness on external rotation"
-          ],
-          "impression": "Rotator Cuff Tendinopathy/Impingement",
-          "report_text": "Patient presents with lateral shoulder pain aggravated by overhead movements."
-        }
-      ]
+      "anatomical_location": {
+        "pain_locations": ["anterior shoulder", "lateral shoulder", "acromioclavicular joint"],
+        "tenderness_sites": ["supraspinatus insertion", "bicipital groove", "AC joint"]
+      },
+      "differential_diagnoses": {
+        "common": ["rotator cuff tendinitis", "impingement syndrome", "AC joint sprain"],
+        "less_common": ["adhesive capsulitis", "glenohumeral arthritis", "labral tear"]
+      },
+      "severity_scales": {
+        "pain_scale": ["Mild (1-3)", "Moderate (4-6)", "Severe (7-10)"],
+        "range_of_motion_loss": ["minimal (0-10%)", "moderate (10-50%)", "severe (>50%)"]
+      },
+      "missing_info": {
+        "required_fields": ["dominant hand", "mechanism of injury", "range of motion limits", "weakness or numbness", "impact on daily activities"],
+        "red_flag_prompts": ["recent trauma", "visible deformity", "loss of pulse or sensation"]
+      },
+      "learning": {
+        "intake_reports": [],
+        "final_reports": []
+      }
     },
     "hand_wrist_pain": {
       "metadata": {
         "body_part": "hand/wrist",
-        "keywords": [
-          "hand",
-          "wrist",
-          "pain",
-          "carpal tunnel",
-          "fracture",
-          "arthritis",
-          "tendinitis",
-          "de quervain's"
-        ]
+        "keywords": ["hand", "wrist", "carpal tunnel", "fracture", "arthritis", "tendinitis", "de quervain"],
+        "red_flags": ["open fracture", "neurovascular compromise", "infection", "severe swelling with trauma"],
+        "common_causes": ["carpal tunnel syndrome", "tendinitis", "sprain", "arthritis"]
       },
       "patterns": {
-        "symptoms": [
-          "pain at base of thumb",
-          "numbness/tingling in fingers",
-          "weak grip strength",
-          "swelling around wrist joint",
-          "pain worse with repetitive tasks",
-          "difficulty making a fist"
-        ],
-        "history_questions": [
-          "history of repetitive motion (typing, gripping)?",
-          "trauma history (fall onto an outstretched hand)?",
-          "which fingers are numb/tingling?",
-          "is pain worse at night?",
-          "occupation/hobbies involving hand stress?"
-        ],
-        "findings_templates": [
-          "Tenderness over anatomical snuff box",
-          "Positive Finkelstein's test",
-          "Positive Phalen's or Tinel's sign",
-          "Reduced grip strength",
-          "Normal capillary refill"
-        ],
-        "impression_templates": [
-          "Clinical findings suggest Carpal Tunnel Syndrome.",
-          "Features are consistent with De Quervain's Tenosynovitis.",
-          "Possibility of scaphoid fracture cannot be excluded."
-        ]
+        "symptoms": ["pain at base of thumb", "numbness or tingling in fingers", "weak grip strength", "swelling around wrist", "pain worse with repetitive tasks"],
+        "history_questions": ["repetitive motion such as typing?", "trauma such as fall on outstretched hand?", "which fingers are numb?", "pain worse at night?", "occupation or hobbies?"],
+        "findings_templates": ["Tenderness over anatomical snuff box", "Positive Finkelstein test", "Positive Phalen or Tinel sign", "Reduced grip strength", "Normal capillary refill"],
+        "impression_templates": ["Clinical findings suggest carpal tunnel syndrome.", "Features are consistent with De Quervain tenosynovitis.", "Possibility of scaphoid fracture cannot be excluded."],
+        "ros_clues": ["neck or shoulder radiation", "systemic inflammatory symptoms"],
+        "risk_factors": ["repetitive wrist flexion", "pregnancy", "diabetes", "smoking"]
       },
-      "anatomical_location": {
-        "pain_locations": [
-          "Volar aspect of wrist (palm side)",
-          "Dorsal aspect of wrist (back of hand)",
-          "Thumb CMC joint (base of thumb)",
-          "Carpal tunnel region"
-        ],
-        "tenderness_sites": [
-          "Scaphoid bone",
-          "Distal ulna/radius",
-          "Intersection of APL and EPB tendons"
-        ]
-      },
-      "differential_diagnoses": {
-        "common": [
-          "Carpal Tunnel Syndrome (CTS)",
-          "De Quervain's Tenosynovitis",
-          "Wrist Sprain/Strain"
-        ],
-        "less_common": [
-          "Scaphoid Fracture",
-          "Ganglion Cyst",
-          "Rheumatoid Arthritis (early stages)"
-        ]
-      },
-      "severity_scales": {
-        "pain_scale": [
-          "Mild (1-3)",
-          "Moderate (4-6)",
-          "Severe (7-10)"
-        ],
-        "functional_limitation": [
-          "Minimal interference",
-          "Difficulty with fine motor skills",
-          "Inability to hold objects"
-        ]
+      "osce_history": {
+        "socrates": ["site of wrist or hand pain", "onset (traumatic vs gradual)", "character (tingling, burning)", "radiation to fingers", "associated weakness or dropping objects", "timing including night symptoms", "exacerbating repetitive use", "relieving splints or rest", "severity"],
+        "ros": ["neck symptoms", "systemic inflammatory features", "skin changes or infection"],
+        "past_history": ["fractures", "tendon problems", "inflammatory arthritis"],
+        "drug_history": ["analgesics", "NSAIDs", "steroids", "anticoagulants"],
+        "family_history": ["rheumatoid arthritis", "connective tissue disease"],
+        "social_history": ["occupation with typing or manual work", "smoking", "alcohol"]
       },
       "investigations": {
-        "initial_imaging": [
-          "X-ray (PA, Lateral, Scaphoid views)"
-        ],
-        "advanced_imaging": [
-          "Ultrasound (for tendons/nerves)",
-          "MRI (for ligaments/occult fractures)"
-        ],
-        "laboratory_tests": [
-          "Nerve Conduction Study (NCS) for CTS"
-        ]
+        "initial_imaging": ["X-ray (PA, Lateral, Scaphoid views)"],
+        "advanced_imaging": ["Ultrasound for tendons", "MRI for ligaments or occult fracture"],
+        "laboratory_tests": ["nerve conduction study for CTS", "inflammatory markers if arthritis suspected"]
       },
-      "cases": [
-        {
-          "id": "case_004",
-          "symptoms": [
-            "numbness in thumb, index, middle fingers",
-            "wakes up at night with tingling"
-          ],
-          "examination": [
-            "positive Phalen's test",
-            "reduced sensation in median nerve distribution"
-          ],
-          "impression": "Carpal Tunnel Syndrome (Clinical)",
-          "report_text": "Patient presents with classic symptoms and signs of median nerve compression."
-        }
-      ]
+      "anatomical_location": {
+        "pain_locations": ["volar wrist", "dorsal wrist", "thumb CMC joint", "carpal tunnel region"],
+        "tenderness_sites": ["scaphoid", "distal ulna/radius", "APL/EPB intersection"]
+      },
+      "differential_diagnoses": {
+        "common": ["carpal tunnel syndrome", "De Quervain tenosynovitis", "wrist sprain"],
+        "less_common": ["scaphoid fracture", "ganglion cyst", "rheumatoid arthritis"]
+      },
+      "severity_scales": {
+        "pain_scale": ["Mild (1-3)", "Moderate (4-6)", "Severe (7-10)"],
+        "functional_limitation": ["minimal interference", "difficulty with fine motor skills", "inability to hold objects"]
+      },
+      "missing_info": {
+        "required_fields": ["dominant hand", "occupational risks", "numbness distribution", "nocturnal symptoms", "impact on dexterity"],
+        "red_flag_prompts": ["open wounds", "loss of sensation", "severe swelling after trauma"]
+      },
+      "learning": {
+        "intake_reports": [],
+        "final_reports": []
+      }
     }
   }
 }
