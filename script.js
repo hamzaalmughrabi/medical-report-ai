@@ -214,14 +214,20 @@ async function uploadRecordedAudioForPhase(phase, audioBlob, outputEl) {
     fd.append("file", audioBlob, `recording_${Date.now()}.webm`);
 
     // 👇 مهم جداً: نرسل case_id عند Phase 2
-   if (phase === "final_assessment" && window.selectedCaseIdForPhase2) {
-    fd.append("intake_id", window.selectedCaseIdForPhase2);  // <-- FIX
-}
+    if (phase === "final_assessment") {
+        if (!selectedCaseIdForPhase2) {
+            outputEl.innerHTML = `<p class="text-red-600">Select an intake case before recording the final assessment.</p>`;
+            return;
+        }
+
+        // Send the intake ID in both query params and form data for full FastAPI compatibility
+        fd.append("intake_id", selectedCaseIdForPhase2);
+    }
 
 
     const endpoint = phase === "final_assessment"
-    ? `${API_URL}/phase2-transcribe?intake_id=${selectedCaseIdForPhase2}`
-    : `${API_URL}/phase1-transcribe`;
+        ? `${API_URL}/phase2-transcribe?intake_id=${selectedCaseIdForPhase2}`
+        : `${API_URL}/phase1-transcribe`;
 
 
     try {
