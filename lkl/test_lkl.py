@@ -1,11 +1,12 @@
 from lkl.lkl_manager import LKLManager
+
 lkl = LKLManager("lkl.json")
 
 # Fake doctor transcript (instead of real audio)
 text = """
-The patient has severe knee pain especially during movement. 
-There is swelling and the knee sometimes locks. 
-Positive McMurray test was noted. 
+The patient has severe knee pain especially during movement.
+There is swelling and the knee sometimes locks.
+Positive McMurray test was noted.
 Pain is mostly medial and worsens at night.
 """
 
@@ -21,9 +22,14 @@ print("\n=== TEST 3: Template Suggestion ===")
 templates = lkl.suggest_templates(category)
 print("Templates:", templates)
 
+print("\n=== TEST 4: Knowledge Retrieval ===")
+knowledge = lkl.get_category_knowledge(category)
+print("Knowledge keys:", list(knowledge.keys()))
 
-print("\n=== TEST 4: Auto Learning ===")
+print("\n=== TEST 5: Auto Learning ===")
 fake_report = {
+    "phase": "intake",
+    "report_id": "case_001",
     "detailed_findings": [
         {"finding": "valgus stress pain positive", "explanation": "indicates possible MCL injury"},
         {"finding": "mild lateral tracking abnormality", "explanation": "possible patellar instability"}

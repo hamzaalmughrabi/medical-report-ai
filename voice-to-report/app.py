@@ -1,15 +1,5 @@
+import os
 import gradio as gr
-import os
-from transcription import process_audio_to_json
-from json_to_pdf import make_pdf_from_case
-from datetime import datetime
-
-# Folder for saving files
-output_path = "outputs"
-os.makedirs(output_path, exist_ok=True)
-
-
-import os
 from transcription import process_audio_to_json
 from json_to_pdf import make_pdf_from_case
 
@@ -52,7 +42,8 @@ def handle_audio_upload(audio_file):
 # Gradio UI
 with gr.Blocks(title="Medical Audio to Report") as demo:
     gr.Markdown(
-        "## 🏥 Medical Transcription Report Generator\nUpload an audio file to generate a structured report (JSON + PDF).")
+        "## 🏥 Medical Transcription Report Generator\nUpload an audio file to generate a structured report (JSON + PDF)."
+    )
 
     with gr.Row():
         audio_input = gr.Audio(label="🎙️ Upload Doctor Audio", type="filepath")
@@ -62,9 +53,11 @@ with gr.Blocks(title="Medical Audio to Report") as demo:
     json_output = gr.JSON(label="🧾 Extracted JSON Data")
     pdf_output = gr.File(label="📄 Download PDF Report")
 
-    generate_button.click(fn=handle_audio_upload,
-                          inputs=[audio_input],
-                          outputs=[json_output, pdf_output, status_output])
+    generate_button.click(
+        fn=handle_audio_upload,
+        inputs=[audio_input],
+        outputs=[json_output, pdf_output, status_output],
+    )
 
 if __name__ == "__main__":
     demo.launch()

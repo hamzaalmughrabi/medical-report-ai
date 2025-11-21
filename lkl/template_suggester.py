@@ -3,12 +3,13 @@ class TemplateSuggester:
         self.lkl = lkl_data
 
     def suggest_templates(self, category: str):
-        if category not in self.lkl["categories"]:
+        if category not in self.lkl.get("categories", {}):
             return {}
 
         cat = self.lkl["categories"][category]
+        patterns = cat.get("patterns", {})
 
         return {
-            "findings_templates": cat.get("findings_templates", []),
-            "impression_templates": cat.get("impression_templates", [])
+            "findings_templates": patterns.get("findings_templates", []),
+            "impression_templates": patterns.get("impression_templates", []),
         }
