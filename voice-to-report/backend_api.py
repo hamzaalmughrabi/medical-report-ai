@@ -1,13 +1,13 @@
 import os
 import json
-from fastapi import FastAPI, UploadFile, File, Body, HTTPException
+from fastapi import Body, FastAPI, File, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, JSONResponse
 
 from transcription import (
     process_full_medical_report,
     make_pdf_from_report,
-    MEMORY_FILE
+    MEMORY_FILE,
 )
 
 app = FastAPI()
@@ -139,10 +139,6 @@ def list_reports():
     except Exception as e:
         print("❌ ERROR listing reports:", e)
         raise HTTPException(status_code=500, detail="Failed to read report history.")
-
-    except Exception as e:
-        print("❌ ERROR listing reports:", e)
-        raise HTTPException(status_code=500, detail="Failed to read reports directory.")
 # =========================================
 # DOWNLOAD REPORT
 # =========================================

@@ -1,5 +1,16 @@
 import json
 import os
+from typing import Any, Dict, List
+
+
+def _append_unique(collection: List[Any], value: Any, max_items: int = 50):
+    if value in collection or value in (None, "", []):
+        return
+
+    collection.append(value)
+    # prevent unbounded growth
+    if len(collection) > max_items:
+        del collection[0 : len(collection) - max_items]
 
 
 class LKLManager:
@@ -16,18 +27,23 @@ class LKLManager:
         with open(lkl_path, "r", encoding="utf-8") as f:
             self.data = json.load(f)
 
+        # Normalize category structure for richer schema
+        for cat_name in list(self.data.get("categories", {}).keys()):
+            self._ensure_category_structure(cat_name)
+
     # ============================================================
     # CATEGORY DETECTION
     # ============================================================
     def detect_category(self, transcript: str):
-        transcript_lower = transcript.lower()
+        transcript_lower = (transcript or "").lower()
 
         best_category = None
         best_score = 0
 
-        for category, info in self.data["categories"].items():
+        for category, info in self.data.get("categories", {}).items():
             score = 0
-            for kw in info["metadata"]["keywords"]:
+            keywords = info.get("metadata", {}).get("keywords", [])
+            for kw in keywords:
                 if kw.lower() in transcript_lower:
                     score += 1
 
@@ -38,24 +54,34 @@ class LKLManager:
         return best_category
 
     # ============================================================
-    # KNOWLEDGE RETRIEVAL (FIXED!)
+    # KNOWLEDGE RETRIEVAL (richer schema)
     # ============================================================
-    def get_category_knowledge(self, category: str):
-        cat = self.data["categories"].get(category)
+    def get_category_knowledge(self, category: str) -> Dict[str, Any]:
+        cat = self.data.get("categories", {}).get(category)
         if not cat:
-            return None
+            return {}
+
+        knowledge = cat.get("knowledge", {})
+        exam_templates = knowledge.get("exam_templates", {})
 
         return {
-            "keywords": cat["metadata"]["keywords"],
-            "symptoms": cat["patterns"]["symptoms"],
-            "history_questions": cat["patterns"]["history_questions"],
-            "findings_templates": cat["patterns"]["findings_templates"],
-            "impression_templates": cat["patterns"]["impression_templates"],
-            "investigations": cat.get("investigations", {}),
-            "anatomical_location": cat.get("anatomical_location", {}),
-            "differentials": cat.get("differential_diagnoses", {}),
-            "severity_scales": cat.get("severity_scales", {}),
-            "previous_cases": cat.get("cases", []),
+            "metadata": cat.get("metadata", {}),
+            "keywords": cat.get("metadata", {}).get("keywords", []),
+            "symptom_patterns": knowledge.get("symptom_patterns", []),
+            "osce": knowledge.get("osce", {}),
+            "ros_checklist": knowledge.get("ros_checklist", {}),
+            "investigations": knowledge.get("investigations", {}),
+            "differential_diagnoses": knowledge.get("differential_diagnoses", {}),
+            "diagnostic_links": knowledge.get("diagnostic_links", {}),
+            "exam_templates": {
+                "findings_templates": exam_templates.get("findings_templates", []),
+                "impression_templates": exam_templates.get("impression_templates", []),
+            },
+            "recommendation_templates": knowledge.get("recommendation_templates", []),
+            "missing_info_requirements": knowledge.get(
+                "missing_info_requirements", []
+            ),
+            "learned": cat.get("learned", {}),
         }
 
     # ============================================================
@@ -65,14 +91,24 @@ class LKLManager:
         if not category:
             return []
 
-        transcript = transcript.lower()
-        questions = self.data["categories"][category]["patterns"]["history_questions"]
+        cat = self.data.get("categories", {}).get(category)
+        if not cat:
+            return []
+
+        transcript_lower = (transcript or "").lower()
+        knowledge = cat.get("knowledge", {})
+        required = knowledge.get("missing_info_requirements", [])
+        ros_sections = knowledge.get("ros_checklist", {})
 
         missing = []
-        for q in questions:
-            key = q.split()[0].lower()
-            if key not in transcript:
-                missing.append(q)
+        for req in required:
+            if req and req.lower() not in transcript_lower:
+                missing.append(req)
+
+        for section, prompts in ros_sections.items():
+            prompts = prompts or []
+            if prompts and not any(p.lower() in transcript_lower for p in prompts):
+                missing.append(f"ROS: {section}")
 
         return missing
 
@@ -83,49 +119,118 @@ class LKLManager:
         if not category:
             return {}
 
-        cat = self.data["categories"][category]
+        cat = self.data.get("categories", {}).get(category, {})
+        exam_templates = cat.get("knowledge", {}).get("exam_templates", {})
 
         return {
-            "findings_templates": cat["patterns"]["findings_templates"],
-            "impression_templates": cat["patterns"]["impression_templates"],
+            "findings_templates": exam_templates.get("findings_templates", []),
+            "impression_templates": exam_templates.get("impression_templates", []),
         }
 
     # ============================================================
     # AUTO LEARNING (PHASE 1 + PHASE 2)
     # ============================================================
-    def auto_learn_from_report(self, category, diagnostic_report):
-        cat_data = self.data["categories"].get(category)
+    def auto_learn_from_report(self, category: str, diagnostic_report: Dict[str, Any]):
+        cat_data = self._ensure_category_structure(category)
         if not cat_data:
             return
 
-        # Learn new findings
-        if "detailed_findings" in diagnostic_report:
-            for f in diagnostic_report["detailed_findings"]:
-                finding = f.get("finding", "").strip()
-                if finding and finding not in cat_data["patterns"]["findings_templates"]:
-                    print(f"📘 Learning new finding: {finding}")
-                    cat_data["patterns"]["findings_templates"].append(finding)
+        knowledge = cat_data["knowledge"]
+        exam_templates = knowledge["exam_templates"]
+        learned = cat_data["learned"]
 
-        # Learn impressions
-        if "impression_summary" in diagnostic_report:
-            imp = diagnostic_report["impression_summary"].strip()
-            if imp and imp not in cat_data["patterns"]["impression_templates"]:
-                print("📘 Learning new impression.")
-                cat_data["patterns"]["impression_templates"].append(imp)
+        # Persist report metadata for traceability
+        _append_unique(
+            learned["reports"],
+            {
+                "report_id": diagnostic_report.get("report_id"),
+                "phase": diagnostic_report.get("phase", "unknown"),
+                "timestamp": diagnostic_report.get("timestamp"),
+            },
+        )
 
-        # Learn symptoms
-        if "clinical_history" in diagnostic_report:
-            history_text = diagnostic_report["clinical_history"].lower()
-            for word in ["pain", "swelling", "instability", "locking", "weakness"]:
-                if word in history_text and word not in cat_data["patterns"]["symptoms"]:
-                    print(f"📘 Learning new symptom: {word}")
-                    cat_data["patterns"]["symptoms"].append(word)
+        history_text = (diagnostic_report.get("clinical_history") or "").strip()
+        if history_text:
+            _append_unique(learned["intake_histories"], history_text)
+            for phrase in [p.strip() for p in history_text.split(".") if p.strip()]:
+                _append_unique(knowledge["symptom_patterns"], phrase)
+
+        missing_info = diagnostic_report.get("_missing_info") or []
+        for item in missing_info:
+            _append_unique(knowledge["missing_info_requirements"], item)
+            _append_unique(learned["missing_info_samples"], item)
+
+        for finding in diagnostic_report.get("detailed_findings", []) or []:
+            finding_text = (finding.get("finding") or "").strip()
+            explanation_text = (finding.get("explanation") or "").strip()
+            if finding_text:
+                _append_unique(exam_templates["findings_templates"], finding_text)
+                _append_unique(learned["findings"], finding_text)
+            if explanation_text:
+                _append_unique(learned["findings"], explanation_text)
+
+        impression = (diagnostic_report.get("impression_summary") or "").strip()
+        if impression:
+            _append_unique(exam_templates["impression_templates"], impression)
+            _append_unique(learned["impressions"], impression)
+
+        for rec in diagnostic_report.get("recommendations", []) or []:
+            rec_text = (rec or "").strip()
+            if rec_text:
+                _append_unique(knowledge["recommendation_templates"], rec_text)
+                _append_unique(learned["recommendations"], rec_text)
 
         self._save()
 
     # ============================================================
-    # INTERNAL SAVE
+    # INTERNAL SAVE / NORMALIZATION
     # ============================================================
+    def _ensure_category_structure(self, category: str) -> Dict[str, Any] | None:
+        if not category:
+            return None
+
+        categories = self.data.setdefault("categories", {})
+        cat = categories.setdefault(category, {})
+
+        cat.setdefault("metadata", {}).setdefault("keywords", [])
+
+        knowledge = cat.setdefault("knowledge", {})
+        knowledge.setdefault("symptom_patterns", [])
+        knowledge.setdefault("osce", {})
+        knowledge.setdefault("ros_checklist", {})
+        knowledge.setdefault("investigations", {})
+        knowledge.setdefault("differential_diagnoses", {})
+        knowledge.setdefault("diagnostic_links", {})
+        knowledge.setdefault(
+            "exam_templates", {"findings_templates": [], "impression_templates": []}
+        )
+        knowledge.setdefault("recommendation_templates", [])
+        knowledge.setdefault("missing_info_requirements", [])
+
+        learned = cat.setdefault(
+            "learned",
+            {
+                "reports": [],
+                "intake_histories": [],
+                "findings": [],
+                "impressions": [],
+                "recommendations": [],
+                "missing_info_samples": [],
+            },
+        )
+
+        # Ensure required sub-keys exist if learned was present but partial
+        learned.setdefault("reports", [])
+        learned.setdefault("intake_histories", [])
+        learned.setdefault("findings", [])
+        learned.setdefault("impressions", [])
+        learned.setdefault("recommendations", [])
+        learned.setdefault("missing_info_samples", [])
+
+        cat.setdefault("cases", [])
+
+        return cat
+
     def _save(self):
         with open(self.lkl_path, "w", encoding="utf-8") as f:
             json.dump(self.data, f, indent=2, ensure_ascii=False)

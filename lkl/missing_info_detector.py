@@ -3,18 +3,24 @@ class MissingInfoDetector:
         self.lkl = lkl_data
 
     def detect_missing(self, category: str, transcript: str):
-        if category not in self.lkl["categories"]:
+        if category not in self.lkl.get("categories", {}):
             return []
 
         cat_data = self.lkl["categories"][category]
-        expected_questions = cat_data["patterns"]["history_questions"]
-
-        transcript_lower = transcript.lower()
+        knowledge = cat_data.get("knowledge", {})
+        transcript_lower = (transcript or "").lower()
 
         missing = []
-        for q in expected_questions:
-            # simple keyword-based detection
-            if not any(word in transcript_lower for word in q.lower().split()):
-                missing.append(q)
+
+        # OSCE / history prompts
+        for requirement in knowledge.get("missing_info_requirements", []):
+            if requirement and requirement.lower() not in transcript_lower:
+                missing.append(requirement)
+
+        # ROS coverage
+        for section, prompts in knowledge.get("ros_checklist", {}).items():
+            prompts = prompts or []
+            if prompts and not any(p.lower() in transcript_lower for p in prompts):
+                missing.append(f"ROS: {section}")
 
         return missing

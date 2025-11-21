@@ -38,8 +38,12 @@ TARGET_SCHEMA_JSON = """{
 # Memory load/save
 # -----------------------------
 if os.path.exists(MEMORY_FILE):
-    with open(MEMORY_FILE, "r", encoding="utf-8") as f:
-        memory = json.load(f)
+    try:
+        with open(MEMORY_FILE, "r", encoding="utf-8") as f:
+            memory = json.load(f)
+    except Exception:
+        # corrupted or unreadable file should not break the service
+        memory = {"cases": [], "final_reports": []}
 else:
     memory = {"cases": [], "final_reports": []}
 
@@ -125,14 +129,13 @@ def process_full_medical_report(
         missing_info = (
             lkl.detect_missing_info(category, transcript_text) if category else []
         )
-        knowledge = lkl.get_category_knowledge(category)
+        knowledge = lkl.get_category_knowledge(category) or {}
 
         prompt = f"""
 You are an OSCE-style medical intake report generator (Phase 1).
-You must always respond in English only.
-If the transcript contains Arabic or any other language, translate the content into English.
-Patient name MUST always be converted into English characters only.
-No Arabic, no transliteration, no mixed language.
+You must always respond in ENGLISH ONLY.
+If the transcript contains Arabic or any other language, translate everything into English.
+Patient name MUST always be converted into English characters only. No Arabic, no transliteration, no mixed language.
 
 TRANSCRIPT (translate to English if needed):
 {transcript_text}
@@ -218,12 +221,13 @@ RULES:
         missing_info = (
             lkl.detect_missing_info(category, combined_for_category) if category else []
         )
-        knowledge = lkl.get_category_knowledge(category)
+        knowledge = lkl.get_category_knowledge(category) or {}
 
         # 3) Prompt: synthesize intake JSON + final dictation
         prompt = f"""
 You are an expert clinical report writer specializing in synthesizing complex medical data.
 Your job is to generate a comprehensive, structured FINAL ASSESSMENT (Phase 2) report.
+You must ALWAYS respond in ENGLISH ONLY. Translate any non-English content into English. Patient names must use English characters only.
 
 You must combine the two primary inputs:
 1) The structured INTAKE report from Phase 1 (Initial History & Symptoms).
@@ -257,7 +261,7 @@ RULES:
 - Fill all fields as much as possible using intake + final dictation.
 - Ensure all output is clinically sound and traceable to one of the two inputs.
 - Output ONLY valid JSON.
-- only respond in english language.
+- Respond in English only; translate any non-English content and keep patient names in English characters.
 """
 
         response = client.chat.completions.create(
