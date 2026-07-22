@@ -1,4 +1,8 @@
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY") # set to None to use environment variable OPENAI_API_KEY
 AUDIO_FOLDER = "audio_files"
 MEMORY_FILE = "memory.json"
