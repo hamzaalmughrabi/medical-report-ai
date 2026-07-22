@@ -1,0 +1,51 @@
+{
+  "report_id": "consultation_1762930943922",
+  "patient_name": "N/A",
+  "age": "25",
+  "sex": "N/A",
+  "dob": "N/A",
+  "referring_doctor": "N/A",
+  "exam_date": "N/A",
+  "exam_type": "N/A",
+  "clinical_history": "Patient Profile: 25-year-old individual. Chief Complaint (CC): Joint pain. History of Present Illness (HPI): N/A. Systemic Enquiry / Review of Systems (ROS): N/A. Past Medical and Surgical History: No chronic diseases reported. Drug History: N/A. Family History: Diabetes present in maternal uncle. Social History: N/A. Functional/Physiotherapy Relevance: N/A.",
+  "detailed_findings": [
+    {
+      "finding": "Joint pain",
+      "explanation": "Patient reports experiencing joint pain, which requires further evaluation to determine the underlying cause.",
+      "severity": "N/A",
+      "temporal_relation": "N/A"
+    },
+    {
+      "finding": "No chronic diseases",
+      "explanation": "Patient does not report any chronic diseases, which may influence the differential diagnosis.",
+      "severity": "N/A",
+      "temporal_relation": "N/A"
+    },
+    {
+      "finding": "Family history of diabetes",
+      "explanation": "Diabetes is present in the maternal uncle, which may suggest a genetic predisposition.",
+      "severity": "N/A",
+      "temporal_relation": "N/A"
+    },
+    {
+      "finding": "Normal blood tests",
+      "explanation": "Blood tests are within normal limits, reducing the likelihood of certain systemic conditions.",
+      "severity": "N/A",
+      "temporal_relation": "N/A"
+    },
+    {
+      "finding": "Normal urine tests",
+      "explanation": "Urine tests are within normal limits, which may help rule out renal or urinary tract issues.",
+      "severity": "N/A",
+      "temporal_relation": "N/A"
+    }
+  ],
+  "impression_summary": "The patient is a 25-year-old individual presenting with joint pain. The absence of chronic diseases and normal blood and urine tests suggest a non-systemic cause. Family history of diabetes may be relevant. Further investigation is required to determine the etiology of the joint pain.",
+  "recommendations": [
+    "Follow-up for further evaluation of joint pain.",
+    "Consider referral to a rheumatologist for specialized assessment."
+  ],
+  "urgency_level": "moderate",
+  "timestamp": "2025-11-12T10:02:43.338632",
+  "source_file": "consultation_1762930943922.webm"
+}

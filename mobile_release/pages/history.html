@@ -1,0 +1,66 @@
+<section id="content-history" class="page-content p-6 md:p-8 max-w-7xl mx-auto">
+    <!-- Header -->
+    <div class="mb-8">
+        <h1 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-2">
+            Report History
+        </h1>
+        <p class="text-slate-600 dark:text-slate-400 text-base">
+            All generated reports including final and intake reports.
+        </p>
+    </div>
+
+    <!-- Table Container -->
+    <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-card border border-slate-200 dark:border-slate-700 overflow-hidden">
+        <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-slate-200 dark:divide-slate-700">
+                <thead class="bg-gradient-to-r from-slate-50 to-slate-100 dark:from-slate-800/50 dark:to-slate-800/30">
+                    <tr>
+                        <th scope="col" class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300">
+                            <div class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-lg">person</span>
+                                Patient
+                            </div>
+                        </th>
+                        <th scope="col" class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300">
+                            <div class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-lg">badge</span>
+                                Report ID
+                            </div>
+                        </th>
+                        <th scope="col" class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300">
+                            <div class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-lg">calendar_today</span>
+                                Generated On
+                            </div>
+                        </th>
+                        <th scope="col" class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300">
+                            <div class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-lg">category</span>
+                                Type
+                            </div>
+                        </th>
+                        <th scope="col" class="relative px-6 py-4">
+                            <span class="sr-only">Actions</span>
+                        </th>
+                    </tr>
+                </thead>
+
+                <!-- Table Body - MUST EXIST for JavaScript -->
+                <tbody id="history-table-body" class="divide-y divide-slate-200 dark:divide-slate-700 bg-white dark:bg-slate-800">
+                    <!-- Dynamic rows will be inserted here by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Empty State (shows when no data) -->
+        <div class="hidden p-12 text-center" id="history-empty-state">
+            <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-slate-100 dark:bg-slate-700 mb-4">
+                <span class="material-symbols-outlined text-slate-400 dark:text-slate-500" style="font-size: 32px;">history</span>
+            </div>
+            <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">No Reports Yet</h3>
+            <p class="text-slate-600 dark:text-slate-400">
+                Your report history will appear here once you generate your first clinical report.
+            </p>
+        </div>
+    </div>
+</section>

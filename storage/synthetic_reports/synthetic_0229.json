@@ -1,0 +1,30 @@
+{
+  "report_id": "synthetic_0229",
+  "patient_name": "N/A",
+  "age": "73",
+  "sex": "Male",
+  "dob": "N/A",
+  "referring_doctor": "N/A",
+  "exam_date": "N/A",
+  "exam_type": "Follow-up",
+  "clinical_history": "The patient presents for hypertension follow-up. Home blood pressure readings are frequently around 150/95 mmHg despite current medication.",
+  "detailed_findings": [
+    {
+      "finding": "Elevated home blood pressure readings",
+      "explanation": "Indicates suboptimal blood pressure control."
+    },
+    {
+      "finding": "No reported chest pain, dyspnea, or neurologic deficits",
+      "explanation": "No acute hypertensive emergency features."
+    }
+  ],
+  "impression_summary": "Poorly controlled hypertension requiring medication adjustment.",
+  "recommendations": [
+    "Adjust antihypertensive regimen or add a second agent.",
+    "Encourage lifestyle modifications including salt restriction and weight management.",
+    "Schedule follow-up blood pressure check in 2–4 weeks."
+  ],
+  "urgency_level": "moderate",
+  "timestamp": "2025-11-19T06:31:32.308369",
+  "source_file": "synthetic_0229.m4a"
+}

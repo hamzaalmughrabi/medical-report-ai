@@ -1,0 +1,58 @@
+{
+  "report_id": "consultation_1762934831049",
+  "patient_name": "N/A",
+  "age": "21",
+  "sex": "N/A",
+  "dob": "N/A",
+  "referring_doctor": "N/A",
+  "exam_date": "N/A",
+  "exam_type": "N/A",
+  "clinical_history": "Patient is a 21-year-old university student presenting with fatigue, lethargy, and body swelling. The patient has a history of hypothyroidism for approximately three years and is currently on Thyroxine 108 mg. The patient reports fluctuating swelling in the face and legs, which improves and worsens periodically, necessitating dosage adjustments. There is a family history of thyroid diseases affecting the patient's mother, father, and siblings. The patient has allergies to honey and dust. No past surgical history is reported. No history of diabetes or hypertension.",
+  "detailed_findings": [
+    {
+      "finding": "Fatigue and lethargy",
+      "explanation": "Common symptoms of hypothyroidism due to decreased metabolic rate.",
+      "severity": "N/A",
+      "temporal_relation": "Chronic"
+    },
+    {
+      "finding": "Body swelling",
+      "explanation": "Possible myxedema associated with hypothyroidism.",
+      "severity": "Fluctuating",
+      "temporal_relation": "Chronic"
+    },
+    {
+      "finding": "Hypothyroidism",
+      "explanation": "Diagnosed condition managed with Thyroxine.",
+      "severity": "N/A",
+      "temporal_relation": "Three years"
+    },
+    {
+      "finding": "Thyroxine 108 mg",
+      "explanation": "Medication for hypothyroidism management.",
+      "severity": "N/A",
+      "temporal_relation": "Current"
+    },
+    {
+      "finding": "Allergy to honey and dust",
+      "explanation": "Patient reports allergies which may contribute to respiratory symptoms.",
+      "severity": "N/A",
+      "temporal_relation": "N/A"
+    },
+    {
+      "finding": "Family history of thyroid diseases",
+      "explanation": "Suggests a genetic predisposition to thyroid disorders.",
+      "severity": "N/A",
+      "temporal_relation": "N/A"
+    }
+  ],
+  "impression_summary": "The clinical presentation is consistent with hypothyroidism, evidenced by fatigue, lethargy, and fluctuating body swelling. The patient's condition is managed with Thyroxine, though dosage adjustments are necessary due to variable symptom severity. The family history suggests a hereditary component to the thyroid disorder.",
+  "recommendations": [
+    "Regular monitoring of thyroid function tests to adjust Thyroxine dosage as needed.",
+    "Consider allergy testing and management for reported allergies to honey and dust.",
+    "Family screening for thyroid disorders may be beneficial given the strong family history."
+  ],
+  "urgency_level": "moderate",
+  "timestamp": "2025-11-12T11:07:46.217326",
+  "source_file": "consultation_1762934831049.webm"
+}

@@ -1,0 +1,25 @@
+{
+  "report_id": "consultation_1762771932449",
+  "patient_name": "حمز المغرم",
+  "age": "N/A",
+  "sex": "N/A",
+  "dob": "N/A",
+  "referring_doctor": "الدكتور أسعد",
+  "exam_date": "N/A",
+  "exam_type": "N/A",
+  "clinical_history": "The patient reports neck pain when turning the head to the right or left, persisting for approximately two weeks. The patient has used topical medications.",
+  "detailed_findings": [
+    {
+      "finding": "Neck pain with head movement",
+      "explanation": "Suggests possible musculoskeletal strain or cervical spine issue."
+    }
+  ],
+  "impression_summary": "The patient presents with neck pain associated with head movement, likely due to musculoskeletal strain.",
+  "recommendations": [
+    "Consider further imaging if symptoms persist.",
+    "Advise on neck exercises and posture correction."
+  ],
+  "urgency_level": "low",
+  "timestamp": "2025-11-10T13:52:19.232185",
+  "source_file": "consultation_1762771932449.webm"
+}

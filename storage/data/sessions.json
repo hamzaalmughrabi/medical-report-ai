@@ -1,0 +1,26 @@
+﻿[
+    {
+        "session_id":  "SE344B23B",
+        "patient_id":  "PEBAD8D72",
+        "patient_name":  "Test Audit",
+        "phase":  "intake",
+        "report_id":  "R1C8CDBE2C6E1",
+        "created_at":  "2026-04-08T16:23:20.801333",
+        "audio_path":  null,
+        "report_json_path":  "C:\\Users\\hamza\\PycharmProjects\\medical-ai-\\storage\\data\\patients\\PEBAD8D72\\reports\\R1C8CDBE2C6E1_intake.json",
+        "pdf_path":  null,
+        "status":  "completed"
+    },
+    {
+        "session_id":  "SC5A85776",
+        "patient_id":  "P-999999",
+        "patient_name":  "Jane Doe",
+        "phase":  "intake",
+        "report_id":  "RC648257FB207",
+        "created_at":  "2026-04-08T19:00:29.768018",
+        "audio_path":  null,
+        "report_json_path":  "C:\\Users\\hamza\\PycharmProjects\\medical-ai-\\storage\\data\\patients\\P-999999\\reports\\RC648257FB207_intake.json",
+        "pdf_path":  null,
+        "status":  "completed"
+    }
+]

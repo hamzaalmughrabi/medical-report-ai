@@ -1,0 +1,44 @@
+{
+  "report_id": "recording_1763458609076",
+  "phase": "intake",
+  "patient_name": "غير متوفر",
+  "age": "غير متوفر",
+  "sex": "غير متوفر",
+  "dob": "غير متوفر",
+  "referring_doctor": "غير متوفر",
+  "exam_date": "غير متوفر",
+  "exam_type": "Initial Consultation",
+  "clinical_history": "The patient reports left knee pain persisting for over a year, exacerbated by cold weather. The pain began suddenly and is constant, worsening with exposure to cold or cold water and alleviated by warmth. No swelling or locking of the knee is reported. Morning stiffness lasts less than ten minutes if the weather is cold. No other joint issues or back pain are reported. Family history includes lymphatic disease affecting the knees and rheumatoid arthritis. The patient has hypothyroidism, managed with 100 mg of thyroxine, and lives on the third floor with elevator access.",
+  "detailed_findings": [
+    {
+      "finding": "Left knee pain",
+      "explanation": "Persistent for over a year, worsens with cold exposure, alleviated by warmth."
+    },
+    {
+      "finding": "Sudden onset",
+      "explanation": "Pain began suddenly and remains constant."
+    },
+    {
+      "finding": "Morning stiffness",
+      "explanation": "Stiffness lasting less than ten minutes in cold weather."
+    },
+    {
+      "finding": "Family history",
+      "explanation": "Includes lymphatic disease affecting knees and rheumatoid arthritis."
+    },
+    {
+      "finding": "Hypothyroidism",
+      "explanation": "Managed with 100 mg of thyroxine."
+    }
+  ],
+  "impression_summary": "Chronic left knee pain likely exacerbated by cold exposure, with a family history of joint-related conditions.",
+  "recommendations": [
+    "Consider further evaluation for potential underlying joint conditions.",
+    "Monitor symptoms and consider imaging if pain persists or worsens.",
+    "Advise on protective measures against cold exposure."
+  ],
+  "urgency_level": "moderate",
+  "timestamp": "2025-11-18T12:37:35.290597",
+  "_category": null,
+  "_missing_info": []
+}

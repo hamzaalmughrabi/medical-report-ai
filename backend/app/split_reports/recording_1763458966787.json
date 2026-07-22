@@ -1,0 +1,45 @@
+{
+  "report_id": "recording_1763458966787",
+  "phase": "intake",
+  "patient_name": "غير متوفر",
+  "age": "غير متوفر",
+  "sex": "غير متوفر",
+  "dob": "غير متوفر",
+  "referring_doctor": "غير متوفر",
+  "exam_date": "غير متوفر",
+  "exam_type": "Initial Consultation",
+  "clinical_history": "The patient reports left knee pain persisting for over a year, exacerbated by cold weather. The pain began suddenly and is constant, worsening with exposure to cold or cold water and alleviated by warmth. No medications are currently used for relief. No swelling or locking of the knee is reported. Morning stiffness lasts less than ten minutes in cold weather. No other joint issues or back pain are reported. Family history includes lymphatic disease affecting the knees and rheumatoid arthritis.",
+  "detailed_findings": [
+    {
+      "finding": "Left knee pain",
+      "explanation": "Persistent for over a year, worsens with cold exposure, alleviated by warmth."
+    },
+    {
+      "finding": "No swelling or locking",
+      "explanation": "Patient reports no swelling or locking of the knee."
+    },
+    {
+      "finding": "Morning stiffness",
+      "explanation": "Stiffness in the morning lasting less than ten minutes in cold weather."
+    },
+    {
+      "finding": "Family history",
+      "explanation": "Includes lymphatic disease affecting knees and rheumatoid arthritis."
+    },
+    {
+      "finding": "Thyroid medication",
+      "explanation": "Patient is on 100 mg of thyroxine for hypothyroidism."
+    }
+  ],
+  "impression_summary": "Chronic left knee pain likely exacerbated by cold exposure, with a family history suggestive of possible underlying rheumatologic condition.",
+  "recommendations": [
+    "Consider rheumatologic evaluation.",
+    "Evaluate for possible osteoarthritis or other degenerative joint conditions.",
+    "Consider imaging studies such as X-ray or MRI of the left knee.",
+    "Advise on lifestyle modifications to manage symptoms, such as keeping the knee warm."
+  ],
+  "urgency_level": "moderate",
+  "timestamp": "2025-11-18T12:43:40.527308",
+  "_category": null,
+  "_missing_info": []
+}

@@ -1,0 +1,17 @@
+﻿{
+    "cases":  [
+                  {
+                      "impression_summary":  "Test impression",
+                      "report_id":  "mem_test_001",
+                      "detailed_findings":  [
+
+                                            ],
+                      "clinical_history":  "Sample history",
+                      "phase":  "intake",
+                      "patient_name":  "Test Patient"
+                  }
+              ],
+    "final_reports":  [
+
+                      ]
+}

@@ -1,0 +1,34 @@
+{
+  "report_id": "synthetic_0030",
+  "patient_name": "N/A",
+  "age": "84",
+  "sex": "Female",
+  "dob": "N/A",
+  "referring_doctor": "N/A",
+  "exam_date": "N/A",
+  "exam_type": "Consultation",
+  "clinical_history": "The patient reports crampy periumbilical abdominal pain that shifted to the right lower quadrant over 24 hours, associated with nausea and reduced appetite.",
+  "detailed_findings": [
+    {
+      "finding": "Migratory abdominal pain",
+      "explanation": "Classical pattern concerning for acute appendicitis."
+    },
+    {
+      "finding": "Nausea and anorexia",
+      "explanation": "Common associated features in acute appendicitis."
+    },
+    {
+      "finding": "No mention of diarrhea or vomiting",
+      "explanation": "Does not exclude appendicitis but may guide differential."
+    }
+  ],
+  "impression_summary": "Abdominal pain highly suspicious for acute appendicitis.",
+  "recommendations": [
+    "Urgent surgical consultation.",
+    "Order complete blood count and abdominal imaging (ultrasound or CT).",
+    "Keep patient nil per os (NPO) pending surgical evaluation."
+  ],
+  "urgency_level": "high",
+  "timestamp": "2025-11-24T17:12:32.226148",
+  "source_file": "synthetic_0030.m4a"
+}

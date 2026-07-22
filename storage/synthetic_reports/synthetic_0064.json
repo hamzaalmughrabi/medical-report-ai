@@ -1,0 +1,34 @@
+{
+  "report_id": "synthetic_0064",
+  "patient_name": "N/A",
+  "age": "70",
+  "sex": "Male",
+  "dob": "N/A",
+  "referring_doctor": "N/A",
+  "exam_date": "N/A",
+  "exam_type": "Emergency Visit",
+  "clinical_history": "The patient reports sore throat, nasal congestion, mild cough, and low-grade fever for the past 4 days. No shortness of breath or chest pain.",
+  "detailed_findings": [
+    {
+      "finding": "Sore throat and nasal congestion",
+      "explanation": "Typical features of upper respiratory tract infection."
+    },
+    {
+      "finding": "Mild, non-productive cough",
+      "explanation": "Likely related to upper airway irritation."
+    },
+    {
+      "finding": "Low-grade fever",
+      "explanation": "Consistent with viral etiology; no signs of sepsis reported."
+    }
+  ],
+  "impression_summary": "Likely viral upper respiratory tract infection.",
+  "recommendations": [
+    "Advise rest, adequate hydration, and symptomatic relief with antipyretics as needed.",
+    "Educate patient on warning signs such as worsening dyspnea or high fever.",
+    "Consider testing for influenza or COVID-19 if clinically indicated."
+  ],
+  "urgency_level": "low",
+  "timestamp": "2025-11-26T02:10:32.240598",
+  "source_file": "synthetic_0064.m4a"
+}

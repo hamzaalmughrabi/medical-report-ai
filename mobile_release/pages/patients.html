@@ -1,0 +1,240 @@
+<section id="content-patients" class="page-content p-6 md:p-8 max-w-7xl mx-auto">
+  <!-- Header -->
+  <div class="mb-8 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+    <div>
+      <h1 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-2">
+        Patients
+      </h1>
+      <p class="text-slate-600 dark:text-slate-400 text-base">
+        Search, filter, and manage patient records.
+      </p>
+    </div>
+
+    <button id="open-add-patient"
+      class="px-5 py-3 rounded-xl bg-gradient-to-r from-primary to-accent hover:from-primary-dark hover:to-accent/90 text-white font-semibold transition-all shadow-lg hover:shadow-xl flex items-center gap-2">
+      <span class="material-symbols-outlined">person_add</span>
+      Add patient
+    </button>
+  </div>
+
+  <!-- Filters -->
+  <div
+    class="bg-white dark:bg-slate-800 rounded-2xl shadow-card border border-slate-200 dark:border-slate-700 p-5 mb-6">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-4">
+      <!-- Search -->
+      <div class="md:col-span-5">
+        <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-2">
+          Search
+        </label>
+        <div class="relative">
+          <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+          <input id="patients-search" type="text" placeholder="Search name, email, phone..."
+            class="w-full pl-10 pr-3 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary" />
+        </div>
+      </div>
+
+      <!-- Status -->
+      <div class="md:col-span-2">
+        <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-2">
+          Status
+        </label>
+        <select id="patients-filter-status"
+          class="w-full py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary">
+          <option value="">All</option>
+          <option value="Active">Active</option>
+          <option value="Inactive">Inactive</option>
+        </select>
+      </div>
+
+      <!-- Tag -->
+      <div class="md:col-span-2">
+        <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-2">
+          Tag
+        </label>
+        <input id="patients-filter-tag" type="text" placeholder="e.g., Diabetes"
+          class="w-full py-2.5 px-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary" />
+      </div>
+
+      <!-- Clinician -->
+      <div class="md:col-span-3">
+        <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-2">
+          Assigned clinician (optional)
+        </label>
+        <input id="patients-filter-clinician" type="text" placeholder="e.g., Dr. Anas"
+          class="w-full py-2.5 px-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Table -->
+  <div
+    class="bg-white dark:bg-slate-800 rounded-2xl shadow-card border border-slate-200 dark:border-slate-700 overflow-hidden">
+    <div class="overflow-x-auto">
+      <table class="min-w-full divide-y divide-slate-200 dark:divide-slate-700">
+        <thead class="bg-gradient-to-r from-slate-50 to-slate-100 dark:from-slate-800/50 dark:to-slate-800/30">
+          <tr>
+            <th
+              class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-lg">person</span> Name
+              </div>
+            </th>
+            <th
+              class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-lg">cake</span> Age
+              </div>
+            </th>
+            <th
+              class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-lg">wc</span> Sex
+              </div>
+            </th>
+
+            <th
+              class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-lg">toggle_on</span> Status
+              </div>
+            </th>
+            <th
+              class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-lg">event</span> Last visit
+              </div>
+            </th>
+            <th class="relative px-6 py-4">
+              <span class="sr-only">Actions</span>
+            </th>
+          </tr>
+        </thead>
+
+        <!-- MUST EXIST for JS -->
+        <tbody id="patients-table-body"
+          class="divide-y divide-slate-200 dark:divide-slate-700 bg-white dark:bg-slate-800">
+          <!-- rows injected here -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Loading -->
+    <div id="patients-loading" class="hidden p-10 text-center">
+      <div class="inline-flex items-center gap-2 text-slate-600 dark:text-slate-400">
+        <span class="material-symbols-outlined animate-spin">progress_activity</span>
+        Loading patients...
+      </div>
+    </div>
+
+    <!-- Error -->
+    <div id="patients-error" class="hidden p-10 text-center">
+      <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-rose-50 dark:bg-rose-900/20 mb-4">
+        <span class="material-symbols-outlined text-rose-600" style="font-size: 32px;">error</span>
+      </div>
+      <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">Failed to load patients</h3>
+      <p class="text-slate-600 dark:text-slate-400 mb-4">Please try again.</p>
+      <button id="patients-retry"
+        class="px-5 py-2.5 rounded-xl bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 text-slate-900 dark:text-white font-medium transition-all">
+        Retry
+      </button>
+    </div>
+
+    <!-- Empty -->
+    <div class="hidden p-12 text-center" id="patients-empty-state">
+      <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-slate-100 dark:bg-slate-700 mb-4">
+        <span class="material-symbols-outlined text-slate-400 dark:text-slate-500" style="font-size: 32px;">group</span>
+      </div>
+      <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">No Patients</h3>
+      <p class="text-slate-600 dark:text-slate-400">
+        Add your first patient to get started.
+      </p>
+    </div>
+
+    <!-- Pagination -->
+    <div class="px-6 py-4 border-t border-slate-200 dark:border-slate-700 flex items-center justify-between">
+      <p id="patients-pagination-info" class="text-sm text-slate-600 dark:text-slate-400">—</p>
+      <div id="patients-pagination" class="flex gap-2">
+        <button id="patients-prev"
+          class="px-4 py-2 rounded-lg bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 text-slate-900 dark:text-white text-sm font-medium disabled:opacity-50"
+          disabled>
+          Prev
+        </button>
+        <button id="patients-next"
+          class="px-4 py-2 rounded-lg bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 text-slate-900 dark:text-white text-sm font-medium disabled:opacity-50"
+          disabled>
+          Next
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- Add Patient Drawer -->
+  <div id="add-patient-drawer" class="fixed inset-0 z-50 hidden">
+    <!-- overlay -->
+    <div id="add-patient-overlay" class="absolute inset-0 bg-black/40"></div>
+
+    <!-- panel -->
+    <div
+      class="absolute right-0 top-0 h-full w-full max-w-md bg-white dark:bg-slate-900 border-l border-slate-200 dark:border-slate-700 shadow-2xl translate-x-full transition-transform duration-300 z-50"
+      id="add-patient-panel">
+      <div class="p-6 border-b border-slate-200 dark:border-slate-700 flex items-center justify-between">
+        <div>
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white">Add New Patient</h3>
+          <p class="text-sm text-slate-500 dark:text-slate-400">Create a new patient record</p>
+        </div>
+        <button id="close-add-patient" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+
+      <form id="add-patient-form" class="p-6 space-y-4">
+        <div>
+          <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Patient ID</label>
+          <input id="patient-id" required
+            class="w-full rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-3 py-2.5"
+            placeholder="e.g., P-000123">
+        </div>
+
+        <div>
+          <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Full Name</label>
+          <input id="patient-name" required
+            class="w-full rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-3 py-2.5"
+            placeholder="e.g., Ahmad Al-Hassan">
+        </div>
+
+        <div>
+          <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Age</label>
+          <input id="patient-age" type="number" min="0" max="130" required
+            class="w-full rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-3 py-2.5"
+            placeholder="e.g., 34">
+        </div>
+
+        <div>
+          <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Sex</label>
+          <select id="patient-sex" required
+            class="w-full rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-3 py-2.5">
+            <option value="">Select</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
+        </div>
+
+        <p id="add-patient-feedback" class="hidden text-sm text-emerald-600 font-medium flex items-center gap-2">
+          <span class="material-symbols-outlined">check_circle</span>
+          Saved!
+        </p>
+
+        <div class="flex gap-2 pt-2">
+          <button type="button" id="cancel-add-patient"
+            class="flex-1 px-4 py-2.5 rounded-xl bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600">
+            Cancel
+          </button>
+          <button type="submit"
+            class="flex-1 px-4 py-2.5 rounded-xl bg-gradient-to-r from-primary to-accent text-white font-semibold">
+            Save
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</section>

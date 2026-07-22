@@ -1,0 +1,308 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{setspace}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows.meta, positioning}
+\usepackage[arabic,main=english]{babel}
+\usepackage{mathptmx} % Times New Roman font
+
+\doublespacing % Apply double spacing throughout the document
+
+% Roman Numeral Sections
+\renewcommand{\thesection}{\Roman{section}.}
+\renewcommand{\thesubsection}{\arabic{subsection}.}
+
+% Format sections to match standard academic styling
+\titleformat{\section}{\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\large\bfseries}{\thesubsection}{1em}{}
+
+\title{MedEcho: An AI-Powered Voice-to-Report System for Structured Clinical Documentation}
+\author{Hamza Almughrabi}
+\date{April 11, 2026}
+
+\begin{document}
+
+\begin{titlepage}
+    \centering
+    \vspace*{1cm}
+    {\huge \bfseries MedEcho: An AI-Powered Voice-to-Report System for Structured Clinical Documentation \par}
+    \vspace{1.5cm}
+    {\Large \textbf{Researchers:}\\ Hamza Almughrabi, Aisha Aldalaeen \par}
+    \vspace{1cm}
+    {\Large \textbf{Affiliation:}\\ Zarqa University / Zarqa Governmental Hospital \par}
+    \vspace{1cm}
+    {\Large \textbf{Research Directors/Supervisors:}\\ Dr. Qotadeh Saber Al-Jawazneh (Academic Supervisor) \\ Dr. Samer Abu Ghazaleh (Clinical/Deputy Director) \par}
+    \vfill
+    {\large \today \par}
+\end{titlepage}
+
+\section*{Abstract}
+\addcontentsline{toc}{section}{Abstract}
+Clinical documentation is one of the most time-consuming and error-prone tasks in healthcare practice, often reducing valuable doctor–patient interaction time. This paper presents MedEcho, an AI-powered voice-to-report system designed to convert spoken clinical dictations into structured, editable, and professional medical reports.
+
+The system follows a two-phase clinical workflow consisting of patient intake and final assessment. It integrates automatic speech recognition using Whisper with large language models to generate OSCE-compliant structured medical reports in JSON format. A Local Knowledge Layer (LKL) is introduced to enhance contextual accuracy, reduce hallucinations, and adapt the system to hospital-specific clinical patterns without retraining core AI models.
+
+MedEcho was evaluated using a real clinical dataset consisting of 30 patient cases and 74 generated medical reports, collected during pilot testing at Zarqa Governmental Hospital. The system was used by two practicing physicians and evaluated under the supervision of the Deputy Director of the hospital, ensuring both clinical validity and administrative oversight. Physicians used the system during real outpatient consultations to record both intake and final assessment dictations, which were then processed automatically by the MedEcho pipeline.
+
+The results demonstrated a significant reduction in documentation time, with average report generation requiring less than three minutes compared to traditional manual documentation. Participating physicians reported improved consistency, clarity, and completeness of medical records, and the structured reports were judged suitable for routine clinical and academic use.
+
+These findings indicate that MedEcho provides a practical, scalable, and privacy-aware solution for clinical documentation, highlighting the potential of AI-driven voice-to-report systems in real healthcare environments.
+
+\vspace{1cm}
+
+\begin{center}
+\textarabic{\Large الملخص}
+\end{center}
+
+\begin{otherlanguage}{arabic}
+يهدف نظام \textit{Medecho} إلى تقليل العبء الواقع على الأطباء عند كتابة التقارير الطبية 
+من خلال الاعتماد على الذكاء الاصطناعي لتحويل الملاحظات الصوتية إلى تقارير طبية جاهزة 
+ومنظمة، مما يساعد الأطباء على توفير وقتهم وتركيزهم لرعاية المرضى. يعتمد النظام على 
+تقنيات متقدمة في التعرف على الصوت والنماذج اللغوية الضخمة، مما يساهم في تقليل الأخطاء 
+البشرية وتحسين وضوح ودقة الصياغة.
+
+يتكون النظام من واجهة مستخدم سهلة الاستخدام، ويعتمد على تقنية Whisper لمعالجة الصوت، 
+بالإضافة إلى FastAPI كخادم خلفي لتجهيز الطلبات. أظهر النظام أداءً مميزًا في مستشفى 
+الزرقاء الحكومي أثناء الاختبار الأولي، حيث ساهم في تسريع وقت إعداد التقارير، وتقليل 
+العبء الإداري، وتقديم تقارير عالية الجودة للأطباء.
+
+يمثل هذا المشروع خطوة عملية في دمج الذكاء الاصطناعي في سير العمل الطبي، ويضع أساسًا 
+للكفاءة والدقة وتجربة استخدام أفضل.
+\end{otherlanguage}
+
+\newpage
+\tableofcontents
+\newpage
+
+\section{Introduction}
+
+\subsection{Background Information}
+In the traditional clinical workflow, a physician's time is divided between direct patient care and the exhaustive process of documenting patient encounters. This documentation is vital for maintaining a patient's medical history, ensuring legal compliance, and facilitating accurate billing. However, the manual entry of these details into Electronic Health Records (EHR) is often cited as a primary driver of physician burnout. 
+
+Existing solutions, such as traditional transcription services or basic speech-to-text software, often fall short of clinical needs. They either involve high costs and slow turnaround times or result in unstructured blocks of text that require further manual editing. The emergence of Transformer-based models and large-scale pre-trained speech recognition systems offers a new opportunity to automate this process with high precision.
+
+\subsection{Problem Statement}
+Despite the digital transformation of hospitals, the following problems persist in the documentation process:
+\begin{itemize}
+    \item \textbf{High Administrative Burden:} Clinicians spend upwards of 30-50\% of their day on documentation.
+    \item \textbf{Inaccuracy and Inconsistency:} Manual reports are susceptible to human error, specially under high patient volume.
+    \item \textbf{Language Barriers:} In regions like Jordan, clinical consultations often involve a mix of Arabic (dialect) and English medical terminology, which standard ASR systems struggle to handle.
+    \item \textbf{Lack of Contextual Grounding:} Generic AI models often "hallucinate" or provide generic information that does not align with specific hospital protocols or the actual patient encounter.
+\end{itemize}
+
+\subsection{Scope of the Project}
+MedEcho is designed for use in outpatient clinics and emergency departments where rapid documentation is essential. The system focuses on general internal medicine and related specialties that follow the OSCE format. While it provides diagnostic suggestions, it is intended to act as an assistant, with the final authority resting with the clinician.
+
+\subsection{Research Questions or Hypotheses}
+The primary objective guiding this research is to develop and validate MedEcho, transforming unstructured medical speech into structured, professional reports. The guiding hypotheses and questions are focused on:
+\begin{itemize}
+    \item \textbf{Seamless Integration:} Can a voice-to-report system fit naturally into the clinician's workflow without requiring significant behavioral changes?
+    \item \textbf{High-Fidelity Transcription:} How effectively can OpenAI's Whisper model transcribe multilingual clinical dialogue in a real hospital setting?
+    \item \textbf{Semantic Structuring:} Can advanced LLMs (GPT-4o, Gemini 1.5 Pro, Gemma 3) extract and categorize clinical findings into a strict OSCE-compliant structure?
+    \item \textbf{Contextual Accuracy:} Does the implementation of a Local Knowledge Layer (LKL) effectively ground the AI's output in local clinical realities, minimizing hallucinations?
+\end{itemize}
+
+\subsection{Significance of the Study}
+This research contributes to the field of medical informatics by providing a practical implementation of Retrieval-Augmented Generation (RAG) in a clinical setting. The LKL serves as a bridge, ensuring that the global knowledge of LLMs is specialized for local needs. Successful deployment at Zarqa Governmental Hospital serves as a case study for the scalability of such solutions in resource-constrained environments.
+
+\section{Literature Review}
+
+\subsection{Evolution of Speech-to-Text in Medicine}
+Traditional speech-to-text systems, such as Dragon Medical One, were pioneering but required significant user training and often struggled with varied accents and rapid speech. These systems primarily offered "dictation," where the doctor spoke directly what should be written. In contrast, MedEcho aims for "ambient sensing," where natural conversation is transcribed and summarized.
+
+\subsection{Large Language Models and Clinical NLP}
+The advent of the Transformer architecture has revolutionized Natural Language Processing (NLP). Models have shown remarkable capability in understanding medical context. However, the risk of "hallucinations"—where the model generates plausible but incorrect information—remains a significant hurdle for clinical adoption.
+
+\subsection{Retrieval-Augmented Generation (RAG)}
+RAG has emerged as a key technique to ground LLMs in external, verifiable knowledge. By retrieving relevant documents before generation, models can provide more accurate and context-specific answers. MedEcho adapts this concept through its Local Knowledge Layer (LKL), which stores local clinical protocols and terminology.
+
+\subsection{The OSCE Standard}
+The Objective Structured Clinical Examination (OSCE) is a modern type of examination often used in health sciences to test clinical skill performance and competence. By structuring reports according to OSCE standards, MedEcho ensures that the output is not only readable but also adheres to the standard pedagogical and professional frameworks used in medical training and practice.
+
+\subsection{Addressable Gaps}
+Existing research often focuses on high-resource languages and well-structured EHR environments. There is a notable lack of tools optimized for:
+\begin{enumerate}
+    \item \textbf{Code-switching:} The fluid mix of local dialects and English medical terms.
+    \item \textbf{Low-resource local grounding:} Systems that can be easily customized for specific hospitals without massive retraining.
+    \item \textbf{Two-phase clinical reasoning:} Systems that recognize the difference between initial data gathering and final diagnostic assessment.
+\end{enumerate}
+
+\section{Methodology}
+
+\subsection{Research Design}
+The MedEcho system is built on a modern, decoupled architecture designed to map raw clinical audio into structured OSCE documents. The system relies on a combination of Python 3.10 and FastAPI for the backend logic and Node.js with Electron for a cross-platform desktop application interface. 
+
+The processing flow is structured as a robust sequence of transformations:
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[
+    node distance=1.8cm,
+    box/.style={rectangle, draw=black, thick, fill=blue!5, text width=5cm, align=center, minimum height=1cm, rounded corners},
+    arrow/.style={thick, ->, >=stealth}
+]
+
+\node (audio) [box] {\textbf{Audio Capture}\\(Electron Interface)};
+\node (asr) [box, below of=audio] {\textbf{Acoustic Modeling}\\(Whisper ASR)};
+\node (lkl) [box, below of=asr] {\textbf{Contextual Injection}\\(Local Knowledge Layer)};
+\node (llm) [box, below of=lkl] {\textbf{Semantic Structuring}\\(LLM)};
+\node (val) [box, below of=llm] {\textbf{JSON Validation}\\(Pydantic)};
+\node (pdf) [box, below of=val] {\textbf{PDF Generation}\\(ReportLab)};
+
+\draw [arrow] (audio) -- (asr);
+\draw [arrow] (asr) -- (lkl);
+\draw [arrow] (lkl) -- (llm);
+\draw [arrow] (llm) -- (val);
+\draw [arrow] (val) -- (pdf);
+
+\end{tikzpicture}
+\caption{End-to-End AI Pipeline Architecture}
+\label{fig:pipeline_architecture}
+\end{figure}
+
+To assure production-readiness, the FastAPI backend is containerized via Docker and deployed on Render.com, providing isolated runtimes and continuous deployment capabilities.
+
+\subsection{Participants/Subjects}
+The system evaluation incorporated a real clinical dataset collected during pilot testing at Zarqa Governmental Hospital. The study involved:
+\begin{itemize}
+    \item \textbf{Patient Cases:} 30 distinct patient encounters.
+    \item \textbf{Generated Documentation:} 74 medical reports generated across different clinical phases.
+    \item \textbf{Physicians:} Two practicing physicians used the system during real outpatient consultations.
+    \item \textbf{Oversight:} The evaluation was conducted under the direct supervision of the Deputy Director of the hospital.
+\end{itemize}
+
+\subsection{Data Collection Methods}
+Data collection was facilitated through the Electron-based frontend, capturing audio natively using \texttt{navigator.mediaDevices}. 
+The primary procedure for collecting data relied on a unique Two-Phase Workflow designed to mirror natural clinical progression:
+\begin{enumerate}
+    \item \textbf{Phase 1 (Patient Intake):} Capturing the history of present illness (HPI), past medical history, and social history directly from the patient dialogue.
+    \item \textbf{Phase 2 (Final Assessment):} Capturing the physical examination findings, diagnostic impressions, and treatment plan from the physician's dictation.
+\end{enumerate}
+Audio is sent as a \texttt{.webm} or \texttt{.wav} buffer to the backend for processing. To address clinical workflow needs, doctors operated a low-latency "One-Click Record" interface.
+
+\subsection{Data Analysis Methods}
+To analyze the captured data and transform it into medical reports, the pipeline employs strict parsing techniques. 
+\begin{itemize}
+    \item \textbf{LKL Contextualization:} The `LKLManager` checks the raw Whisper transcript for keywords and injects Zarqa Governmental Hospital diagnostic protocols, local medication names, and common dosages into the active LLM prompt.
+    \item \textbf{Schema Validation:} The LLM produces a structured JSON output. This output is analyzed and validated against strict Pydantic schemas to ensure conformity with OSCE standards.
+    \item \textbf{Negative Findings Logic:} The data parsing specifically isolates denied symptoms. When symptoms are denied in the recording, they are recorded explicitly as negative findings rather than omitted completely.
+\end{itemize}
+
+\subsection{Ethical Considerations}
+Security and privacy are integrated into the core architecture to ensure HIPAA equivalence and ethical handling of medical data:
+\begin{itemize}
+    \item \textbf{Stateless Processing:} No audio recordings are stored permanently on the server; files are discarded immediately upon successful transcription.
+    \item \textbf{Anonymization:} Patients are uniquely tracked via encrypted IDs rather than raw personally identifiable information inside the logs.
+    \item \textbf{Credential Security:} Sensitive API keys for third-party inference are maintained entirely inside secure environment variables.
+\end{itemize}
+
+\section{Results}
+This section presents the uninterpreted technical and clinical findings obtained from the pilot deployment of MedEcho at Zarqa Governmental Hospital.
+
+\subsection{Technical Performance}
+\begin{itemize}
+    \item \textbf{Transcription Accuracy:} The OpenAI Whisper ASR demonstrated strong robustness in a code-switching environment. It successfully transcribed Jordanian Arabic dialects mixed with English medical terminology. Minor inaccuracies associated with local drug brand names were counteracted and corrected by the Local Knowledge Layer (LKL).
+    \item \textbf{Processing Latency:} For a typical two-minute medical consultation, the average latency (measured from the end of recording to report display) consistently remained at \textbf{15--20 seconds}.
+    \item \textbf{Structured Data Extraction:} The system successfully categorized symptoms and patient details into the correct OSCE sections in \textbf{90\%} of test cases.
+    \item \textbf{Negative Findings Detection:} The targeted Negative Findings Logic accurately recognized and mapped absent symptoms to the final JSON payload.
+\end{itemize}
+
+\subsection{Clinical Usability}
+\begin{itemize}
+    \item \textbf{Time Efficiency:} Manual compilation of complete medical reports typically requires 5--10 minutes per patient. When using MedEcho, total time expenditure (including dictate and review) was reduced to 1--2 minutes. This equates to an \textbf{80\% reduction in documentation time}.
+    \item \textbf{Documentation Completeness:} The generated reports demonstrated consistent inclusion of structural elements that are frequently omitted under clinical pressure, notably patient Social History, Family History, and precise Allergy Status.
+\end{itemize}
+
+\section{Discussion}
+
+\subsection{Interpretation of Results}
+The pilot results indicate that employing generic Large Language Models is highly effective when they are grounded with a specialized Local Knowledge Layer (LKL). By providing MedEcho with hospital-specific memory (e.g., local acronyms and drug availability), hallucinations drops significantly. The accurate detection of negative findings separates MedEcho from simple transcription software, converting ambient audio into legal-grade structured data.
+
+Furthermore, integrating the Two-Phase Workflow directly mirrors the natural cognitive progression of a clinician—gathering evidence first and drawing diagnostic conclusions second—preventing the AI from issuing premature diagnoses.
+
+\subsection{Comparison with Manual Documentation}
+Compared to prevailing practices at Zarqa Governmental Hospital, the 80\% reduction in documentation time represents a profound structural improvement to the clinical workflow. The automatic prompting for allergy information ensures standard safety measures are adhered to, resolving issues relating to manual omissions. The system operates well within the absolute maximum tolerance of three minutes for documentation turnover.
+
+\subsection{Technical Challenges and AI Mitigations}
+During development and deployment, several technical hurdles were encountered and resolved:
+\begin{itemize}
+    \item \textbf{Format Hallucination (JSON Consistency):} LLMs occasionally generated responses deviating from strict JSON syntax. This was mitigated by implementing Pydantic validation barriers that automatically execute re-prompting when syntax violations occur.
+    \item \textbf{Bilingual Alignment:} Compiling mixed Arabic and English text inside PDF documents created alignment irregularities. This was solved by utilizing RTL-aware font configurations inside the ReportLab generation logic.
+\end{itemize}
+
+\subsection{Limitations of the Study}
+The primary limitation of the current MedEcho system is its dependency on internet connectivity. The reliance on cloud-based LLM APIs (OpenAI / Gemini) poses potential bottlenecks if the hospital's network infrastructure degrades.
+
+\subsection{Potential Areas for Future Research}
+Future research should focus on offline inference capabilities. Transitioning the reasoning engine to local, quantized LLMs (such as Gemma 3 evaluated on local hardware) would completely eliminate internet dependency and enhance data privacy. Additionally, exploring integration with wider decision-support structures, such as active Drug-Drug Interaction (DDI) alerting, would add an inferential intelligence layer beyond passive documentation.
+
+\section{Conclusion}
+\subsection{Summary of Main Findings}
+MedEcho has demonstrated that an AI-powered, voice-driven documentation system is technically feasible and clinically impactful. Pilot testing with 30 patients generated an 80\% reduction in documentation time while maintaining rigorous 90\% accuracy in data extraction. Through the utilization of a Local Knowledge Layer, the system effectively navigated the bilingual hurdles present in Jordanian healthcare environments.
+
+\subsection{Concluding Remarks}
+By significantly streamlining the administrative bottlenecks, MedEcho allows physicians to dedicate more qualitative time to patient interaction. The success of the pilot demonstrates that integrating ambient speech processing with contextual AI validation improves both the standard of medical record-keeping and the working conditions of hospital staff.
+
+\renewcommand{\refname}{7. References}
+\begin{thebibliography}{99}
+\bibitem{radford2023} Radford, A., et al. (2023). \textit{Robust speech recognition via large-scale weak supervision}. ICML.
+\bibitem{achiam2023} Achiam, J., et al. (2023). \textit{GPT-4 Technical Report}. arXiv:2303.08774.
+\bibitem{vaswani2017} Vaswani, A., et al. (2017). \textit{Attention is all you need}. NeurIPS.
+\bibitem{lewis2020} Lewis, P., et al. (2020). \textit{Retrieval-augmented generation for knowledge-intensive NLP tasks}. NeurIPS.
+\bibitem{gawande2018} Gawande, A. (2018). \textit{Why Doctors Hate Their Computers}. The New Yorker.
+\bibitem{thirunavukarasu2023} Thirunavukarasu, A. J., et al. (2023). \textit{Large language models in medicine}. Nature Medicine.
+\bibitem{harden1975} Harden, R. M., et al. (1975). \textit{Assessment of clinical competence using an objective structured clinical examination (OSCE)}. BMJ.
+\bibitem{ng2025} Ng, H., et al. (2025). \textit{Evaluating performance of AI documentation systems}. BMC Med. Inform. Decis. Mak.
+\bibitem{adejumo2024} Adejumo, O., et al. (2024). \textit{NLP of clinical documentation to assess status}. JAMA Netw. Open.
+\end{thebibliography}
+
+\section*{8. Glossary}
+\addcontentsline{toc}{section}{8. Glossary}
+\begin{itemize}
+    \item \textbf{ASR:} Automatic Speech Recognition.
+    \item \textbf{EHR:} Electronic Health Record.
+    \item \textbf{LKL:} Local Knowledge Layer -- a database of local clinical terminology.
+    \item \textbf{LLM:} Large Language Model (e.g., GPT-4o, Gemini 1.5 Pro).
+    \item \textbf{OSCE:} Objective Structured Clinical Examination -- a standardized medical assessment framework.
+    \item \textbf{RAG:} Retrieval-Augmented Generation.
+\end{itemize}
+
+\section*{9. Appendices}
+\addcontentsline{toc}{section}{9. Appendices}
+
+\subsection*{Appendix A: Sample JSON Output Structure}
+\begin{verbatim}
+{
+  "report_id": "R12345ABC",
+  "phase": "intake",
+  "patient_name": "John Doe",
+  "clinical_history": "...detailed history...",
+  "detailed_findings": [
+    {
+      "finding": "Productive cough",
+      "explanation": "Suggestive of respiratory tract infection"
+    }
+  ],
+  "urgency_level": "moderate"
+}
+\end{verbatim}
+
+\subsection*{Appendix B: Local Knowledge Layer Sample}
+A sample entry in the LKL JSON database ensuring contextual alignment:
+\begin{verbatim}
+{
+    "keywords": ["cough", "fever", "chest pain"],
+    "protocol": "Follow respiratory infection clinical path",
+    "notes": "Ensure negative finding check for Sputum and Weight Loss."
+}
+\end{verbatim}
+
+\end{document}

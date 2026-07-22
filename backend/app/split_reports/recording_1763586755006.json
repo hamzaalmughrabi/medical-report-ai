@@ -1,0 +1,36 @@
+{
+  "report_id": "recording_1763586755006",
+  "phase": "intake",
+  "patient_name": "حمز المغربي",
+  "age": "21",
+  "sex": "ذكر",
+  "dob": "N/A",
+  "referring_doctor": "N/A",
+  "exam_date": "N/A",
+  "exam_type": "physical examination",
+  "clinical_history": "Patient reports sore throat, eye pain, and headache for the past two hours. No medication taken.",
+  "detailed_findings": [
+    {
+      "finding": "Sore throat",
+      "explanation": "Patient reports experiencing a sore throat for two hours."
+    },
+    {
+      "finding": "Eye pain",
+      "explanation": "Patient reports experiencing eye pain for two hours."
+    },
+    {
+      "finding": "Headache",
+      "explanation": "Patient reports experiencing a headache for two hours."
+    }
+  ],
+  "impression_summary": "Patient presents with acute onset of sore throat, eye pain, and headache.",
+  "recommendations": [
+    "Conduct a thorough physical examination.",
+    "Consider symptomatic treatment for pain relief.",
+    "Monitor symptoms and consider further investigation if symptoms persist."
+  ],
+  "urgency_level": "moderate",
+  "timestamp": "2025-11-20T00:12:44.625892",
+  "_category": null,
+  "_missing_info": []
+}

@@ -1,0 +1,43 @@
+{
+  "report_id": "RES0214",
+  "patient_name": "N/A",
+  "age": "50",
+  "sex": "Female",
+  "dob": "N/A",
+  "referring_doctor": "N/A",
+  "exam_date": "N/A",
+  "exam_type": "N/A",
+  "clinical_history": "The patient reports a terrible fever for the past three days, preceded by a stuffy nose and a sore throat, which has persisted. No nausea, vomiting, other pain, neck stiffness, or headaches are reported. The patient can eat and drink without difficulty swallowing or coughing. She denies abdominal pain, joint pain, rashes, skin changes, or other symptoms. Muscle aches have been present for the past two to three days, coinciding with the fever. No recent contact with sick individuals or travel outside the province apart from a hike last weekend is noted. Her husband is experiencing similar symptoms for a week. She has not had a COVID test. The patient generally works from home, has not gotten a flu shot this year, and is pre-diabetic. Her gallbladder was removed five years ago, and she is allergic to penicillin, which causes a rash. No other significant medical history, medications, or substance use is noted.",
+  "detailed_findings": [
+    {
+      "finding": "Fever persisting for three days",
+      "explanation": "Potential indicator of infectious disease, possibly viral; concurrent fever with husband suggests potential contagious infection."
+    },
+    {
+      "finding": "Stuffy nose and sore throat",
+      "explanation": "Common symptoms in upper respiratory infections, potentially indicative of viral etiology such as COVID-19 or influenza."
+    },
+    {
+      "finding": "Muscle aches concurrent with fever",
+      "explanation": "Often associated with viral infections, notably influenza and COVID-19."
+    },
+    {
+      "finding": "History of penicillin allergy",
+      "explanation": "Important for future antibiotic prescriptions to avoid allergic reactions."
+    },
+    {
+      "finding": "Pre-diabetic status",
+      "explanation": "Relevant for monitoring due to increased risk of complications from infections."
+    }
+  ],
+  "impression_summary": "The symptoms and timing suggest a possible viral upper respiratory infection, potentially COVID-19, given the concurrent symptoms in the patient's husband and recent onset of fever, sore throat, and muscle aches.",
+  "recommendations": [
+    "Order COVID-19 test to rule out viral infection and confirm diagnosis.",
+    "Advise patient and husband to self-isolate to prevent potential spread, pending test results.",
+    "Consider Influenza test if COVID-19 test is negative, depending on symptoms and clinical course.",
+    "Monitor glucose levels due to pre-diabetic status, as infections could affect metabolic control."
+  ],
+  "urgency_level": "moderate",
+  "timestamp": "2025-11-09T10:01:01.403436",
+  "source_file": "RES0214.mp3"
+}

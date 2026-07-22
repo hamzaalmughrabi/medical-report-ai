@@ -1,0 +1,31 @@
+{
+  "report_id": "N/A",
+  "exam_date": "N/A",
+  "exam_type": "N/A",
+  "clinical_history": "The patient has been experiencing pain in the left knee for approximately one year, with symptoms worsening during cold weather. There is a history of swelling and discomfort.",
+  "detailed_findings": [
+    {
+      "finding": "Left knee pain and swelling",
+      "explanation": "The patient reports increased pain and swelling in the left knee, particularly during colder weather."
+    },
+    {
+      "finding": "No significant joint deformities",
+      "explanation": "Physical examination did not reveal any major deformities in the knee joint."
+    },
+    {
+      "finding": "Pain management with medication",
+      "explanation": "The patient reports that pain medications help alleviate the discomfort."
+    },
+    {
+      "finding": "No signs of acute injury",
+      "explanation": "There are no indications of acute injury or trauma to the knee."
+    }
+  ],
+  "impression_summary": "The patient is experiencing chronic left knee pain with associated swelling, likely exacerbated by cold weather.",
+  "recommendations": [
+    "Consider further imaging studies to assess the knee joint for any underlying issues.",
+    "Continue with pain management strategies and monitor symptoms.",
+    "Follow up in a few weeks to evaluate the effectiveness of current treatment."
+  ],
+  "urgency_level": "moderate"
+}

@@ -1,0 +1,88 @@
+<section class="page-content p-6 md:p-8 max-w-7xl mx-auto">
+    <!-- Header -->
+    <div class="mb-8">
+        <h1 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-2">
+            Clinical Intake
+        </h1>
+        <p class="text-slate-600 dark:text-slate-400 text-base">
+            Record patient consultation and generate initial clinical reports.
+        </p>
+    </div>
+
+    <!-- Main Action Card -->
+    <div class="bg-gradient-to-br from-white to-slate-50 dark:from-slate-800 dark:to-slate-800/50 rounded-2xl shadow-medium border border-slate-200 dark:border-slate-700 overflow-hidden mb-8">
+        <div id="start-phase1-record" class="p-8 cursor-pointer card-hover transition-all">
+            <div class="flex flex-col md:flex-row items-center md:items-start gap-6">
+                <!-- Icon -->
+                <div class="relative flex-shrink-0">
+                    <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-lg">
+                        <span class="material-symbols-outlined text-white" style="font-size: 48px;">mic</span>
+                    </div>
+                    <div class="absolute inset-0 rounded-2xl bg-primary opacity-20 pulse-ring"></div>
+                </div>
+
+                <!-- Content -->
+                <div class="flex-1 text-center md:text-left">
+                    <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-2">
+                        Record New Session
+                    </h2>
+                    <p class="text-slate-600 dark:text-slate-400 mb-4 max-w-2xl">
+                        Click to begin recording and automatically generate a clinical report for initial patient intake.
+                    </p>
+                    <div class="inline-flex items-center gap-2 text-primary font-semibold">
+                        <span>Begin Recording</span>
+                        <span class="material-symbols-outlined">arrow_forward</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Output Messages -->
+    <div id="phase1-output" class="mb-8"></div>
+
+    <!-- Waiting Reports Section -->
+    <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-card border border-slate-200 dark:border-slate-700 overflow-hidden">
+        <div class="px-6 py-4 border-b border-slate-200 dark:border-slate-700 bg-gradient-to-r from-slate-50 to-slate-100 dark:from-slate-800/50 dark:to-slate-800/30">
+            <h2 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary">pending_actions</span>
+                Reports Waiting for Phase 2
+            </h2>
+            <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">
+                Complete these reports with final assessment
+            </p>
+        </div>
+
+        <div class="overflow-x-auto">
+            <table id="phase1-table" class="w-full divide-y divide-slate-200 dark:divide-slate-700">
+                <thead class="bg-slate-50 dark:bg-slate-800/30">
+                    <tr>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300">
+                            Case ID
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300">
+                            Patient
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-right text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300">
+                            Actions
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200 dark:divide-slate-700 bg-white dark:bg-slate-800">
+                    <!-- Dynamic rows will be inserted here by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Empty State -->
+        <div class="hidden p-12 text-center" id="phase1-empty-state">
+            <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-slate-100 dark:bg-slate-700 mb-4">
+                <span class="material-symbols-outlined text-slate-400 dark:text-slate-500" style="font-size: 32px;">assignment</span>
+            </div>
+            <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">No Pending Reports</h3>
+            <p class="text-slate-600 dark:text-slate-400">
+                All reports have been completed or no intake sessions recorded yet.
+            </p>
+        </div>
+    </div>
+</section>

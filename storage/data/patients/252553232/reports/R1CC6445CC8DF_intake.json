@@ -1,0 +1,20 @@
+{
+  "report_id": "R1CC6445CC8DF",
+  "phase": "intake",
+  "patient_name": "ahmad mohammad",
+  "age": "33",
+  "sex": "Male",
+  "dob": "Unknown",
+  "referring_doctor": "N/A",
+  "exam_date": "N/A",
+  "exam_type": "N/A",
+  "clinical_history": "N/A",
+  "detailed_findings": [],
+  "impression_summary": "N/A",
+  "recommendations": [],
+  "urgency_level": "N/A",
+  "timestamp": "2026-04-08T18:51:33.716294",
+  "_category": null,
+  "_missing_info": [],
+  "patient_id": "252553232"
+}

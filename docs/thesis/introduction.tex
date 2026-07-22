@@ -1,0 +1,203 @@
+% =========================================
+% introduction.tex (ENGINEERED VERSION WITH CITATIONS)
+% =========================================
+
+\chapter{Introduction}\label{chapter:intro}
+
+% ---------------- 1.1 ----------------
+\section{Background of the Topic}\label{sec:intro:background}
+
+Clinical documentation constitutes a critical bottleneck in modern healthcare workflows. While essential for legal compliance, diagnostic continuity, and billing, the process is historically manual, unstructured, and error-prone \cite{gawande2018why}. Studies indicate that physicians spend a disproportionate amount of time on data entry, often at the expense of direct doctor–patient interaction.
+
+The convergence of Automatic Speech Recognition (ASR) and Large Language Models (LLMs) offers a technological solution to this inefficiency. By treating clinical voice data as a raw input stream, AI pipelines can now transcribe, structure, and format medical records in real-time \cite{thirunavukarasu2023large}. However, deploying these systems in real-world environments requires addressing specific engineering challenges, including hallucination mitigation, context awareness, and adherence to standardized clinical formats like the Objective Structured Clinical Examination (OSCE) \cite{harden1975assessment}.
+
+% ---------------- 1.2 ----------------
+\section{Problem Statement}\label{sec:intro:problem}
+
+Despite the digitization of healthcare, the generation of medical reports remains inefficient. The core operational problems identified include:
+
+\begin{itemize}
+    \item \textbf{High Latency:} Manual transcription delays the availability of reports.
+    \item \textbf{Unstructured Data:} Free-form dictations are difficult to query or integrate into standardized databases.
+    \item \textbf{Contextual Drift:} Generic AI models often fail to capture hospital-specific protocols, leading to hallucinations . % Optional if you have a hallucination ref, otherwise removed
+    \item \textbf{Workflow Interruption:} Extensive screen time reduces the quality of the patient intake and assessment phases \cite{gawande2018why}.
+\end{itemize}
+
+There is a critical need for an engineered solution that not only transcribes speech but structurally maps it to verified medical schemas (JSON) with high fidelity and low latency \cite{json2017standard}.
+
+% ---------------- 1.3 ----------------
+\section{Project Motivation}\label{sec:intro:motivation}
+
+The \textbf{MedEcho} system was developed to bridge the gap between raw generative AI capabilities and rigid clinical requirements. A key driver for this project was real-world feedback from \textbf{Zarqa Governmental Hospital}, where physicians highlighted the need for a system that adapts to local workflows without requiring extensive retraining of core models.
+
+This necessitated the architectural decision to implement a \textbf{Local Knowledge Layer (LKL)}—a novel component designed to inject local clinical context and reduce hallucinations before report generation \cite{lewis2020retrieval}. This ensures that the system is not just a transcriber, but a context-aware clinical assistant.
+
+% ---------------- 1.4 ----------------
+\section{Objectives}\label{sec:intro:objectives}
+
+\subsection*{General Objective}
+To design and deploy MedEcho, an AI-powered voice-to-report pipeline that converts spoken clinical dictations into OSCE-compliant, structured JSON and PDF reports using a Local Knowledge Layer architecture.
+
+\subsection*{Specific Objectives}
+\begin{itemize}
+    \item \textbf{Pipeline Integration:} Implement a seamless pipeline using OpenAI Whisper \cite{radford2023robust} for high-fidelity ASR and LLMs for semantic processing.
+    \item \textbf{Hallucination Mitigation:} Develop a Local Knowledge Layer (LKL) to ground AI output in valid clinical data and hospital-specific patterns \cite{lewis2020retrieval}.
+    \item \textbf{Structured Data Output:} Ensure all outputs are serialized into JSON format \cite{json2017standard} to guarantee interoperability and strict adherence to medical sections.
+    \item \textbf{Performance Optimization:} Reduce the average report generation time to \textbf{under three minutes} per case.
+    \item \textbf{Real-World Validation:} Validate system performance using a specific dataset (30 patient cases, 74 reports) under the supervision of senior hospital administration at Zarqa Governmental Hospital.
+\end{itemize}
+
+% ---------------- 1.5 ----------------
+\section{Scope and Limitations}\label{sec:intro:scope}
+
+\subsection*{Scope}
+The MedEcho system is defined by the following operational boundaries:
+\begin{itemize}
+    \item \textbf{Workflow Support:} Handles a two-phase clinical workflow consisting of \textbf{Patient Intake} and \textbf{Final Assessment}.
+    \item \textbf{Data Structure:} Outputs are mapped strictly to OSCE standards \cite{harden1975assessment}.
+    \item \textbf{Pilot Deployment:} Validated at Zarqa Governmental Hospital involving two practicing physicians and supervision by the Deputy Director.
+    \item \textbf{Dataset:} The system's efficacy is bounded by the pilot dataset of 30 patient cases resulting in 74 generated reports.
+\end{itemize}
+
+\subsection*{Limitations}
+\begin{itemize}
+    \item \textbf{Connectivity:} The system currently relies on cloud connectivity for the LLM inference layer \cite{achiam2023gpt}.
+    \item \textbf{Diagnostic Scope:} The system provides documentation support; it does not offer diagnostic decision support (CDSS).
+    \item \textbf{Language Dialects:} While Whisper handles multi-lingual input, the LKL is currently optimized for the specific clinical dialect used in the pilot environment.
+\end{itemize}
+
+% ---------------- 1.6 ----------------
+\section{Methodology Overview}\label{sec:intro:method}
+
+MedEcho utilizes a modular software architecture designed for accuracy and privacy \cite{sommerville2011software}:
+
+\begin{enumerate}
+    \item \textbf{Input Acquisition:} High-quality audio capture of the physician's dictation during Intake or Assessment via Electron interface \cite{electron2024}.
+    \item \textbf{ASR Layer:} Utilization of \textbf{Whisper} models to transcribe audio to raw text with timestamping \cite{radford2023robust}.
+    \item \textbf{Local Knowledge Layer (LKL):} A pre-processing stage where raw text is augmented with retrieval-augmented generation (RAG) techniques \cite{lewis2020retrieval} or rule-based context to minimize hallucinations.
+    \item \textbf{Semantic Structuring (LLM):} The augmented text is processed to extract entities and map them to a JSON schema.
+    \item \textbf{Rendering:} The JSON object is compiled into a professional, clinically valid PDF report.
+\end{enumerate}
+
+% ---------------- 1.7 ----------------
+\section{Report Organization}\label{sec:intro:organization}
+
+This report consists of the following chapters:
+
+\begin{itemize}
+    \item Chapter 1: Introduction
+    \item Chapter 2: Literature Review (ASR, LLMs in Healthcare, RAG Architectures)
+    \item Chapter 3: System Analysis and Requirements
+    \item Chapter 4: Design and Architecture
+    \item Chapter 5: Implementation
+    \item Chapter 6: Testing and Validation (Analysis of Zarqa Hospital Pilot Data)
+    \item Chapter 7: Results and Discussion
+    \item Chapter 8: Conclusion and Future Work
+\end{itemize}
+
+% ---------------- 1.8 ----------------
+\section{Project Timeline}\label{sec:intro:timeline}
+
+\subsection*{Weekly Task Breakdown}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|c|p{6cm}|c|p{4cm}|}
+\hline
+\textbf{Week} & \textbf{Task / Phase} & \textbf{Duration} & \textbf{Assigned Student(s)} \\
+\hline
+1  & Requirement Gathering \& Analysis                 & 4 Days & Student 1 \& Student 2 \\
+\hline
+2--3  & System Design (Architecture, UML)                & 2 weeks & Student 1 \& Student 2   \\
+\hline
+3  & Data Storage Design (JSON Schema, File Structure)   & 1 week                     & Student 1 \& Student 2               \\
+\hline
+4  & Frontend UI/UX Prototyping                       & 1 week & Student 1 \& Student 2                 \\
+\hline
+5--8  & Backend Development (APIs, Logic)                & 3 weeks & Student 1 \& Student 2                \\
+\hline
+7--9  &Data Storage Integration                             & 2.5 weeks & Student 1 \& Student 2                 \\
+\hline
+9--11  & AI Model Training                                & 1.5 weeks &Student 1 \& Student 2                \\
+\hline
+10--13 & System Integration                                   & 4 weeks & Student 1 \& Student 2                     \\
+\hline
+10--14& Testing (Unit, Integration)                  & 4 weeks & Student 1 \& Student 2   \\
+\hline
+15--18& Final Report Writing                                & 3.5 weeks & Student 1 \& Student 2   \\
+\hline
+19    & Final Adjustments / Polishing                    & 1 week  & Student 1 \& Student 2                      \\
+\hline
+19    & Final Submission \& Presentation                  & 1 week  & All                      \\
+\hline
+
+\end{tabular}
+\end{center}
+\begin{center}
+\renewcommand{\arraystretch}{1.9}
+\setlength{\tabcolsep}{4pt}
+
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|l|*{19}{c|}}
+\hline
+\textbf{Tasks} &
+\textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} &
+\textbf{8} & \textbf{9} & \textbf{10} & \textbf{11} & \textbf{12} & \textbf{13} & \textbf{14} &
+\textbf{15} & \textbf{16} & \textbf{17} & \textbf{18} & \textbf{19} \\
+\hline
+
+Requirement Gathering
+& \cellcolor{blue!30} & & & & & & & & & & & & & & & & & & \\
+\hline
+
+System Design
+& & \cellcolor{blue!30} & \cellcolor{blue!30} & & & & & & & & & & & & & & & & \\
+\hline
+
+Data Storage Design
+& & & \cellcolor{blue!30} & & & & & & & & & & & & & & & & \\
+\hline
+
+UI/UX Prototyping
+& & & & \cellcolor{blue!30} & & & & & & & & & & & & & & & \\
+\hline
+
+Backend Development
+& & & & & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30}
+& & & & & & & & & & & \\
+\hline
+
+Data Storage Integration
+& & & & & & & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30}
+& & & & & & & & & & \\
+\hline
+
+AI Model Training
+& & & & & & & & & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30}
+& & & & & & & & \\
+\hline
+
+System Integration
+& & & & & & & & & & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30}
+& & & & & & \\
+\hline
+
+Testing (Unit, Integration)
+& & & & & & & & & & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30}
+& & & & & \\
+\hline
+
+Final Report Writing
+& & & & & & & & & & & & & & & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} & \cellcolor{blue!30} & \\
+\hline
+
+Final Adjustments / Polishing
+& & & & & & & & & & & & & & & & & & & \cellcolor{blue!30} \\
+\hline
+
+Final Submission \& Presentation
+& & & & & & & & & & & & & & & & & & & \cellcolor{blue!30} \\
+\hline
+\end{tabular}%
+}
+\end{center}

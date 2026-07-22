@@ -1,0 +1,39 @@
+{
+  "report_id": "recording_1763585953110",
+  "phase": "intake",
+  "patient_name": "حمزة المغرب",
+  "age": "21",
+  "sex": "N/A",
+  "dob": "N/A",
+  "referring_doctor": "N/A",
+  "exam_date": "N/A",
+  "exam_type": "N/A",
+  "clinical_history": "Patient reports experiencing headaches, eye pain, back pain, and knee pain. Headache has been present for approximately one month, eye pain for two days.",
+  "detailed_findings": [
+    {
+      "finding": "Headache",
+      "explanation": "Patient reports headache lasting for about a month."
+    },
+    {
+      "finding": "Eye pain",
+      "explanation": "Patient reports eye pain lasting for two days."
+    },
+    {
+      "finding": "Back pain",
+      "explanation": "Patient reports experiencing back pain."
+    },
+    {
+      "finding": "Knee pain",
+      "explanation": "Patient reports experiencing knee pain."
+    }
+  ],
+  "impression_summary": "Patient presents with multiple pain symptoms including headache, eye pain, back pain, and knee pain. Duration and severity vary.",
+  "recommendations": [
+    "Further evaluation to determine the cause of the headache and eye pain.",
+    "Consider imaging or physical examination for back and knee pain."
+  ],
+  "urgency_level": "moderate",
+  "timestamp": "2025-11-19T23:59:23.054075",
+  "_category": null,
+  "_missing_info": []
+}

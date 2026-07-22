@@ -1,0 +1,5 @@
+{
+  "appId": "com.medecho.app",
+  "appName": "MedEcho",
+  "webDir": "src/renderer"
+}

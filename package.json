@@ -1,0 +1,25 @@
+{
+  "name": "medical-ai-app",
+  "version": "1.0.0",
+  "description": "Your Electron desktop application.",
+  "main": "src/main/main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "keywords": [
+    "electron",
+    "desktop",
+    "html",
+    "javascript"
+  ],
+  "author": "hamza almughrabi ,aisha aldalaeen",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^30.5.1"
+  },
+  "dependencies": {
+    "@capacitor/android": "^8.3.1",
+    "@capacitor/cli": "^8.3.1",
+    "@capacitor/core": "^8.3.1"
+  }
+}

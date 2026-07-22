@@ -1,0 +1,20 @@
+{
+  "report_id": "RC648257FB207",
+  "phase": "intake",
+  "patient_name": "Jane Doe",
+  "age": "30",
+  "sex": "Male",
+  "dob": "Unknown",
+  "referring_doctor": "N/A",
+  "exam_date": "N/A",
+  "exam_type": "N/A",
+  "clinical_history": "N/A",
+  "detailed_findings": [],
+  "impression_summary": "N/A",
+  "recommendations": [],
+  "urgency_level": "N/A",
+  "timestamp": "2026-04-08T19:00:29.768018",
+  "_category": null,
+  "_missing_info": [],
+  "patient_id": "P-999999"
+}

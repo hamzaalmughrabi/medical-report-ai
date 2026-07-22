@@ -1,0 +1,48 @@
+{
+  "report_id": "Recording 3",
+  "patient_name": "",
+  "age": "",
+  "sex": "",
+  "dob": "",
+  "referring_doctor": "",
+  "exam_date": "",
+  "exam_type": "",
+  "clinical_history": "The patient reports left knee pain persisting for over a year, exacerbated by cold weather. The pain began suddenly and is constant, increasing with exposure to cold and alleviated by warmth. No medications are currently used for pain relief. There is no swelling or giving way of the knee. Morning stiffness lasts less than ten minutes in cold conditions. The patient has a family history of lymphatic disease affecting the knees and rheumatoid arthritis. The patient has hypothyroidism managed with 100 mg of thyroxine daily and lives on the third floor with elevator access.",
+  "detailed_findings": [
+    {
+      "finding": "Left knee pain for over a year",
+      "explanation": "Chronic knee pain can indicate underlying joint issues such as arthritis or meniscal injury."
+    },
+    {
+      "finding": "Pain exacerbated by cold",
+      "explanation": "Cold sensitivity in joints is often associated with inflammatory conditions or osteoarthritis."
+    },
+    {
+      "finding": "No swelling or giving way",
+      "explanation": "Absence of swelling or instability suggests a lower likelihood of acute injury or severe degenerative changes."
+    },
+    {
+      "finding": "Morning stiffness less than ten minutes",
+      "explanation": "Short duration of stiffness is typically seen in osteoarthritis rather than inflammatory arthritis."
+    },
+    {
+      "finding": "Family history of lymphatic disease and rheumatoid arthritis",
+      "explanation": "Genetic predisposition may increase the risk of similar conditions in the patient."
+    },
+    {
+      "finding": "Hypothyroidism managed with thyroxine",
+      "explanation": "Thyroid dysfunction can contribute to musculoskeletal symptoms, including joint pain."
+    }
+  ],
+  "impression_summary": "Chronic left knee pain likely related to degenerative joint disease, with possible contribution from hypothyroidism. Family history suggests potential genetic predisposition to joint issues.",
+  "recommendations": [
+    "Consider imaging studies such as X-ray or MRI to assess joint integrity.",
+    "Evaluate thyroid function to ensure optimal management.",
+    "Referral to a rheumatologist for further evaluation of potential inflammatory joint disease."
+  ],
+  "urgency_level": "Routine",
+  "timestamp": "2025-11-17T19:05:23.551723",
+  "_category": null,
+  "_missing_info": [],
+  "source_file": "Recording 3.m4a"
+}

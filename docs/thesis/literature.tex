@@ -1,0 +1,112 @@
+% =========================================
+% CHAPTER 2 — LITERATURE REVIEW
+% =========================================
+
+% -----------------------------------------
+\section{Introduction}
+\label{sec:lit:introduction}
+
+Clinical documentation is one of the most important yet time-consuming tasks in modern healthcare \cite{gawande2018why}. Over the past decades, numerous technological solutions have been developed to assist physicians in creating, managing, and improving medical records. These solutions range from traditional medical dictation systems to modern artificial intelligence--based documentation tools. Despite their progress, many of these systems fail to meet the practical needs of real clinical environments, particularly in terms of automation, structure, adaptability, and contextual understanding \cite{thirunavukarasu2023large}.
+
+This chapter reviews existing approaches to clinical documentation and highlights their limitations, which motivate the development of the MedEcho system.
+
+% -----------------------------------------
+\section{Traditional Medical Dictation Systems}
+\label{sec:lit:dictation}
+
+Early medical dictation systems such as Dragon Medical allowed physicians to dictate clinical notes that were converted into textual form \cite{nuance2023dragon}. These systems significantly reduced the need for manual typing and improved documentation speed. However, the generated output was largely unstructured free text, requiring physicians to manually organize, correct, and format their reports.
+
+Cloud-based services such as Google Medical Speech-to-Text and Amazon Transcribe Medical further improved transcription accuracy \cite{aws2023transcribe}. However, these systems focused solely on converting speech into text and did not provide clinical understanding, report structuring, or decision support. In addition, reliance on cloud infrastructure introduced privacy and regulatory concerns, limiting their use in sensitive medical environments.
+
+\textbf{Limitation:}  
+These systems perform transcription but do not produce structured medical reports suitable for clinical or academic use.
+
+% -----------------------------------------
+\section{NLP-Based Clinical Documentation Tools}
+\label{sec:lit:nlp}
+
+Natural language processing (NLP) has been widely applied to the analysis of electronic health records and clinical notes. Research by Scharp et al. (2023) demonstrated how NLP techniques can extract valuable information from unstructured medical text \cite{scharp2023nlp}. However, such approaches rely on existing written notes and do not address the challenge of generating clinical documentation directly from spoken input.
+
+Other NLP-based systems aim to improve documentation quality by identifying missing information or correcting medical terminology. Nevertheless, these tools operate as post-processing systems rather than real-time documentation solutions.
+
+\textbf{Limitation:}  
+Most NLP tools analyze text after it is written instead of generating structured documentation directly from clinical speech.
+
+% -----------------------------------------
+\section{AI-Driven Clinical Documentation Systems}
+\label{sec:lit:ai}
+
+Recent advances in artificial intelligence have led to the emergence of AI-powered medical scribes and documentation assistants. Perkins et al. (2024) demonstrated that AI systems can enhance the clarity and quality of clinical notes \cite{perkins2024ai}, while Ng et al. (2025) evaluated their performance in healthcare environments \cite{ng2025evaluation}. These studies reported improvements in efficiency but also highlighted challenges related to accuracy, contextual understanding, and system integration.
+
+Many AI-based systems lack the ability to adapt to different clinical environments, medical specialties, and hospital-specific documentation styles. As a result, system performance often degrades when deployed outside controlled experimental settings.
+
+\textbf{Limitation:}  
+Existing AI documentation tools are insufficiently adaptive and do not fully understand clinical context during live consultations.
+
+% -----------------------------------------
+\section{Structured Medical Reports and Clinical Standards}
+\label{sec:lit:structure}
+
+Medical documentation is not only concerned with recording information but also with structuring it according to recognized clinical standards. Educational tools based on the Objective Structured Clinical Examination (OSCE) framework provide structured formats for patient history, assessment, and diagnosis \cite{harden1975assessment}. However, these tools are primarily designed for training purposes and are not suitable for routine hospital documentation.
+
+Other systems rely on rigid templates that force clinicians to follow predefined structures, which often reduces flexibility and fails to capture the full complexity of real patient encounters.
+
+\textbf{Limitation:}  
+Existing tools either lack standardized structure or depend on rigid templates that do not adapt to real clinical workflows.
+
+% -----------------------------------------
+\section{Adaptation and Real-World Deployment}
+\label{sec:lit:adaptation}
+
+One of the major challenges in deploying AI-based documentation systems is their inability to adapt to hospital-specific terminology, patient populations, and clinical practices. Studies by Sasseville (2025) \cite{sasseville2025adaptation} and de Paula (2025) \cite{depaula2025realworld} emphasize that many AI scribes perform well in controlled studies but struggle in real clinical environments due to insufficient local customization and learning mechanisms.
+
+\textbf{Limitation:}  
+Most systems do not learn from previous cases or adapt to the specific hospital environments in which they are deployed.
+
+% -----------------------------------------
+\section{Research Gap and Motivation for MedEcho}
+\label{sec:lit:gap}
+
+The literature reveals several unresolved challenges in current clinical documentation systems:
+
+\begin{itemize}
+    \item Lack of real-time voice-to-report automation \cite{radford2023robust}.
+    \item Absence of structured, standard-compliant medical reports \cite{json2017standard}.
+    \item Limited clinical context understanding.
+    \item Poor adaptation to local hospital environments.
+    \item Insufficient real-world validation.
+\end{itemize}
+
+MedEcho was designed to address these gaps by introducing a voice-first, AI-powered documentation system capable of generating OSCE-compliant structured reports directly from spoken input \cite{achiam2023gpt}. Its two-phase clinical workflow, consisting of intake and final assessment stages, ensures comprehensive and accurate documentation of patient encounters. Furthermore, the Local Knowledge Layer (LKL) enables adaptation to hospital-specific clinical patterns, improving accuracy and reducing hallucinations over time \cite{lewis2020retrieval}.
+
+% -----------------------------------------
+\section{Comparative Analysis}
+\label{sec:lit:comparison}
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.35}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|l|c|c|c|c|c|}
+\hline
+\textbf{System} & \textbf{Voice Input} & \textbf{Structured Report} & \textbf{Context Awareness} & \textbf{Adaptation} & \textbf{Real-World Use} \\ \hline
+Dragon Medical \cite{nuance2023dragon} & Yes & No & No & No & Yes \\ \hline
+Google Medical STT & Yes & No & No & No & Limited \\ \hline
+Amazon Transcribe \cite{aws2023transcribe} & Yes & No & No & No & Limited \\ \hline
+IBM Watson Docs & No & Partial & Limited & No & Limited \\ \hline
+Rule-based Scribes & Yes & Partial & Limited & No & Yes \\ \hline
+OSCE Training Tools \cite{harden1975assessment} & Limited & Yes & Limited & No & No \\ \hline
+NLP Note Systems & No & Partial & Limited & No & No \\ \hline
+AI Scribes (Generic) & Yes & Partial & Moderate & No & Limited \\ \hline
+\textbf{MedEcho} & \textbf{Yes} & \textbf{Yes (OSCE)} & \textbf{High} & \textbf{Yes (LKL)} & \textbf{Yes} \\ \hline
+\end{tabular}
+}
+\caption{Comparative analysis of clinical documentation systems.}
+\label{tab:lit-comparison}
+\end{table}
+
+% -----------------------------------------
+\section{Summary}
+\label{sec:lit:summary}
+
+This chapter reviewed traditional medical dictation systems, NLP-based tools, AI-powered clinical documentation platforms, and structured clinical frameworks. The analysis revealed important limitations in current solutions, particularly regarding structure, adaptability, and real-world applicability. These gaps strongly justify the development of MedEcho as a practical, intelligent, and adaptive voice-to-report system for modern clinical documentation.

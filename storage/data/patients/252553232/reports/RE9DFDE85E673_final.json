@@ -1,0 +1,49 @@
+{
+  "report_id": "RE9DFDE85E673",
+  "phase": "final_assessment",
+  "patient_name": "ahmad mohammad",
+  "age": "33",
+  "sex": "Male",
+  "dob": "Unknown",
+  "referring_doctor": "N/A",
+  "exam_date": "N/A",
+  "exam_type": "Clinical Examination",
+  "clinical_history": "33-year-old male presents with a history of right shoulder pain following an unspecified mechanism of injury. Since the initial clinical examination, the patient's shoulder was found to be dislocated and has been successfully repositioned. The patient was prescribed anti-inflammatory medication post-procedure.",
+  "detailed_findings": [
+    {
+      "finding": "Right shoulder pain",
+      "explanation": "Pain persists in the right shoulder, consistent with musculoskeletal discomfort likely exacerbated by the recent dislocation."
+    },
+    {
+      "finding": "Shoulder dislocation",
+      "explanation": "Clinical examination initially revealed a dislocation which has since been successfully repositioned."
+    },
+    {
+      "finding": "Shoulder repositioned",
+      "explanation": "The dislocated right shoulder has been successfully repositioned, alleviating some of the acute symptoms."
+    },
+    {
+      "finding": "Anti-inflammatory medication prescribed",
+      "explanation": "Post-procedural management included the prescription of anti-inflammatory medication to manage inflammation and pain."
+    }
+  ],
+  "impression_summary": "The patient presented with a dislocated right shoulder, which has been successfully repositioned. The clinical findings suggest effective management of the acute episode. Continued use of anti-inflammatory medication is recommended to manage residual pain and inflammation.",
+  "recommendations": [
+    "Continue anti-inflammatory medication as prescribed.",
+    "Follow-up in clinic after 2 weeks to reassess pain and shoulder function.",
+    "Consider physical therapy to restore full range of motion and strengthen the shoulder muscles to prevent future dislocations."
+  ],
+  "urgency_level": "moderate",
+  "timestamp": "2026-04-08T18:44:33.549951",
+  "_category": "shoulder_pain",
+  "_missing_info": [
+    "history of repetitive activity?",
+    "mechanism of injury (fall/direct blow)?",
+    "can you reach behind your back?",
+    "any sensation of instability/looseness?",
+    "location of pain (anterior/lateral/posterior)?"
+  ],
+  "_intake_report_id": "R5BD6FB267B1B",
+  "patient_id": "252553232",
+  "intake_id": "R5BD6FB267B1B"
+}

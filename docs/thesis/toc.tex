@@ -1,0 +1,120 @@
+% ===============================
+% FINAL CLEAN TOC (Working)
+% ===============================
+
+\clearpage
+\thispagestyle{plain}
+\phantomsection
+\addcontentsline{toc}{chapter}{Table of Contents}
+
+
+\begingroup
+\setlength{\parskip}{0pt}
+\setlength{\parindent}{0pt}
+
+\vspace*{-1.2cm}
+
+\begin{center}
+{\Large \bfseries Table of Contents}
+\end{center}
+
+\vspace{0.5cm}
+
+\renewcommand{\arraystretch}{1.2}
+
+\begin{longtable}{|p{13cm}|c|}
+\hline
+\textbf{Topic} & \textbf{Page} \\ \hline
+\endfirsthead
+
+\hline
+\textbf{Topic} & \textbf{Page} \\ \hline
+\endhead
+
+% ---------- CHAPTER 1 ----------
+\textbf{1. Introduction} & \pageref{chapter:intro} \\ \hline
+\hspace{0.6cm}1.1 Background of the topic & \pageref{sec:intro:background} \\ \hline
+\hspace{0.6cm}1.2 Problem Statement & \pageref{sec:intro:problem} \\ \hline
+\hspace{0.6cm}1.3 Project Motivation & \pageref{sec:intro:motivation} \\ \hline
+\hspace{0.6cm}1.4 Objectives (general \& specific) & \pageref{sec:intro:objectives} \\ \hline
+\hspace{0.6cm}1.5 Scope and Limitations & \pageref{sec:intro:scope} \\ \hline
+\hspace{0.6cm}1.6 Methodology Overview & \pageref{sec:intro:method} \\ \hline
+\hspace{0.6cm}1.7 Report Organization & \pageref{sec:intro:organization} \\ \hline
+\hspace{0.6cm}1.8 Project Timeline & \pageref{sec:intro:timeline} \\ \hline
+
+% ---------- CHAPTER 2 ----------
+% ---------- CHAPTER 2 ----------
+\textbf{2. Literature Review / Related Work} & \pageref{chapter:literature} \\ \hline
+\hspace{0.6cm}2.1 Introduction & \pageref{sec:lit:summary} \\ \hline
+\hspace{0.6cm}2.2 Traditional Medical Dictation Systems & \pageref{sec:lit:dictation} \\ \hline
+\hspace{0.6cm}2.3 NLP-Based Clinical Documentation Tools & \pageref{sec:lit:nlp} \\ \hline
+\hspace{0.6cm}2.4 AI-Driven Clinical Documentation Systems & \pageref{sec:lit:ai} \\ \hline
+\hspace{0.6cm}2.5 Structured Medical Reports and Clinical Standards & \pageref{sec:lit:structure} \\ \hline
+\hspace{0.6cm}2.6 Adaptation and Real-World Deployment & \pageref{sec:lit:adaptation} \\ \hline
+\hspace{0.6cm}2.7 Research Gap and Motivation for MedEcho & \pageref{sec:lit:gap} \\ \hline
+\hspace{0.6cm}2.8 Comparative Analysis of Existing Systems & \pageref{tab:lit-comparison} \\ \hline
+\hspace{0.6cm}2.9 Summary & \pageref{sec:lit:summary} \\ \hline
+
+
+% ---------- CHAPTER 3 ----------
+\textbf{3. System Analysis and Requirements} & \pageref{chapter:analysis} \\ \hline
+\hspace{0.6cm}3.1 Requirements Gathering & \pageref{sec:analysis:reqs} \\ \hline
+\hspace{0.6cm}3.2 Stakeholder Analysis & \pageref{sec:analysis:analysis} \\ \hline
+\hspace{0.6cm}3.3 Use Case Diagrams & \pageref{sec:analysis:usecases} \\ \hline
+\hspace{0.6cm}3.4 User Stories / Requirements Table & \pageref{sec:analysis:stories} \\ \hline
+\hspace{0.6cm}3.5 Tools and Technologies to be used & \pageref{sec:analysis:tools} \\ \hline
+\hspace{0.6cm}3.6 Ethical / Regulatory considerations & \pageref{sec:analysis:ethics} \\ \hline
+
+% ---------- CHAPTER 4 ----------
+\textbf{4. System Design and Architecture} & \pageref{chapter:design} \\ \hline
+\hspace{0.6cm}4.1 Overview & \pageref{sec:design:overview} \\ \hline
+\hspace{0.6cm}4.2 System Architecture & \pageref{sec:design:architecture} \\ \hline
+\hspace{0.6cm}4.3 Component Description & \pageref{sec:design:frontend} \\ \hline
+\hspace{0.6cm}4.4 Data Flow Design & \pageref{sec:design:dataflow} \\ \hline
+
+% ---------- CHAPTER 5 ----------
+\textbf{5. Implementation} & \pageref{chapter:implementation} \\ \hline
+\hspace{0.6cm}5.1 Tools and Frameworks & \pageref{sec:impl:pipeline} \\ \hline
+\hspace{0.6cm}5.2 Code Structure Overview & \pageref{sec:impl:pipeline} \\ \hline
+\hspace{0.6cm}5.3 Module Explanations & \pageref{sec:impl:endtoend} \\ \hline
+\hspace{0.6cm}Technical Challenges and AI Mitigations & \pageref{sec:impl:challenges} \\ \hline
+
+% ---------- CHAPTER 6 ----------
+\textbf{6. Testing and Validation} & \pageref{chapter:testing} \\ \hline
+
+\hspace{0.6cm}6.1 Unit Testing & \pageref{sec:testing:Unit} \\ \hline
+\hspace{0.6cm}6.2 Integration Testing & \pageref{sec:testing:integration} \\ \hline
+\hspace{0.6cm}6.3 Performance Testing & \pageref{sec:testing:performance} \\ \hline
+\hspace{0.6cm}6.4 Summary & \pageref{sec:testing:Summary} \\ \hline
+
+
+% ---------- CHAPTER 7 ----------
+\textbf{7. Results and Discussion} & \pageref{chapter:results} \\ \hline
+\hspace{0.6cm}7.1 Overview & \pageref{sec:results:overview} \\ \hline
+\hspace{0.6cm}7.2 Technical Performance Results & \pageref{sec:results:accuracy} \\ \hline
+\hspace{0.6cm}7.3 Clinical Validation Results & \pageref{sec:results:workflow} \\ \hline
+\hspace{0.6cm}7.4 Discussion & \pageref{sec:results:comparison} \\ \hline
+\hspace{0.6cm}7.5 Summary of Results & \pageref{sec:results:conclusion} \\ \hline
+
+
+% ---------- CHAPTER 8 ----------
+\textbf{8. Conclusion and Future Work} & \pageref{chapter:conclusion} \\ \hline
+\hspace{0.6cm}8.1 Recap & \pageref{sec:conclusion:recap} \\ \hline
+\hspace{0.6cm}8.2 Lessons Learned & \pageref{sec:conclusion:lessons} \\ \hline
+\hspace{0.6cm}8.3 Recommendations & \pageref{sec:conclusion:recommend} \\ \hline
+\hspace{0.6cm}8.4 Impact & \pageref{sec:conclusion:impact} \\ \hline
+
+% ---------- REFERENCES ----------
+\textbf {References}& \pageref{chapter:References} \\ \hline
+
+% ---------- APPENDICES ----------
+\textbf{Annexes / Appendices} & \\ \hline
+Appendix A: System Architecture ,Workflow & \pageref{appendix:systema} \\ \hline
+Appendix B:Data Storage Design & \pageref{appendix:dsb} \\ \hline
+Appendix C:OSCE Schema, Clinical Structuring & \pageref{appendix:osce} \\ \hline
+Appendix D: Surveys & \pageref{appendix:survey} \\ \hline
+
+
+\end{longtable}
+
+\endgroup

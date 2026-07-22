@@ -1,0 +1,36 @@
+<section id="content-history" class="page-content p-4 md:p-10 space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-700 pb-32 max-w-7xl mx-auto">
+    <!-- Premium Clinical Header -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-slate-100 dark:border-slate-800 pb-8">
+        <div class="space-y-2">
+            <div class="inline-flex items-center gap-2 px-3 py-1 bg-amber-50 rounded-full text-[10px] font-black text-amber-600 uppercase tracking-widest border border-amber-100">
+                <span class="w-1.5 h-1.5 bg-amber-500 rounded-full animate-pulse"></span>
+                <span data-i18n="history_badge">Clinical Archive</span>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tighter" data-i18n="history_title">History</h1>
+            <p class="text-slate-500 font-medium max-w-xl" data-i18n="history_desc">Archive of all clinical sessions and generated reports.</p>
+        </div>
+        <div class="hidden lg:flex flex-col items-end gap-1">
+            <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest leading-none" data-i18n="history_archive">History Archive</p>
+            <p class="text-[9px] text-primary font-bold"> <span data-i18n="standard_archive">Standard Archive v1.2</span> </p>
+        </div>
+    </div>
+
+    <!-- Registry Container (Fluid Card Hub) -->
+    <div id="history-list-container" class="space-y-4">
+        <!-- Clinical Cards injected by app.js -->
+        <div id="history-table-body" class="space-y-4"></div>
+    </div>
+
+        <!-- Empty State (shows when no data) -->
+        <div class="hidden p-12 text-center" id="history-empty-state">
+            <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-slate-100 dark:bg-slate-700 mb-4">
+                <span class="material-symbols-outlined text-slate-400 dark:text-slate-500" style="font-size: 32px;">history</span>
+            </div>
+            <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2" data-i18n="no_history">No Reports Yet</h3>
+            <p class="text-slate-600 dark:text-slate-400" data-i18n="history_empty_desc">
+                Your report history will appear here once you generate your first clinical report.
+            </p>
+        </div>
+    </div>
+
+</section>

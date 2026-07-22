@@ -1,0 +1,49 @@
+{
+  "report_id": "R08CC3D35A7FB",
+  "phase": "final_assessment",
+  "patient_name": "ahmad mohammad",
+  "age": "33",
+  "sex": "Male",
+  "dob": "Unknown",
+  "referring_doctor": "N/A",
+  "exam_date": "N/A",
+  "exam_type": "Clinical Examination",
+  "clinical_history": "33-year-old male presents with initial complaint of right shoulder pain, diagnosed as a shoulder dislocation. The shoulder was subsequently repositioned, and anti-inflammatory medications were prescribed.",
+  "detailed_findings": [
+    {
+      "finding": "Right shoulder pain",
+      "explanation": "Patient initially presented with pain in the right shoulder, indicative of musculoskeletal discomfort."
+    },
+    {
+      "finding": "Shoulder dislocation",
+      "explanation": "Clinical examination initially revealed a dislocation in the right shoulder, confirmed as structural displacement of the joint."
+    },
+    {
+      "finding": "Shoulder repositioned",
+      "explanation": "The dislocated shoulder was successfully repositioned during clinical follow-up."
+    },
+    {
+      "finding": "Anti-inflammatory medication prescribed",
+      "explanation": "Post-repositioning, medications were prescribed to manage inflammation and alleviate pain."
+    }
+  ],
+  "impression_summary": "The patient presented with a dislocated right shoulder, which was successfully repositioned. Post-procedural recovery is supported with anti-inflammatory medications. Clinical findings suggest effective management of the acute episode.",
+  "recommendations": [
+    "Continue anti-inflammatory medications as prescribed.",
+    "Follow-up appointment in one week to monitor pain and function of the shoulder.",
+    "Consider physical therapy if symptoms persist beyond follow-up."
+  ],
+  "urgency_level": "moderate",
+  "timestamp": "2026-04-08T16:32:51.499370",
+  "_category": "shoulder_pain",
+  "_missing_info": [
+    "history of repetitive activity?",
+    "mechanism of injury (fall/direct blow)?",
+    "can you reach behind your back?",
+    "any sensation of instability/looseness?",
+    "location of pain (anterior/lateral/posterior)?"
+  ],
+  "_intake_report_id": "R5BD6FB267B1B",
+  "patient_id": "252553232",
+  "intake_id": "R5BD6FB267B1B"
+}

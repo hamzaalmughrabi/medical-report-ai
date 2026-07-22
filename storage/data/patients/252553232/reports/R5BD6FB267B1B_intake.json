@@ -1,0 +1,32 @@
+{
+  "report_id": "R5BD6FB267B1B",
+  "phase": "intake",
+  "patient_name": "test",
+  "age": "33",
+  "sex": "Male",
+  "dob": "Unknown",
+  "referring_doctor": "N/A",
+  "exam_date": "N/A",
+  "exam_type": "Clinical Examination",
+  "clinical_history": "Patient presents with pain in his right shoulder. Initial assessments were requested, and a clinical examination was conducted.",
+  "detailed_findings": [
+    {
+      "finding": "Pain in the right shoulder",
+      "explanation": "Patient reports experiencing pain in the right shoulder, which may indicate musculoskeletal discomfort or injury."
+    },
+    {
+      "finding": "Shoulder dislocation",
+      "explanation": "Clinical examination reveals a dislocation in the shoulder, confirming the structural displacement of the joint."
+    }
+  ],
+  "impression_summary": "The clinical findings of pain and examination results indicating a shoulder dislocation are consistent with an acute musculoskeletal injury. The presence of shoulder dislocation necessitates further orthopedic evaluation and management.",
+  "recommendations": [
+    "Refer to an orthopedic specialist for further evaluation and management.",
+    "Consider imaging studies such as an X-ray or MRI to assess the extent of the dislocation and associated structures."
+  ],
+  "urgency_level": "moderate",
+  "timestamp": "2026-04-08T16:29:25.861232",
+  "_category": null,
+  "_missing_info": [],
+  "patient_id": "252553232"
+}

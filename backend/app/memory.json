@@ -1,0 +1,2402 @@
+{
+  "cases": [
+    {
+      "report_id": "Recording 3",
+      "patient_name": "N/A",
+      "age": "N/A",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "Consultation",
+      "clinical_history": "The patient reports left knee pain persisting for more than a year, exacerbated by cold weather and exposure to cold water, alleviated with warmth. The pain is constant and was sudden in onset. There is associated morning stiffness lasting less than ten minutes, occurring in cold conditions. There is no swelling, giving way, or locking of the left knee. The patient denies any other joint issues or relevant back pain. No history of prior joint problems or specific past medical complaints related to this condition over the past two years. The family medical history reveals a female relative with a lymphatic condition affecting her knees, treated with radiation therapy, and a history of rheumatoid condition in another family member. The patient has hypothyroidism, taking 100 micrograms of thyroxine daily, and lives on the third floor of a building with an elevator. Occasional smoking is noted in social settings.",
+      "detailed_findings": [
+        {
+          "finding": "Left knee pain for over a year.",
+          "explanation": "Chronicity suggests possible degenerative or inflammatory process, not acute injury."
+        },
+        {
+          "finding": "Pain exacerbated by cold exposure.",
+          "explanation": "Suggests inflammatory component possibly related to environmental triggers."
+        },
+        {
+          "finding": "Sudden onset of knee pain.",
+          "explanation": "Could indicate an acute event initially, although now presenting as chronic."
+        },
+        {
+          "finding": "Morning stiffness less than ten minutes.",
+          "explanation": "Short duration stiffness may suggest non-inflammatory arthritis."
+        },
+        {
+          "finding": "No swelling or joint effusion.",
+          "explanation": "Suggests absence of significant inflammatory process or synovitis."
+        },
+        {
+          "finding": "Family history of lymphatic disease and rheumatoid conditions.",
+          "explanation": "May indicate a genetic predisposition to joint or autoimmune conditions."
+        },
+        {
+          "finding": "100 micrograms of thyroxine daily for hypothyroidism.",
+          "explanation": "Controlled hypothyroidism unlikely to directly contribute to joint symptoms but relevant for comprehensive care."
+        },
+        {
+          "finding": "Occasional social smoking.",
+          "explanation": "Social smoking may not directly affect the condition but is relevant for overall health assessment."
+        }
+      ],
+      "impression_summary": "Chronic left knee pain with sudden onset, persistent symptoms exacerbated by cold exposure, possibly indicative of early degenerative joint disease or mild inflammatory arthritis, with a genetic predisposition considered.",
+      "recommendations": [
+        "Order MRI of the left knee to assess for potential structural abnormalities or early degenerative changes.",
+        "Recommend physical therapy focusing on knee strengthening exercises.",
+        "Consider referral to rheumatology for evaluation due to family history of autoimmune conditions.",
+        "Advise on lifestyle modifications to manage cold exposure and potential triggers."
+      ],
+      "urgency_level": "moderate",
+      "timestamp": "2025-11-06T10:07:07.573866",
+      "source_file": "Recording 3.m4a"
+    },
+    {
+      "report_id": "RES0214",
+      "patient_name": "N/A",
+      "age": "50",
+      "sex": "Female",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "The patient reports a terrible fever for the past three days, preceded by a stuffy nose and a sore throat, which has persisted. No nausea, vomiting, other pain, neck stiffness, or headaches are reported. The patient can eat and drink without difficulty swallowing or coughing. She denies abdominal pain, joint pain, rashes, skin changes, or other symptoms. Muscle aches have been present for the past two to three days, coinciding with the fever. No recent contact with sick individuals or travel outside the province apart from a hike last weekend is noted. Her husband is experiencing similar symptoms for a week. She has not had a COVID test. The patient generally works from home, has not gotten a flu shot this year, and is pre-diabetic. Her gallbladder was removed five years ago, and she is allergic to penicillin, which causes a rash. No other significant medical history, medications, or substance use is noted.",
+      "detailed_findings": [
+        {
+          "finding": "Fever persisting for three days",
+          "explanation": "Potential indicator of infectious disease, possibly viral; concurrent fever with husband suggests potential contagious infection."
+        },
+        {
+          "finding": "Stuffy nose and sore throat",
+          "explanation": "Common symptoms in upper respiratory infections, potentially indicative of viral etiology such as COVID-19 or influenza."
+        },
+        {
+          "finding": "Muscle aches concurrent with fever",
+          "explanation": "Often associated with viral infections, notably influenza and COVID-19."
+        },
+        {
+          "finding": "History of penicillin allergy",
+          "explanation": "Important for future antibiotic prescriptions to avoid allergic reactions."
+        },
+        {
+          "finding": "Pre-diabetic status",
+          "explanation": "Relevant for monitoring due to increased risk of complications from infections."
+        }
+      ],
+      "impression_summary": "The symptoms and timing suggest a possible viral upper respiratory infection, potentially COVID-19, given the concurrent symptoms in the patient's husband and recent onset of fever, sore throat, and muscle aches.",
+      "recommendations": [
+        "Order COVID-19 test to rule out viral infection and confirm diagnosis.",
+        "Advise patient and husband to self-isolate to prevent potential spread, pending test results.",
+        "Consider Influenza test if COVID-19 test is negative, depending on symptoms and clinical course.",
+        "Monitor glucose levels due to pre-diabetic status, as infections could affect metabolic control."
+      ],
+      "urgency_level": "moderate",
+      "timestamp": "2025-11-09T10:01:01.403436",
+      "source_file": "RES0214.mp3"
+    },
+    {
+      "report_id": "MSK0040",
+      "patient_name": "N/A",
+      "age": "N/A",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "Physical Examination",
+      "clinical_history": "Patient reports right ankle pain and swelling after a fall during a rugby game. The foot turned inwards during the fall, and the pain is located at the lateral malleolus. The patient rates the pain as 7 or 8 out of 10 and has difficulty bearing weight on the affected ankle.",
+      "detailed_findings": [
+        {
+          "finding": "Swelling and bruising",
+          "explanation": "The right ankle is swollen with a bruise approximately four centimeters wide."
+        },
+        {
+          "finding": "Pain on palpation",
+          "explanation": "Significant pain is noted on the lateral malleolus upon palpation."
+        },
+        {
+          "finding": "Limited dorsiflexion",
+          "explanation": "The patient has difficulty pointing toes and foot upwards towards the face."
+        },
+        {
+          "finding": "Painful plantar flexion",
+          "explanation": "The patient experiences pain when pushing the foot down like pressing a gas pedal."
+        },
+        {
+          "finding": "Intalligate gait",
+          "explanation": "The patient has a limp and an inability to bear weight on the right ankle."
+        }
+      ],
+      "impression_summary": "The clinical features suggest a possible ankle fracture or sprain, with significant tenderness on the lateral side and difficulty bearing weight.",
+      "recommendations": [
+        "Obtain an x-ray to rule out a fracture.",
+        "Consider air boot or casting if a fracture is confirmed."
+      ],
+      "urgency_level": "moderate",
+      "timestamp": "2025-11-09T10:06:54.355611",
+      "source_file": "MSK0040.mp3",
+      "_pdf_path": "reports\\report_MSK0040.pdf"
+    },
+    {
+      "report_id": "RES0047",
+      "patient_name": "N/A",
+      "age": "N/A",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "The patient reports experiencing chest tightness, shortness of breath, and a productive cough with greenish sputum. The cough has been present for a few years but worsened over the past three days. The patient has a history of smoking and has been diagnosed with COPD and chronic bronchitis. The patient also has high blood pressure and had their gallbladder removed a few years ago.",
+      "detailed_findings": [
+        {
+          "finding": "Cough",
+          "explanation": "The patient has had a cough for a few years, which has worsened over the past three days. The cough is productive with greenish sputum and is associated with wheezing."
+        },
+        {
+          "finding": "Shortness of breath",
+          "explanation": "The patient experiences shortness of breath, which has worsened with the cough. It is triggered by physical activity."
+        },
+        {
+          "finding": "Chest tightness",
+          "explanation": "The patient reports chest tightness, which is uncomfortable but not painful."
+        },
+        {
+          "finding": "COPD",
+          "explanation": "The patient has a history of COPD and uses inhalers, including Spiriva and a short-acting beta agonist."
+        },
+        {
+          "finding": "Smoking history",
+          "explanation": "The patient smokes about a pack of cigarettes per day and has been smoking for approximately 35 years."
+        },
+        {
+          "finding": "High blood pressure",
+          "explanation": "The patient is on amlodipine for high blood pressure."
+        }
+      ],
+      "impression_summary": "The patient is experiencing a COPD exacerbation, likely triggered by an infection or environmental factors.",
+      "recommendations": [
+        "Increase use of short-acting beta agonist inhaler.",
+        "Consider antibiotics and/or steroids if symptoms indicate a moderate exacerbation.",
+        "Seek emergency care if symptoms become severe.",
+        "Perform a COVID-19 swab to rule out viral infection."
+      ],
+      "urgency_level": "moderate",
+      "timestamp": "2025-11-09T18:38:57.007453",
+      "source_file": "RES0047.mp3",
+      "_pdf_path": "reports\\report_RES0047.pdf"
+    },
+    {
+      "report_id": "consultation_1762713311860",
+      "patient_name": "N/A",
+      "age": "N/A",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "N/A",
+      "detailed_findings": [],
+      "impression_summary": "N/A",
+      "recommendations": [],
+      "urgency_level": "N/A",
+      "timestamp": "2025-11-09T21:35:16.358443",
+      "source_file": "consultation_1762713311860.webm",
+      "_pdf_path": "reports\\report_consultation_1762713311860.pdf"
+    },
+    {
+      "report_id": "consultation_1762713467032",
+      "patient_name": "N/A",
+      "age": "N/A",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "Patient reports a headache that started about three days ago. No other symptoms mentioned.",
+      "detailed_findings": [],
+      "impression_summary": "N/A",
+      "recommendations": [],
+      "urgency_level": "N/A",
+      "timestamp": "2025-11-09T21:37:58.572806",
+      "source_file": "consultation_1762713467032.webm",
+      "_pdf_path": "reports\\report_consultation_1762713467032.pdf"
+    },
+    {
+      "report_id": "consultation_1762713889532",
+      "patient_name": "N/A",
+      "age": "N/A",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "N/A",
+      "detailed_findings": [],
+      "impression_summary": "N/A",
+      "recommendations": [],
+      "urgency_level": "N/A",
+      "timestamp": "2025-11-09T21:45:00.697445",
+      "source_file": "consultation_1762713889532.webm",
+      "_pdf_path": "reports\\report_consultation_1762713889532.pdf"
+    },
+    {
+      "report_id": "consultation_1762714158003",
+      "patient_name": "N/A",
+      "age": "N/A",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "N/A",
+      "detailed_findings": [],
+      "impression_summary": "N/A",
+      "recommendations": [],
+      "urgency_level": "N/A",
+      "timestamp": "2025-11-09T21:49:24.443340",
+      "source_file": "consultation_1762714158003.webm",
+      "_pdf_path": "reports\\report_consultation_1762714158003.pdf"
+    },
+    {
+      "report_id": "consultation_1762765028518",
+      "patient_name": "N/A",
+      "age": "N/A",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "Patient reports a terrible headache that started about three days ago.",
+      "detailed_findings": [],
+      "impression_summary": "N/A",
+      "recommendations": [],
+      "urgency_level": "N/A",
+      "timestamp": "2025-11-10T11:57:18.766235",
+      "source_file": "consultation_1762765028518.webm",
+      "_pdf_path": "reports\\report_consultation_1762765028518.pdf"
+    },
+    {
+      "report_id": "consultation_1762765729940",
+      "patient_name": "N/A",
+      "age": "N/A",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "N/A",
+      "detailed_findings": [],
+      "impression_summary": "N/A",
+      "recommendations": [],
+      "urgency_level": "N/A",
+      "timestamp": "2025-11-10T12:08:59.246254",
+      "source_file": "consultation_1762765729940.webm"
+    },
+    {
+      "report_id": "consultation_1762767174452",
+      "patient_name": "N/A",
+      "age": "N/A",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "N/A",
+      "detailed_findings": [],
+      "impression_summary": "N/A",
+      "recommendations": [],
+      "urgency_level": "N/A",
+      "timestamp": "2025-11-10T12:33:01.979017",
+      "source_file": "consultation_1762767174452.webm"
+    },
+    {
+      "report_id": "consultation_1762768958876",
+      "patient_name": "N/A",
+      "age": "N/A",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "N/A",
+      "detailed_findings": [],
+      "impression_summary": "N/A",
+      "recommendations": [],
+      "urgency_level": "N/A",
+      "timestamp": "2025-11-10T13:02:44.016706",
+      "source_file": "consultation_1762768958876.webm"
+    },
+    {
+      "report_id": "consultation_1762771126062",
+      "patient_name": "N/A",
+      "age": "N/A",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "N/A",
+      "detailed_findings": [],
+      "impression_summary": "N/A",
+      "recommendations": [],
+      "urgency_level": "N/A",
+      "timestamp": "2025-11-10T13:38:52.784403",
+      "source_file": "consultation_1762771126062.webm"
+    },
+    {
+      "report_id": "consultation_1762771494601",
+      "patient_name": "N/A",
+      "age": "N/A",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "N/A",
+      "detailed_findings": [],
+      "impression_summary": "N/A",
+      "recommendations": [],
+      "urgency_level": "N/A",
+      "timestamp": "2025-11-10T13:45:13.276842",
+      "source_file": "consultation_1762771494601.webm"
+    },
+    {
+      "report_id": "consultation_1762771706550",
+      "patient_name": "N/A",
+      "age": "N/A",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "The patient reports having pain in the lungs, specifically in the right lung, and experiences pain when lying on their back.",
+      "detailed_findings": [],
+      "impression_summary": "N/A",
+      "recommendations": [],
+      "urgency_level": "N/A",
+      "timestamp": "2025-11-10T13:48:31.519637",
+      "source_file": "consultation_1762771706550.webm"
+    },
+    {
+      "report_id": "consultation_1762771932449",
+      "patient_name": "حمز المغرم",
+      "age": "N/A",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "الدكتور أسعد",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "The patient reports neck pain when turning the head to the right or left, persisting for approximately two weeks. The patient has used topical medications.",
+      "detailed_findings": [
+        {
+          "finding": "Neck pain with head movement",
+          "explanation": "Suggests possible musculoskeletal strain or cervical spine issue."
+        }
+      ],
+      "impression_summary": "The patient presents with neck pain associated with head movement, likely due to musculoskeletal strain.",
+      "recommendations": [
+        "Consider further imaging if symptoms persist.",
+        "Advise on neck exercises and posture correction."
+      ],
+      "urgency_level": "low",
+      "timestamp": "2025-11-10T13:52:19.232185",
+      "source_file": "consultation_1762771932449.webm"
+    },
+    {
+      "report_id": "consultation_1762772074892",
+      "patient_name": "Hamza",
+      "age": "N/A",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "Dr. Asaad",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "The patient, Hamza, reports experiencing neck pain on the left side when turning the head to the left. The pain has been present for approximately three weeks. The patient has used topical medications for relief. There is no reported pain in the lower back.",
+      "detailed_findings": [
+        {
+          "finding": "Left-sided neck pain",
+          "explanation": "Pain occurs when turning the head to the left, indicating possible muscular or cervical spine involvement."
+        }
+      ],
+      "impression_summary": "The patient presents with left-sided neck pain exacerbated by movement, likely musculoskeletal in origin.",
+      "recommendations": [
+        "Consider physical therapy for neck pain management.",
+        "Evaluate for potential cervical spine issues if symptoms persist."
+      ],
+      "urgency_level": "low",
+      "timestamp": "2025-11-10T13:54:43.517404",
+      "source_file": "consultation_1762772074892.webm"
+    },
+    {
+      "report_id": "consultation_1762775286792",
+      "patient_name": "N/A",
+      "age": "N/A",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "N/A",
+      "detailed_findings": [],
+      "impression_summary": "N/A",
+      "recommendations": [],
+      "urgency_level": "N/A",
+      "timestamp": "2025-11-10T14:48:12.921955",
+      "source_file": "consultation_1762775286792.webm"
+    },
+    {
+      "report_id": "consultation_1762804377067",
+      "patient_name": "N/A",
+      "age": "N/A",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "N/A",
+      "detailed_findings": [],
+      "impression_summary": "N/A",
+      "recommendations": [],
+      "urgency_level": "N/A",
+      "timestamp": "2025-11-10T22:53:02.491235",
+      "source_file": "consultation_1762804377067.webm"
+    },
+    {
+      "report_id": "consultation_1762804412162",
+      "patient_name": "N/A",
+      "age": "N/A",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "N/A",
+      "detailed_findings": [],
+      "impression_summary": "N/A",
+      "recommendations": [],
+      "urgency_level": "N/A",
+      "timestamp": "2025-11-10T22:53:37.126673",
+      "source_file": "consultation_1762804412162.webm"
+    },
+    {
+      "report_id": "consultation_1762804697066",
+      "patient_name": "N/A",
+      "age": "N/A",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "N/A",
+      "detailed_findings": [],
+      "impression_summary": "N/A",
+      "recommendations": [],
+      "urgency_level": "N/A",
+      "timestamp": "2025-11-10T22:58:22.829289",
+      "source_file": "consultation_1762804697066.webm"
+    },
+    {
+      "report_id": "consultation_1762805063871",
+      "patient_name": "N/A",
+      "age": "N/A",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "N/A",
+      "detailed_findings": [],
+      "impression_summary": "N/A",
+      "recommendations": [],
+      "urgency_level": "N/A",
+      "timestamp": "2025-11-10T23:04:28.971902",
+      "source_file": "consultation_1762805063871.webm"
+    },
+    {
+      "report_id": "consultation_1762805631683",
+      "patient_name": "N/A",
+      "age": "N/A",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "N/A",
+      "detailed_findings": [],
+      "impression_summary": "N/A",
+      "recommendations": [],
+      "urgency_level": "N/A",
+      "timestamp": "2025-11-10T23:14:01.066212",
+      "source_file": "consultation_1762805631683.webm"
+    },
+    {
+      "report_id": "consultation_1762805885464",
+      "patient_name": "N/A",
+      "age": "N/A",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "N/A",
+      "detailed_findings": [],
+      "impression_summary": "N/A",
+      "recommendations": [],
+      "urgency_level": "N/A",
+      "timestamp": "2025-11-10T23:18:11.737470",
+      "source_file": "consultation_1762805885464.webm"
+    },
+    {
+      "report_id": "consultation_1762806682605",
+      "patient_name": "N/A",
+      "age": "N/A",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "N/A",
+      "detailed_findings": [],
+      "impression_summary": "N/A",
+      "recommendations": [],
+      "urgency_level": "N/A",
+      "timestamp": "2025-11-10T23:31:28.198691",
+      "source_file": "consultation_1762806682605.webm"
+    },
+    {
+      "report_id": "consultation_1762806732279",
+      "patient_name": "حمز المغربي",
+      "age": "26",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "The patient reports right-sided neck pain persisting for approximately one week, treated with topical ointment. The pain is associated with stiffness upon waking. Additionally, the patient experiences pain in the right leg and right arm. The patient has been taking Panadol for relief.",
+      "detailed_findings": [
+        {
+          "finding": "Right-sided neck pain",
+          "explanation": "Persistent for one week, associated with stiffness, possibly indicating musculoskeletal strain or inflammation."
+        },
+        {
+          "finding": "Right leg and arm pain",
+          "explanation": "Concurrent pain in extremities may suggest a systemic or neurological issue."
+        }
+      ],
+      "impression_summary": "The patient presents with right-sided neck pain and stiffness, along with pain in the right leg and arm, possibly indicating musculoskeletal or neurological involvement.",
+      "recommendations": [
+        "Consider further musculoskeletal evaluation.",
+        "Evaluate for potential neurological causes.",
+        "Continue current pain management with Panadol."
+      ],
+      "urgency_level": "moderate",
+      "timestamp": "2025-11-10T23:32:21.879263",
+      "source_file": "consultation_1762806732279.webm"
+    },
+    {
+      "report_id": "consultation_1762851021335",
+      "patient_name": "N/A",
+      "age": "N/A",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "N/A",
+      "detailed_findings": [],
+      "impression_summary": "N/A",
+      "recommendations": [],
+      "urgency_level": "N/A",
+      "timestamp": "2025-11-11T11:50:55.134419",
+      "source_file": "consultation_1762851021335.webm"
+    },
+    {
+      "report_id": "Recording 3",
+      "patient_name": "N/A",
+      "age": "N/A",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "Patient Profile: N/A. Chief Complaint (CC): 'Pain in the left knee for more than a year.' History of Present Illness (HPI): The patient reports sudden onset of left knee pain that has persisted for over a year. The pain is exacerbated by cold weather and exposure to cold water, and relieved by warmth. The pain is constant and does not increase with movement or activity. There is no swelling or giving way of the knee. Morning stiffness is present for less than ten minutes if the weather is cold. Systemic Enquiry / Review of Systems (ROS): No other joint issues, no back pain, no disc problems. Past Medical and Surgical History: N/A. Drug History: Patient takes 100 mg of thyroxine daily for hypothyroidism. Family History: An aunt has a lymphatic condition affecting her knees and is undergoing radiation therapy. There is a family history of rheumatoid arthritis. No diabetes or hypertension in first-degree relatives. Social History: Lives on the third floor with elevator access, uses stairs without difficulty. Occasional use of hookah in family gatherings. Non-smoker. Functional/Physiotherapy Relevance: No mobility limitations reported.",
+      "detailed_findings": [
+        {
+          "finding": "Left knee pain",
+          "explanation": "Persistent for over a year, exacerbated by cold, relieved by warmth."
+        },
+        {
+          "finding": "Morning stiffness",
+          "explanation": "Present for less than ten minutes in cold weather."
+        },
+        {
+          "finding": "Family history of rheumatoid arthritis",
+          "explanation": "Potential genetic predisposition to joint issues."
+        },
+        {
+          "finding": "Hypothyroidism",
+          "explanation": "Managed with daily thyroxine."
+        }
+      ],
+      "impression_summary": "Chronic left knee pain likely exacerbated by environmental factors, with a potential familial predisposition to joint issues.",
+      "recommendations": [
+        "Consider referral to a rheumatologist for further evaluation of potential rheumatoid arthritis.",
+        "Advise on lifestyle modifications to manage exposure to cold.",
+        "Monitor thyroid function regularly."
+      ],
+      "urgency_level": "moderate",
+      "timestamp": "2025-11-11T18:31:07.960287",
+      "source_file": "Recording 3.m4a"
+    },
+    {
+      "report_id": "Recording 3",
+      "patient_name": "N/A",
+      "age": "N/A",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "Patient Profile: N/A. Chief Complaint (CC): 'Pain in the left knee for more than a year.' History of Present Illness (HPI): The patient reports sudden onset of left knee pain that has persisted for over a year. The pain is exacerbated by cold weather and exposure to cold water, and relieved by warmth. The pain is constant and does not increase with movement or activity. There is no swelling or stiffness except for morning stiffness lasting less than ten minutes in cold weather. No giving way or locking of the knee is reported. Systemic Enquiry / Review of Systems (ROS): No other joint issues, no back pain, no disc problems. Past Medical and Surgical History: N/A. Drug History: Takes 100 mg of thyroxine daily. No other medications or allergies reported. Family History: An aunt has a lymphatic condition affecting her knees and is undergoing radiation therapy. A family member is diagnosed with rheumatoid arthritis. No history of diabetes or hypertension in first-degree relatives. Social History: Lives on the third floor with elevator access. Occasionally smokes waterpipe in family gatherings. Functional/Physiotherapy Relevance: Uses elevator, no mobility issues reported.",
+      "detailed_findings": [
+        {
+          "finding": "Left knee pain",
+          "explanation": "Persistent for over a year, exacerbated by cold, relieved by warmth."
+        },
+        {
+          "finding": "Morning stiffness",
+          "explanation": "Occurs in cold weather, lasts less than ten minutes."
+        }
+      ],
+      "impression_summary": "Chronic left knee pain with cold sensitivity, likely non-inflammatory given lack of swelling and systemic symptoms.",
+      "recommendations": [
+        "Consider further imaging of the left knee to assess structural integrity.",
+        "Evaluate for possible osteoarthritis or other degenerative joint conditions.",
+        "Advise on thermal therapy and protective measures against cold exposure."
+      ],
+      "urgency_level": "low",
+      "timestamp": "2025-11-11T18:37:39.476166",
+      "source_file": "Recording 3.m4a"
+    },
+    {
+      "report_id": "Recording 3",
+      "patient_name": "N/A",
+      "age": "N/A",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "Patient Profile: N/A. Chief Complaint (CC): Left knee pain for more than a year. History of Present Illness (HPI): The patient reports sudden onset of left knee pain that has been persistent for over a year. The pain is exacerbated by cold weather and exposure to cold water, and relieved by warmth. The pain is constant and does not increase with movement or activity. There is no swelling or giving way of the knee. Morning stiffness is present for less than ten minutes in cold weather. Systemic Enquiry / Review of Systems (ROS): No other joint issues, no lower back pain, no disc problems. Past Medical and Surgical History: Hypothyroidism, taking 100 mg of thyroxine. Drug History: No chronic medications other than thyroxine. Family History: Aunt with lymphatic disease affecting her knees, undergoing radiation therapy. Family history of rheumatoid arthritis. No diabetes or hypertension in first-degree relatives. Social History: Lives on the third floor with elevator access, uses stairs without difficulty. Occasional smoking during family gatherings. Functional/Physiotherapy Relevance: No mobility limitations, uses stairs without difficulty.",
+      "detailed_findings": [
+        {
+          "finding": "Left knee pain",
+          "explanation": "Persistent for over a year, exacerbated by cold, relieved by warmth."
+        },
+        {
+          "finding": "Morning stiffness",
+          "explanation": "Present for less than ten minutes in cold weather, indicating possible inflammatory process."
+        },
+        {
+          "finding": "Hypothyroidism",
+          "explanation": "Managed with 100 mg thyroxine, relevant to overall health."
+        },
+        {
+          "finding": "Family history of lymphatic disease and rheumatoid arthritis",
+          "explanation": "Potential genetic predisposition to joint issues."
+        }
+      ],
+      "impression_summary": "Chronic left knee pain likely exacerbated by environmental factors, with a family history suggestive of potential hereditary joint issues.",
+      "recommendations": [
+        "Consider further rheumatological evaluation to rule out inflammatory joint disease.",
+        "Advise on lifestyle modifications to manage symptoms, such as avoiding cold exposure.",
+        "Monitor thyroid function regularly due to existing hypothyroidism."
+      ],
+      "urgency_level": "moderate",
+      "timestamp": "2025-11-11T18:42:30.154976",
+      "source_file": "Recording 3.m4a"
+    },
+    {
+      "report_id": "Recording 3",
+      "patient_name": "N/A",
+      "age": "N/A",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "Patient Profile: N/A\n\nChief Complaint (CC): Left knee pain for more than a year.\n\nHistory of Present Illness (HPI): The patient reports sudden onset of left knee pain that has persisted for over a year. The pain is exacerbated by cold weather and exposure to cold water, and relieved by warmth. The pain is constant and does not increase with movement or activity. There is no associated swelling or giving way of the knee. Morning stiffness is present for less than ten minutes in cold weather.\n\nSystemic Enquiry / Review of Systems (ROS): No other joint issues reported. No lower back pain or disc problems. No other systemic symptoms reported.\n\nPast Medical and Surgical History: N/A\n\nDrug History: The patient takes 100 mg of thyroxine daily for hypothyroidism. No other medications or allergies reported.\n\nFamily History: The patient's aunt has a lymphatic condition affecting her knees and is undergoing radiation therapy. There is a family history of rheumatoid arthritis.\n\nSocial History: The patient lives on the third floor with elevator access. Occasional social smoking of hookah. No regular smoking or alcohol use reported.\n\nFunctional/Physiotherapy Relevance: The patient uses the elevator but can manage stairs without difficulty.",
+      "detailed_findings": [
+        {
+          "finding": "Left knee pain",
+          "explanation": "Persistent for over a year, exacerbated by cold, relieved by warmth."
+        },
+        {
+          "finding": "Morning stiffness",
+          "explanation": "Present for less than ten minutes in cold weather, indicating possible inflammatory process."
+        },
+        {
+          "finding": "Family history of rheumatoid arthritis",
+          "explanation": "Increases the risk of similar conditions in the patient."
+        }
+      ],
+      "impression_summary": "Chronic left knee pain with possible inflammatory component, exacerbated by cold exposure, with a family history suggestive of potential rheumatologic involvement.",
+      "recommendations": [
+        "Consider rheumatologic evaluation to rule out inflammatory arthritis.",
+        "Advise thermal therapy to manage symptoms.",
+        "Monitor thyroid function due to existing hypothyroidism."
+      ],
+      "urgency_level": "moderate",
+      "timestamp": "2025-11-11T18:46:18.497345",
+      "source_file": "Recording 3.m4a"
+    },
+    {
+      "report_id": "Recording 3",
+      "patient_name": "N/A",
+      "age": "N/A",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "Patient Profile: N/A. Chief Complaint (CC): Left knee pain for more than a year. History of Present Illness (HPI): The patient reports sudden onset of left knee pain that has been present for over a year. The pain is exacerbated by cold weather and exposure to cold water, and is relieved by warmth. The pain is constant and does not increase with movement or physical activity. There is no history of medication use for pain relief. The patient denies any swelling, stiffness lasting less than ten minutes in the morning if the weather is cold, or instability in the knee. Systemic Enquiry / Review of Systems (ROS): No other joint issues, no back pain, no disc problems, and no referred pain. Past Medical and Surgical History: Hypothyroidism, treated with 100 mg of thyroxine. Drug History: Thyroxine 100 mg daily. Family History: A maternal aunt has a lymphatic condition affecting her knees and is undergoing radiation therapy. There is a family history of rheumatoid arthritis. No family history of diabetes or hypertension. Social History: Lives on the third floor with elevator access, uses stairs without difficulty, occasional social smoking (hookah). Functional/Physiotherapy Relevance: No mobility limitations reported.",
+      "detailed_findings": [
+        {
+          "finding": "Left knee pain",
+          "system": "musculoskeletal",
+          "explanation": "Chronic left knee pain exacerbated by cold exposure, relieved by warmth, suggests possible osteoarthritis or other degenerative joint condition.",
+          "severity": "N/A",
+          "temporal_relation": "chronic"
+        },
+        {
+          "finding": "Morning stiffness less than ten minutes",
+          "system": "musculoskeletal",
+          "explanation": "Short duration of morning stiffness may indicate mild inflammatory process or early degenerative changes.",
+          "severity": "mild",
+          "temporal_relation": "N/A"
+        }
+      ],
+      "impression_summary": "Findings are consistent with chronic left knee pain likely due to degenerative joint disease, possibly osteoarthritis, given the exacerbation with cold and relief with warmth. The absence of swelling, significant morning stiffness, or instability suggests a non-inflammatory etiology. Differential considerations include early osteoarthritis or other degenerative conditions.",
+      "recommendations": [
+        "Consider imaging studies such as X-ray or MRI of the left knee to assess for degenerative changes.",
+        "Referral to a rheumatologist for further evaluation of possible early osteoarthritis.",
+        "Advise on lifestyle modifications to manage symptoms, including avoiding cold exposure and using knee supports if necessary."
+      ],
+      "urgency_level": "moderate",
+      "timestamp": "2025-11-11T18:54:05.053534",
+      "source_file": "Recording 3.m4a"
+    },
+    {
+      "report_id": "Recording 3",
+      "patient_name": "N/A",
+      "age": "N/A",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "Patient Profile: N/A. Chief Complaint (CC): 'Pain in the left knee for more than a year.' History of Present Illness (HPI): The patient reports sudden onset of left knee pain that has been persistent for over a year. The pain is exacerbated by cold weather and exposure to cold water, and relieved by warmth. The pain is described as constant and does not increase with movement or activity. There is no history of swelling or giving way of the knee. Morning stiffness is present for less than ten minutes if the weather is cold. Systemic Enquiry / Review of Systems (ROS): No other joint issues, no back pain, no disc problems, and no referred pain. Past Medical and Surgical History: Hypothyroidism, managed with 100 mcg of thyroxine. Drug History: Thyroxine 100 mcg daily. No other medications or allergies reported. Family History: A maternal aunt has a lymphatic condition affecting her knees and is undergoing radiation therapy. There is a family history of rheumatoid arthritis. No family history of diabetes or hypertension. Social History: Lives on the third floor with elevator access. Occasionally smokes waterpipe in family gatherings. Functional/Physiotherapy Relevance: Uses elevator for mobility, no issues with stairs.",
+      "detailed_findings": [
+        {
+          "finding": "Left knee pain",
+          "explanation": "Persistent pain for over a year, exacerbated by cold, relieved by warmth.",
+          "severity": "Chronic",
+          "temporal_relation": "Persistent"
+        },
+        {
+          "finding": "Morning stiffness in left knee",
+          "explanation": "Stiffness lasting less than ten minutes in cold weather.",
+          "severity": "Mild",
+          "temporal_relation": "Morning"
+        },
+        {
+          "finding": "No swelling or giving way of the knee",
+          "explanation": "Absence of mechanical symptoms suggests stability of the knee joint.",
+          "severity": "N/A",
+          "temporal_relation": "N/A"
+        },
+        {
+          "finding": "Hypothyroidism",
+          "explanation": "Managed with thyroxine 100 mcg daily.",
+          "severity": "Chronic",
+          "temporal_relation": "N/A"
+        },
+        {
+          "finding": "Family history of lymphatic condition and rheumatoid arthritis",
+          "explanation": "Potential genetic predisposition to joint issues.",
+          "severity": "N/A",
+          "temporal_relation": "N/A"
+        }
+      ],
+      "impression_summary": "The clinical presentation is consistent with chronic left knee pain, likely exacerbated by environmental factors such as cold exposure. The absence of swelling or mechanical symptoms suggests a non-inflammatory etiology. The family history of rheumatoid arthritis and lymphatic conditions may indicate a genetic predisposition. Hypothyroidism is well-managed and unlikely to be contributing to the knee symptoms.",
+      "recommendations": [
+        "Consider further imaging studies such as an MRI to evaluate the knee structure.",
+        "Referral to a rheumatologist for assessment of potential underlying rheumatologic conditions.",
+        "Advise on lifestyle modifications to avoid cold exposure and maintain joint warmth."
+      ],
+      "urgency_level": "moderate",
+      "timestamp": "2025-11-11T19:07:36.142489",
+      "source_file": "Recording 3.m4a"
+    },
+    {
+      "report_id": "consultation_1762930943922",
+      "patient_name": "N/A",
+      "age": "25",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "Patient Profile: 25-year-old individual. Chief Complaint (CC): Joint pain. History of Present Illness (HPI): N/A. Systemic Enquiry / Review of Systems (ROS): N/A. Past Medical and Surgical History: No chronic diseases reported. Drug History: N/A. Family History: Diabetes present in maternal uncle. Social History: N/A. Functional/Physiotherapy Relevance: N/A.",
+      "detailed_findings": [
+        {
+          "finding": "Joint pain",
+          "explanation": "Patient reports experiencing joint pain, which requires further evaluation to determine the underlying cause.",
+          "severity": "N/A",
+          "temporal_relation": "N/A"
+        },
+        {
+          "finding": "No chronic diseases",
+          "explanation": "Patient does not report any chronic diseases, which may influence the differential diagnosis.",
+          "severity": "N/A",
+          "temporal_relation": "N/A"
+        },
+        {
+          "finding": "Family history of diabetes",
+          "explanation": "Diabetes is present in the maternal uncle, which may suggest a genetic predisposition.",
+          "severity": "N/A",
+          "temporal_relation": "N/A"
+        },
+        {
+          "finding": "Normal blood tests",
+          "explanation": "Blood tests are within normal limits, reducing the likelihood of certain systemic conditions.",
+          "severity": "N/A",
+          "temporal_relation": "N/A"
+        },
+        {
+          "finding": "Normal urine tests",
+          "explanation": "Urine tests are within normal limits, which may help rule out renal or urinary tract issues.",
+          "severity": "N/A",
+          "temporal_relation": "N/A"
+        }
+      ],
+      "impression_summary": "The patient is a 25-year-old individual presenting with joint pain. The absence of chronic diseases and normal blood and urine tests suggest a non-systemic cause. Family history of diabetes may be relevant. Further investigation is required to determine the etiology of the joint pain.",
+      "recommendations": [
+        "Follow-up for further evaluation of joint pain.",
+        "Consider referral to a rheumatologist for specialized assessment."
+      ],
+      "urgency_level": "moderate",
+      "timestamp": "2025-11-12T10:02:43.338632",
+      "source_file": "consultation_1762930943922.webm"
+    },
+    {
+      "report_id": "consultation_1762932443355",
+      "patient_name": "عائشة بكر الضلائي",
+      "age": "21",
+      "sex": "female",
+      "dob": "N/A",
+      "referring_doctor": "Dr. Ibrahim",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "Patient Profile: Name: عائشة بكر الضلائي, Age: 21, Sex: Female, Marital Status: Single. Chief Complaint (CC): Left knee pain for more than a year. History of Present Illness (HPI): The pain is described as severe and prevents movement, not like stabbing but more like electric shocks. The pain varies with the weather, worsening in cold conditions and alleviated by warmth. The pain lasts approximately 30 minutes. No associated swelling or pain in other joints. Systemic Enquiry / Review of Systems (ROS): Reports thyroid gland issues with pain in cold weather. Past Medical and Surgical History: Hypothyroidism, taking Thyroxine 100 mg regularly. Drug History: Thyroxine 100 mg, regular intake, no other medications except vitamins. Family History: Aunt with rheumatoid joint issues. No family history of knee problems. Social History: Lives on the third floor, non-smoker.",
+      "detailed_findings": [
+        {
+          "finding": "Left knee pain",
+          "explanation": "Chronic pain for over a year, described as severe and electric shock-like, possibly indicating nerve involvement or inflammatory process.",
+          "severity": "severe",
+          "temporal_relation": "chronic"
+        },
+        {
+          "finding": "Pain variation with weather",
+          "explanation": "Pain worsens in cold conditions, suggesting possible inflammatory or rheumatologic component.",
+          "severity": "N/A",
+          "temporal_relation": "N/A"
+        },
+        {
+          "finding": "Hypothyroidism",
+          "explanation": "Patient is on Thyroxine 100 mg, indicating a managed thyroid condition.",
+          "severity": "N/A",
+          "temporal_relation": "chronic"
+        },
+        {
+          "finding": "No swelling or pain in other joints",
+          "explanation": "Absence of swelling or pain in other joints may rule out systemic inflammatory conditions.",
+          "severity": "N/A",
+          "temporal_relation": "N/A"
+        },
+        {
+          "finding": "Family history of rheumatoid joint issues",
+          "explanation": "Aunt with rheumatoid issues may suggest a genetic predisposition to joint problems.",
+          "severity": "N/A",
+          "temporal_relation": "N/A"
+        }
+      ],
+      "impression_summary": "The clinical presentation of chronic left knee pain with characteristics of electric shock-like sensations and weather-related exacerbation suggests a possible inflammatory or rheumatologic condition. The absence of swelling and pain in other joints may rule out systemic conditions. The patient's hypothyroidism is well-managed with Thyroxine. Family history of rheumatoid issues may indicate a genetic predisposition.",
+      "recommendations": [
+        "Consider rheumatologic evaluation to rule out inflammatory joint disease.",
+        "Further imaging studies such as MRI of the knee to assess for structural abnormalities.",
+        "Continue monitoring thyroid function and adjust Thyroxine dosage as needed."
+      ],
+      "urgency_level": "moderate",
+      "timestamp": "2025-11-12T10:28:07.694773",
+      "source_file": "consultation_1762932443355.webm"
+    },
+    {
+      "report_id": "consultation_1762934831049",
+      "patient_name": "N/A",
+      "age": "21",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "Patient is a 21-year-old university student presenting with fatigue, lethargy, and body swelling. The patient has a history of hypothyroidism for approximately three years and is currently on Thyroxine 108 mg. The patient reports fluctuating swelling in the face and legs, which improves and worsens periodically, necessitating dosage adjustments. There is a family history of thyroid diseases affecting the patient's mother, father, and siblings. The patient has allergies to honey and dust. No past surgical history is reported. No history of diabetes or hypertension.",
+      "detailed_findings": [
+        {
+          "finding": "Fatigue and lethargy",
+          "explanation": "Common symptoms of hypothyroidism due to decreased metabolic rate.",
+          "severity": "N/A",
+          "temporal_relation": "Chronic"
+        },
+        {
+          "finding": "Body swelling",
+          "explanation": "Possible myxedema associated with hypothyroidism.",
+          "severity": "Fluctuating",
+          "temporal_relation": "Chronic"
+        },
+        {
+          "finding": "Hypothyroidism",
+          "explanation": "Diagnosed condition managed with Thyroxine.",
+          "severity": "N/A",
+          "temporal_relation": "Three years"
+        },
+        {
+          "finding": "Thyroxine 108 mg",
+          "explanation": "Medication for hypothyroidism management.",
+          "severity": "N/A",
+          "temporal_relation": "Current"
+        },
+        {
+          "finding": "Allergy to honey and dust",
+          "explanation": "Patient reports allergies which may contribute to respiratory symptoms.",
+          "severity": "N/A",
+          "temporal_relation": "N/A"
+        },
+        {
+          "finding": "Family history of thyroid diseases",
+          "explanation": "Suggests a genetic predisposition to thyroid disorders.",
+          "severity": "N/A",
+          "temporal_relation": "N/A"
+        }
+      ],
+      "impression_summary": "The clinical presentation is consistent with hypothyroidism, evidenced by fatigue, lethargy, and fluctuating body swelling. The patient's condition is managed with Thyroxine, though dosage adjustments are necessary due to variable symptom severity. The family history suggests a hereditary component to the thyroid disorder.",
+      "recommendations": [
+        "Regular monitoring of thyroid function tests to adjust Thyroxine dosage as needed.",
+        "Consider allergy testing and management for reported allergies to honey and dust.",
+        "Family screening for thyroid disorders may be beneficial given the strong family history."
+      ],
+      "urgency_level": "moderate",
+      "timestamp": "2025-11-12T11:07:46.217326",
+      "source_file": "consultation_1762934831049.webm"
+    },
+    {
+      "report_id": "Recording 3",
+      "patient_name": "N/A",
+      "age": "N/A",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "Patient reports left knee pain for more than a year. The pain increases with cold weather and exposure to cold water, and decreases with warmth. The onset was sudden, and the pain is constant. There is no swelling or giving way of the knee. Morning stiffness lasts less than ten minutes if the weather is cold. No other joint issues reported. No history of back pain or disc problems. Family history includes a relative with a lymphatic condition affecting the knees and another relative with rheumatoid arthritis. The patient has hypothyroidism and takes 100 mg of thyroxine daily. Lives on the third floor with an elevator available. Occasionally smokes socially.",
+      "detailed_findings": [
+        {
+          "finding": "Left knee pain",
+          "explanation": "Chronic pain for over a year, exacerbated by cold, relieved by warmth.",
+          "severity": "Chronic",
+          "temporal_relation": "N/A"
+        },
+        {
+          "finding": "No swelling or giving way of the knee",
+          "explanation": "Indicates stability of the knee joint.",
+          "severity": "N/A",
+          "temporal_relation": "N/A"
+        },
+        {
+          "finding": "Morning stiffness less than ten minutes",
+          "explanation": "Suggests mild inflammatory process, possibly related to weather conditions.",
+          "severity": "Mild",
+          "temporal_relation": "Morning"
+        },
+        {
+          "finding": "Family history of lymphatic condition and rheumatoid arthritis",
+          "explanation": "Potential genetic predisposition to joint issues.",
+          "severity": "N/A",
+          "temporal_relation": "N/A"
+        },
+        {
+          "finding": "Hypothyroidism",
+          "explanation": "Managed with 100 mg of thyroxine daily.",
+          "severity": "N/A",
+          "temporal_relation": "Chronic"
+        }
+      ],
+      "impression_summary": "The clinical presentation is consistent with chronic left knee pain, likely exacerbated by environmental factors such as cold exposure. The absence of swelling or instability suggests a non-traumatic etiology. Family history of rheumatoid arthritis and lymphatic conditions may indicate a predisposition to joint issues. Hypothyroidism is well-managed with medication.",
+      "recommendations": [
+        "Consider further evaluation for potential inflammatory or degenerative joint disease.",
+        "Monitor thyroid function regularly.",
+        "Advise on lifestyle modifications to manage symptoms, such as avoiding cold exposure."
+      ],
+      "urgency_level": "moderate",
+      "timestamp": "2025-11-12T22:21:24.995577",
+      "source_file": "Recording 3.m4a"
+    },
+    {
+      "report_id": "consultation_1762975593824",
+      "patient_name": "N/A",
+      "age": "21",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "Patient Profile: The patient is a 21-year-old individual. Chief Complaint (CC): The patient reports experiencing a recurrent condition for approximately 3 years. History of Present Illness (HPI): The patient describes a condition characterized by swelling and discomfort in the body, which fluctuates in severity. The condition improves with treatment but occasionally worsens, necessitating further evaluation and adjustment of treatment. Systemic Enquiry / Review of Systems (ROS): N/A. Past Medical and Surgical History: The patient has undergone unspecified tests, one of which showed a defensive response. Drug History: The patient reports allergies to honey, dust, and animals. Family History: N/A. Social History: N/A. Functional/Physiotherapy Relevance: N/A.",
+      "detailed_findings": [
+        {
+          "finding": "Recurrent swelling and discomfort in the body",
+          "explanation": "The patient experiences periodic swelling and discomfort, which may indicate an underlying inflammatory or allergic condition.",
+          "severity": "N/A",
+          "temporal_relation": "Chronic, fluctuating over 3 years"
+        },
+        {
+          "finding": "Allergy to honey, dust, and animals",
+          "explanation": "The patient has known allergies, which could contribute to the symptoms of swelling and discomfort.",
+          "severity": "N/A",
+          "temporal_relation": "N/A"
+        },
+        {
+          "finding": "Defensive response in one of the tests",
+          "explanation": "A test showed a defensive response, suggesting an immune or allergic reaction.",
+          "severity": "N/A",
+          "temporal_relation": "N/A"
+        }
+      ],
+      "impression_summary": "The clinical presentation is suggestive of a chronic allergic condition, possibly exacerbated by exposure to known allergens such as honey, dust, and animals. The fluctuating nature of the symptoms and the defensive response observed in testing support this impression. Differential considerations include chronic urticaria or angioedema.",
+      "recommendations": [
+        "Further allergy testing to identify specific triggers.",
+        "Consideration of long-term management strategies for allergy control.",
+        "Regular follow-up to monitor symptom progression and treatment efficacy."
+      ],
+      "urgency_level": "moderate",
+      "timestamp": "2025-11-12T22:26:54.054344",
+      "source_file": "consultation_1762975593824.webm"
+    },
+    {
+      "report_id": "Recording 3",
+      "patient_name": "",
+      "age": "",
+      "sex": "",
+      "dob": "",
+      "referring_doctor": "",
+      "exam_date": "",
+      "exam_type": "",
+      "clinical_history": "The patient reports left knee pain persisting for over a year, exacerbated by cold weather. The pain began suddenly and is constant, increasing with exposure to cold and alleviated by warmth. No medications are currently used for pain relief. There is no swelling or giving way of the knee. Morning stiffness lasts less than ten minutes in cold conditions. The patient has a family history of lymphatic disease affecting the knees and rheumatoid arthritis. The patient has hypothyroidism managed with 100 mg of thyroxine daily and lives on the third floor with elevator access.",
+      "detailed_findings": [
+        {
+          "finding": "Left knee pain for over a year",
+          "explanation": "Chronic knee pain can indicate underlying joint issues such as arthritis or meniscal injury."
+        },
+        {
+          "finding": "Pain exacerbated by cold",
+          "explanation": "Cold sensitivity in joints is often associated with inflammatory conditions or osteoarthritis."
+        },
+        {
+          "finding": "No swelling or giving way",
+          "explanation": "Absence of swelling or instability suggests a lower likelihood of acute injury or severe degenerative changes."
+        },
+        {
+          "finding": "Morning stiffness less than ten minutes",
+          "explanation": "Short duration of stiffness is typically seen in osteoarthritis rather than inflammatory arthritis."
+        },
+        {
+          "finding": "Family history of lymphatic disease and rheumatoid arthritis",
+          "explanation": "Genetic predisposition may increase the risk of similar conditions in the patient."
+        },
+        {
+          "finding": "Hypothyroidism managed with thyroxine",
+          "explanation": "Thyroid dysfunction can contribute to musculoskeletal symptoms, including joint pain."
+        }
+      ],
+      "impression_summary": "Chronic left knee pain likely related to degenerative joint disease, with possible contribution from hypothyroidism. Family history suggests potential genetic predisposition to joint issues.",
+      "recommendations": [
+        "Consider imaging studies such as X-ray or MRI to assess joint integrity.",
+        "Evaluate thyroid function to ensure optimal management.",
+        "Referral to a rheumatologist for further evaluation of potential inflammatory joint disease."
+      ],
+      "urgency_level": "Routine",
+      "timestamp": "2025-11-17T19:05:23.551723",
+      "_category": null,
+      "_missing_info": [],
+      "source_file": "Recording 3.m4a"
+    },
+    {
+      "report_id": "recording_1763444212277",
+      "patient_name": "غير متوفر",
+      "age": "غير متوفر",
+      "sex": "غير متوفر",
+      "dob": "غير متوفر",
+      "referring_doctor": "غير متوفر",
+      "exam_date": "غير متوفر",
+      "exam_type": "Clinical Interview",
+      "clinical_history": "The patient has been experiencing left knee pain for over a year, which worsens with cold weather. The pain started suddenly and is constant, increasing with exposure to cold or cold water and decreasing with warmth. No medications are currently being used for relief.",
+      "detailed_findings": [
+        {
+          "finding": "Left knee pain",
+          "explanation": "The pain has been present for over a year, worsens with cold exposure, and improves with warmth. There is no swelling or stiffness lasting more than ten minutes in the morning."
+        },
+        {
+          "finding": "Family history",
+          "explanation": "There is a family history of lymphatic disease affecting the knees and rheumatoid arthritis."
+        },
+        {
+          "finding": "Thyroid condition",
+          "explanation": "The patient is on 100 mg of thyroxine for hypothyroidism."
+        }
+      ],
+      "impression_summary": "Chronic left knee pain likely exacerbated by cold exposure, with a possible familial predisposition to joint issues.",
+      "recommendations": [
+        "Consider further evaluation by a rheumatologist.",
+        "Implement strategies to keep the knee warm, especially in cold weather.",
+        "Monitor for any changes in symptoms or new joint involvement."
+      ],
+      "urgency_level": "moderate",
+      "timestamp": "2025-11-18T08:37:24.492300",
+      "source_file": "recording_1763444212277.webm",
+      "_category": null,
+      "_missing_info": [],
+      "phase2_needed": true
+    },
+    {
+      "report_id": "recording_1763445693230",
+      "patient_name": "John Doe",
+      "age": "45",
+      "sex": "Male",
+      "dob": "1978-05-15",
+      "referring_doctor": "Dr. Smith",
+      "exam_date": "2023-10-01",
+      "exam_type": "MRI",
+      "clinical_history": "Patient presents with persistent headaches and dizziness.",
+      "detailed_findings": [
+        {
+          "finding": "Lesion in the left temporal lobe",
+          "explanation": "The lesion is approximately 2 cm in diameter and appears to be benign."
+        },
+        {
+          "finding": "Mild sinusitis",
+          "explanation": "Inflammation observed in the sinus cavities, likely contributing to headaches."
+        }
+      ],
+      "impression_summary": "The MRI reveals a benign lesion in the left temporal lobe and mild sinusitis.",
+      "recommendations": [
+        "Follow-up MRI in 6 months to monitor the lesion.",
+        "Consultation with an ENT specialist for sinusitis management."
+      ],
+      "urgency_level": "moderate",
+      "timestamp": "2025-11-18T09:01:42.556802",
+      "source_file": "recording_1763445693230.webm",
+      "_category": null,
+      "_missing_info": [],
+      "phase2_needed": true
+    },
+    {
+      "report_id": "recording_1763452812417",
+      "phase": "intake",
+      "patient_name": "",
+      "age": "",
+      "sex": "",
+      "dob": "",
+      "referring_doctor": "",
+      "exam_date": "",
+      "exam_type": "",
+      "clinical_history": "",
+      "detailed_findings": [],
+      "impression_summary": "",
+      "recommendations": [],
+      "urgency_level": "N/A",
+      "timestamp": "2025-11-18T11:00:18.484022",
+      "_category": null,
+      "_missing_info": []
+    },
+    {
+      "report_id": "recording_1763452833370",
+      "phase": "intake",
+      "patient_name": "غير متوفر",
+      "age": "غير متوفر",
+      "sex": "غير متوفر",
+      "dob": "غير متوفر",
+      "referring_doctor": "غير متوفر",
+      "exam_date": "غير متوفر",
+      "exam_type": "Initial Clinical Encounter",
+      "clinical_history": "The patient reports left knee pain persisting for over a year, exacerbated by cold weather. The pain began suddenly and is constant, worsening with exposure to cold or cold water and alleviated by warmth.",
+      "detailed_findings": [
+        {
+          "finding": "Left knee pain",
+          "explanation": "Persistent for over a year, worsens with cold exposure, alleviated by warmth."
+        },
+        {
+          "finding": "No swelling or stiffness",
+          "explanation": "No reported swelling or significant morning stiffness, except for less than 10 minutes in cold weather."
+        },
+        {
+          "finding": "No joint instability",
+          "explanation": "No giving way or locking of the knee reported."
+        },
+        {
+          "finding": "Family history",
+          "explanation": "Family history of lymphatic disease affecting knees and rheumatoid arthritis."
+        },
+        {
+          "finding": "Hypothyroidism",
+          "explanation": "Patient is on 100 mg of thyroxine."
+        }
+      ],
+      "impression_summary": "Chronic left knee pain likely exacerbated by cold exposure, with no signs of joint instability or significant swelling. Family history suggests possible underlying rheumatologic condition.",
+      "recommendations": [
+        "Consider further rheumatologic evaluation.",
+        "Advise on protective measures against cold exposure.",
+        "Monitor for any changes in symptoms or new symptoms."
+      ],
+      "urgency_level": "moderate",
+      "timestamp": "2025-11-18T11:01:23.444044",
+      "_category": null,
+      "_missing_info": []
+    },
+    {
+      "report_id": "recording_1763458609076",
+      "phase": "intake",
+      "patient_name": "غير متوفر",
+      "age": "غير متوفر",
+      "sex": "غير متوفر",
+      "dob": "غير متوفر",
+      "referring_doctor": "غير متوفر",
+      "exam_date": "غير متوفر",
+      "exam_type": "Initial Consultation",
+      "clinical_history": "The patient reports left knee pain persisting for over a year, exacerbated by cold weather. The pain began suddenly and is constant, worsening with exposure to cold or cold water and alleviated by warmth. No swelling or locking of the knee is reported. Morning stiffness lasts less than ten minutes if the weather is cold. No other joint issues or back pain are reported. Family history includes lymphatic disease affecting the knees and rheumatoid arthritis. The patient has hypothyroidism, managed with 100 mg of thyroxine, and lives on the third floor with elevator access.",
+      "detailed_findings": [
+        {
+          "finding": "Left knee pain",
+          "explanation": "Persistent for over a year, worsens with cold exposure, alleviated by warmth."
+        },
+        {
+          "finding": "Sudden onset",
+          "explanation": "Pain began suddenly and remains constant."
+        },
+        {
+          "finding": "Morning stiffness",
+          "explanation": "Stiffness lasting less than ten minutes in cold weather."
+        },
+        {
+          "finding": "Family history",
+          "explanation": "Includes lymphatic disease affecting knees and rheumatoid arthritis."
+        },
+        {
+          "finding": "Hypothyroidism",
+          "explanation": "Managed with 100 mg of thyroxine."
+        }
+      ],
+      "impression_summary": "Chronic left knee pain likely exacerbated by cold exposure, with a family history of joint-related conditions.",
+      "recommendations": [
+        "Consider further evaluation for potential underlying joint conditions.",
+        "Monitor symptoms and consider imaging if pain persists or worsens.",
+        "Advise on protective measures against cold exposure."
+      ],
+      "urgency_level": "moderate",
+      "timestamp": "2025-11-18T12:37:35.290597",
+      "_category": null,
+      "_missing_info": []
+    },
+    {
+      "report_id": "recording_1763458966787",
+      "phase": "intake",
+      "patient_name": "غير متوفر",
+      "age": "غير متوفر",
+      "sex": "غير متوفر",
+      "dob": "غير متوفر",
+      "referring_doctor": "غير متوفر",
+      "exam_date": "غير متوفر",
+      "exam_type": "Initial Consultation",
+      "clinical_history": "The patient reports left knee pain persisting for over a year, exacerbated by cold weather. The pain began suddenly and is constant, worsening with exposure to cold or cold water and alleviated by warmth. No medications are currently used for relief. No swelling or locking of the knee is reported. Morning stiffness lasts less than ten minutes in cold weather. No other joint issues or back pain are reported. Family history includes lymphatic disease affecting the knees and rheumatoid arthritis.",
+      "detailed_findings": [
+        {
+          "finding": "Left knee pain",
+          "explanation": "Persistent for over a year, worsens with cold exposure, alleviated by warmth."
+        },
+        {
+          "finding": "No swelling or locking",
+          "explanation": "Patient reports no swelling or locking of the knee."
+        },
+        {
+          "finding": "Morning stiffness",
+          "explanation": "Stiffness in the morning lasting less than ten minutes in cold weather."
+        },
+        {
+          "finding": "Family history",
+          "explanation": "Includes lymphatic disease affecting knees and rheumatoid arthritis."
+        },
+        {
+          "finding": "Thyroid medication",
+          "explanation": "Patient is on 100 mg of thyroxine for hypothyroidism."
+        }
+      ],
+      "impression_summary": "Chronic left knee pain likely exacerbated by cold exposure, with a family history suggestive of possible underlying rheumatologic condition.",
+      "recommendations": [
+        "Consider rheumatologic evaluation.",
+        "Evaluate for possible osteoarthritis or other degenerative joint conditions.",
+        "Consider imaging studies such as X-ray or MRI of the left knee.",
+        "Advise on lifestyle modifications to manage symptoms, such as keeping the knee warm."
+      ],
+      "urgency_level": "moderate",
+      "timestamp": "2025-11-18T12:43:40.527308",
+      "_category": null,
+      "_missing_info": []
+    },
+    {
+      "report_id": "recording_1763459243552",
+      "phase": "intake",
+      "patient_name": "غير متوفر",
+      "age": "غير متوفر",
+      "sex": "غير متوفر",
+      "dob": "غير متوفر",
+      "referring_doctor": "غير متوفر",
+      "exam_date": "غير متوفر",
+      "exam_type": "غير متوفر",
+      "clinical_history": "المريضة تعاني من ألم في الركبة اليسرى منذ أكثر من سنة، يزداد مع البرد والشتاء. الألم ثابت ويخف عند تدفئة الركبة. لا توجد مشاكل في مفاصل أخرى أو انتفاخ أو تورم في الركبة. لا توجد مشاكل في أسفل الظهر أو تاريخ مرضي عائلي لأمراض الروماتيزم أو المفاصل. المريضة تتناول الثيروكسين بجرعة 100 ميلي جرام يومياً.",
+      "detailed_findings": [
+        {
+          "finding": "ألم في الركبة اليسرى",
+          "explanation": "الألم مستمر منذ أكثر من سنة ويزداد مع البرد ويخف مع التدفئة."
+        },
+        {
+          "finding": "لا يوجد انتفاخ أو تورم",
+          "explanation": "المريضة لم تلاحظ أي انتفاخ أو تورم في الركبة."
+        },
+        {
+          "finding": "تيبس صباحي أقل من عشر دقائق",
+          "explanation": "المريضة تشعر بتيبس في الركبة عند البرد لمدة أقل من عشر دقائق."
+        },
+        {
+          "finding": "لا يوجد تاريخ عائلي لأمراض الروماتيزم",
+          "explanation": "لا توجد أمراض روماتيزم في العائلة."
+        },
+        {
+          "finding": "تناول الثيروكسين",
+          "explanation": "المريضة تتناول الثيروكسين بجرعة 100 ميلي جرام يومياً بسبب كسل الغدة."
+        }
+      ],
+      "impression_summary": "المريضة تعاني من ألم مزمن في الركبة اليسرى يزداد مع البرد ويخف مع التدفئة، بدون وجود علامات التهاب أو تورم. لا توجد مشاكل في مفاصل أخرى أو تاريخ عائلي لأمراض المفاصل.",
+      "recommendations": [
+        "تجنب التعرض للبرد",
+        "استخدام وسائل تدفئة للركبة",
+        "متابعة مع طبيب مختص في حال استمرار الأعراض"
+      ],
+      "urgency_level": "low",
+      "timestamp": "2025-11-18T12:51:01.715327",
+      "_category": null,
+      "_missing_info": []
+    },
+    {
+      "report_id": "recording_1763459323516",
+      "phase": "intake",
+      "patient_name": "غير متوفر",
+      "age": "غير متوفر",
+      "sex": "غير متوفر",
+      "dob": "غير متوفر",
+      "referring_doctor": "غير متوفر",
+      "exam_date": "غير متوفر",
+      "exam_type": "غير متوفر",
+      "clinical_history": "المريضة تعاني من ألم في الركبة اليسرى منذ أكثر من سنة، يزداد مع البرد والشتاء. لا توجد مشاكل في مفاصل أخرى أو تاريخ مرضي مشابه في العائلة باستثناء عمة تعاني من مشكلة ليمفاوية تؤثر على الركبة. المريضة تأخذ ثيروكسين بجرعة 100 ميلي جرام يومياً.",
+      "detailed_findings": [
+        {
+          "finding": "ألم في الركبة اليسرى",
+          "explanation": "الألم مستمر منذ أكثر من سنة ويزداد مع التعرض للبرد أو الماء البارد ويخف مع التدفئة."
+        },
+        {
+          "finding": "لا يوجد تورم أو انتفاخ في الركبة",
+          "explanation": "المريضة لم تلاحظ أي تورم أو انتفاخ في الركبة."
+        },
+        {
+          "finding": "تيبس صباحي أقل من عشر دقائق",
+          "explanation": "المريضة تشعر بتيبس في الركبة عند الصباح إذا كان الجو بارداً، ويستمر لأقل من عشر دقائق."
+        },
+        {
+          "finding": "لا يوجد ضعف أو تعليقة في الركبة",
+          "explanation": "المريضة لم تلاحظ أي ضعف أو تعليقة في الركبة أثناء المشي."
+        },
+        {
+          "finding": "تاريخ عائلي لأمراض المفاصل",
+          "explanation": "عمة المريضة تعاني من مشكلة ليمفاوية تؤثر على الركبة."
+        },
+        {
+          "finding": "تناول ثيروكسين بجرعة 100 ميلي جرام",
+          "explanation": "المريضة تأخذ ثيروكسين بجرعة 100 ميلي جرام يومياً بسبب كسل في الغدة."
+        }
+      ],
+      "impression_summary": "المريضة تعاني من ألم مزمن في الركبة اليسرى يزداد مع البرد، بدون وجود تورم أو ضعف في الركبة. التاريخ العائلي يشير إلى وجود مشاكل ليمفاوية تؤثر على الركبة لدى أحد الأقارب.",
+      "recommendations": [
+        "تجنب التعرض للبرد والماء البارد.",
+        "استخدام وسائل التدفئة لتخفيف الألم.",
+        "متابعة مع طبيب مختص في أمراض المفاصل لمزيد من التقييم."
+      ],
+      "urgency_level": "low",
+      "timestamp": "2025-11-18T12:51:53.446969",
+      "_category": null,
+      "_missing_info": []
+    },
+    {
+      "report_id": "recording_1763488352229",
+      "phase": "intake",
+      "patient_name": "null",
+      "age": "null",
+      "sex": "null",
+      "dob": "null",
+      "referring_doctor": "null",
+      "exam_date": "null",
+      "exam_type": "null",
+      "clinical_history": "null",
+      "detailed_findings": [
+        {
+          "finding": "null",
+          "explanation": "null"
+        }
+      ],
+      "impression_summary": "null",
+      "recommendations": [
+        "null"
+      ],
+      "urgency_level": "N/A",
+      "timestamp": "2025-11-18T20:52:39.679584",
+      "_category": null,
+      "_missing_info": []
+    },
+    {
+      "report_id": "recording_1763494711788",
+      "phase": "intake",
+      "patient_name": "null",
+      "age": "null",
+      "sex": "null",
+      "dob": "null",
+      "referring_doctor": "null",
+      "exam_date": "null",
+      "exam_type": "null",
+      "clinical_history": "null",
+      "detailed_findings": [
+        {
+          "finding": "null",
+          "explanation": "null"
+        }
+      ],
+      "impression_summary": "null",
+      "recommendations": [
+        "null"
+      ],
+      "urgency_level": "N/A",
+      "timestamp": "2025-11-18T22:38:37.464652",
+      "_category": null,
+      "_missing_info": []
+    },
+    {
+      "report_id": "recording_1763495529286",
+      "phase": "intake",
+      "patient_name": "",
+      "age": "",
+      "sex": "",
+      "dob": "",
+      "referring_doctor": "",
+      "exam_date": "",
+      "exam_type": "",
+      "clinical_history": "",
+      "detailed_findings": [],
+      "impression_summary": "",
+      "recommendations": [],
+      "urgency_level": "N/A",
+      "timestamp": "2025-11-18T22:52:13.663760",
+      "_category": null,
+      "_missing_info": []
+    },
+    {
+      "report_id": "recording_1763568288604",
+      "phase": "intake",
+      "patient_name": "N/A",
+      "age": "N/A",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "N/A",
+      "detailed_findings": [],
+      "impression_summary": "N/A",
+      "recommendations": [],
+      "urgency_level": "N/A",
+      "timestamp": "2025-11-19T19:04:56.428986",
+      "_category": null,
+      "_missing_info": []
+    },
+    {
+      "report_id": "recording_1763579567540",
+      "phase": "intake",
+      "patient_name": "N/A",
+      "age": "N/A",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "Patient reports lower back pain that started two days ago. Pain is most severe in the morning upon waking and does not improve by the end of the day.",
+      "detailed_findings": [
+        {
+          "finding": "Lower back pain",
+          "explanation": "Patient experiences persistent lower back pain, particularly severe in the morning."
+        }
+      ],
+      "impression_summary": "Patient presents with acute lower back pain, likely musculoskeletal in nature.",
+      "recommendations": [
+        "Consider imaging to rule out structural issues.",
+        "Advise on pain management strategies."
+      ],
+      "urgency_level": "moderate",
+      "timestamp": "2025-11-19T22:13:05.841094",
+      "_category": null,
+      "_missing_info": []
+    },
+    {
+      "report_id": "recording_1763585953110",
+      "phase": "intake",
+      "patient_name": "حمزة المغرب",
+      "age": "21",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "Patient reports experiencing headaches, eye pain, back pain, and knee pain. Headache has been present for approximately one month, eye pain for two days.",
+      "detailed_findings": [
+        {
+          "finding": "Headache",
+          "explanation": "Patient reports headache lasting for about a month."
+        },
+        {
+          "finding": "Eye pain",
+          "explanation": "Patient reports eye pain lasting for two days."
+        },
+        {
+          "finding": "Back pain",
+          "explanation": "Patient reports experiencing back pain."
+        },
+        {
+          "finding": "Knee pain",
+          "explanation": "Patient reports experiencing knee pain."
+        }
+      ],
+      "impression_summary": "Patient presents with multiple pain symptoms including headache, eye pain, back pain, and knee pain. Duration and severity vary.",
+      "recommendations": [
+        "Further evaluation to determine the cause of the headache and eye pain.",
+        "Consider imaging or physical examination for back and knee pain."
+      ],
+      "urgency_level": "moderate",
+      "timestamp": "2025-11-19T23:59:23.054075",
+      "_category": null,
+      "_missing_info": []
+    },
+    {
+      "report_id": "recording_1763586755006",
+      "phase": "intake",
+      "patient_name": "حمز المغربي",
+      "age": "21",
+      "sex": "ذكر",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "physical examination",
+      "clinical_history": "Patient reports sore throat, eye pain, and headache for the past two hours. No medication taken.",
+      "detailed_findings": [
+        {
+          "finding": "Sore throat",
+          "explanation": "Patient reports experiencing a sore throat for two hours."
+        },
+        {
+          "finding": "Eye pain",
+          "explanation": "Patient reports experiencing eye pain for two hours."
+        },
+        {
+          "finding": "Headache",
+          "explanation": "Patient reports experiencing a headache for two hours."
+        }
+      ],
+      "impression_summary": "Patient presents with acute onset of sore throat, eye pain, and headache.",
+      "recommendations": [
+        "Conduct a thorough physical examination.",
+        "Consider symptomatic treatment for pain relief.",
+        "Monitor symptoms and consider further investigation if symptoms persist."
+      ],
+      "urgency_level": "moderate",
+      "timestamp": "2025-11-20T00:12:44.625892",
+      "_category": null,
+      "_missing_info": []
+    },
+    {
+      "report_id": "recording_1763930782656",
+      "phase": "intake",
+      "patient_name": "N/A",
+      "age": "N/A",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "N/A",
+      "detailed_findings": [],
+      "impression_summary": "N/A",
+      "recommendations": [],
+      "urgency_level": "N/A",
+      "timestamp": "2025-11-23T23:46:27.535343",
+      "_category": null,
+      "_missing_info": []
+    },
+    {
+      "report_id": "recording_1763992525636",
+      "phase": "intake",
+      "patient_name": "حمزة المغرب",
+      "age": "22",
+      "sex": "ذكر",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "المريض يعاني من حموضة منذ أسبوعين.",
+      "detailed_findings": [
+        {
+          "finding": "حموضة",
+          "explanation": "المريض ذكر أنه يعاني من حموضة منذ أسبوعين."
+        }
+      ],
+      "impression_summary": "المريض يعاني من حموضة مستمرة لمدة أسبوعين.",
+      "recommendations": [
+        "مراجعة الطبيب المختص في حال استمرار الأعراض.",
+        "تجنب الأطعمة التي قد تزيد من الحموضة مثل الأطعمة الحارة أو الدهنية."
+      ],
+      "urgency_level": "moderate",
+      "timestamp": "2025-11-24T16:55:37.521824",
+      "_category": null,
+      "_missing_info": []
+    },
+    {
+      "report_id": "recording_1763992904286",
+      "phase": "intake",
+      "patient_name": "N/A",
+      "age": "N/A",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "N/A",
+      "detailed_findings": [],
+      "impression_summary": "N/A",
+      "recommendations": [],
+      "urgency_level": "N/A",
+      "timestamp": "2025-11-24T17:01:55.306414",
+      "_category": null,
+      "_missing_info": []
+    },
+    {
+      "report_id": "recording_1764009234781",
+      "phase": "intake",
+      "patient_name": "Khaled",
+      "age": "N/A",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "Patient Profile: Name: Khaled. Chief Complaint (CC): 'Sharp chest pain, severe and sudden onset, for approximately one hour.' History of Present Illness (HPI): Site: Mid-chest. Onset: Sudden, approximately one hour ago. Character: Sharp, strong pressure. Radiation: To the left arm. Associated symptoms: Shortness of breath, severe sweating. Timing: Acute, sudden onset. Exacerbating/relieving factors: Pain increases with movement, no relieving factors. Severity: Severe. Systemic Enquiry / Review of Systems (ROS): Cardiovascular: Chest pain, radiation to left arm. Respiratory: Shortness of breath. General: Severe sweating. Neurological: Lightheadedness. Past Medical and Surgical History: N/A. Drug History: N/A. Family History: Father had a heart attack. Social History: Smoker.",
+      "detailed_findings": [
+        {
+          "finding": "Sharp chest pain",
+          "explanation": "Severe, sudden onset pain in the mid-chest, indicative of possible cardiac event.",
+          "severity": "Severe",
+          "temporal_relation": "Acute",
+          "system": "cardiovascular"
+        },
+        {
+          "finding": "Pain radiating to left arm",
+          "explanation": "Radiation of pain to the left arm, commonly associated with cardiac ischemia.",
+          "severity": "Severe",
+          "temporal_relation": "Acute",
+          "system": "cardiovascular"
+        },
+        {
+          "finding": "Shortness of breath",
+          "explanation": "Difficulty breathing, often associated with cardiac or respiratory distress.",
+          "severity": "Severe",
+          "temporal_relation": "Acute",
+          "system": "respiratory"
+        },
+        {
+          "finding": "Severe sweating",
+          "explanation": "Profuse sweating, often associated with acute stress or cardiac events.",
+          "severity": "Severe",
+          "temporal_relation": "Acute",
+          "system": "general"
+        },
+        {
+          "finding": "Lightheadedness",
+          "explanation": "Feeling of dizziness, potentially related to decreased cardiac output or perfusion.",
+          "severity": "Mild",
+          "temporal_relation": "Acute",
+          "system": "neurological"
+        },
+        {
+          "finding": "Smoking history",
+          "explanation": "Patient is a smoker, a risk factor for cardiovascular disease.",
+          "severity": "N/A",
+          "temporal_relation": "Chronic",
+          "system": "social"
+        },
+        {
+          "finding": "Family history of heart attack",
+          "explanation": "Father had a heart attack, indicating a possible genetic predisposition to cardiovascular disease.",
+          "severity": "N/A",
+          "temporal_relation": "N/A",
+          "system": "family"
+        }
+      ],
+      "impression_summary": "Findings are consistent with an acute coronary syndrome, given the sudden onset of severe chest pain radiating to the left arm, associated with shortness of breath and severe sweating. The patient's smoking history and family history of heart disease further support this impression. Differential considerations include myocardial infarction and unstable angina.",
+      "recommendations": [
+        "Immediate electrocardiogram (ECG) to assess cardiac function.",
+        "Consideration for cardiac biomarkers to evaluate myocardial injury.",
+        "Urgent cardiology consultation for further management."
+      ],
+      "urgency_level": "high",
+      "timestamp": "2025-11-24T21:34:18.421489",
+      "_category": null,
+      "_missing_info": []
+    },
+    {
+      "report_id": "recording_1764361533247",
+      "phase": "intake",
+      "patient_name": "N/A",
+      "age": "N/A",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "N/A",
+      "detailed_findings": [],
+      "impression_summary": "N/A",
+      "recommendations": [],
+      "urgency_level": "N/A",
+      "timestamp": "2025-11-28T23:25:38.521226",
+      "_category": null,
+      "_missing_info": []
+    },
+    {
+      "report_id": "recording_1766056635186",
+      "phase": "intake",
+      "patient_name": "N/A",
+      "age": "N/A",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "N/A",
+      "detailed_findings": [],
+      "impression_summary": "N/A",
+      "recommendations": [],
+      "urgency_level": "N/A",
+      "timestamp": "2025-12-18T14:45:42.714197",
+      "_category": null,
+      "_missing_info": []
+    },
+    {
+      "report_id": "recording_1766059259645",
+      "phase": "intake",
+      "patient_name": "Hamza Al-Maghribi",
+      "age": "20",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "Dr. Qaheem",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "Patient Profile: Hamza Al-Maghribi, 20 years old, unmarried, occupation: trader. Chief Complaint: Loss of control on the right side of the face for 2 weeks. History of Present Illness: The patient reports complete loss of movement on the right side of the face, with numbness lasting about an hour and loss of taste sensation at the tip of the tongue. No exposure to cold air or drafts is recalled. No medication or corticosteroid use. No trauma, infection, or inflammation reported. No previous similar episodes. Systemic Enquiry: No other symptoms reported in other systems. Past Medical and Surgical History: No previous hospitalizations or surgeries. Drug History: No current or regular medication use. Family History: No similar conditions or hereditary diseases reported. Social History: Lives on the second floor in Al-Zaqa. Works as a trader. No functional limitations reported.",
+      "detailed_findings": [
+        {
+          "finding": "Complete loss of movement on the right side of the face",
+          "explanation": "Indicates possible facial nerve involvement, likely Bell's palsy or similar condition.",
+          "severity": "N/A",
+          "temporal_relation": "2 weeks"
+        },
+        {
+          "finding": "Numbness on the right side of the face lasting about an hour",
+          "explanation": "Transient sensory disturbance, possibly related to nerve involvement.",
+          "severity": "N/A",
+          "temporal_relation": "N/A"
+        },
+        {
+          "finding": "Loss of taste sensation at the tip of the tongue",
+          "explanation": "Suggests involvement of the chorda tympani nerve, a branch of the facial nerve.",
+          "severity": "N/A",
+          "temporal_relation": "N/A"
+        }
+      ],
+      "impression_summary": "The clinical presentation is consistent with a peripheral facial nerve palsy, likely Bell's palsy, given the acute onset of unilateral facial paralysis, transient numbness, and loss of taste sensation. No evidence of systemic or infectious causes was reported.",
+      "recommendations": [
+        "Consider referral to a neurologist for further evaluation.",
+        "Initiate corticosteroid therapy if Bell's palsy is confirmed.",
+        "Advise on eye care to prevent corneal damage due to incomplete eyelid closure."
+      ],
+      "urgency_level": "moderate",
+      "timestamp": "2025-12-18T15:01:45.717897",
+      "_category": null,
+      "_missing_info": []
+    },
+    {
+      "report_id": "recording_1766400147632",
+      "phase": "intake",
+      "patient_name": "Aisha Bakr Al-Dalain",
+      "age": "21",
+      "sex": "female",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "Patient Profile: Aisha Bakr Al-Dalain, 21-year-old female, student, unmarried. Chief Complaint (CC): No current complaints, here for thyroid level check and medication adjustment. History of Present Illness (HPI): Diagnosed with hypothyroidism for 2 years, taking Thyroxine 50 mcg daily at 3 AM. Systemic Enquiry / Review of Systems (ROS): No current symptoms reported. Past Medical and Surgical History: Hypothyroidism for 2 years, no surgeries. Drug History: Thyroxine 50 mcg daily, Vitamin D deficiency treated with 50,000 IU monthly, no drug allergies. Family History: Family history of hypothyroidism. Social History: Non-smoker, student, no alcohol or drug use. Functional/Physiotherapy Relevance: N/A.",
+      "detailed_findings": [
+        {
+          "finding": "Hypothyroidism",
+          "explanation": "Patient has been diagnosed with hypothyroidism for 2 years, managed with Thyroxine.",
+          "severity": "chronic",
+          "temporal_relation": "2 years"
+        },
+        {
+          "finding": "Thyroxine 50 mcg daily",
+          "explanation": "Patient is on a stable dose of Thyroxine for hypothyroidism management.",
+          "severity": "N/A",
+          "temporal_relation": "daily"
+        },
+        {
+          "finding": "Vitamin D deficiency",
+          "explanation": "Patient is being treated for Vitamin D deficiency with 50,000 IU monthly.",
+          "severity": "N/A",
+          "temporal_relation": "monthly"
+        },
+        {
+          "finding": "Family history of hypothyroidism",
+          "explanation": "Family history suggests a genetic predisposition to thyroid disorders.",
+          "severity": "N/A",
+          "temporal_relation": "N/A"
+        }
+      ],
+      "impression_summary": "The patient presents for routine evaluation of hypothyroidism, currently managed with Thyroxine. No acute symptoms reported. Family history of hypothyroidism noted. Vitamin D deficiency is being addressed. The overall picture suggests stable management of hypothyroidism with no immediate concerns.",
+      "recommendations": [
+        "Conduct thyroid function tests to assess current thyroid hormone levels.",
+        "Evaluate the need for any adjustment in Thyroxine dosage based on test results.",
+        "Continue Vitamin D supplementation as prescribed."
+      ],
+      "urgency_level": "low",
+      "timestamp": "2025-12-22T13:43:01.525307",
+      "_category": null,
+      "_missing_info": []
+    },
+    {
+      "report_id": "R20260101202112923881",
+      "phase": "intake",
+      "patient_name": "N/A",
+      "age": "N/A",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "Initial Clinical Intake",
+      "clinical_history": "The patient reports experiencing breathlessness for the past two months, which has gradually worsened. The breathlessness is exacerbated by exertion, such as walking more than 50 meters, and is worse at night when lying down. The patient also reports occasional cough with frothy sputum and swelling in the legs, which started around the same time as the breathlessness. The patient has a history of high blood pressure, diabetes, high cholesterol, and a heart attack four years ago, for which a stent was placed. The patient is currently on aspirin, Ramipril, and simvastatin. There is a family history of heart attack, with the patient's father having died of a heart attack at age 60. The patient is a former smoker with a 40-year history of smoking 10 cigarettes a day.",
+      "detailed_findings": [
+        {
+          "finding": "Breathlessness on exertion and when lying flat",
+          "explanation": "The patient experiences increased breathlessness when walking more than 50 meters and when lying down, indicating possible cardiac or pulmonary issues."
+        },
+        {
+          "finding": "Swelling in the legs",
+          "explanation": "The patient reports swelling in the legs, which could be indicative of fluid retention, possibly related to heart failure."
+        },
+        {
+          "finding": "History of heart attack and cardiovascular risk factors",
+          "explanation": "The patient's history of a heart attack, high blood pressure, diabetes, and high cholesterol increases the risk of cardiovascular complications."
+        }
+      ],
+      "impression_summary": "The clinical presentation suggests the possibility of congestive heart failure, given the symptoms of breathlessness, orthopnea, leg swelling, and the patient's cardiovascular history.",
+      "recommendations": [
+        "Conduct further investigations to confirm the diagnosis of congestive heart failure.",
+        "Consider starting diuretic therapy, such as Lasix, to manage fluid retention.",
+        "Monitor and manage cardiovascular risk factors, including blood pressure, cholesterol, and diabetes."
+      ],
+      "urgency_level": "moderate",
+      "timestamp": "2026-01-01T20:21:19.377668",
+      "_category": "knee_pain",
+      "_missing_info": [
+        "duration of pain",
+        "trauma history"
+      ]
+    }
+  ],
+  "final_reports": [
+    {
+      "report_id": "recording_1763583960332",
+      "phase": "final_assessment",
+      "patient_name": "",
+      "age": "",
+      "sex": "",
+      "dob": "",
+      "referring_doctor": "",
+      "exam_date": "",
+      "exam_type": "",
+      "clinical_history": "",
+      "detailed_findings": [],
+      "impression_summary": "",
+      "recommendations": [],
+      "urgency_level": "N/A",
+      "timestamp": "2025-11-19T23:26:08.285174",
+      "_category": null,
+      "_missing_info": [],
+      "_intake_report_id": null
+    },
+    {
+      "report_id": "recording_1763584219585",
+      "phase": "final_assessment",
+      "patient_name": "John Doe",
+      "age": "45",
+      "sex": "male",
+      "dob": "1978-01-01",
+      "referring_doctor": "Dr. Smith",
+      "exam_date": "2023-10-01",
+      "exam_type": "MRI",
+      "clinical_history": "Patient presented with back pain and limited mobility.",
+      "detailed_findings": [
+        {
+          "finding": "Disc herniation",
+          "explanation": "Imaging shows a disc herniation in the mid-thoracic region."
+        },
+        {
+          "finding": "Swelling",
+          "explanation": "There is some swelling observed in the same area."
+        }
+      ],
+      "impression_summary": "The imaging indicates a disc herniation in the mid-thoracic spine with associated swelling.",
+      "recommendations": [
+        "Consider physical therapy to manage symptoms.",
+        "Follow-up with an orthopedic specialist.",
+        "Pain management with NSAIDs as needed."
+      ],
+      "urgency_level": "moderate",
+      "timestamp": "2025-11-19T23:30:28.132476",
+      "_category": null,
+      "_missing_info": [],
+      "_intake_report_id": null
+    },
+    {
+      "report_id": "recording_1763584803854",
+      "phase": "final_assessment",
+      "patient_name": "string",
+      "age": "string",
+      "sex": "string",
+      "dob": "string",
+      "referring_doctor": "string",
+      "exam_date": "string",
+      "exam_type": "string",
+      "clinical_history": "string",
+      "detailed_findings": [
+        {
+          "finding": "Presence of a disc in the mid-back",
+          "explanation": "Imaging revealed a disc herniation in the mid-thoracic region, which can cause localized pain and potential nerve compression."
+        },
+        {
+          "finding": "Swelling on the right and left sides",
+          "explanation": "The swelling observed on both sides may indicate inflammation or muscle strain, possibly related to the disc herniation."
+        }
+      ],
+      "impression_summary": "The patient has been diagnosed with a disc herniation in the mid-back, accompanied by bilateral swelling, likely due to inflammation or muscle strain.",
+      "recommendations": [
+        "Follow-up with a specialist for further evaluation of the disc herniation.",
+        "Consider physical therapy to manage symptoms and improve mobility.",
+        "Monitor for any changes in symptoms or new neurological signs."
+      ],
+      "urgency_level": "moderate",
+      "timestamp": "2025-11-19T23:40:12.208671",
+      "_category": null,
+      "_missing_info": [],
+      "_intake_report_id": null
+    },
+    {
+      "report_id": "recording_1763579567540",
+      "phase": "final_assessment",
+      "patient_name": "N/A",
+      "age": "N/A",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "Patient reports lower back pain that started two days ago. Pain is most severe in the morning upon waking and does not improve by the end of the day.",
+      "detailed_findings": [
+        {
+          "finding": "Tumor in the mid-back vertebra",
+          "explanation": "Imaging revealed a tumor in the posterior vertebra of the mid-back, indicating a potential serious underlying condition."
+        },
+        {
+          "finding": "Swelling observed",
+          "explanation": "Swelling was noted in the area of the tumor, which may suggest inflammation or other pathological processes."
+        }
+      ],
+      "impression_summary": "The presence of a tumor in the mid-back vertebra raises suspicion for a malignancy. Further diagnostic workup, including a biopsy, is necessary to confirm the nature of the tumor.",
+      "recommendations": [
+        "Proceed with blood tests and biopsy to determine the nature of the tumor.",
+        "Consult with an oncologist for further evaluation and management.",
+        "Consider advanced imaging to assess the extent of the tumor."
+      ],
+      "urgency_level": "high",
+      "timestamp": "2025-11-19T23:44:08.656018",
+      "_category": "back_pain",
+      "_missing_info": [
+        "onset of pain (sudden/gradual)",
+        "any weakness in legs or feet?",
+        "recent heavy lifting?",
+        "bowel/bladder changes (Red Flag)?"
+      ],
+      "_intake_report_id": "recording_1763579567540"
+    },
+    {
+      "report_id": "recording_1763586755006",
+      "phase": "final_assessment",
+      "patient_name": "حمز المغربي",
+      "age": "21",
+      "sex": "ذكر",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "physical examination",
+      "clinical_history": "Patient reports sore throat, eye pain, and headache for the past two hours. No medication taken.",
+      "detailed_findings": [
+        {
+          "finding": "Dry eyes",
+          "explanation": "Dryness in the eyes was discovered and appropriate eye drops were prescribed."
+        },
+        {
+          "finding": "Sore throat",
+          "explanation": "The cause of the sore throat was identified and appropriate anti-inflammatory medications were prescribed."
+        },
+        {
+          "finding": "Headache",
+          "explanation": "Headache was addressed with Panadol and anti-inflammatory medications."
+        }
+      ],
+      "impression_summary": "Patient presents with dry eyes, sore throat, and headache, all of which have been addressed with appropriate treatments.",
+      "recommendations": [
+        "Use prescribed eye drops for dry eyes.",
+        "Take prescribed anti-inflammatory medications for sore throat.",
+        "Use Panadol for headache relief.",
+        "Follow-up in three months for reassessment."
+      ],
+      "urgency_level": "moderate",
+      "timestamp": "2025-11-20T00:14:44.378013",
+      "_category": "knee_pain",
+      "_missing_info": [
+        "duration of pain",
+        "trauma history",
+        "swelling present?",
+        "movement limitations?",
+        "medications used?"
+      ],
+      "_intake_report_id": "recording_1763586755006"
+    },
+    {
+      "report_id": "recording_1764009234781",
+      "phase": "final_assessment",
+      "patient_name": "Khaled",
+      "age": "N/A",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "Patient Profile: Name: Khaled. Chief Complaint: 'Sharp chest pain, severe and sudden onset, for approximately one hour.' History of Present Illness: Site: Mid-chest, radiating to the left arm and jaw. Onset: Sudden, approximately one hour ago. Character: Sharp, burning pressure. Radiation: To the left arm and jaw. Associated symptoms: Shortness of breath, severe sweating. Timing: Acute, sudden onset, exacerbated by exertion, slightly relieved by rest. Severity: 7 out of 10. Systemic Enquiry: Cardiovascular: Chest pain, radiation to left arm and jaw. Respiratory: Shortness of breath. General: Severe sweating. Neurological: Lightheadedness. Past Medical and Surgical History: N/A. Drug History: N/A. Family History: Father had a heart attack. Social History: Smoker, sedentary lifestyle.",
+      "detailed_findings": [
+        {
+          "finding": "Sharp chest pain",
+          "explanation": "Severe, sudden onset pain in the mid-chest, indicative of possible cardiac event.",
+          "severity": "Severe",
+          "temporal_relation": "Acute",
+          "system": "cardiovascular"
+        },
+        {
+          "finding": "Pain radiating to left arm and jaw",
+          "explanation": "Radiation of pain to the left arm and jaw, commonly associated with cardiac ischemia.",
+          "severity": "Severe",
+          "temporal_relation": "Acute",
+          "system": "cardiovascular"
+        },
+        {
+          "finding": "Shortness of breath",
+          "explanation": "Difficulty breathing, often associated with cardiac or respiratory distress.",
+          "severity": "Severe",
+          "temporal_relation": "Acute",
+          "system": "respiratory"
+        },
+        {
+          "finding": "Severe sweating",
+          "explanation": "Profuse sweating, often associated with acute stress or cardiac events.",
+          "severity": "Severe",
+          "temporal_relation": "Acute",
+          "system": "general"
+        },
+        {
+          "finding": "Lightheadedness",
+          "explanation": "Feeling of dizziness, potentially related to decreased cardiac output or perfusion.",
+          "severity": "Mild",
+          "temporal_relation": "Acute",
+          "system": "neurological"
+        },
+        {
+          "finding": "Smoking history",
+          "explanation": "Patient is a smoker, a risk factor for cardiovascular disease.",
+          "severity": "N/A",
+          "temporal_relation": "Chronic",
+          "system": "social"
+        },
+        {
+          "finding": "Family history of heart attack",
+          "explanation": "Father had a heart attack, indicating a possible genetic predisposition to cardiovascular disease.",
+          "severity": "N/A",
+          "temporal_relation": "N/A",
+          "system": "family"
+        },
+        {
+          "finding": "Elevated blood pressure",
+          "explanation": "Initial examination shows elevated blood pressure, which can be a sign of cardiovascular stress.",
+          "severity": "N/A",
+          "temporal_relation": "Acute",
+          "system": "cardiovascular"
+        },
+        {
+          "finding": "Tachycardia",
+          "explanation": "Increased heart rate observed during initial examination, possibly due to stress or cardiac event.",
+          "severity": "N/A",
+          "temporal_relation": "Acute",
+          "system": "cardiovascular"
+        },
+        {
+          "finding": "No heart murmurs or pulmonary edema",
+          "explanation": "Absence of heart murmurs or signs of pulmonary edema on examination.",
+          "severity": "N/A",
+          "temporal_relation": "N/A",
+          "system": "cardiovascular"
+        }
+      ],
+      "impression_summary": "The clinical presentation is consistent with an acute coronary syndrome, likely unstable angina or myocardial infarction, given the sudden onset of severe chest pain radiating to the left arm and jaw, associated with shortness of breath and severe sweating. The patient's smoking history and family history of heart disease further support this impression. Differential considerations include pericarditis. Initial examination findings of elevated blood pressure and tachycardia support the acute nature of the condition.",
+      "recommendations": [
+        "Immediate electrocardiogram (ECG) to assess cardiac function.",
+        "Blood tests including cardiac biomarkers, CBC, and electrolytes to evaluate myocardial injury.",
+        "Administer aspirin and sublingual nitroglycerin to alleviate chest pain.",
+        "Urgent cardiology consultation for further management.",
+        "Monitor vital signs closely and prepare for potential advanced cardiac life support if needed."
+      ],
+      "urgency_level": "high",
+      "timestamp": "2025-11-24T21:40:46.182361",
+      "_category": "knee_pain",
+      "_missing_info": [
+        "duration of pain",
+        "trauma history",
+        "swelling present?",
+        "medications used?"
+      ],
+      "_intake_report_id": "recording_1764009234781"
+    },
+    {
+      "report_id": "recording_1764361533247",
+      "phase": "final_assessment",
+      "patient_name": "N/A",
+      "age": "N/A",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "N/A",
+      "detailed_findings": [],
+      "impression_summary": "N/A",
+      "recommendations": [],
+      "urgency_level": "N/A",
+      "timestamp": "2025-11-28T23:35:09.658302",
+      "_category": null,
+      "_missing_info": [],
+      "_intake_report_id": "recording_1764361533247"
+    },
+    {
+      "report_id": "recording_1766059259645",
+      "phase": "final_assessment",
+      "patient_name": "Hamza Al-Maghribi",
+      "age": "20",
+      "sex": "N/A",
+      "dob": "N/A",
+      "referring_doctor": "Dr. Qaheem",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "Patient Profile: Hamza Al-Maghribi, 20 years old, unmarried, occupation: trader. Chief Complaint: Loss of control on the right side of the face for 2 weeks. History of Present Illness: The patient reports complete loss of movement on the right side of the face, with numbness lasting about an hour and loss of taste sensation at the tip of the tongue. No exposure to cold air or drafts is recalled. No medication or corticosteroid use. No trauma, infection, or inflammation reported. No previous similar episodes. Systemic Enquiry: No other symptoms reported in other systems. Past Medical and Surgical History: No previous hospitalizations or surgeries. Drug History: No current or regular medication use. Family History: No similar conditions or hereditary diseases reported. Social History: Lives on the second floor in Al-Zaqa. Works as a trader. No functional limitations reported.",
+      "detailed_findings": [
+        {
+          "finding": "Complete loss of movement on the right side of the face",
+          "explanation": "Indicates possible facial nerve involvement, likely Bell's palsy or similar condition.",
+          "severity": "N/A",
+          "temporal_relation": "2 weeks"
+        },
+        {
+          "finding": "Numbness on the right side of the face lasting about an hour",
+          "explanation": "Transient sensory disturbance, possibly related to nerve involvement.",
+          "severity": "N/A",
+          "temporal_relation": "N/A"
+        },
+        {
+          "finding": "Loss of taste sensation at the tip of the tongue",
+          "explanation": "Suggests involvement of the chorda tympani nerve, a branch of the facial nerve.",
+          "severity": "N/A",
+          "temporal_relation": "N/A"
+        }
+      ],
+      "impression_summary": "The clinical presentation is consistent with a peripheral facial nerve palsy, likely Bell's palsy, given the acute onset of unilateral facial paralysis, transient numbness, and loss of taste sensation. No evidence of systemic or infectious causes was reported.",
+      "recommendations": [
+        "Consider referral to a neurologist for further evaluation.",
+        "Initiate corticosteroid therapy if Bell's palsy is confirmed.",
+        "Advise on eye care to prevent corneal damage due to incomplete eyelid closure."
+      ],
+      "urgency_level": "moderate",
+      "timestamp": "2025-12-18T15:09:03.805615",
+      "_category": null,
+      "_missing_info": [],
+      "_intake_report_id": "recording_1766059259645"
+    },
+    {
+      "report_id": "recording_1766400147632",
+      "phase": "final_assessment",
+      "patient_name": "Aisha Bakr Al-Dalain",
+      "age": "21",
+      "sex": "female",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "Patient Profile: Aisha Bakr Al-Dalain, 21-year-old female, student, unmarried. Chief Complaint: No current complaints, attending for thyroid level check and medication adjustment. History of Present Illness: Diagnosed with hypothyroidism for 2 years, managed with Thyroxine 50 mcg daily at 3 AM. No new symptoms reported. Systemic Enquiry: No current symptoms reported. Past Medical History: Hypothyroidism for 2 years, no surgeries. Drug History: Thyroxine 50 mcg daily, Vitamin D deficiency treated with 50,000 IU monthly, no drug allergies. Family History: Family history of hypothyroidism. Social History: Non-smoker, student, no alcohol or drug use. Functional Relevance: N/A.",
+      "detailed_findings": [
+        {
+          "finding": "Hypothyroidism",
+          "explanation": "Patient has been diagnosed with hypothyroidism for 2 years, managed with Thyroxine.",
+          "severity": "chronic",
+          "temporal_relation": "2 years"
+        },
+        {
+          "finding": "Thyroxine 50 mcg daily",
+          "explanation": "Patient is on a stable dose of Thyroxine for hypothyroidism management.",
+          "severity": "N/A",
+          "temporal_relation": "daily"
+        },
+        {
+          "finding": "Vitamin D deficiency",
+          "explanation": "Patient is being treated for Vitamin D deficiency with 50,000 IU monthly.",
+          "severity": "N/A",
+          "temporal_relation": "monthly"
+        },
+        {
+          "finding": "Family history of hypothyroidism",
+          "explanation": "Family history suggests a genetic predisposition to thyroid disorders.",
+          "severity": "N/A",
+          "temporal_relation": "N/A"
+        }
+      ],
+      "impression_summary": "The patient presents for routine evaluation of hypothyroidism, currently managed with Thyroxine. No acute symptoms reported. Family history of hypothyroidism noted. Vitamin D deficiency is being addressed. The overall picture suggests stable management of hypothyroidism with no immediate concerns. Plan to conduct thyroid function tests to assess current thyroid hormone levels and evaluate the need for any adjustment in Thyroxine dosage based on test results.",
+      "recommendations": [
+        "Conduct thyroid function tests to assess current thyroid hormone levels.",
+        "Evaluate the need for any adjustment in Thyroxine dosage based on test results.",
+        "Continue Vitamin D supplementation as prescribed."
+      ],
+      "urgency_level": "low",
+      "timestamp": "2025-12-22T13:47:21.727454",
+      "_category": null,
+      "_missing_info": [],
+      "_intake_report_id": "recording_1766400147632"
+    },
+    {
+      "report_id": "recording_1766400147632",
+      "phase": "final_assessment",
+      "patient_name": "Aisha Bakr Al-Dalain",
+      "age": "21",
+      "sex": "female",
+      "dob": "N/A",
+      "referring_doctor": "N/A",
+      "exam_date": "N/A",
+      "exam_type": "N/A",
+      "clinical_history": "Patient Profile: Aisha Bakr Al-Dalain, 21-year-old female, student, unmarried. Chief Complaint: No current complaints, attending for thyroid level check and medication adjustment. History of Present Illness: Diagnosed with hypothyroidism for 2 years, managed with Thyroxine 50 mcg daily at 3 AM. No current symptoms reported. Systemic Enquiry: No new symptoms reported. Past Medical History: Hypothyroidism for 2 years, no surgeries. Drug History: Thyroxine 50 mcg daily, Vitamin D deficiency treated with 50,000 IU monthly, no drug allergies. Family History: Family history of hypothyroidism. Social History: Non-smoker, student, no alcohol or drug use. Functional Relevance: N/A.",
+      "detailed_findings": [
+        {
+          "finding": "Hypothyroidism",
+          "explanation": "Patient has been diagnosed with hypothyroidism for 2 years, managed with Thyroxine.",
+          "severity": "chronic",
+          "temporal_relation": "2 years"
+        },
+        {
+          "finding": "Thyroxine 50 mcg daily",
+          "explanation": "Patient is on a stable dose of Thyroxine for hypothyroidism management.",
+          "severity": "N/A",
+          "temporal_relation": "daily"
+        },
+        {
+          "finding": "Vitamin D deficiency",
+          "explanation": "Patient is being treated for Vitamin D deficiency with 50,000 IU monthly.",
+          "severity": "N/A",
+          "temporal_relation": "monthly"
+        },
+        {
+          "finding": "Family history of hypothyroidism",
+          "explanation": "Family history suggests a genetic predisposition to thyroid disorders.",
+          "severity": "N/A",
+          "temporal_relation": "N/A"
+        },
+        {
+          "finding": "Thyroid function test planned",
+          "explanation": "Thyroid function tests including TSH, T4, and T3 are planned to assess current thyroid hormone levels.",
+          "severity": "N/A",
+          "temporal_relation": "planned"
+        },
+        {
+          "finding": "Thyroid ultrasound planned",
+          "explanation": "A thyroid ultrasound is planned to further evaluate thyroid structure.",
+          "severity": "N/A",
+          "temporal_relation": "after one month"
+        }
+      ],
+      "impression_summary": "The patient presents for routine evaluation of hypothyroidism, currently managed with Thyroxine. No acute symptoms reported. Family history of hypothyroidism noted. Vitamin D deficiency is being addressed. The overall picture suggests stable management of hypothyroidism with no immediate concerns. Further evaluation with thyroid function tests and ultrasound is planned.",
+      "recommendations": [
+        "Conduct thyroid function tests including TSH, T4, and T3 to assess current thyroid hormone levels.",
+        "Perform a thyroid ultrasound after one month.",
+        "Evaluate the need for any adjustment in Thyroxine dosage based on test results.",
+        "Continue Vitamin D supplementation as prescribed."
+      ],
+      "urgency_level": "low",
+      "timestamp": "2025-12-22T13:50:55.122272",
+      "_category": null,
+      "_missing_info": [],
+      "_intake_report_id": "recording_1766400147632"
+    }
+  ]
+}

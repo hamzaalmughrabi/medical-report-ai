@@ -1,0 +1,460 @@
+% =========================================
+% main.tex -- Fully Working Report Template
+% =========================================
+
+\documentclass[12pt,a4paper]{report}
+
+% ---------------- PACKAGES ----------------
+\usepackage{fontspec}
+\usepackage{graphicx} 
+\usepackage{polyglossia}
+\setmainlanguage{english}
+\setmainfont{Times New Roman}  
+\setotherlanguage{arabic}
+% --- TikZ Setup ---
+\usepackage{tikz}
+\usetikzlibrary{calc, arrows.meta, positioning, shapes.geometric}
+\usepackage{float} % for [H] placement
+\usepackage{amsmath}
+% Arabic fonts
+\newfontfamily\arabicfont[Script=Arabic]{Amiri}
+\newfontfamily\arabicfontsf[Script=Arabic]{Amiri}
+\newfontfamily\arabicfonttt[Script=Arabic]{Amiri}
+\usepackage{longtable}
+\usepackage{graphicx}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{setspace}
+\usepackage{tikz}
+\usepackage{minted}
+\usepackage{array}
+\usepackage[table]{xcolor}
+\usepackage{tocloft}
+\usepackage[hidelinks]{hyperref}
+\usepackage{eso-pic}
+\usepackage{svg}
+\svgpath{{img/}} % folder where your SVG files are stored
+\usepackage{listings}
+\usepackage{xcolor}
+
+\lstset{
+    basicstyle=\ttfamily\small,
+    backgroundcolor=\color{gray!10},
+    frame=single,
+    breaklines=true,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green!40!black},
+    stringstyle=\color{red!70!black},
+    showstringspaces=false
+}
+% ==============================
+% Font Sizes Setup
+% ==============================
+\usepackage{titlesec}
+\usepackage{setspace}
+
+% Chapter Title (Main) 16pt
+\titleformat{\chapter}[display]
+  {\normalfont\bfseries\fontsize{16}{20}\selectfont}
+  {\chaptername\ \thechapter}{20pt}{}
+
+% Section Title (Subtitles) 14pt
+\titleformat{\section}
+  {\normalfont\bfseries\fontsize{14}{17}\selectfont}
+  {\thesection}{1em}{}
+
+\titleformat{\subsection}
+  {\normalfont\bfseries\fontsize{14}{17}\selectfont}
+  {\thesubsection}{1em}{}
+
+% Paragraph text 12pt
+\renewcommand{\baselinestretch}{1.5} % line spacing
+\fontsize{12}{15}\selectfont
+
+% Footnotes 10pt
+\usepackage[12pt,footnotesize]{scrextend} % أو
+\renewcommand{\footnotesize}{\fontsize{10}{12}\selectfont}
+
+
+% ---------------- GLOBAL SETTINGS ----------------
+\onehalfspacing
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+\definecolor{customText}{HTML}{33363B}
+\AtBeginDocument{\color{customText}}
+
+% ---------------- PAGE BORDER ----------------
+
+
+% ==================================================
+%                DOCUMENT START
+% ==================================================
+\begin{document}
+
+% ---------------- COVER PAGE ----------------
+\thispagestyle{empty}
+
+\begin{center}
+    \vspace*{1cm}
+    \includegraphics[width=4cm]{logo.png}
+\end{center}
+
+\vspace{0.3cm}
+\begin{center}
+    {\Large\textbf{\textit{medecho}}}
+\end{center}
+
+\vspace{1cm}
+\begin{center}
+\textbf{By:}
+\end{center}
+
+\begin{center}
+\begin{tabular}{l c}
+\textbf{Hamza Jafar Al-Mughrabi} & \textbf{20220273} \\
+\textbf{Aisha Baker Al-Dalaeen}  & \textbf{20223336} \\
+\textbf {Shaimaa AlQahwaji} & \textbf{20222298} \\
+\textbf{abd alhamid dawod} & \textbf{20210223} \\
+\end{tabular}
+\end{center}
+
+\vspace{1cm}
+\begin{center}
+\textbf{Supervisor:}\\
+Dr. Qotadeh Saber Al-Jawazneh
+\end{center}
+
+\vspace{1.5cm}
+\begin{center}
+This Project Was Submitted in Partial Fulfillment of the Requirements\\
+for the Bachelor's Degree in Artificial Intelligence.
+\end{center}
+
+\vspace{2cm}
+\begin{center}
+Faculty of Information Technology\\
+Zarqa University
+\end{center}
+
+\vfill
+
+\begin{center}
+2025
+\end{center}
+
+\clearpage
+
+% ---------------- FRONT MATTER ----------------
+\pagenumbering{roman}
+
+\input{declaration.tex}
+\clearpage
+
+\input{supervisor.tex}
+\clearpage
+
+\input{acknowledgments.tex}
+\clearpage
+
+\input{abstract.tex}
+\clearpage
+
+% ---------------- TABLE OF CONTENTS ----------------
+\input{toc.tex}
+\clearpage
+
+% Switch to normal numbering
+\pagenumbering{arabic}
+
+% ==================================================
+%                   MAIN CHAPTERS
+% ==================================================
+
+\label{chapter:intro}
+\input{introduction.tex}
+\clearpage
+
+\chapter{Literature Review}\label{chapter:literature}
+ \input{literature.tex}
+\clearpage
+
+
+\input{system_analysis_requirements.tex}
+\clearpage
+
+\chapter{Design}\label{chapter:design}
+ \input{design.tex}
+\clearpage
+
+\chapter{Implementation}\label{chapter:implementation}
+ \input{implementation.tex}
+\clearpage
+
+\chapter{Testing and Validation}\label{chapter:testing} \input{testing_validation.tex}
+\clearpage
+
+\chapter{Results and Discussion}\label{chapter:results}
+ \input{results_discussion.tex}
+\clearpage
+
+\chapter{Conclusion and Future Work}\label{chapter:conclusion}
+ \input{conclusion_future_work.tex}
+\clearpage
+
+% ==================================================
+%                   REFERENCES
+% ==================================================
+
+
+
+
+% 1. أولاً: المراجع
+\newpage
+\addcontentsline{toc}{chapter}{References}
+\label{chapter:References}
+\renewcommand{\bibname}{References}
+\bibliographystyle{IEEEtran}
+\bibliography{references}  % <--- هذا السطر يستدعي ملف references.bib
+% ==================================================
+%                   APPENDICES
+% ==================================================
+\appendix
+\chapter{System Architecture \& Workflow}\label{appendix:systema}
+
+
+This appendix provides a detailed technical description of the MedEcho system architecture and its end-to-end operational workflow. The content presented here expands on the system overview illustrated in Slide 8 (System Architecture) and Slide 9 (AI Processing Pipeline).
+
+MedEcho follows a modular and layered architectural design to ensure scalability, maintainability, and clear separation of concerns between user interaction, artificial intelligence reasoning, and medical data management.
+
+\subsection{Architecture Overview}
+
+The system is composed of four primary layers:
+
+\begin{itemize}
+    \item \textbf{Frontend Layer (Electron Desktop Application):}  
+    Responsible for real-time audio recording, clinical case management, and report visualization. The interface is designed to integrate seamlessly into the physician's workflow.
+
+    \item \textbf{Backend Layer (Python FastAPI):}  
+    Acts as the orchestration layer, handling API requests, pipeline control, validation logic, and error handling.
+
+    \item \textbf{AI Core Layer:}  
+    Includes the Whisper model for clinical speech recognition, a Large Language Model (LLM) for semantic understanding and clinical reasoning, and integration mechanisms for domain grounding via the Local Knowledge Layer.
+
+    \item \textbf{Storage Layer:}  
+    Stores structured OSCE-aligned JSON reports, generated clinical PDF documents, and secure local metadata.
+\end{itemize}
+
+\subsection{End-to-End Workflow}
+
+The complete system workflow proceeds as follows:
+
+\begin{enumerate}
+    \item The physician records a clinical encounter using the desktop application.
+    \item Audio data is transmitted to the backend for processing.
+    \item Whisper performs multilingual speech-to-text transcription.
+    \item The AI Core processes the transcription for clinical understanding and structuring.
+    \item A structured OSCE-compliant JSON report is generated.
+    \item Validation checks ensure completeness and schema compliance.
+    \item A professional clinical PDF report is produced and securely stored.
+\end{enumerate}
+
+This architecture enables near real-time clinical documentation while maintaining robustness and clinical safety.
+
+
+\chapter{Data Storage Design}\label{appendix:dsb}
+\section{Overview}
+This appendix describes the data storage design adopted in the MedEcho system. Instead of using a traditional relational database, MedEcho relies on a lightweight, file-based persistence layer built around structured JSON files. This design choice simplifies deployment, supports offline operation, and aligns with the system’s AI-centric architecture.
+
+\section{Storage Approach}
+The system employs JSON-based storage organized within a predefined directory structure. Each clinical encounter is stored as a self-contained data unit, enabling easy retrieval, traceability, and auditing.
+
+The main motivations behind this approach include:
+\begin{itemize}
+    \item Reduced system complexity
+    \item No dependency on database servers
+    \item Improved suitability for offline clinical environments
+    \item Natural compatibility with AI-generated structured outputs
+\end{itemize}
+
+\section{Data Categories}
+MedEcho stores data across the following logical categories:
+
+\begin{enumerate}
+    \item \textbf{Audio Data}: Raw intake and assessment audio recordings stored temporarily during processing.
+    \item \textbf{Transcripts}: Text output generated by the Whisper speech-to-text engine for both Phase 1 and Phase 2.
+    \item \textbf{Structured Reports}: AI-generated OSCE-compliant JSON documents containing clinical information.
+    \item \textbf{Final Reports}: PDF files generated from validated JSON data for clinical review.
+    \item \textbf{Local Knowledge Layer (LKL)}: Domain-specific correction and grounding rules used to enhance accuracy.
+\end{enumerate}
+
+\section{File Organization Structure}
+The following directory structure is used to organize stored data:
+
+\begin{verbatim}
+/data/
+ ├── audio/
+ │    ├── intake/
+ │    └── final/
+ ├── transcripts/
+ │    ├── phase1/
+ │    └── phase2/
+ ├── reports/
+ │    ├── drafts/
+ │    └── final/
+ ├── pdf/
+ └── knowledge/
+      └── lkl.json
+\end{verbatim}
+
+Each patient case is associated with a unique identifier to maintain traceability across all stored artifacts.
+
+\section{JSON Schema Design}
+Structured data is stored using a consistent JSON schema. A simplified example is shown below:
+
+\begin{verbatim}
+{
+  "case_id": "ME-2024-0012",
+  "patient": {
+    "age": 45,
+    "gender": "Male"
+  },
+  "presenting_complaint": "Chest pain",
+  "symptoms_positive": ["Shortness of breath"],
+  "symptoms_negative": ["Fever", "Cough"],
+  "clinical_notes": "Pain radiating to left arm",
+  "assessment_phase": "Phase 1",
+  "timestamp": "2024-05-14T10:32:00"
+}
+\end{verbatim}
+
+This schema ensures human readability, machine interpretability, and ease of validation.
+
+\section{Data Integrity and Safety}
+To ensure data reliability and safety, the following measures are applied:
+\begin{itemize}
+    \item Atomic file writing to prevent data corruption
+    \item Versioned updates for draft and final reports
+    \item Role-based access control
+    \item Local storage by default to protect sensitive clinical data
+\end{itemize}
+
+\section{Design Limitations}
+While the file-based storage approach offers simplicity and flexibility, it introduces certain limitations:
+\begin{itemize}
+    \item Limited scalability for very large deployments
+    \item No native concurrency management
+    \item Manual integration required for external EMR systems
+\end{itemize}
+
+These limitations are addressed in future work through planned integration with national electronic medical record systems.
+
+\section{Summary}
+The data storage design of MedEcho provides a pragmatic and secure persistence solution tailored to AI-assisted clinical documentation. By leveraging structured JSON files and a local knowledge layer, the system achieves reliable storage while remaining flexible for future evolution.
+
+\clearpage
+\chapter{OSCE Schema \& Clinical Structuring}\label{appendix:osce}
+\section{OSCE Schema \& Clinical Structuring}
+
+This appendix describes the structured clinical documentation model adopted by MedEcho, which is aligned with the Objective Structured Clinical Examination (OSCE) standard. This section supports the proposed solution presented in Slide 3 and the clinical reasoning workflow shown in Slide 11.
+
+\subsection{OSCE-Aligned Documentation Model}
+
+Unlike conventional medical dictation systems that generate unstructured free text, MedEcho produces standardized clinical documentation using predefined OSCE-aligned schemas.
+
+The structured report includes the following core sections:
+
+\begin{itemize}
+    \item Patient History
+    \item Presenting Symptoms
+    \item Physical Examination
+    \item Diagnosis and Differential Diagnosis
+    \item Treatment Plan
+    \item Clinical Recommendations
+\end{itemize}
+
+\subsection{Two-Phase Clinical Workflow}
+
+The clinical structuring process follows a two-phase reasoning model:
+
+\textbf{Phase 1 – Patient Intake:}  
+Captures patient history, symptoms, and examination findings during the initial clinical encounter.
+
+\textbf{Phase 2 – Final Assessment:}  
+Generates diagnostic conclusions, treatment plans, and recommendations based on the structured intake data.
+
+\subsection{Structured Output Representation}
+
+All clinical reports are initially generated as structured OSCE-compliant JSON objects. This structured representation ensures consistency across clinicians, facilitates validation, and enables safe transformation into legally valid clinical PDF documents.
+
+This approach bridges real-world clinical reasoning with standardized medical documentation practices.
+\chapter{MedEcho User Evaluation Survey}\label{appendix:survey}
+\section{MedEcho User Evaluation Survey}
+
+\textbf{Participant Role:}  
+( ) Senior Consultant \quad
+( ) Specialist \quad
+( ) Resident \quad
+( ) Intern
+
+\textbf{Department:} \underline{\hspace{5cm}}
+
+\vspace{0.5cm}
+
+\subsection*{Instructions}
+Please rate your level of agreement with the following statements using a 5-point Likert scale, where:
+
+\begin{itemize}
+    \item 1 -- Strongly Disagree
+    \item 2 -- Disagree
+    \item 3 -- Neutral
+    \item 4 -- Agree
+    \item 5 -- Strongly Agree
+\end{itemize}
+
+\subsection*{Part 1: System Usability (Based on SUS)}
+
+\begin{enumerate}
+    \item I think that I would like to use MedEcho frequently. \hfill (1 \; 2 \; 3 \; 4 \; 5)
+    \item I found the system unnecessarily complex. \hfill (1 \; 2 \; 3 \; 4 \; 5)
+    \item I thought the system was easy to use. \hfill (1 \; 2 \; 3 \; 4 \; 5)
+    \item I think that I would need the support of a technical person to be able to use this system. \hfill (1 \; 2 \; 3 \; 4 \; 5)
+    \item I found the various functions in this system were well integrated. \hfill (1 \; 2 \; 3 \; 4 \; 5)
+    \item I felt very confident using the system. \hfill (1 \; 2 \; 3 \; 4 \; 5)
+\end{enumerate}
+
+\subsection*{Part 2: Clinical Utility and Impact}
+
+\begin{enumerate}
+    \setcounter{enumi}{6}
+    \item The ``One-Click Record'' feature is suitable for high-pressure clinical environments. \hfill (1 \; 2 \; 3 \; 4 \; 5)
+    \item The system accurately transcribed mixed Arabic--English (code-switching) speech. \hfill (1 \; 2 \; 3 \; 4 \; 5)
+    \item The automated OSCE structuring of the report is accurate and professional. \hfill (1 \; 2 \; 3 \; 4 \; 5)
+    \item The ``Negative Findings Logic'' enhances the medico-legal quality of the report. \hfill (1 \; 2 \; 3 \; 4 \; 5)
+    \item Using MedEcho reduces the time I spend on manual clinical documentation. \hfill (1 \; 2 \; 3 \; 4 \; 5)
+    \item The system allows me to focus more on the patient rather than on the screen. \hfill (1 \; 2 \; 3 \; 4 \; 5)
+\end{enumerate}
+
+\subsection*{Part 3: Qualitative Feedback (Open-Ended)}
+
+\begin{enumerate}
+    \setcounter{enumi}{12}
+    \item What is the most useful feature of MedEcho?
+    \vspace{1.5cm}
+    \item What challenges or errors did you encounter while using the system?
+    \vspace{1.5cm}
+    \item Do you have any suggestions for improving the clinical workflow?
+    \vspace{1.5cm}
+\end{enumerate}
+
+\vspace{0.5cm}
+
+\subsection*{Ethical Note}
+Participation in this survey was voluntary, and no identifiable patient data were collected or recorded. All responses were handled anonymously and used solely for academic evaluation purposes.
+
+\clearpage
+
+
+
+
+
+\end{document}

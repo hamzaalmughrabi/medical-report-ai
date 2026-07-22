@@ -1,0 +1,52 @@
+{
+  "report_id": "consultation_1762932443355",
+  "patient_name": "عائشة بكر الضلائي",
+  "age": "21",
+  "sex": "female",
+  "dob": "N/A",
+  "referring_doctor": "Dr. Ibrahim",
+  "exam_date": "N/A",
+  "exam_type": "N/A",
+  "clinical_history": "Patient Profile: Name: عائشة بكر الضلائي, Age: 21, Sex: Female, Marital Status: Single. Chief Complaint (CC): Left knee pain for more than a year. History of Present Illness (HPI): The pain is described as severe and prevents movement, not like stabbing but more like electric shocks. The pain varies with the weather, worsening in cold conditions and alleviated by warmth. The pain lasts approximately 30 minutes. No associated swelling or pain in other joints. Systemic Enquiry / Review of Systems (ROS): Reports thyroid gland issues with pain in cold weather. Past Medical and Surgical History: Hypothyroidism, taking Thyroxine 100 mg regularly. Drug History: Thyroxine 100 mg, regular intake, no other medications except vitamins. Family History: Aunt with rheumatoid joint issues. No family history of knee problems. Social History: Lives on the third floor, non-smoker.",
+  "detailed_findings": [
+    {
+      "finding": "Left knee pain",
+      "explanation": "Chronic pain for over a year, described as severe and electric shock-like, possibly indicating nerve involvement or inflammatory process.",
+      "severity": "severe",
+      "temporal_relation": "chronic"
+    },
+    {
+      "finding": "Pain variation with weather",
+      "explanation": "Pain worsens in cold conditions, suggesting possible inflammatory or rheumatologic component.",
+      "severity": "N/A",
+      "temporal_relation": "N/A"
+    },
+    {
+      "finding": "Hypothyroidism",
+      "explanation": "Patient is on Thyroxine 100 mg, indicating a managed thyroid condition.",
+      "severity": "N/A",
+      "temporal_relation": "chronic"
+    },
+    {
+      "finding": "No swelling or pain in other joints",
+      "explanation": "Absence of swelling or pain in other joints may rule out systemic inflammatory conditions.",
+      "severity": "N/A",
+      "temporal_relation": "N/A"
+    },
+    {
+      "finding": "Family history of rheumatoid joint issues",
+      "explanation": "Aunt with rheumatoid issues may suggest a genetic predisposition to joint problems.",
+      "severity": "N/A",
+      "temporal_relation": "N/A"
+    }
+  ],
+  "impression_summary": "The clinical presentation of chronic left knee pain with characteristics of electric shock-like sensations and weather-related exacerbation suggests a possible inflammatory or rheumatologic condition. The absence of swelling and pain in other joints may rule out systemic conditions. The patient's hypothyroidism is well-managed with Thyroxine. Family history of rheumatoid issues may indicate a genetic predisposition.",
+  "recommendations": [
+    "Consider rheumatologic evaluation to rule out inflammatory joint disease.",
+    "Further imaging studies such as MRI of the knee to assess for structural abnormalities.",
+    "Continue monitoring thyroid function and adjust Thyroxine dosage as needed."
+  ],
+  "urgency_level": "moderate",
+  "timestamp": "2025-11-12T10:28:07.694773",
+  "source_file": "consultation_1762932443355.webm"
+}

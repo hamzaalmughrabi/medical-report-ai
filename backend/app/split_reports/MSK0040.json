@@ -1,0 +1,42 @@
+{
+  "report_id": "MSK0040",
+  "patient_name": "N/A",
+  "age": "N/A",
+  "sex": "N/A",
+  "dob": "N/A",
+  "referring_doctor": "N/A",
+  "exam_date": "N/A",
+  "exam_type": "Physical Examination",
+  "clinical_history": "Patient reports right ankle pain and swelling after a fall during a rugby game. The foot turned inwards during the fall, and the pain is located at the lateral malleolus. The patient rates the pain as 7 or 8 out of 10 and has difficulty bearing weight on the affected ankle.",
+  "detailed_findings": [
+    {
+      "finding": "Swelling and bruising",
+      "explanation": "The right ankle is swollen with a bruise approximately four centimeters wide."
+    },
+    {
+      "finding": "Pain on palpation",
+      "explanation": "Significant pain is noted on the lateral malleolus upon palpation."
+    },
+    {
+      "finding": "Limited dorsiflexion",
+      "explanation": "The patient has difficulty pointing toes and foot upwards towards the face."
+    },
+    {
+      "finding": "Painful plantar flexion",
+      "explanation": "The patient experiences pain when pushing the foot down like pressing a gas pedal."
+    },
+    {
+      "finding": "Intalligate gait",
+      "explanation": "The patient has a limp and an inability to bear weight on the right ankle."
+    }
+  ],
+  "impression_summary": "The clinical features suggest a possible ankle fracture or sprain, with significant tenderness on the lateral side and difficulty bearing weight.",
+  "recommendations": [
+    "Obtain an x-ray to rule out a fracture.",
+    "Consider air boot or casting if a fracture is confirmed."
+  ],
+  "urgency_level": "moderate",
+  "timestamp": "2025-11-09T10:06:54.355611",
+  "source_file": "MSK0040.mp3",
+  "_pdf_path": "reports\\report_MSK0040.pdf"
+}

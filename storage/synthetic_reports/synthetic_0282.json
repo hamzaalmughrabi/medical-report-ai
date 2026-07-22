@@ -1,0 +1,30 @@
+{
+  "report_id": "synthetic_0282",
+  "patient_name": "N/A",
+  "age": "43",
+  "sex": "Male",
+  "dob": "N/A",
+  "referring_doctor": "N/A",
+  "exam_date": "N/A",
+  "exam_type": "Emergency Visit",
+  "clinical_history": "The patient complains of lower back pain for two weeks, worsened by prolonged sitting and improved with gentle movement. No radiation to the legs or red flag symptoms reported.",
+  "detailed_findings": [
+    {
+      "finding": "Mechanical pattern of low back pain",
+      "explanation": "Suggestive of musculoskeletal origin."
+    },
+    {
+      "finding": "No leg weakness, numbness, or bladder/bowel dysfunction",
+      "explanation": "Reduces suspicion for cauda equina syndrome."
+    }
+  ],
+  "impression_summary": "Likely mechanical low back pain without red flag features.",
+  "recommendations": [
+    "Recommend gentle physical activity and core-strengthening exercises.",
+    "Short-term use of analgesics as needed.",
+    "Advise to seek urgent care if red flag symptoms develop."
+  ],
+  "urgency_level": "low",
+  "timestamp": "2025-11-02T14:44:32.329132",
+  "source_file": "synthetic_0282.m4a"
+}

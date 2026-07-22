@@ -1,0 +1,106 @@
+<section class="max-w-7xl mx-auto p-4 md:p-10 space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-700 pb-32">
+    <!-- Premium Clinical Header -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-slate-100 dark:border-slate-800 pb-8">
+        <div class="space-y-2">
+            <div class="inline-flex items-center gap-2 px-3 py-1 bg-primary/5 rounded-full text-[10px] font-black text-primary uppercase tracking-widest border border-primary/10">
+                <span class="w-1.5 h-1.5 bg-primary rounded-full animate-pulse"></span>
+                <span data-i18n="phase1_badge">Phase 1: Initial Diagnosis</span>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tighter" data-i18n="clinical_intake_title">Clinical Intake</h1>
+            <p class="text-slate-500 font-medium max-w-xl" data-i18n="clinical_intake_desc">Record the initial patient consultation to generate a foundational clinical transcript and diagnostic draft.</p>
+        </div>
+        <div class="hidden lg:flex items-center gap-4 text-xs font-bold text-slate-400 uppercase tracking-widest">
+            <span data-i18n="workflow">Workflow</span>
+            <span class="material-symbols-outlined text-sm flip-rtl">arrow_forward</span>
+            <span class="text-primary" data-i18n="intake">Intake</span>
+            <span class="material-symbols-outlined text-sm opacity-30 flip-rtl">arrow_forward</span>
+            <span class="opacity-30" data-i18n="assessment">Assessment</span>
+        </div>
+    </div>
+
+    <!-- Main Action Stage -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div id="start-phase1-record" class="lg:col-span-2 relative overflow-hidden bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-[2.5rem] p-8 md:p-12 shadow-medium group cursor-pointer hover:border-primary/20 transition-all active:scale-[0.99]">
+             <div class="relative z-10 flex flex-col md:flex-row items-center gap-10">
+                <!-- Icon with Pulse -->
+                <div class="relative flex-shrink-0">
+                    <div class="w-24 h-24 md:w-32 md:h-32 rounded-[2rem] md:rounded-[2.5rem] bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white shadow-xl shadow-primary/30 group-hover:rotate-6 transition-transform duration-500">
+                        <span class="material-symbols-outlined text-5xl md:text-7xl">mic</span>
+                    </div>
+                    <div class="absolute inset-0 bg-primary rounded-[2.5rem] blur-xl opacity-20 pulse-ring"></div>
+                </div>
+
+                <div class="flex-1 text-center md:text-left space-y-4">
+                    <h2 class="text-3xl font-black text-slate-900 dark:text-white tracking-tight" data-i18n="record_new_session">Record New Session</h2>
+                    <p class="text-slate-500 font-medium leading-relaxed" data-i18n="record_session_desc">
+                        Engage the AI clinical listener to capture the patient's narrative in real-time. The system will automatically structure the history and observations.
+                    </p>
+                    <div class="pt-2 flex items-center justify-center md:justify-start gap-3 text-primary font-black uppercase tracking-widest text-xs">
+                        <span data-i18n="launch_listening">Launch Listening Suite</span>
+                        <span class="material-symbols-outlined text-xl group-hover:translate-x-2 transition-transform flip-rtl">arrow_forward</span>
+                    </div>
+                </div>
+             </div>
+             <!-- Background Accents -->
+             <div class="absolute -right-20 -bottom-20 w-64 h-64 bg-primary/5 blur-[80px] rounded-full"></div>
+        </div>
+
+        <!-- Sidebar Info/Tips -->
+        <div class="bg-slate-900 rounded-[2.5rem] p-8 text-white shadow-xl flex flex-col justify-between group overflow-hidden relative">
+            <div class="relative z-10">
+                <span class="text-[10px] font-black uppercase tracking-widest text-primary" data-i18n="physician_tip">Physician Tip</span>
+                <h3 class="text-xl font-bold mt-2" data-i18n="natural_dictation">Natural Dictation</h3>
+                <p class="text-slate-400 text-sm mt-3 leading-relaxed italic" data-i18n="natural_dictation_quote">"Speak naturally during the consultation. Our AI models are tuned to filter ambiance and focus on clinical data extraction."</p>
+            </div>
+            <div class="mt-8 relative z-10">
+                <div class="flex items-center gap-3 text-xs font-bold text-slate-300">
+                   <div class="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center">
+                      <span class="material-symbols-outlined text-sm">bolt</span>
+                   </div>
+                   <span data-i18n="sub_second">Sub-second processing</span>
+                </div>
+            </div>
+            <span class="material-symbols-outlined absolute -right-4 -top-4 text-8xl opacity-5 rotate-12 group-hover:scale-110 transition-transform">tips_and_updates</span>
+        </div>
+    </div>
+
+    <!-- Registry Section -->
+    <div class="space-y-6">
+        <div class="flex items-center justify-between px-2">
+            <h3 class="text-xl font-bold text-slate-800 dark:text-slate-200 flex items-center gap-3">
+                <span class="material-symbols-outlined text-primary">pending_actions</span>
+                <span data-i18n="synced_records">Synchronized Records</span>
+            </h3>
+            <span id="phase1-count" class="px-3 py-1 bg-slate-100 dark:bg-slate-800 rounded-full text-[10px] font-black text-slate-500 uppercase">0 <span data-i18n="pending_label">Pending</span></span>
+        </div>
+
+        <div id="phase1-output"></div>
+
+        <div class="bg-white dark:bg-slate-800 rounded-[2rem] border border-slate-100 dark:border-slate-800 shadow-sm overflow-hidden">
+            <table id="phase1-table" class="w-full text-left border-collapse">
+                <thead class="bg-slate-50/50 dark:bg-slate-900/50 border-b border-slate-100 dark:border-slate-800">
+                    <tr>
+                        <th class="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-slate-400" data-i18n="patient_registry_col">Patient Registry</th>
+                        <th class="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-slate-400" data-i18n="case_identifier_col">Case Identifier</th>
+                        <th class="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-slate-400 text-right" data-i18n="action_col">Action</th>
+                    </tr>
+                </thead>
+                <tbody id="phase1-body" class="divide-y divide-slate-50 dark:divide-slate-700/30">
+                    <!-- Dynamic Content -->
+                </tbody>
+            </table>
+            
+            <!-- Empty State -->
+            <div id="phase1-empty-state" class="hidden py-24 text-center space-y-4">
+                 <div class="w-20 h-20 bg-slate-50 dark:bg-slate-900 rounded-3xl flex items-center justify-center mx-auto text-slate-200">
+                    <span class="material-symbols-outlined text-5xl">cloud_done</span>
+                 </div>
+                 <div class="space-y-1">
+                    <p class="font-bold text-slate-900 dark:text-white" data-i18n="all_records_synced">All Records Synchronized</p>
+                    <p class="text-xs text-slate-400" data-i18n="all_records_synced_sub">Every intake session has been finalized or no new data is present.</p>
+                 </div>
+            </div>
+        </div>
+    </div>
+
+</section>

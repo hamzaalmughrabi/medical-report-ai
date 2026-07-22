@@ -1,0 +1,301 @@
+<div class="max-w-7xl mx-auto p-6 md:p-8">
+
+  <!-- Back Navigation -->
+  <div class="mb-6">
+    <button id="patient-back-btn"
+      class="group flex items-center gap-2 text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white transition-colors">
+      <span
+        class="p-2 rounded-full bg-slate-100 dark:bg-slate-800 group-hover:bg-slate-200 dark:group-hover:bg-slate-700 transition-colors">
+        <span class="material-symbols-outlined text-xl">arrow_back</span>
+      </span>
+      <span class="font-semibold text-sm uppercase tracking-wide">Back to Patients</span>
+    </button>
+  </div>
+
+  <!-- Patient Header -->
+  <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-card border border-slate-200 dark:border-slate-700 p-6">
+
+    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+
+      <!-- LEFT -->
+      <div class="flex items-center gap-4">
+        <!-- Avatar -->
+        <div class="w-14 h-14 rounded-full bg-slate-200 dark:bg-slate-700
+                 flex items-center justify-center text-lg font-bold text-slate-700 dark:text-white">
+          HW
+        </div>
+
+        <!-- Info -->
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="text-xl font-bold text-slate-900 dark:text-white" id="patient-name">
+              —
+            </h1>
+
+            <span class="px-2 py-0.5 text-xs rounded-full bg-green-100 text-green-600">
+              Active
+            </span>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-4 text-sm text-slate-500 mt-1">
+            <span id="patient-id">ID: —</span>
+            <span id="patient-meta">Age: — • Gender: —</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ACTIONS -->
+      <div class="flex items-center gap-3">
+        <button id="patient-edit-btn" class="px-4 py-3 rounded-xl bg-slate-200 dark:bg-slate-700
+                 hover:bg-slate-300 dark:hover:bg-slate-600
+                 text-slate-900 dark:text-white font-semibold flex items-center gap-2 transition-colors">
+          <span class="material-symbols-outlined">edit</span>
+          <span>Edit</span>
+        </button>
+
+        <button id="patient-delete-btn" class="px-4 py-3 rounded-xl bg-rose-100 dark:bg-rose-900/20
+                 hover:bg-rose-200 dark:hover:bg-rose-900/40
+                 text-rose-600 dark:text-rose-400 font-semibold flex items-center gap-2 transition-colors">
+          <span class="material-symbols-outlined">delete</span>
+          <span>Delete</span>
+        </button>
+
+        <!-- DYNAMIC HERO ACTION (Injected by JS) -->
+        <div id="patient-hero-action">
+          <!-- Fallback/Default -->
+          <button id="patient-start-intake"
+            class="px-5 py-3 rounded-xl bg-gradient-to-r from-primary to-accent
+                     hover:opacity-90 text-white font-semibold shadow-lg hover:shadow-xl flex items-center gap-2 transition-all">
+            <span class="material-symbols-outlined">mic</span>
+            <span>New Clinical Session</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Tabs -->
+    <div class="border-t border-slate-200 dark:border-slate-700 mt-6 pt-4">
+      <div class="flex gap-6 overflow-x-auto text-sm">
+
+        <button class="patient-tab font-medium text-primary border-b-2 border-primary pb-2" data-tab="overview">
+          Details
+        </button>
+
+        <button class="patient-tab text-slate-500 hover:text-slate-800 dark:hover:text-white" data-tab="sessions">
+          Sessions <span id="patient-sessions-count" class="text-xs">(0)</span>
+        </button>
+
+        <button class="patient-tab text-slate-500 hover:text-slate-800 dark:hover:text-white" data-tab="reports">
+          Reports
+        </button>
+
+
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Layout -->
+  <div class="mt-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+    <!-- LEFT -->
+    <div class="lg:col-span-2 space-y-6">
+
+      <!-- Overview -->
+      <section id="tab-overview"
+        class="bg-white dark:bg-slate-800 rounded-2xl shadow-card border border-slate-200 dark:border-slate-700 p-6">
+
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary">person</span>
+          Patient Summary
+        </h2>
+
+        <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="rounded-xl border border-slate-200 dark:border-slate-700 p-4">
+            <p class="text-xs font-semibold text-slate-500">Patient ID</p>
+            <p id="patient-summary-id" class="mt-1 font-bold text-slate-900 dark:text-white">#5233</p>
+          </div>
+
+          <div class="rounded-xl border border-slate-200 dark:border-slate-700 p-4">
+            <p class="text-xs font-semibold text-slate-500">Created at</p>
+            <p id="patient-summary-date" class="mt-1 font-bold text-slate-900 dark:text-white">12 Aug 2025</p>
+          </div>
+        </div>
+
+        <!-- AI Differential Diagnosis -->
+        <div class="mt-8 border-t border-slate-200 dark:border-slate-700 pt-6">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
+              <span class="material-symbols-outlined text-accent">psychiatry</span>
+              Automated Differential Diagnosis (Local AI)
+            </h3>
+            <button id="patient-generate-diag-btn" disabled
+              class="relative text-sm px-4 py-2 rounded-lg bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-300 font-medium transition-colors flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
+              <span class="material-symbols-outlined text-[18px]">temp_preferences_custom</span> <span
+                id="diag-btn-text">Generate</span>
+            </button>
+          </div>
+
+          <div id="patient-diagnosis-container" class="space-y-3">
+            <p class="text-sm text-slate-500 dark:text-slate-400 italic">No diagnosis generated yet. Click generate to
+              analyze patient history via Ollama.</p>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Reports -->
+      <section id="tab-reports"
+        class="hidden bg-white dark:bg-slate-800 rounded-2xl shadow-card border border-slate-200 dark:border-slate-700 p-6">
+
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-4">
+          Reports
+        </h2>
+
+        <div class="overflow-x-auto">
+          <table class="min-w-full divide-y divide-slate-200 dark:divide-slate-700">
+            <thead>
+              <tr class="bg-slate-50 dark:bg-slate-700/50">
+                <th class="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase">Case ID</th>
+                <th class="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase">Phase</th>
+                <th class="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase">Date</th>
+                <th class="px-4 py-3 text-right text-xs font-medium text-slate-500 uppercase">Action</th>
+              </tr>
+            </thead>
+            <tbody id="patient-reports-body" class="divide-y divide-slate-200 dark:divide-slate-700">
+              <!-- JS will inject rows here -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Sessions -->
+      <section id="tab-sessions"
+        class="hidden bg-white dark:bg-slate-800 rounded-2xl shadow-card border border-slate-200 dark:border-slate-700 p-6">
+
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-4">
+          Sessions
+        </h2>
+
+        <div class="overflow-x-auto">
+          <table class="min-w-full divide-y divide-slate-200 dark:divide-slate-700">
+            <thead>
+              <tr class="bg-slate-50 dark:bg-slate-700/50">
+                <th class="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase">Session ID</th>
+                <th class="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase">Phase</th>
+                <th class="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase">Report Status</th>
+                <th class="px-4 py-3 text-right text-xs font-medium text-slate-500 uppercase">Action</th>
+              </tr>
+            </thead>
+            <tbody id="patient-sessions-body" class="divide-y divide-slate-200 dark:divide-slate-700">
+              <!-- JS will inject rows here -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- RIGHT -->
+    <aside class="space-y-6">
+
+      <!-- Documents -->
+      <section
+        class="bg-white dark:bg-slate-800 rounded-2xl shadow-card border border-slate-200 dark:border-slate-700 p-6">
+        <h3 class="text-base font-bold text-slate-900 dark:text-white mb-2 flex items-center justify-between">
+          Files / Documents
+          <button id="patient-upload-btn"
+            class="p-1 rounded hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-400 hover:text-primary transition-colors"
+            title="Upload Document">
+            <span class="material-symbols-outlined text-lg">upload_file</span>
+          </button>
+        </h3>
+        <input type="file" id="patient-upload-input" class="hidden">
+        <div id="patient-docs-list" class="space-y-2">
+          <p class="text-sm text-slate-500">No documents yet.</p>
+        </div>
+      </section>
+
+      <!-- Notes -->
+      <section
+        class="bg-white dark:bg-slate-800 rounded-2xl shadow-card border border-slate-200 dark:border-slate-700 p-6">
+        <h3 class="text-base font-bold text-slate-900 dark:text-white mb-2">
+          Notes
+        </h3>
+
+        <textarea id="patient-notes-input" class="w-full h-40 px-4 py-3 bg-slate-50 dark:bg-slate-900
+                 border border-slate-200 dark:border-slate-700 rounded-xl resize-none
+                 focus:outline-none focus:ring-2 focus:ring-primary text-sm"
+          placeholder="Write quick notes for this patient…"></textarea>
+      </section>
+
+    </aside>
+  </div>
+
+</div>
+
+<!-- Edit Patient Drawer -->
+<div id="edit-patient-drawer" class="fixed inset-0 z-50 hidden">
+  <div id="edit-patient-overlay" class="absolute inset-0 bg-black/40"></div>
+  <div
+    class="absolute right-0 top-0 h-full w-full max-w-md bg-white dark:bg-slate-900 border-l border-slate-200 dark:border-slate-700 shadow-2xl translate-x-full transition-transform duration-300 z-50"
+    id="edit-patient-panel">
+    <div class="p-6 border-b border-slate-200 dark:border-slate-700 flex items-center justify-between">
+      <div>
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white">Edit Patient</h3>
+        <p class="text-sm text-slate-500 dark:text-slate-400">Update patient details</p>
+      </div>
+      <button id="close-edit-patient" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+
+    <form id="edit-patient-form" class="p-6 space-y-4">
+      <!-- ID is read-only usually, but let's allow read-only display -->
+      <div>
+        <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Patient ID</label>
+        <input id="edit-patient-id" readonly
+          class="w-full rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-3 py-2.5 text-slate-500 cursor-not-allowed">
+      </div>
+
+      <div>
+        <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Full Name</label>
+        <input id="edit-patient-name" required
+          class="w-full rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-3 py-2.5">
+      </div>
+
+      <div>
+        <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Age</label>
+        <input id="edit-patient-age" type="number" min="0" max="130" required
+          class="w-full rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-3 py-2.5">
+      </div>
+
+      <div>
+        <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Sex</label>
+        <select id="edit-patient-sex" required
+          class="w-full rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-3 py-2.5">
+          <option value="">Select</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select>
+      </div>
+
+      <p id="edit-patient-feedback" class="hidden text-sm text-emerald-600 font-medium flex items-center gap-2">
+        <span class="material-symbols-outlined">check_circle</span>
+        Updated!
+      </p>
+
+      <div class="flex gap-2 pt-2">
+        <button type="button" id="cancel-edit-patient"
+          class="flex-1 px-4 py-2.5 rounded-xl bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600">
+          Cancel
+        </button>
+        <button type="submit"
+          class="flex-1 px-4 py-2.5 rounded-xl bg-gradient-to-r from-primary to-accent text-white font-semibold flex items-center justify-center gap-2">
+          <span>Save Changes</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

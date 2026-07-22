@@ -1,0 +1,34 @@
+{
+  "report_id": "synthetic_0090",
+  "patient_name": "N/A",
+  "age": "28",
+  "sex": "Male",
+  "dob": "N/A",
+  "referring_doctor": "N/A",
+  "exam_date": "N/A",
+  "exam_type": "Follow-up",
+  "clinical_history": "The patient with known type 2 diabetes presents for routine follow-up. Reports occasional polyuria and increased thirst but no chest pain or visual changes.",
+  "detailed_findings": [
+    {
+      "finding": "Known type 2 diabetes",
+      "explanation": "Chronic metabolic condition requiring ongoing monitoring."
+    },
+    {
+      "finding": "Polyuria and polydipsia",
+      "explanation": "May indicate suboptimal glycemic control."
+    },
+    {
+      "finding": "No acute symptoms such as chest pain or vision loss",
+      "explanation": "No current evidence of acute complications."
+    }
+  ],
+  "impression_summary": "Type 2 diabetes with possible suboptimal glycemic control.",
+  "recommendations": [
+    "Order HbA1c and basic metabolic panel.",
+    "Review and adjust diabetes medications as needed.",
+    "Reinforce dietary counseling and physical activity."
+  ],
+  "urgency_level": "moderate",
+  "timestamp": "2025-11-24T11:32:32.252177",
+  "source_file": "synthetic_0090.m4a"
+}

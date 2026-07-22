@@ -1,0 +1,158 @@
+<div class="max-w-7xl mx-auto p-4 md:p-10 space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-500 pb-32">
+  <!-- Premium Clinical Header -->
+  <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-slate-100 dark:border-slate-800 pb-8">
+    <div class="space-y-2">
+      <div class="inline-flex items-center gap-2 px-3 py-1 bg-emerald-50 rounded-full text-[10px] font-black text-emerald-600 uppercase tracking-widest border border-emerald-100">
+        <span class="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></span>
+        <span data-i18n="registry_node_active">Registry Node: Active</span>
+      </div>
+      <h1 class="text-4xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tighter"> <span data-i18n="patient_profile_title">Patient Profile</span> </h1>
+      <p class="text-slate-500 font-medium max-w-xl"> <span data-i18n="patient_profile_desc">Detailed clinical overview and diagnostic history. manage patient records and initiate new sessions from this node.</span> </p>
+    </div>
+    <div class="hidden lg:flex flex-col items-end gap-1">
+      <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest leading-none"> <span data-i18n="profile_context">Profile Context</span> </p>
+      <p class="text-[9px] text-primary font-bold"> <span data-i18n="standard_registry">Standard Registry v1.0.4</span> </p>
+    </div>
+  </div>
+
+  <!-- Header Section (Premium Card) -->
+  <div class="bg-white dark:bg-slate-800 rounded-3xl shadow-xl border border-slate-200 dark:border-slate-700 overflow-hidden mb-8">
+    <div class="p-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
+      
+      <!-- Patient Identity -->
+      <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
+        <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-primary to-accent flex-shrink-0 flex items-center justify-center text-white text-xl sm:text-2xl font-black shadow-lg">
+          <span id="patient-initials">PT</span>
+        </div>
+        <div class="min-w-0">
+          <div class="flex flex-wrap items-center gap-2 sm:gap-3">
+            <h1 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight truncate" id="patient-name">—</h1>
+            <span class="px-2.5 py-1 text-[9px] sm:text-[10px] font-black rounded-lg bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400 uppercase tracking-widest" data-i18n="active">Active</span>
+          </div>
+          <p class="text-slate-500 font-medium text-xs sm:text-sm mt-1 break-words" id="patient-meta">ID: #--- • Age: -- • Gender: --</p>
+        </div>
+      </div>
+
+      <!-- Action Cluster -->
+      <div class="flex items-center gap-2 sm:gap-3 mt-4 md:mt-0">
+        <button id="patient-edit-btn" class="p-2.5 sm:p-3 rounded-xl sm:rounded-2xl bg-slate-100 dark:bg-slate-700/50 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition-all">
+          <span class="material-symbols-outlined text-[20px] sm:text-[24px]">edit</span>
+        </button>
+        <button id="patient-delete-btn" class="p-2.5 sm:p-3 rounded-xl sm:rounded-2xl bg-rose-50 dark:bg-rose-900/20 text-rose-600 dark:text-rose-400 hover:bg-rose-100 transition-all">
+          <span class="material-symbols-outlined text-[20px] sm:text-[24px]">delete</span>
+        </button>
+        <button id="patient-hero-action-btn" class="flex-1 sm:flex-none px-4 sm:px-6 py-3 sm:py-3.5 rounded-xl sm:rounded-2xl bg-gradient-to-r from-primary to-accent text-white font-black text-[11px] sm:text-xs tracking-widest shadow-xl shadow-primary/25 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2">
+          <span class="material-symbols-outlined text-[18px] sm:text-[22px]">mic</span>
+          <span data-i18n="new_session_btn">NEW SESSION</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Segmented Navigation -->
+    <div class="px-8 border-t border-slate-100 dark:border-slate-700/50 bg-slate-50/50 dark:bg-slate-900/20">
+      <div class="flex gap-8 overflow-x-auto pb-px">
+        <button class="patient-tab py-5 text-sm font-bold text-primary border-b-2 border-primary transition-all flex items-center gap-2" data-tab="overview">
+          <span class="material-symbols-outlined text-[18px]">clinical_notes</span>
+          <span data-i18n="tab_overview">Details</span>
+        </button>
+        <button class="patient-tab py-5 text-sm font-bold text-slate-400 hover:text-slate-900 dark:hover:text-white transition-all flex items-center gap-2" data-tab="sessions">
+          <span class="material-symbols-outlined text-[18px]">history</span>
+          <span data-i18n="tab_sessions">Sessions</span> <span id="patient-sessions-count" class="text-[10px] bg-slate-200 dark:bg-slate-700 px-1.5 py-0.5 rounded-md">0</span>
+        </button>
+        <button class="patient-tab py-5 text-sm font-bold text-slate-400 hover:text-slate-900 dark:hover:text-white transition-all flex items-center gap-2" data-tab="reports">
+          <span class="material-symbols-outlined text-[18px]">description</span>
+          <span data-i18n="tab_reports">Reports</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content Grid -->
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 pb-32">
+    
+    <!-- Main Content Area (Tabs Content) -->
+    <div class="lg:col-span-2 space-y-6">
+      
+      <!-- OVERVIEW TAB -->
+      <section id="tab-overview" class="space-y-6">
+        <div class="bg-white dark:bg-slate-800 rounded-3xl p-8 border border-slate-200 dark:border-slate-700 shadow-sm">
+          <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary">edit_note</span>
+            <span data-i18n="clinical_observations">Clinical Observations</span>
+          </h2>
+          <textarea id="patient-notes-input" 
+            class="w-full h-80 p-6 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 focus:ring-2 focus:ring-primary focus:outline-none transition-all text-sm leading-relaxed" 
+            data-i18n-placeholder="clinical_obs_placeholder" placeholder="Document physician observations and clinical notes here..."></textarea>
+        </div>
+      </section>
+
+      <!-- SESSIONS TAB -->
+      <section id="tab-sessions" class="hidden animate-in fade-in duration-300">
+        <div class="bg-white dark:bg-slate-800 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden">
+          <table class="w-full text-left">
+            <thead>
+              <tr class="bg-slate-50 dark:bg-slate-900/50 border-b border-slate-100 dark:border-slate-700">
+                <th class="px-6 py-4 text-[10px] font-black uppercase text-slate-400" data-i18n="session_date">Session Date</th>
+                <th class="px-6 py-4 text-[10px] font-black uppercase text-slate-400" data-i18n="duration">Duration</th>
+                <th class="px-6 py-4 text-[10px] font-black uppercase text-slate-400" data-i18n="phase_col">Phase</th>
+                <th class="px-6 py-4 text-right text-[10px] font-black uppercase text-slate-400" data-i18n="action_col">Action</th>
+              </tr>
+            </thead>
+            <tbody id="patient-sessions-body">
+              <!-- JS Injected -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- REPORTS TAB -->
+      <section id="tab-reports" class="hidden animate-in fade-in duration-300">
+        <div class="bg-white dark:bg-slate-800 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden">
+          <table class="w-full text-left">
+            <thead>
+              <tr class="bg-slate-50 dark:bg-slate-900/50 border-b border-slate-100 dark:border-slate-700">
+                <th class="px-6 py-4 text-[10px] font-black uppercase text-slate-400" data-i18n="report_id">Report ID</th>
+                <th class="px-6 py-4 text-[10px] font-black uppercase text-slate-400" data-i18n="date_col">Date</th>
+                <th class="px-6 py-4 text-[10px] font-black uppercase text-slate-400" data-i18n="status">Status</th>
+                <th class="px-6 py-4 text-right text-[10px] font-black uppercase text-slate-400" data-i18n="action_col">Action</th>
+              </tr>
+            </thead>
+            <tbody id="patient-reports-body">
+              <!-- JS Injected -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+
+    <!-- Sidebar Info -->
+    <div class="space-y-6">
+       <!-- Contact Card -->
+       <div class="bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl p-8 text-white shadow-2xl relative overflow-hidden group">
+         <div class="absolute top-0 right-0 p-8 opacity-10 group-hover:scale-110 transition-transform">
+           <span class="material-symbols-outlined text-8xl">contact_emergency</span>
+         </div>
+         <h3 class="text-sm font-black uppercase tracking-widest text-primary mb-6" data-i18n="patient_stats">Patient Stats</h3>
+         <div class="space-y-4 relative z-10">
+           <div>
+             <span class="text-[10px] font-bold text-slate-400 uppercase" data-i18n="age_gender">Age / Gender</span>
+             <p id="patient-stat-age" class="text-lg font-bold">-- Years • --</p>
+           </div>
+           <div class="pt-4 border-t border-white/5">
+             <span class="text-[10px] font-bold text-slate-400 uppercase" data-i18n="member_since">Member Since</span>
+             <p id="patient-stat-date" class="text-lg font-bold">---</p>
+           </div>
+         </div>
+       </div>
+
+       <!-- Documents Quick List -->
+       <div class="bg-white dark:bg-slate-800 rounded-3xl p-8 border border-slate-200 dark:border-slate-700 shadow-sm">
+         <h3 class="font-bold text-slate-900 dark:text-white mb-6" data-i18n="uploaded_files">Uploaded Files</h3>
+         <div id="patient-docs-list" class="space-y-3">
+           <p class="text-xs text-slate-400 italic" data-i18n="no_external_files">No external files attached.</p>
+         </div>
+       </div>
+    </div>
+
+  </div>
+</div>

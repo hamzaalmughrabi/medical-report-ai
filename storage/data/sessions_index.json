@@ -1,0 +1,44 @@
+﻿[
+    {
+        "session_id":  "SE344B23B",
+        "report_id":  "R1C8CDBE2C6E1",
+        "intake_id":  null,
+        "patient_id":  "PEBAD8D72",
+        "created_at":  "2026-04-08T16:23:20.801333"
+    },
+    {
+        "session_id":  "S5D82DF91",
+        "report_id":  "R5BD6FB267B1B",
+        "intake_id":  null,
+        "patient_id":  "252553232",
+        "created_at":  "2026-04-08T16:29:25.861232"
+    },
+    {
+        "session_id":  "SB177C2F3",
+        "report_id":  "R08CC3D35A7FB",
+        "intake_id":  "R5BD6FB267B1B",
+        "patient_id":  "252553232",
+        "created_at":  "2026-04-08T16:32:51.499370"
+    },
+    {
+        "session_id":  "S60600BA9",
+        "report_id":  "RE9DFDE85E673",
+        "intake_id":  "R5BD6FB267B1B",
+        "patient_id":  "252553232",
+        "created_at":  "2026-04-08T18:44:33.549951"
+    },
+    {
+        "session_id":  "S35B27BAC",
+        "report_id":  "R1CC6445CC8DF",
+        "intake_id":  null,
+        "patient_id":  "252553232",
+        "created_at":  "2026-04-08T18:51:33.716294"
+    },
+    {
+        "session_id":  "SC5A85776",
+        "report_id":  "RC648257FB207",
+        "intake_id":  null,
+        "patient_id":  "P-999999",
+        "created_at":  "2026-04-08T19:00:29.768018"
+    }
+]

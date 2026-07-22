@@ -1,0 +1,184 @@
+% =========================================
+% CHAPTER 7: Results and Discussion
+% =========================================
+
+
+
+\section{Overview}
+\label{sec:results:overview}
+This chapter presents the findings obtained from the development, testing, and pilot 
+deployment of the MedEcho system. The results are analyzed based on technical performance 
+(accuracy, latency, structured extraction) and clinical usability (workflow integration, 
+user feedback). The discussion also evaluates how well the system addresses the original 
+problem statement of reducing documentation burden while maintaining clinical quality.
+
+% -------------------------------------
+% 7.2 Technical Performance
+% -------------------------------------
+\section{Technical Performance Results}
+
+\subsection{Transcription Accuracy (Speech-to-Text)}
+\label{sec:results:accuracy}
+
+The system’s ability to operate within a \textbf{code-switching environment} 
+(Arabic + English) was a major success factor.
+
+\subsubsection*{Findings}
+OpenAI Whisper demonstrated strong robustness when transcribing Jordanian dialect 
+mixed with English medical terminology.
+
+\subsubsection*{Error Analysis}
+\begin{itemize}
+    \item Minor inaccuracies occurred with certain local drug brand names.
+    \item The overall medical meaning remained intact.
+    \item The Local Knowledge Layer (LKL) successfully corrected many context-specific terms.
+\end{itemize}
+
+\subsection{Processing Latency}
+\label{sec:results:latency}
+
+Latency measures the time between ending the audio recording and displaying the structured 
+report.
+
+\subsubsection*{Average Latency}
+For a typical two-minute medical consultation:
+
+\[
+\textbf{15–20 seconds}
+\]
+
+\subsubsection*{Analysis}
+Pilot testing confirmed this delay is acceptable since it aligns with the natural transition 
+between physical examination and reporting review.
+
+\subsection{Structured Data Extraction (OSCE Compliance)}
+\label{sec:results:osce}
+
+The system was tested for its ability to extract OSCE-compliant fields.
+
+\subsubsection*{Results}
+\begin{itemize}
+    \item The system correctly categorized symptoms and patient details into appropriate OSCE sections in \textbf{90\%} of test cases.
+    \item Implemented \textbf{Negative Findings Logic}: when symptoms were denied, they were recorded explicitly rather than omitted.
+\end{itemize}
+
+This logic was specifically validated based on requirements from  
+\textbf{Dr. Samer Abu Ghazaleh}.
+
+% -------------------------------------
+% 7.3 Clinical Validation Results
+% -------------------------------------
+\section{Clinical Validation Results (Field Testing)}
+Field evaluation took place at Zarqa Government Hospital with real clinical staff.
+
+\subsection{Workflow Integration}
+\label{sec:results:workflow}
+
+\subsubsection*{Outcome}
+The introduction of the \textbf{Two-Phase Workflow} (Phase 1 Intake + Phase 2 Final Assessment) 
+was highly effective.
+
+\subsubsection*{Impact}
+\begin{itemize}
+    \item Mirrors clinicians’ natural cognitive progression.
+    \item Prevents premature or incorrect AI-generated diagnoses.
+    \item Ensures that final medical judgment remains with the doctor.
+\end{itemize}
+
+\subsection{User Experience (UX) Feedback}
+\label{sec:results:ux}
+
+Feedback was collected from senior consultants and medical residents.
+
+\subsubsection*{Positive Feedback}
+\begin{itemize}
+    \item Simple and intuitive UI.
+    \item “\textbf{One-Click Record}” was highlighted as crucial in overloaded clinics.
+\end{itemize}
+
+\subsubsection*{Critical Feedback and Improvements}
+Doctors frequently omitted allergy information.  
+To address this:
+
+\begin{itemize}
+    \item The system now prompts for allergies.
+    \item A safety default is included when no allergy information is provided.
+\end{itemize}
+
+This ensures improved patient safety and documentation completeness.
+
+% -------------------------------------
+% 7.4 Discussion
+% -------------------------------------
+\section{Discussion}
+
+\subsection{Interpretation of Results}
+The results indicate that Large Language Models, when combined with a 
+\textbf{Local Knowledge Layer (LKL)}, can be effectively grounded for clinical tasks.  
+MedEcho successfully converts unstructured medical speech into a legal-grade structured 
+report.
+
+The accurate detection of \textbf{Negative Findings} represents a major advancement, 
+distinguishing MedEcho from simple transcription tools.
+
+\subsection{Comparison with Manual Documentation}
+\label{sec:results:comparison}
+
+\subsubsection*{Time Efficiency}
+Typing a complete medical report manually typically takes:
+
+\[
+5\text{–}10 \text{ minutes}
+\]
+
+Using MedEcho:
+
+\[
+1\text{–}2 \text{ minutes (dictation + review)}
+\]
+
+This represents a potential \textbf{80\% reduction in documentation time}.
+
+\subsubsection*{Completeness of Records}
+The system ensures consistent inclusion of:
+
+\begin{itemize}
+    \item Social History
+    \item Family History
+    \item Allergy Status
+    \item Key OSCE elements
+\end{itemize}
+
+This reduces the risk of missing essential medical details due to time pressure.
+
+\subsection{Limitations and Future Work}
+\label{sec:results:limitations}
+
+While results are promising, several limitations remain:
+
+\begin{itemize}
+    \item \textbf{Internet dependency:} LLM processing currently requires API connectivity.
+    \item \textbf{Offline Models:} Future work should explore local inference using 
+          quantized models for on-premise hospital deployment.
+    \item \textbf{Hospital Integration:} Planned support for integration with Jordan’s 
+          national system (\textit{Hakeem}) to streamline PDF uploads.
+\end{itemize}
+
+% -------------------------------------
+% 7.5 Conclusion
+% -------------------------------------
+\section{Conclusion}
+\label{sec:results:conclusion}
+
+The MedEcho system successfully demonstrated that an AI-powered, voice-driven 
+documentation assistant is both technically feasible and clinically beneficial.  
+Pilot testing results from Zarqa Government Hospital strongly indicate that MedEcho can:
+
+\begin{itemize}
+    \item Reduce physician burnout,
+    \item Improve documentation quality,
+    \item Enhance patient safety through structured and complete reporting.
+\end{itemize}
+
+These results validate MedEcho as a promising and practical innovation for real-world 
+clinical environments.

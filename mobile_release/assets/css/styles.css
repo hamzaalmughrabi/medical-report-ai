@@ -1,0 +1,94 @@
+.material-symbols-outlined {
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
+}
+
+/* Custom scrollbar styling (optional, but good for aesthetics) */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #60a5fa;
+    /* blue-400 */
+    border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+/* Locked Sidebar Item */
+.nav-item.locked {
+    opacity: 0.5;
+    pointer-events: none;
+    cursor: not-allowed;
+    filter: grayscale(100%);
+}
+
+/* Animations (Polyfill for tailwind-animate usage in JS) */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        transform: translateY(10px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.animate-in {
+    animation-duration: 0.4s;
+    animation-fill-mode: both;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fade-in {
+    animation-name: fadeIn;
+}
+
+.slide-in-from-bottom-2 {
+    animation-name: slideInUp;
+}
+
+/* Page Transition State */
+.page-transitioning {
+    opacity: 0.3 !important;
+    transform: translateY(4px);
+    transition: all 0.2s ease;
+}
+
+/* Sidebar Active State refining */
+.nav-item.active {
+    background: rgba(8, 145, 178, 0.1) !important; /* primary/10 */
+    color: #0891B2 !important; /* primary */
+    font-weight: 600 !important;
+}
+
+/* Glassmorphism for Modals */
+.modal-glass {
+    background: rgba(255, 255, 255, 0.8) !important;
+    backdrop-filter: blur(12px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark .modal-glass {
+    background: rgba(15, 23, 42, 0.8) !important;
+    backdrop-filter: blur(12px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}

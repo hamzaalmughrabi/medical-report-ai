@@ -1,0 +1,37 @@
+% =========================================
+% abstract.tex
+% =========================================
+
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
+Clinical documentation is one of the most time-consuming and error-prone tasks in healthcare practice, often reducing valuable doctor–patient interaction time. This paper presents MedEcho, an AI-powered voice-to-report system designed to convert spoken clinical dictations into structured, editable, and professional medical reports.
+
+The system follows a two-phase clinical workflow consisting of patient intake and final assessment. It integrates automatic speech recognition using Whisper with large language models to generate OSCE-compliant structured medical reports in JSON format. A Local Knowledge Layer (LKL) is introduced to enhance contextual accuracy, reduce hallucinations, and adapt the system to hospital-specific clinical patterns without retraining core AI models.
+
+MedEcho was evaluated using a real clinical dataset consisting of 30 patient cases and 74 generated medical reports, collected during pilot testing at Zarqa Governmental Hospital. The system was used by two practicing physicians and evaluated under the supervision of the Deputy Director of the hospital, ensuring both clinical validity and administrative oversight. Physicians used the system during real outpatient consultations to record both intake and final assessment dictations, which were then processed automatically by the MedEcho pipeline.
+
+The results demonstrated a significant reduction in documentation time, with average report generation requiring less than three minutes compared to traditional manual documentation. Participating physicians reported improved consistency, clarity, and completeness of medical records, and the structured reports were judged suitable for routine clinical and academic use.
+
+These findings indicate that MedEcho provides a practical, scalable, and privacy-aware solution for clinical documentation, highlighting the potential of AI-driven voice-to-report systems in real healthcare environments.
+
+\vspace{1cm}
+
+\begin{center}
+\textarabic{\Large الملخص}
+\end{center}
+
+\begin{otherlanguage}{arabic}
+يهدف نظام \textit{Medecho} إلى تقليل العبء الواقع على الأطباء عند كتابة التقارير الطبية 
+من خلال الاعتماد على الذكاء الاصطناعي لتحويل الملاحظات الصوتية إلى تقارير طبية جاهزة 
+ومنظمة، مما يساعد الأطباء على توفير وقتهم وتركيزهم لرعاية المرضى. يعتمد النظام على 
+تقنيات متقدمة في التعرف على الصوت والنماذج اللغوية الضخمة، مما يساهم في تقليل الأخطاء 
+البشرية وتحسين وضوح ودقة الصياغة.
+
+يتكون النظام من واجهة مستخدم سهلة الاستخدام، ويعتمد على تقنية Whisper لمعالجة الصوت، 
+بالإضافة إلى FastAPI كخادم خلفي لتجهيز الطلبات. أظهر النظام أداءً مميزًا في مستشفى 
+الزرقاء الحكومي أثناء الاختبار الأولي، حيث ساهم في تسريع وقت إعداد التقارير، وتقليل 
+العبء الإداري، وتقديم تقارير عالية الجودة للأطباء.
+
+يمثل هذا المشروع خطوة عملية في دمج الذكاء الاصطناعي في سير العمل الطبي، ويضع أساسًا 
+للكفاءة والدقة وتجربة استخدام أفضل.
+\end{otherlanguage}

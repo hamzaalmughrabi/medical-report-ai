@@ -1,0 +1,30 @@
+{
+  "report_id": "consultation_1762806732279",
+  "patient_name": "حمز المغربي",
+  "age": "26",
+  "sex": "N/A",
+  "dob": "N/A",
+  "referring_doctor": "N/A",
+  "exam_date": "N/A",
+  "exam_type": "N/A",
+  "clinical_history": "The patient reports right-sided neck pain persisting for approximately one week, treated with topical ointment. The pain is associated with stiffness upon waking. Additionally, the patient experiences pain in the right leg and right arm. The patient has been taking Panadol for relief.",
+  "detailed_findings": [
+    {
+      "finding": "Right-sided neck pain",
+      "explanation": "Persistent for one week, associated with stiffness, possibly indicating musculoskeletal strain or inflammation."
+    },
+    {
+      "finding": "Right leg and arm pain",
+      "explanation": "Concurrent pain in extremities may suggest a systemic or neurological issue."
+    }
+  ],
+  "impression_summary": "The patient presents with right-sided neck pain and stiffness, along with pain in the right leg and arm, possibly indicating musculoskeletal or neurological involvement.",
+  "recommendations": [
+    "Consider further musculoskeletal evaluation.",
+    "Evaluate for potential neurological causes.",
+    "Continue current pain management with Panadol."
+  ],
+  "urgency_level": "moderate",
+  "timestamp": "2025-11-10T23:32:21.879263",
+  "source_file": "consultation_1762806732279.webm"
+}

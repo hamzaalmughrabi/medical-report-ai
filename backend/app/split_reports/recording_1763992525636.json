@@ -1,0 +1,27 @@
+{
+  "report_id": "recording_1763992525636",
+  "phase": "intake",
+  "patient_name": "حمزة المغرب",
+  "age": "22",
+  "sex": "ذكر",
+  "dob": "N/A",
+  "referring_doctor": "N/A",
+  "exam_date": "N/A",
+  "exam_type": "N/A",
+  "clinical_history": "المريض يعاني من حموضة منذ أسبوعين.",
+  "detailed_findings": [
+    {
+      "finding": "حموضة",
+      "explanation": "المريض ذكر أنه يعاني من حموضة منذ أسبوعين."
+    }
+  ],
+  "impression_summary": "المريض يعاني من حموضة مستمرة لمدة أسبوعين.",
+  "recommendations": [
+    "مراجعة الطبيب المختص في حال استمرار الأعراض.",
+    "تجنب الأطعمة التي قد تزيد من الحموضة مثل الأطعمة الحارة أو الدهنية."
+  ],
+  "urgency_level": "moderate",
+  "timestamp": "2025-11-24T16:55:37.521824",
+  "_category": null,
+  "_missing_info": []
+}

@@ -1,0 +1,73 @@
+{
+  "report_id": "recording_1764009234781",
+  "phase": "intake",
+  "patient_name": "Khaled",
+  "age": "N/A",
+  "sex": "N/A",
+  "dob": "N/A",
+  "referring_doctor": "N/A",
+  "exam_date": "N/A",
+  "exam_type": "N/A",
+  "clinical_history": "Patient Profile: Name: Khaled. Chief Complaint (CC): 'Sharp chest pain, severe and sudden onset, for approximately one hour.' History of Present Illness (HPI): Site: Mid-chest. Onset: Sudden, approximately one hour ago. Character: Sharp, strong pressure. Radiation: To the left arm. Associated symptoms: Shortness of breath, severe sweating. Timing: Acute, sudden onset. Exacerbating/relieving factors: Pain increases with movement, no relieving factors. Severity: Severe. Systemic Enquiry / Review of Systems (ROS): Cardiovascular: Chest pain, radiation to left arm. Respiratory: Shortness of breath. General: Severe sweating. Neurological: Lightheadedness. Past Medical and Surgical History: N/A. Drug History: N/A. Family History: Father had a heart attack. Social History: Smoker.",
+  "detailed_findings": [
+    {
+      "finding": "Sharp chest pain",
+      "explanation": "Severe, sudden onset pain in the mid-chest, indicative of possible cardiac event.",
+      "severity": "Severe",
+      "temporal_relation": "Acute",
+      "system": "cardiovascular"
+    },
+    {
+      "finding": "Pain radiating to left arm",
+      "explanation": "Radiation of pain to the left arm, commonly associated with cardiac ischemia.",
+      "severity": "Severe",
+      "temporal_relation": "Acute",
+      "system": "cardiovascular"
+    },
+    {
+      "finding": "Shortness of breath",
+      "explanation": "Difficulty breathing, often associated with cardiac or respiratory distress.",
+      "severity": "Severe",
+      "temporal_relation": "Acute",
+      "system": "respiratory"
+    },
+    {
+      "finding": "Severe sweating",
+      "explanation": "Profuse sweating, often associated with acute stress or cardiac events.",
+      "severity": "Severe",
+      "temporal_relation": "Acute",
+      "system": "general"
+    },
+    {
+      "finding": "Lightheadedness",
+      "explanation": "Feeling of dizziness, potentially related to decreased cardiac output or perfusion.",
+      "severity": "Mild",
+      "temporal_relation": "Acute",
+      "system": "neurological"
+    },
+    {
+      "finding": "Smoking history",
+      "explanation": "Patient is a smoker, a risk factor for cardiovascular disease.",
+      "severity": "N/A",
+      "temporal_relation": "Chronic",
+      "system": "social"
+    },
+    {
+      "finding": "Family history of heart attack",
+      "explanation": "Father had a heart attack, indicating a possible genetic predisposition to cardiovascular disease.",
+      "severity": "N/A",
+      "temporal_relation": "N/A",
+      "system": "family"
+    }
+  ],
+  "impression_summary": "Findings are consistent with an acute coronary syndrome, given the sudden onset of severe chest pain radiating to the left arm, associated with shortness of breath and severe sweating. The patient's smoking history and family history of heart disease further support this impression. Differential considerations include myocardial infarction and unstable angina.",
+  "recommendations": [
+    "Immediate electrocardiogram (ECG) to assess cardiac function.",
+    "Consideration for cardiac biomarkers to evaluate myocardial injury.",
+    "Urgent cardiology consultation for further management."
+  ],
+  "urgency_level": "high",
+  "timestamp": "2025-11-24T21:34:18.421489",
+  "_category": null,
+  "_missing_info": []
+}

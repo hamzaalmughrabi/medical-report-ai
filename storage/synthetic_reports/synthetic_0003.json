@@ -1,0 +1,34 @@
+{
+  "report_id": "synthetic_0003",
+  "patient_name": "N/A",
+  "age": "47",
+  "sex": "Male",
+  "dob": "N/A",
+  "referring_doctor": "N/A",
+  "exam_date": "N/A",
+  "exam_type": "Follow-up",
+  "clinical_history": "The patient presents with recurrent unilateral throbbing headaches associated with photophobia and nausea, lasting several hours and occurring 2–3 times per month.",
+  "detailed_findings": [
+    {
+      "finding": "Recurrent unilateral throbbing headache",
+      "explanation": "Typical pattern consistent with migraine."
+    },
+    {
+      "finding": "Associated photophobia and nausea",
+      "explanation": "Common migraine-associated symptoms."
+    },
+    {
+      "finding": "No focal neurological deficits reported",
+      "explanation": "Reduces suspicion for acute intracranial events."
+    }
+  ],
+  "impression_summary": "Clinical features are consistent with migraine-type headaches.",
+  "recommendations": [
+    "Recommend keeping a headache diary to identify triggers.",
+    "Consider trial of triptan therapy during acute attacks.",
+    "Discuss preventive therapy if frequency increases or affects daily function."
+  ],
+  "urgency_level": "moderate",
+  "timestamp": "2025-11-09T03:32:32.214169",
+  "source_file": "synthetic_0003.m4a"
+}

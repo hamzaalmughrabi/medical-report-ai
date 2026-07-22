@@ -1,0 +1,44 @@
+{
+  "report_id": "recording_1763452833370",
+  "phase": "intake",
+  "patient_name": "غير متوفر",
+  "age": "غير متوفر",
+  "sex": "غير متوفر",
+  "dob": "غير متوفر",
+  "referring_doctor": "غير متوفر",
+  "exam_date": "غير متوفر",
+  "exam_type": "Initial Clinical Encounter",
+  "clinical_history": "The patient reports left knee pain persisting for over a year, exacerbated by cold weather. The pain began suddenly and is constant, worsening with exposure to cold or cold water and alleviated by warmth.",
+  "detailed_findings": [
+    {
+      "finding": "Left knee pain",
+      "explanation": "Persistent for over a year, worsens with cold exposure, alleviated by warmth."
+    },
+    {
+      "finding": "No swelling or stiffness",
+      "explanation": "No reported swelling or significant morning stiffness, except for less than 10 minutes in cold weather."
+    },
+    {
+      "finding": "No joint instability",
+      "explanation": "No giving way or locking of the knee reported."
+    },
+    {
+      "finding": "Family history",
+      "explanation": "Family history of lymphatic disease affecting knees and rheumatoid arthritis."
+    },
+    {
+      "finding": "Hypothyroidism",
+      "explanation": "Patient is on 100 mg of thyroxine."
+    }
+  ],
+  "impression_summary": "Chronic left knee pain likely exacerbated by cold exposure, with no signs of joint instability or significant swelling. Family history suggests possible underlying rheumatologic condition.",
+  "recommendations": [
+    "Consider further rheumatologic evaluation.",
+    "Advise on protective measures against cold exposure.",
+    "Monitor for any changes in symptoms or new symptoms."
+  ],
+  "urgency_level": "moderate",
+  "timestamp": "2025-11-18T11:01:23.444044",
+  "_category": null,
+  "_missing_info": []
+}

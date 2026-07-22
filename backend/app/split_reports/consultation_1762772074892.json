@@ -1,0 +1,25 @@
+{
+  "report_id": "consultation_1762772074892",
+  "patient_name": "Hamza",
+  "age": "N/A",
+  "sex": "N/A",
+  "dob": "N/A",
+  "referring_doctor": "Dr. Asaad",
+  "exam_date": "N/A",
+  "exam_type": "N/A",
+  "clinical_history": "The patient, Hamza, reports experiencing neck pain on the left side when turning the head to the left. The pain has been present for approximately three weeks. The patient has used topical medications for relief. There is no reported pain in the lower back.",
+  "detailed_findings": [
+    {
+      "finding": "Left-sided neck pain",
+      "explanation": "Pain occurs when turning the head to the left, indicating possible muscular or cervical spine involvement."
+    }
+  ],
+  "impression_summary": "The patient presents with left-sided neck pain exacerbated by movement, likely musculoskeletal in origin.",
+  "recommendations": [
+    "Consider physical therapy for neck pain management.",
+    "Evaluate for potential cervical spine issues if symptoms persist."
+  ],
+  "urgency_level": "low",
+  "timestamp": "2025-11-10T13:54:43.517404",
+  "source_file": "consultation_1762772074892.webm"
+}

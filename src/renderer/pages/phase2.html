@@ -1,0 +1,125 @@
+<section class="max-w-[1400px] mx-auto p-4 md:p-8 space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700 pb-32">
+    <!-- Architectural Header -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-slate-100 dark:border-slate-800 pb-8">
+        <div class="space-y-2">
+            <div class="inline-flex items-center gap-2 px-3 py-1 bg-emerald-50 dark:bg-emerald-500/10 rounded-full text-[10px] font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-widest border border-emerald-100 dark:border-emerald-500/20">
+                <span class="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></span>
+                <span data-i18n="phase2_badge">Phase 2: Final Report</span>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tighter" data-i18n="final_assessment_title">Final Assessment</h1>
+            <p class="text-slate-500 font-medium max-w-xl" data-i18n="final_assessment_desc">Record the follow-up consultation with full clinical context from Phase 1 to synthesize the final diagnostic report.</p>
+        </div>
+        <div id="phase2-case-id" class="px-6 py-3 bg-slate-50 dark:bg-slate-800 rounded-2xl border border-dashed border-slate-200 dark:border-slate-700">
+            <div class="text-[10px] font-black text-slate-400 uppercase tracking-widest leading-none mb-1" data-i18n="intake_context">Intake Context</div>
+            <div id="phase2-patient-name" class="text-sm font-black text-slate-700 dark:text-slate-200 uppercase tracking-tighter" data-i18n="syncing">Synchronizing Patient Node...</div>
+        </div>
+    </div>
+
+    <!-- Vocal Diagnostic Stage -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+        
+        <!-- Left Pane: Protocol & Checklist (Col 3) -->
+        <div class="lg:col-span-3 order-2 lg:order-1 space-y-6">
+             <div class="bg-white dark:bg-slate-800 rounded-[2.5rem] p-8 border border-slate-100 dark:border-slate-800 shadow-sm space-y-8 h-full">
+                <div class="space-y-1">
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
+                        <span class="material-symbols-outlined text-amber-500 font-bold">fact_check</span>
+                        <span data-i18n="subjective_history">Subjective History</span>
+                    </h3>
+                    <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest italic" data-i18n="workflow">Workflow</p>
+                </div>
+                
+                <ul class="space-y-8">
+                    <li class="flex items-start gap-4">
+                        <div class="w-1.5 h-12 bg-primary/20 rounded-full"></div>
+                        <div class="space-y-1">
+                            <p class="text-[11px] font-black text-slate-900 dark:text-white uppercase tracking-tighter">1. <span data-i18n="intake_context">Context Review</span></p>
+                            <p class="text-[10px] text-slate-500 font-medium leading-tight" data-i18n="subjective_history">Observe the intake baseline findings on the right pane.</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-4">
+                        <div class="w-1.5 h-12 bg-emerald-500/20 rounded-full"></div>
+                        <div class="space-y-1">
+                            <p class="text-[11px] font-black text-slate-900 dark:text-white uppercase tracking-tighter">2. <span data-i18n="observation_label">Vocal Dictation</span></p>
+                            <p class="text-[10px] text-slate-500 font-medium leading-tight" data-i18n="preliminary_findings">Narrate your impression, diagnosis, and treatment plan.</p>
+                        </div>
+                    </li>
+                </ul>
+
+                <div class="pt-8 border-t border-slate-50 dark:border-slate-700">
+                    <div class="bg-slate-50 dark:bg-slate-900 rounded-2xl p-4">
+                        <p class="text-[9px] font-bold text-slate-400 uppercase tracking-widest leading-relaxed" data-i18n="ai_sublatency">
+                            Vocal analysis transcends manual baseline reports. AI will synthesize your narration into the final record.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Center Pane: The Vocal Hero Area (Col 6) -->
+        <div class="lg:col-span-6 order-1 lg:order-2">
+            <div class="bg-white dark:bg-slate-900 rounded-[3rem] border border-slate-100 dark:border-slate-800 shadow-2xl overflow-hidden flex flex-col items-center justify-center min-h-[450px] md:min-h-[600px] p-6 md:p-12 relative group transition-all">
+                <!-- Background Pulse -->
+                <div class="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent pointer-events-none"></div>
+                
+                <!-- Main Vocal Trigger -->
+                <div class="relative z-10 flex flex-col items-center space-y-10">
+                    <!-- High-Fidelity Recording Ring -->
+                    <div class="relative">
+                        <div id="start-phase2-record" class="w-48 h-48 md:w-56 md:h-56 rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white shadow-[0_20px_50px_-12px_rgba(16,185,129,0.4)] hover:scale-105 active:scale-95 transition-all cursor-pointer group/btn">
+                            <span class="material-symbols-outlined text-7xl md:text-8xl group-hover/btn:rotate-12 transition-transform">mic</span>
+                        </div>
+                        <!-- Pulse Effects -->
+                        <div class="absolute inset-0 bg-emerald-500 rounded-full blur-3xl opacity-20 animate-pulse pointer-events-none"></div>
+                        <div class="absolute -inset-4 border-2 border-emerald-500/20 rounded-full animate-[spin_10s_linear_infinite] pointer-events-none border-dashed"></div>
+                    </div>
+
+                    <div class="text-center space-y-3">
+                        <h2 class="text-3xl font-black text-slate-900 dark:text-white tracking-tighter" data-i18n="start_final_recording">Record Assessment</h2>
+                        <p class="text-slate-500 font-medium text-sm" data-i18n="final_assessment_desc">Dictate your final diagnosis and treatment plan.</p>
+                    </div>
+
+                    <button id="finalize-assessment-btn" class="px-10 py-5 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-2xl font-black text-xs uppercase tracking-[0.2em] shadow-2xl hover:scale-105 active:scale-95 transition-all" data-i18n="finalize_assessment">
+                        Finalize Clinical Record
+                    </button>
+                </div>
+
+                <!-- Footer Stats -->
+                <div class="absolute bottom-8 left-0 right-0 px-12 flex justify-between items-center opacity-40">
+                    <div class="flex items-center gap-2">
+                        <span class="material-symbols-outlined text-sm">settings_voice</span>
+                        <span class="text-[9px] font-black uppercase" data-i18n="operational">Vocal Sync: Active</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-[9px] font-black uppercase" data-i18n="high_performance">Hifi Pulse: Stable</span>
+                        <span class="material-symbols-outlined text-sm">bolt</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Pane: Clinical Context (Col 3) -->
+        <div class="lg:col-span-3 order-3 space-y-6">
+             <div class="bg-white dark:bg-slate-800 rounded-[2.5rem] border border-slate-100 dark:border-slate-800 shadow-sm overflow-hidden flex flex-col h-full">
+                <div class="px-6 py-4 bg-slate-50 dark:bg-slate-900 border-b border-slate-100 dark:border-slate-800">
+                    <h3 class="text-[10px] font-black text-slate-500 uppercase tracking-widest flex items-center gap-2">
+                        <span class="material-symbols-outlined text-sm">clinical_notes</span>
+                        <span data-i18n="intake_context">Intake Summary</span>
+                    </h3>
+                </div>
+                <div id="phase2-intake-context" class="p-6 overflow-y-auto space-y-4 max-h-[500px]">
+                    <div class="animate-pulse space-y-4">
+                        <div class="h-3 bg-slate-100 dark:bg-slate-800 rounded-full w-3/4"></div>
+                        <div class="h-3 bg-slate-100 dark:bg-slate-800 rounded-full w-full"></div>
+                        <div class="h-3 bg-slate-100 dark:bg-slate-800 rounded-full w-5/6"></div>
+                    </div>
+                    <p class="text-[9px] text-slate-400 font-bold uppercase text-center py-4" data-i18n="syncing">Registry Context Syncing...</p>
+                </div>
+             </div>
+        </div>
+    </div>
+
+    <!-- Output Feedback Area -->
+    <div id="phase2-output"></div>
+
+</section>

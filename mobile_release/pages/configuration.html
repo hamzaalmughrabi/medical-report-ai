@@ -1,0 +1,271 @@
+<div class="p-6 md:p-8 space-y-8 max-w-5xl mx-auto animate-in fade-in zoom-in-95 duration-300">
+
+    <!-- Header -->
+    <div class="flex items-center justify-between">
+        <div>
+            <h1 class="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">Configuration</h1>
+            <p class="text-slate-500 mt-1">Manage AI models, API tokens, and application preferences.</p>
+        </div>
+        <button onclick="saveConfiguration()" id="save-config-btn"
+            class="px-6 py-3 bg-gradient-to-r from-primary to-accent hover:from-primary-dark hover:to-accent-light text-white font-bold rounded-xl shadow-lg transition-transform transform active:scale-95 flex items-center gap-2">
+            <span class="material-symbols-outlined">save</span>
+            Save Changes
+        </button>
+    </div>
+
+    <!-- Tabs Navigation -->
+    <div class="flex space-x-1 bg-slate-100 dark:bg-slate-800 p-1 rounded-xl w-fit">
+        <button onclick="switchConfigTab('general')" id="tab-btn-general"
+            class="px-5 py-2.5 rounded-lg text-sm font-medium transition-all shadow bg-white dark:bg-slate-700 text-slate-900 dark:text-white">
+            General
+        </button>
+        <button onclick="switchConfigTab('ai')" id="tab-btn-ai"
+            class="px-5 py-2.5 rounded-lg text-sm font-medium transition-all text-slate-500 hover:text-slate-900 dark:hover:text-white">
+            AI Models
+        </button>
+        <button onclick="switchConfigTab('tokens')" id="tab-btn-tokens"
+            class="px-5 py-2.5 rounded-lg text-sm font-medium transition-all text-slate-500 hover:text-slate-900 dark:hover:text-white">
+            Tokens & Analysis
+        </button>
+    </div>
+
+    <!-- TAB 1: General -->
+    <div id="tab-content-general" class="space-y-6">
+        <!-- Theme -->
+        <div class="bg-white dark:bg-slate-800 rounded-3xl p-8 border border-slate-200 dark:border-slate-700 shadow-sm">
+            <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary">palette</span> Appearance
+            </h2>
+            <div class="flex items-center justify-between">
+                <div>
+                    <label class="block font-semibold text-slate-700 dark:text-slate-300">Theme Mode</label>
+                    <p class="text-sm text-slate-500">Select your preferred interface appearance.</p>
+                </div>
+                <div class="flex bg-slate-100 dark:bg-slate-900 rounded-lg p-1">
+                    <button onclick="setTheme('light')" id="theme-btn-light"
+                        class="p-2 rounded-md transition-colors text-slate-500 hover:text-slate-900">
+                        <span class="material-symbols-outlined">light_mode</span>
+                    </button>
+                    <button onclick="setTheme('dark')" id="theme-btn-dark"
+                        class="p-2 rounded-md transition-colors text-slate-500 hover:text-white">
+                        <span class="material-symbols-outlined">dark_mode</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Connection -->
+        <div class="bg-white dark:bg-slate-800 rounded-3xl p-8 border border-slate-200 dark:border-slate-700 shadow-sm">
+            <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary">link</span> Application API
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Backend Server
+                        URL</label>
+                    <input type="text" id="config-api-url" value="http://localhost:8001"
+                        class="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-primary focus:outline-none">
+                    <p class="text-xs text-slate-400 mt-2">Requires reload to apply changes.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB 2: AI Models -->
+    <div id="tab-content-ai" class="hidden space-y-6">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+            <!-- Transcription Engine -->
+            <div
+                class="bg-white dark:bg-slate-800 rounded-3xl p-8 border border-slate-200 dark:border-slate-700 shadow-sm relative overflow-hidden group">
+                <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
+                    <span class="material-symbols-outlined text-9xl text-primary">hearing</span>
+                </div>
+                <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2 relative z-10">
+                    <span class="material-symbols-outlined text-primary">mic</span> Transcription Engine
+                </h2>
+
+                <div class="space-y-4 relative z-10">
+                    <div>
+                        <label
+                            class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Provider</label>
+                        <select id="config-transcription-provider"
+                            class="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-primary focus:outline-none appearance-none">
+                            <option value="openai">OpenAI Whisper (High Accuracy)</option>
+                            <option value="google">Google Gemini 1.5 Flash (Fast & Cost-Effective)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Microphone
+                            Placement</label>
+                        <select id="config-mic-placement"
+                            class="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-primary focus:outline-none appearance-none">
+                            <option value="doctor">With Doctor (Default)</option>
+                            <option value="patient">With Patient</option>
+                        </select>
+                    </div>
+                    <div
+                        class="p-4 bg-teal-50 dark:bg-teal-900/20 rounded-xl border border-teal-100 dark:border-teal-800">
+                        <div class="flex items-start gap-3">
+                            <span class="material-symbols-outlined text-teal-600 dark:text-teal-400">speed</span>
+                            <div>
+                                <h4 class="font-bold text-teal-800 dark:text-teal-300 text-sm">Performance Note</h4>
+                                <p class="text-xs text-teal-600 dark:text-teal-400 mt-1">Gemini Flash is significantly
+                                    faster for long audio but may have slightly lower accuracy on medical terms compared
+                                    to Whisper.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Report Generation -->
+            <div
+                class="bg-white dark:bg-slate-800 rounded-3xl p-8 border border-slate-200 dark:border-slate-700 shadow-sm relative overflow-hidden group">
+                <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
+                    <span class="material-symbols-outlined text-9xl text-accent">psychology</span>
+                </div>
+                <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2 relative z-10">
+                    <span class="material-symbols-outlined text-accent">auto_awesome</span> Report Generator (LLM)
+                </h2>
+
+                <div class="space-y-4 relative z-10">
+                    <div>
+                        <label
+                            class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Provider</label>
+                        <select id="config-llm-provider"
+                            class="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-primary focus:outline-none appearance-none">
+                            <option value="openai">OpenAI</option>
+                            <option value="google">Google Gemini</option>
+                            <option value="ollama">Ollama (Local)</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Model</label>
+                        <select id="config-llm-model"
+                            class="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-primary focus:outline-none appearance-none">
+                            <!-- Populated by JS -->
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- TAB 3: Tokens & Analysis -->
+    <div id="tab-content-tokens" class="hidden space-y-8">
+
+        <!-- Token Usage Dashboard -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Card 1 -->
+            <div
+                class="bg-white dark:bg-slate-800 p-6 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Total Tokens Used</p>
+                <h3 id="stats-total-tokens" class="text-3xl font-extrabold text-slate-900 dark:text-white mt-2">0</h3>
+                <div class="mt-2 text-xs text-slate-500 flex items-center gap-1">
+                    <span class="material-symbols-outlined text-sm">history</span> All time
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div
+                class="bg-white dark:bg-slate-800 p-6 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Est. Cost (Approx)</p>
+                <h3 id="stats-est-cost" class="text-3xl font-extrabold text-slate-900 dark:text-white mt-2">$0.00</h3>
+                <div class="mt-2 text-xs text-green-500 font-medium">
+                    Based on public rates
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div
+                class="bg-white dark:bg-slate-800 p-6 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Avg. Total Speed</p>
+                <h3 id="stats-avg-speed" class="text-3xl font-extrabold text-slate-900 dark:text-white mt-2">0s</h3>
+                <div class="mt-2 text-xs text-slate-500">
+                    Per session
+                </div>
+            </div>
+        </div>
+
+        <!-- Timeline Chart -->
+        <div class="bg-white dark:bg-slate-800 rounded-3xl p-8 border border-slate-200 dark:border-slate-700 shadow-sm">
+            <h3 class="font-bold text-slate-900 dark:text-white mb-6">Processing Speed Breakdown</h3>
+            <div class="space-y-4" id="speed-breakdown-chart">
+                <p class="text-sm text-slate-400 italic">No datalogs available yet.</p>
+                <!-- Generated Bars Here -->
+            </div>
+        </div>
+
+        <!-- API configuration -->
+        <div class="bg-white dark:bg-slate-800 rounded-3xl p-8 border border-slate-200 dark:border-slate-700 shadow-sm">
+            <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+                <span class="material-symbols-outlined text-rose-500">key</span> API Tokens & Limits
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Keys -->
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">OpenAI API
+                            Key</label>
+                        <div class="relative">
+                            <input type="password" id="config-openai-key" placeholder="sk-..."
+                                class="w-full px-4 py-3 pr-10 rounded-xl border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-primary focus:outline-none">
+                            <span onclick="togglePassword('config-openai-key')"
+                                class="material-symbols-outlined absolute right-3 top-3 text-slate-400 cursor-pointer hover:text-primary">visibility</span>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Google API
+                            Key</label>
+                        <div class="relative">
+                            <input type="password" id="config-google-key" placeholder="AIza..."
+                                class="w-full px-4 py-3 pr-10 rounded-xl border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-primary focus:outline-none">
+                            <span onclick="togglePassword('config-google-key')"
+                                class="material-symbols-outlined absolute right-3 top-3 text-slate-400 cursor-pointer hover:text-primary">visibility</span>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Ollama API
+                            URL</label>
+                        <div class="relative">
+                            <input type="text" id="config-ollama-url" placeholder="http://localhost:11434"
+                                class="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-primary focus:outline-none">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Parameters -->
+                <div class="space-y-6">
+                    <div>
+                        <div class="flex justify-between items-center mb-2">
+                            <label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Max Output
+                                Tokens</label>
+                            <span id="display-max-tokens"
+                                class="text-xs font-mono bg-slate-200 dark:bg-slate-700 px-2 py-0.5 rounded">4000</span>
+                        </div>
+                        <input type="range" id="config-max-tokens" min="500" max="12000" step="100"
+                            class="w-full accent-primary h-2 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer">
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between items-center mb-2">
+                            <label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Temperature
+                                (Creativity)</label>
+                            <span id="display-temperature"
+                                class="text-xs font-mono bg-slate-200 dark:bg-slate-700 px-2 py-0.5 rounded">0.0</span>
+                        </div>
+                        <input type="range" id="config-temperature" min="0" max="1" step="0.1"
+                            class="w-full accent-primary h-2 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

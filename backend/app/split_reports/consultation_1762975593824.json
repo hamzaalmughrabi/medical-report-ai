@@ -1,0 +1,40 @@
+{
+  "report_id": "consultation_1762975593824",
+  "patient_name": "N/A",
+  "age": "21",
+  "sex": "N/A",
+  "dob": "N/A",
+  "referring_doctor": "N/A",
+  "exam_date": "N/A",
+  "exam_type": "N/A",
+  "clinical_history": "Patient Profile: The patient is a 21-year-old individual. Chief Complaint (CC): The patient reports experiencing a recurrent condition for approximately 3 years. History of Present Illness (HPI): The patient describes a condition characterized by swelling and discomfort in the body, which fluctuates in severity. The condition improves with treatment but occasionally worsens, necessitating further evaluation and adjustment of treatment. Systemic Enquiry / Review of Systems (ROS): N/A. Past Medical and Surgical History: The patient has undergone unspecified tests, one of which showed a defensive response. Drug History: The patient reports allergies to honey, dust, and animals. Family History: N/A. Social History: N/A. Functional/Physiotherapy Relevance: N/A.",
+  "detailed_findings": [
+    {
+      "finding": "Recurrent swelling and discomfort in the body",
+      "explanation": "The patient experiences periodic swelling and discomfort, which may indicate an underlying inflammatory or allergic condition.",
+      "severity": "N/A",
+      "temporal_relation": "Chronic, fluctuating over 3 years"
+    },
+    {
+      "finding": "Allergy to honey, dust, and animals",
+      "explanation": "The patient has known allergies, which could contribute to the symptoms of swelling and discomfort.",
+      "severity": "N/A",
+      "temporal_relation": "N/A"
+    },
+    {
+      "finding": "Defensive response in one of the tests",
+      "explanation": "A test showed a defensive response, suggesting an immune or allergic reaction.",
+      "severity": "N/A",
+      "temporal_relation": "N/A"
+    }
+  ],
+  "impression_summary": "The clinical presentation is suggestive of a chronic allergic condition, possibly exacerbated by exposure to known allergens such as honey, dust, and animals. The fluctuating nature of the symptoms and the defensive response observed in testing support this impression. Differential considerations include chronic urticaria or angioedema.",
+  "recommendations": [
+    "Further allergy testing to identify specific triggers.",
+    "Consideration of long-term management strategies for allergy control.",
+    "Regular follow-up to monitor symptom progression and treatment efficacy."
+  ],
+  "urgency_level": "moderate",
+  "timestamp": "2025-11-12T22:26:54.054344",
+  "source_file": "consultation_1762975593824.webm"
+}

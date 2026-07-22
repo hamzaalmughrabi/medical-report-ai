@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Medical Report</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            font-size: 11pt;
+            margin: 2cm;
+            color: #222;
+        }
+        h1 {
+            font-size: 20pt;
+            color: #222;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 3px solid #444;
+            padding-bottom: 8px;
+            margin-bottom: 10px;
+        }
+        h2 {
+            font-size: 14pt;
+            color: #333;
+            border-bottom: 1px solid #ddd;
+            margin-top: 25px;
+            padding-bottom: 4px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 10.5pt;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 6px 10px;
+            text-align: left;
+            vertical-align: top;
+        }
+        th {
+            background-color: #f5f5f5;
+            font-weight: 600;
+            width: 30%;
+        }
+        ul, ol {
+            margin: 0;
+            padding-left: 18px;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+        .report-header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+        .report-header h1 {
+            border-bottom: none;
+            margin: 0;
+            font-size: 22pt;
+        }
+        .report-header p {
+            font-size: 10pt;
+            color: #555;
+            margin: 2px 0;
+        }
+        .section {
+            margin-top: 25px;
+        }
+        .label {
+            font-weight: 600;
+            color: #333;
+        }
+        .line-item {
+            margin-bottom: 6px;
+        }
+        .subsection {
+            margin-left: 15px;
+        }
+        .note {
+            color: #555;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="report-header">
+        <h1>Medical Report</h1>
+        <p><b>CONFIDENTIAL</b></p>
+        <p>Report ID: {{ report_id | default('N/A') }}</p>
+    </div>
+
+    <h2>Patient & Exam Details</h2>
+    <table>
+        <tr><th>Patient Name</th><td>{{ patient_name | default('N/A') }}</td></tr>
+        <tr><th>Age / Sex / DOB</th><td>{{ age | default('N/A') }} / {{ sex | default('N/A') }} (DOB: {{ dob | default('N/A') }})</td></tr>
+        <tr><th>Referring Doctor</th><td>{{ referring_doctor | default('N/A') }}</td></tr>
+        <tr><th>Exam Date</th><td>{{ exam_date | default('N/A') }}</td></tr>
+        <tr><th>Exam Type</th><td>{{ exam_type | default('N/A') }}</td></tr>
+    </table>
+
+    <div class="section">
+        <h2>Clinical History</h2>
+        {% if clinical_history %}
+            {% set lines = clinical_history.split('.') %}
+            <div class="subsection">
+            {% for line in lines %}
+                {% if line.strip() %}
+                    <div class="line-item">{{ line.strip() }}.</div>
+                {% endif %}
+            {% endfor %}
+            </div>
+        {% else %}
+            <p class="note">No clinical history provided.</p>
+        {% endif %}
+    </div>
+
+    <div class="section">
+        <h2>Detailed Findings</h2>
+        {% if detailed_findings is iterable and detailed_findings is not string %}
+            <ul>
+            {% for item in detailed_findings %}
+                {% if item.finding %}
+                    <li><b>{{ item.finding }}</b> — {{ item.explanation | default('N/A') }}</li>
+                {% else %}
+                    <li>{{ item | default('N/A') }}</li>
+                {% endif %}
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p class="note">No findings reported.</p>
+        {% endif %}
+    </div>
+
+    <div class="section">
+        <h2>Impression / Summary</h2>
+        <p>{{ impression_summary | default('N/A') }}</p>
+    </div>
+
+    <div class="section">
+        <h2>Recommendations</h2>
+        {% if recommendations is iterable and recommendations is not string %}
+            <ol>
+            {% for rec in recommendations %}
+                <li>{{ rec }}</li>
+            {% endfor %}
+            </ol>
+        {% else %}
+            <p class="note">No recommendations provided.</p>
+        {% endif %}
+    </div>
+
+    <div class="section">
+        <h2>Urgency Level</h2>
+        <p><b>{{ urgency_level | default('N/A') | upper }}</b></p>
+    </div>
+</body>
+</html>

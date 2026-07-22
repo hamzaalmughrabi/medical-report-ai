@@ -1,0 +1,27 @@
+{
+  "report_id": "recording_1763579567540",
+  "phase": "intake",
+  "patient_name": "N/A",
+  "age": "N/A",
+  "sex": "N/A",
+  "dob": "N/A",
+  "referring_doctor": "N/A",
+  "exam_date": "N/A",
+  "exam_type": "N/A",
+  "clinical_history": "Patient reports lower back pain that started two days ago. Pain is most severe in the morning upon waking and does not improve by the end of the day.",
+  "detailed_findings": [
+    {
+      "finding": "Lower back pain",
+      "explanation": "Patient experiences persistent lower back pain, particularly severe in the morning."
+    }
+  ],
+  "impression_summary": "Patient presents with acute lower back pain, likely musculoskeletal in nature.",
+  "recommendations": [
+    "Consider imaging to rule out structural issues.",
+    "Advise on pain management strategies."
+  ],
+  "urgency_level": "moderate",
+  "timestamp": "2025-11-19T22:13:05.841094",
+  "_category": null,
+  "_missing_info": []
+}

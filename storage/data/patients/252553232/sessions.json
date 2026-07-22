@@ -1,0 +1,52 @@
+[
+  {
+    "session_id": "S5D82DF91",
+    "patient_id": "252553232",
+    "patient_name": "test",
+    "phase": "intake",
+    "report_id": "R5BD6FB267B1B",
+    "created_at": "2026-04-08T16:29:25.861232",
+    "audio_path": null,
+    "report_json_path": "C:\\Users\\hamza\\PycharmProjects\\medical-ai-\\storage\\data\\patients\\252553232\\reports\\R5BD6FB267B1B_intake.json",
+    "pdf_path": null,
+    "status": "completed"
+  },
+  {
+    "session_id": "SB177C2F3",
+    "patient_id": "252553232",
+    "patient_name": "ahmad mohammad",
+    "phase": "final_assessment",
+    "report_id": "R08CC3D35A7FB",
+    "intake_id": "R5BD6FB267B1B",
+    "created_at": "2026-04-08T16:32:51.499370",
+    "audio_path": null,
+    "report_json_path": "C:\\Users\\hamza\\PycharmProjects\\medical-ai-\\storage\\data\\patients\\252553232\\reports\\R08CC3D35A7FB_final.json",
+    "pdf_path": null,
+    "status": "completed"
+  },
+  {
+    "session_id": "S60600BA9",
+    "patient_id": "252553232",
+    "patient_name": "ahmad mohammad",
+    "phase": "final_assessment",
+    "report_id": "RE9DFDE85E673",
+    "intake_id": "R5BD6FB267B1B",
+    "created_at": "2026-04-08T18:44:33.549951",
+    "audio_path": null,
+    "report_json_path": "C:\\Users\\hamza\\PycharmProjects\\medical-ai-\\storage\\data\\patients\\252553232\\reports\\RE9DFDE85E673_final.json",
+    "pdf_path": null,
+    "status": "completed"
+  },
+  {
+    "session_id": "S35B27BAC",
+    "patient_id": "252553232",
+    "patient_name": "ahmad mohammad",
+    "phase": "intake",
+    "report_id": "R1CC6445CC8DF",
+    "created_at": "2026-04-08T18:51:33.716294",
+    "audio_path": null,
+    "report_json_path": "C:\\Users\\hamza\\PycharmProjects\\medical-ai-\\storage\\data\\patients\\252553232\\reports\\R1CC6445CC8DF_intake.json",
+    "pdf_path": null,
+    "status": "completed"
+  }
+]
