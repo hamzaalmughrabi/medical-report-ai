@@ -141,5 +141,5 @@ This software is the intellectual property of MedEcho. It is closed-source and i
 
 ---
 <div align="center">
-<i>Built to give doctors their time back.</i>
+Science is Elegant.
 </div>
