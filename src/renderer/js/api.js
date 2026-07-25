@@ -153,7 +153,14 @@ export const api = {
                         resolve(xhr.responseText);
                     }
                 } else {
-                    reject(new Error(`Upload failed: ${xhr.status} ${xhr.statusText}`));
+                    let errMsg = `Upload failed: ${xhr.status} ${xhr.statusText}`;
+                    try {
+                        const errJson = JSON.parse(xhr.responseText);
+                        if (errJson.detail) errMsg += ` - ${errJson.detail}`;
+                    } catch (e) {
+                        if (xhr.responseText) errMsg += ` - ${xhr.responseText.substring(0, 100)}`;
+                    }
+                    reject(new Error(errMsg));
                 }
             };
 
