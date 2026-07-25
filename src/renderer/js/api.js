@@ -22,7 +22,7 @@ const _savedUrl = localStorage.getItem("medecho_server_url");
 
 export const API_URL = (_savedUrl && !_savedUrl.includes("localhost"))
     ? _savedUrl
-    : (_isCloud ? AWS_URL : LOCAL_URL);
+    : AWS_URL;
 
 console.log(`[MedEcho] Active Backend: ${API_URL}`);
 console.log(`[MedEcho] Environment: ${_isCloud ? "PRODUCTION/CLOUD" : "DEVELOPMENT/LOCAL"}`);
